@@ -20,7 +20,7 @@ export default [
         meta:{
             title:"SDGs&Sustainable"
         },
-        component: () => import("@/components/header.vue"),
+        component: () => import("@/components/rankingTable.vue"),
     },
 
 

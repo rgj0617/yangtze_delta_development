@@ -78,7 +78,7 @@ const goTo = (page: string) => {
 .header {
   position: absolute;
   top: 0;
-  width: 100vw;
+  width: 100%;
   height: 5.5vh;
   background: rgba(67, 120, 180, 0.8);
   z-index: 2;
