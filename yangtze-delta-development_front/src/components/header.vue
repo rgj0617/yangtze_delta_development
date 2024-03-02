@@ -31,17 +31,10 @@
       </div>
       <div
         class="left-item"
-        :class="{ active: isActive('countyProfiles') }"
-        @click="goTo('countyProfiles')"
+        :class="{ active: isActive('dataScreen') }"
+        @click="goTo('dataScreen')"
       >
-        County Profiles
-      </div>
-      <div
-        class="left-item"
-        :class="{ active: isActive('dataExplorer') }"
-        @click="goTo('dataExplorer')"
-      >
-        Data Explorer
+        Data Screen
       </div>
       <div
         class="left-item"

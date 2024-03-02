@@ -34,7 +34,7 @@ import homeHeader from "@/components/header.vue";
 import dataTable from "@/components/rankingTable.vue";
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .sectionContent {
   display: flex;
   // justify-content: center;

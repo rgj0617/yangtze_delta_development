@@ -20,7 +20,7 @@ export default [
         meta:{
             title:"SDGs&Sustainable"
         },
-        component: () => import("@/components/rankingTable.vue"),
+        component: () => import("@/components/map.vue"),
     },
 
 
@@ -73,20 +73,12 @@ export default [
         component: () => import("@/views/dashboard/interactiveMap.vue"),
     },
     {
-        path: '/countyProfiles',
-        name:"countyProfiles",
+        path: '/dataScreen',
+        name:"dataScreen",
         meta:{
             title:"SDGs&Sustainable"
         },
-        component: () => import("@/views/dashboard/countyProfiles.vue"),
-    },
-    {
-        path: '/dataExplorer',
-        name:"dataExplorer",
-        meta:{
-            title:"SDGs&Sustainable"
-        },
-        component: () => import("@/views/dashboard/dataExplorer.vue"),
+        component: () => import("@/views/dashboard/dataScreen.vue"),
     },
     {
         path: '/downloads',

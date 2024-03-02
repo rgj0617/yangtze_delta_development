@@ -18,29 +18,22 @@ const colorRangesSingle = [
     {min: 10, max: 15, color: '#FFEDA0'},
     {min: 15, max: 20, color: '#90EE90'},
 ]
-//test data
-// const ranking2 = [
-//   {cityName:"南京市" , score:"80"},
-//   {cityName:"苏州市" , score:"60"},
-//   {cityName:"安徽市" , score:"50"},
-//   {cityName:"亳州市" , score:"8"}
-// ]
-
 
 export let map = null; // 导出 map 对象
 
 export function loadMap(box) {
     map = new mapboxgl.Map({
         container: box,
-        style: 'mapbox://styles/mapbox/streets-v11',
+        // style: 'mapbox://styles/mapbox/streets-v11',
+        style: 'mapbox://styles/examples/cjgioozof002u2sr5k7t14dim',
         preserveDrawingBuffer: true,
         center: [114, 30],
         zoom: 4
     });
-
-    map.addControl(new MapboxLanguage({
-        defaultLanguage: 'zh-Hans'
-    }));
+    // map.setPaintProperty('background', 'background-color', 'rgba(0, 0, 0, 0)')
+    // map.addControl(new MapboxLanguage({
+    //     defaultLanguage: 'zh-Hans'
+    // }));
 }
 
 export function addGeoJson() {
@@ -52,21 +45,20 @@ export function addGeoJson() {
             data: CityData // 替换为你的 GeoJSON 文件路径
         });
 
+        //初始化上色
+        paintMap();
+        //绑定地图事件
+        bindMapInteractions();
         // 添加图层来显示行政区划的边界
         map.addLayer({
             id: 'lineLayer',
             type: 'line',
             source: 'geojsonSource',
             paint: {
-                'line-color': '#333',
+                'line-color': '#FFF',
                 'line-width': 1.5
             }
         });
-        //初始化上色
-        paintMap();
-        //绑定地图事件
-        bindMapInteractions();
-
     });
 }
 
@@ -84,11 +76,11 @@ export function paintMap() {
                 ['get', 'name'],
                 //将geojson中的name属性与cityValueData进行匹配，得到正确的综合得分，并根据colorRanges的情况上色
                 ...ranking.reduce((acc, data) => {
-                    return [...acc, data.cityName, getColor(data.score)];
+                    return [...acc, data.cityName, getColor2(data.score)];
                 }, []),
                 '#000000' // 默认颜色
             ],
-            'fill-opacity': 0.7,// 填充透明度
+            'fill-opacity': 1,// 填充透明度
         }
     });
 }
@@ -97,7 +89,7 @@ export function paintMap() {
 export function updateMap(value) {
     // 根据新的 value 更新绘制属性
     let propertiesSelect = '';
-    switch (value) {
+    switch (parseInt(value)) {
         case 0:
             propertiesSelect = '创新发展';
             break;
@@ -123,7 +115,7 @@ export function updateMap(value) {
         'match',
         ['get', 'name'],
         ...ranking.reduce((acc, data) => {
-            return [...acc, data.cityName, getColor(data[propertiesSelect])];
+            return [...acc, data.cityName, getColor2(data[propertiesSelect])];
         }, []),
         '#000000' // 默认颜色
     ]);
@@ -148,10 +140,29 @@ function getColor(value) {
     return '#000000'; // 默认颜色
 }
 
+// 设置颜色范围
+// const colorRange = ['#ADD8E6','#00008B'];
+const colorRange = ['#DBEEF6','#36869A'];
+const colorRangeMin = ['#E2F0D9','#385723'];
+
+
+// 创建颜色插值函数(综合得分)
+const colorInterpolate = chroma.scale(colorRange).domain([37, 90]);
+// 创建颜色插值函数(单指标得分)
+const colorInterpolateMin = chroma.scale(colorRangeMin).domain([1.5, 20]);
+// 根据城市值获取对应颜色
+function getColor2(value) {
+    if (value > 20) {
+        return colorInterpolate(value).hex();
+    } else {
+        return colorInterpolateMin(value).hex();
+    }
+}
+
 // 悬浮地图上时，获取该城市的值
 function getCityValue(cityName, value) {
     const cityData = ranking.find(data => data.cityName === cityName);
-    switch (value) {
+    switch (parseInt(value)) {
         case 0:
             return cityData ? cityData['创新发展'] : 'N/A';
         case 1:

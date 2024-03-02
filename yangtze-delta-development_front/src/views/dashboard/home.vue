@@ -6,8 +6,7 @@
         <div class="left-item" :class="{ active: isActive('chapters') }" @click="goTo('chapters')">Chapters</div>
         <div class="left-item" :class="{ active: isActive('rankings') }" @click="goTo('rankings')">Rankings</div>
         <div class="left-item" :class="{ active: isActive('interactiveMap') }" @click="goTo('interactiveMap')">Interactive Map</div>
-        <div class="left-item" :class="{ active: isActive('countyProfiles') }" @click="goTo('countyProfiles')">County Profiles</div>
-        <div class="left-item" :class="{ active: isActive('dataExplorer') }" @click="goTo('dataExplorer')">Data Explorer</div>
+        <div class="left-item" :class="{ active: isActive('dataScreen') }" @click="goTo('dataScreen')">Data Screen</div>
         <div class="left-item" :class="{ active: isActive('downloads') }" @click="goTo('downloads')">Downloads&Materials</div>
       </div>
       <div class="right-box">
