@@ -8,7 +8,7 @@ import Indicators from "@/assets/json/secondaryIndicators.json"
 
 // 整合数据
 export const getDBData = async () => {
-    let dataset = {ranking, detail, Indicators};
+    let dataset = { ranking, detail, Indicators };
     // console.log(dataset, '原始数据');
     return dataset;
 }
@@ -128,17 +128,17 @@ export const getAnnualScore = (dataset, value) => {
                 showBackground: true,
                 itemStyle: {
                     color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                        {offset: 0, color: '#83bff6'},
-                        {offset: 0.5, color: '#188df0'},
-                        {offset: 1, color: '#188df0'}
+                        { offset: 0, color: '#83bff6' },
+                        { offset: 0.5, color: '#188df0' },
+                        { offset: 1, color: '#188df0' }
                     ])
                 },
                 emphasis: {
                     itemStyle: {
                         color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                            {offset: 0, color: '#2378f7'},
-                            {offset: 0.7, color: '#2378f7'},
-                            {offset: 1, color: '#83bff6'}
+                            { offset: 0, color: '#2378f7' },
+                            { offset: 0.7, color: '#2378f7' },
+                            { offset: 1, color: '#83bff6' }
                         ])
                     }
                 },
@@ -178,14 +178,14 @@ function handlePieData(dataset) {
     return optionData;
 }
 
-//绘制右下角一级指标八个玫瑰图的方法，但是option中玫瑰瓣的圆角似乎没有生效，怎么调整都没用
+//绘制右下角一级指标八个玫瑰图的方法
 export const getMultiPieData = (dataset, num) => {
 
     var multiPieData = handlePieData(dataset);
     // let radius = ["35%","100%"];
     let name = multiPieData[0].barName;
     let legendData = name.map((n) => {
-        return {name: n};
+        return { name: n };
     });
     //   原定数饼图配置项设置
     let singlePieData = {};
@@ -216,7 +216,7 @@ export const getMultiPieData = (dataset, num) => {
             }
         }
     }
-    let optionData = name.map((n, i) => ({value: singlePieData.value[i], name: n}))
+    let optionData = name.map((n, i) => ({ value: singlePieData.value[i], name: n }))
     let option = {
         // tooltip: {
         //     trigger: "axis",
@@ -238,7 +238,6 @@ export const getMultiPieData = (dataset, num) => {
                 fontWeight: "normal",
                 fontSize: 16
             }
-
         },
         series: [
             {
@@ -250,11 +249,11 @@ export const getMultiPieData = (dataset, num) => {
                 roseType: "area",
                 itemStyle: {
                     borderRadius: 5,
-                    normal: {
-                        label: {
-                            show: false,
-                        }
-                    }
+                    // normal: {
+                    //     label: {
+                    //         show: false,
+                    //     }
+                    // }
                 },
                 label: {
                     show: false
@@ -273,6 +272,99 @@ export const getMultiPieData = (dataset, num) => {
         ]
     };
     return option;
+}
+
+//绘制规范的南丁格尔玫瑰图
+export const getMultiPieDataNew = (dataset) => {
+    var multiPieData = handlePieData(dataset);
+    // let radius = ["35%","100%"];
+    let name = multiPieData[0].barName;
+    let radius = [12.5, 62.5]
+    //   原定数饼图配置项设置
+    let handledMultiPieData = [
+        [
+            { value: 40, name: "rose 1" },
+            { value: 78, name: "rose 2" },
+            { value: 32, name: "rose 3" },
+            { value: 60, name: "rose 4" },
+            { value: 28, name: "rose 5" },
+            { value: 56, name: "rose 6" },
+            { value: 22, name: "rose 7" },
+            { value: 38, name: "rose 8" },
+        ],
+        [
+            { value: 40, name: "rose 1" },
+            { value: 78, name: "rose 2" },
+            { value: 32, name: "rose 3" },
+            { value: 60, name: "rose 4" },
+            { value: 28, name: "rose 5" },
+            { value: 56, name: "rose 6" },
+            { value: 22, name: "rose 7" },
+            { value: 38, name: "rose 8" },
+        ]
+    ];
+    let option = {
+        legend: {
+            top: "bottom",
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                mark: { show: true },
+                dataView: { show: true, readOnly: false },
+                restore: { show: true },
+                saveAsImage: { show: true },
+            },
+        },
+        series: [
+            {
+                name: "南京",
+                type: "pie",
+                radius: radius,
+                center: ["25%", "50%"],
+                roseType: "area",
+                itemStyle: {
+                    borderRadius: 8,
+                },
+                label:{
+                    show:false
+                },
+                emphasis:{
+                    borderRadius:5,
+                    label:{
+                        show:true
+                    },
+                    labelLine:{
+                        show:false
+                    }
+                },
+                data:handledMultiPieData[0] ,
+            },
+            {
+                name: "南京",
+                type: "pie",
+                radius: radius,
+                center: ["75%", "50%"],
+                roseType: "area",
+                itemStyle: {
+                    borderRadius: 8,
+                },
+                data: handledMultiPieData[1],
+            },
+            {
+                name: "南京",
+                type: "pie",
+                radius: radius,
+                center: ["75%", "50%"],
+                roseType: "area",
+                itemStyle: {
+                    borderRadius: 8,
+                },
+                data: handledMultiPieData[1],
+            },
+        ],
+    }
+    return option
 }
 
 //获取详细数据柱状图数据的方法
@@ -323,11 +415,11 @@ export const getMultiBarData = (dataset, value) => {
         toolbox: {
             show: true,
             feature: {
-                mark: {show: true},
-                dataView: {show: true, readOnly: false},
-                magicType: {show: true, type: ['line', 'bar']},
+                mark: { show: true },
+                dataView: { show: true, readOnly: false },
+                magicType: { show: true, type: ['line', 'bar'] },
                 // restore: { show: true },
-                saveAsImage: {show: true}
+                saveAsImage: { show: true }
             }
         },
         calculable: true,

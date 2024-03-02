@@ -50,7 +50,7 @@ import dataTable from "@/components/rankingTable.vue";
     color: rgb(142, 142, 142);
     font-size: 1.5vh;
     font-weight: 300;
-    margin-top: 0.5%;
+    margin-top: 1.2%;
   }
 
   //   :deep(div.el-divider.el-divider--horizontal) {

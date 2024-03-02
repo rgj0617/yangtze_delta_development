@@ -1,8 +1,8 @@
 <style lang="scss" scoped>
-
-html, body {
+html,
+body {
   height: 100vh;
-  width:100vw;
+  width: 100vw;
 }
 
 .charts {
@@ -11,7 +11,7 @@ html, body {
 }
 
 .mapBorder {
-  border: 1px solid black;
+  // border: 1px solid black;
   box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   /* 开启BFC */
@@ -40,7 +40,7 @@ html, body {
   align-items: center; /* 垂直居中 */
   justify-content: center; /* 水平居中 */
   height: 6%;
-  /* border: 1px solid #666; */
+  // border: 1px solid #666;
   color: #2f89cf;
   letter-spacing: 2px;
   font-size: 2.2vh;
@@ -76,7 +76,7 @@ html, body {
   position: relative;
 }
 .pieItems {
-  height: 100%;
+  height: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -114,10 +114,10 @@ html, body {
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
   overflow: auto;
-  li{
+  li {
     margin-bottom: 25px; /* 调整行间距 */
   }
-  ul{
+  ul {
     font-size: 1.5rem; /* 设置字体大小为 18 像素 */
   }
 }
@@ -142,7 +142,7 @@ html, body {
   width: 98%;
   margin: 1%;
   box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.15);
-  border: #475669 1px solid;
+  // border: #475669 1px solid;
   border-radius: 8px;
 }
 :deep(.echarts-legend .zr-text) {
@@ -153,7 +153,7 @@ html, body {
 <template>
   <div style="width: 100vw; height: 100vh">
     <el-container style="width: 100%; height: 100%">
-      <div class="head" style="height: 5.5vh; width: 100% ;">
+      <div class="head" style="height: 5.5vh; width: 100%">
         <homeHeader></homeHeader>
       </div>
 
@@ -208,11 +208,7 @@ html, body {
                     <li>
                       南京各维度得分差距较小，与上海相比，在协调发展和绿色发展方面表现更优。
                     </li>
-
-                    <li>
-                      杭州与南京表现旗鼓相当，在创新发展方面优势显著。
-                    </li>
-
+                    <li>杭州与南京表现旗鼓相当，在创新发展方面优势显著。</li>
                     <li>
                       与上海、南京和杭州相比，合肥在创新发展、协调发展和绿色发展三个维度上表现出较强的竞争力，但在开放发展和共享发展两个方面仍需发力。
                     </li>
@@ -226,13 +222,17 @@ html, body {
                   </el-carousel> -->
               </div>
               <div class="piesOrBar">
-                <div v-if="showPie" class="charts pieItems">
-                  <div
-                    v-for="i in 8"
-                    :key="i"
-                    :id="'pie-item' + i"
-                    :class="'pie-item' + i + ' pie-item'"
-                  ></div>
+                <div v-if="showPie" class="charts">
+                  <!-- <div id="pie" style="width: 100%; height: 100%"></div> -->
+                  <div class="title">高质量发展水平Top8</div>
+                  <div class="pieItems">
+                    <div
+                      v-for="i in 8"
+                      :key="i"
+                      :id="'pie-item' + i"
+                      :class="'pie-item' + i + ' pie-item'"
+                    ></div>
+                  </div>
                   <div id="pie-item-legend" class="pieLegend"></div>
                 </div>
                 <div v-else id="bars2" style="width: 100%; height: 100%"></div>
@@ -250,15 +250,11 @@ html, body {
 </template>
 
 <script>
-import {
-  map,
-  loadMap,
-  addGeoJson,
-  updateMap,
-} from "@/utils/mapbox.js";
+import { map, loadMap, addGeoJson, updateMap } from "@/utils/mapbox.js";
 import {
   getAnnualScore,
   getMultiPieData,
+  getMultiPieDataNew,
   getDBData,
   getMultiBarData,
 } from "@/utils/dataExplorerEcharts.js";
@@ -268,16 +264,52 @@ import homeHeader from "@/components/header.vue";
 
 export default {
   name: "annual",
-  components:{
-    homeHeader
+  components: {
+    homeHeader,
   },
   data() {
     return {
       DBdate: {},
       AnnualScoreOption: {},
       radio: 5,
-      backgroundUrl:'',
+      backgroundUrl: "",
       showPie: true,
+      option: {
+        legend: {
+          top: "bottom",
+        },
+        toolbox: {
+          show: true,
+          feature: {
+            mark: { show: true },
+            dataView: { show: true, readOnly: false },
+            restore: { show: true },
+            saveAsImage: { show: true },
+          },
+        },
+        series: [
+          {
+            name: "Nightingale Chart",
+            type: "pie",
+            radius: [50, 250],
+            center: ["50%", "50%"],
+            roseType: "area",
+            itemStyle: {
+              borderRadius: 8,
+            },
+            data: [
+              { value: 40, name: "rose 1" },
+              { value: 38, name: "rose 2" },
+              { value: 32, name: "rose 3" },
+              { value: 30, name: "rose 4" },
+              { value: 28, name: "rose 5" },
+              { value: 26, name: "rose 6" },
+              { value: 22, name: "rose 7" },
+              { value: 18, name: "rose 8" },
+            ],
+          },
+        ],
+      },
     };
   },
   methods: {
@@ -299,6 +331,7 @@ export default {
     //绘制主页所有图标的方法
     drawChart(num) {
       this.initChart(getAnnualScore(this.DBdate), "bars");
+      // this.initChart(getMultiPieDataNew(this.DBdate), "pie");
       for (let i = 1; i <= 8; i++) {
         this.initChart(getMultiPieData(this.DBdate, i), `pie-item${i}`);
       }
@@ -319,6 +352,8 @@ export default {
             getMultiPieData(this.DBdate, "legend"),
             "pie-item-legend"
           );
+
+          // this.initChart(getMultiPieDataNew(this.DBdate), "pie");
         });
       } else {
         this.showPie = false;
