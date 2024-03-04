@@ -2,12 +2,48 @@
   <div class="container">
     <div class="header">
       <div class="left-box">
-        <div class="left-item" :class="{ active: isActive('home') }" @click="goTo('home')">Home</div>
-        <div class="left-item" :class="{ active: isActive('chapters') }" @click="goTo('chapters')">Chapters</div>
-        <div class="left-item" :class="{ active: isActive('rankings') }" @click="goTo('rankings')">Rankings</div>
-        <div class="left-item" :class="{ active: isActive('interactiveMap') }" @click="goTo('interactiveMap')">Interactive Map</div>
-        <div class="left-item" :class="{ active: isActive('dataScreen') }" @click="goTo('dataScreen')">Data Screen</div>
-        <div class="left-item" :class="{ active: isActive('downloads') }" @click="goTo('downloads')">Downloads&Materials</div>
+        <div
+          class="left-item"
+          :class="{ active: isActive('home') }"
+          @click="goTo('home')"
+        >
+          Home
+        </div>
+        <div
+          class="left-item"
+          :class="{ active: isActive('chapters') }"
+          @click="goTo('chapters')"
+        >
+          Chapters
+        </div>
+        <div
+          class="left-item"
+          :class="{ active: isActive('rankings') }"
+          @click="goTo('rankings')"
+        >
+          Rankings
+        </div>
+        <div
+          class="left-item"
+          :class="{ active: isActive('interactiveMap') }"
+          @click="goTo('interactiveMap')"
+        >
+          Interactive Map
+        </div>
+        <div
+          class="left-item"
+          :class="{ active: isActive('dataScreen') }"
+          @click="goTo('dataScreen')"
+        >
+          Data Screen
+        </div>
+        <div
+          class="left-item"
+          :class="{ active: isActive('downloads') }"
+          @click="goTo('downloads')"
+        >
+          Downloads&Materials
+        </div>
       </div>
       <div class="right-box">
         <div class="yes-login">
@@ -28,15 +64,16 @@
         <div class="section-content">
           <span class="title">Sustainable Development Report</span>
           <span class="subtitle">
-            This is a subtitle, and some introductory text can be added
+            Evolved from "one person, one set" to leveraging the collective
+            strength, a more credible evaluation index system.
           </span>
 
-          <a class="bt1" @click="goDataExplorer()">Show</a>
-          <a class="bt2" @click="goDataExplorer()">Show</a>
+          <a class="bt1" @click="goTo('chapters')">Report</a>
+          <a class="bt2" @click="goTo('interactiveMap')">Result</a>
         </div>
         <div class="section-footer">
           <div>Slide to explore more</div>
-          <br>
+          <br />
           <div class="line">
             <ArrowDownOutlined style="fontsize: 30px" />
           </div>
@@ -52,13 +89,21 @@
         <div class="section s2">
           <div class="section2-left">
             <div class="section2-left-content">
-              <div class="section2-left-content-title1">White title</div>
-              <div class="section2-left-content-title2">Colorful tile</div>
-              <div class="section2-left-content-des">
-                Add a text introduction here to briefly introduce the content,
-                with a picture on the right side
+              <div class="section2-left-content-title1">
+                View Rankings & Scores
               </div>
-              <div class="section2-left-content-button" @click="goDataExplorer()">
+              <div class="section2-left-content-title2">查看排名和得分</div>
+              <div class="section2-left-content-des">
+                Overall, the average score for high-quality development in the
+                Yangtze River Delta is 55.38. Shanghai has the highest level of
+                high-quality development, followed by Jiangsu and Zhejiang,
+                while Anhui has a relatively lower level of high-quality
+                development.
+              </div>
+              <div
+                class="section2-left-content-button"
+                @click="goTo('rankings')"
+              >
                 Start exploring
                 <!-- <ArrowRightOutlined style="color: black" /> -->
               </div>
@@ -66,33 +111,65 @@
           </div>
           <div class="section2-right">
             <img
-              src="/test.jpg"
+              src="@/assets/pic/ranking.png"
               alt="Description of the image"
-              style="height: 80vh; width: auto"
+              style="height: 80vh; width: auto;border-radius: 20px;"
             />
           </div>
         </div>
         <div class="section s3">
           <div class="section3-left">
             <img
-              src="/test.jpg"
+              src="@/assets/pic/interactiveMap.png"
               alt="Description of the image"
-              style="height: 80vh; width: auto"
+              style="height: 80vh; width: auto;border-radius: 20px;"
             />
           </div>
           <div class="section3-right">
             <div class="section3-right-content">
-              <div class="section3-right-content-title1">White title</div>
-              <div class="section3-right-content-title2">Colorful tile</div>
-              <div class="section3-right-content-des">
-                Add a text introduction here to briefly introduce the content,
-                with a picture on the left side
+              <div class="section3-right-content-title1">
+                Explore Interactive Maps
               </div>
-              <div class="section3-right-content-button">
+              <div class="section3-right-content-title2">探索交互式地图</div>
+              <div class="section3-right-content-des">
+                Our interactive maps showcase the high-quality development
+                levels of 41 cities in the Yangtze River Delta. You can view
+                comprehensive or individual dimension development evaluations.
+              </div>
+              <div class="section3-right-content-button" @click="goTo('interactiveMap')">
                 Start exploring
                 <!-- <ArrowRightOutlined style="color: black" /> -->
               </div>
             </div>
+          </div>
+        </div>
+        <div class="section s2">
+          <div class="section2-left">
+            <div class="section2-left-content">
+              <div class="section2-left-content-title1">
+                Explore data dashboard
+              </div>
+              <div class="section2-left-content-title2">体验数据大屏</div>
+              <div class="section2-left-content-des">
+                You can view the conclusion data of this report in the data
+                screen, including data charts on overall assessment, each
+                dimension, and specific indicators composing each dimension.
+              </div>
+              <div
+                class="section2-left-content-button"
+                @click="goTo('dataScreen')"
+              >
+                Start exploring
+                <!-- <ArrowRightOutlined style="color: black" /> -->
+              </div>
+            </div>
+          </div>
+          <div class="section2-right">
+            <img
+              src="@/assets/pic/dataScreen.png"
+              alt="Description of the image"
+              style="height: 80vh; width: auto;border-radius: 20px;"
+            />
           </div>
         </div>
       </div>
@@ -110,38 +187,18 @@ import { ArrowDownOutlined } from "@ant-design/icons-vue";
 // import { usePermissionStore } from "@/stores/permissionStore";
 // import router from "@/router/index.js";
 // import { ref } from "vue";
-import { useRouter } from 'vue-router';
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-const isActive = (page:string) => {
-
+const isActive = (page: string) => {
   return router.currentRoute.value.name === page;
-}
+};
 
-const goTo = (page:string) => {
+const goTo = (page: string) => {
   let route = "/" + page;
   router.push(route);
 };
-
-// const usePermission = usePermissionStore();
-// const peosonInfo = () => {
-//   router.push("/userInfo");
-// };
-
-// const logout = () => {
-//   usePermission.logout();
-// };
-
-const goDataExplorer = (): void => {
-  router.push("/dataExplorer");
-};
-// const enterLogin = (): void => {
-//   router.push("/login");
-// };
-// const goWorkingSpace = (): void => {
-//   router.push("/user");
-// };
 </script>
 
 <style lang="scss" scoped>
@@ -320,7 +377,7 @@ html {
 
 .main {
   //   height: 525vh;
-  height: 300vh;
+  height: 400vh;
   overflow-x: hidden;
 
   .section {
@@ -501,14 +558,14 @@ html {
         &-title1 {
           width: 100%;
           height: 10vh;
-          font-size: 6.5vh;
+          font-size: 2.4vw;
           font-weight: 800;
         }
 
         &-title2 {
           width: 100%;
           height: 10vh;
-          font-size: 6.5vh;
+          font-size: 3vw;
           font-weight: 800;
           background: linear-gradient(
             to right,
@@ -523,10 +580,9 @@ html {
         &-des {
           display: flex;
           margin-top: 1vh;
-
           width: 80%;
           height: 10vh;
-          font-size: 2.5vh;
+          font-size: 1.8vh;
           font-weight: 500;
           color: gray;
         }
@@ -615,14 +671,14 @@ html {
         &-title1 {
           width: 100%;
           height: 10vh;
-          font-size: 6.5vh;
+          font-size: 2.4vw;
           font-weight: 800;
         }
 
         &-title2 {
           width: 100%;
           height: 10vh;
-          font-size: 6.5vh;
+          font-size: 3vw;
           font-weight: 800;
           background: linear-gradient(
             to right,
@@ -637,10 +693,9 @@ html {
         &-des {
           display: flex;
           margin-top: 1vh;
-
           width: 80%;
           height: 10vh;
-          font-size: 2.5vh;
+          font-size: 1.8vh;
           font-weight: 500;
           color: gray;
         }

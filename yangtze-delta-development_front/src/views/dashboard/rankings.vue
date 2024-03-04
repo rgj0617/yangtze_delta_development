@@ -41,7 +41,7 @@ import dataTable from "@/components/rankingTable.vue";
   flex-direction: column;
   flex-wrap: wrap;
   align-items: flex-start;
-  margin: 1.5% 30% 0.5% 30%;
+  margin: 1.5% 25% 0.5% 25%;
   .title {
     font-size: 5vh;
     font-weight: bold;
@@ -58,7 +58,7 @@ import dataTable from "@/components/rankingTable.vue";
   //   }
 }
 .dataTable {
-  margin: 0.5% 30%;
+  margin: 0.5% 25%;
   height: 100vh;
   // border:1px black solid;
   .description {
