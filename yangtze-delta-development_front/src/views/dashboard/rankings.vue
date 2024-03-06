@@ -35,6 +35,13 @@ import dataTable from "@/components/rankingTable.vue";
 </script>
 
 <style lang="scss" scoped>
+.homeHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999; /* 可选，设置层级，确保在其他内容之上 */
+}
 .sectionContent {
   display: flex;
   // justify-content: center;
@@ -52,10 +59,6 @@ import dataTable from "@/components/rankingTable.vue";
     font-weight: 300;
     margin-top: 1.2%;
   }
-
-  //   :deep(div.el-divider.el-divider--horizontal) {
-  //     border-top: 20px var(--el-border-color) var(--el-border-style);
-  //   }
 }
 .dataTable {
   margin: 0.5% 25%;

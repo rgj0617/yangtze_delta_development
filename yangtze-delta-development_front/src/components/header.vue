@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="homeHeader">
     <div class="left-box">
       <div
         class="left-item"
@@ -68,12 +68,12 @@ const goTo = (page: string) => {
 </script>
   
   <style lang="scss" scoped>
-.header {
+.homeHeader {
   position: absolute;
   top: 0;
   width: 100%;
   height: 5.5vh;
-  background: rgba(67, 120, 180, 0.8);
+  background: rgba(67, 120, 180, 1);
   z-index: 2;
   box-sizing: border-box;
   display: flex;

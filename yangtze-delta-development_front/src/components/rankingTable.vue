@@ -4,7 +4,7 @@
     <el-table-column prop="ranking" label="Rank" width="100"></el-table-column>
     <el-table-column prop="cityName" label="Country" width="200"></el-table-column>
     <el-table-column prop="score" label="Score" width="200"></el-table-column>
-    <el-table-column label="Performance" max-width="500">
+    <el-table-column label="Performance">
       <template v-slot="scope">
         <div :style="{background: getBackgroundColor(scope.row.score), height: '20px'}"></div>
       </template>
