@@ -72,6 +72,15 @@ export default [
                     title: 'Preface'
                 },
                 component: () => import("@/views/chapters/preface.vue")
+            },
+        
+            {
+                path: 'chapter1',
+                name: 'chapter1',
+                meta: {
+                    title: 'Chapter1'
+                },
+                component: () => import("@/views/chapters/chapter1.vue")
             }]
 
     },

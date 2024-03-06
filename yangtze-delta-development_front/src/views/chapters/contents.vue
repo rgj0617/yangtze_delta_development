@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <div class="head" style="height: 5.5vh; width: 100%">
+    <!-- <div class="head" style="height: 5.5vh; width: 100%">
       <homeHeader />
-    </div>
+    </div> -->
 
     <div class="sectionContent">
       <span class="title"> 章节 </span>
@@ -34,14 +34,12 @@
         </el-col>
       </el-row>
 
-
-
   </div>
 </template>
 
 
 <script setup lang="ts">
-import homeHeader from "../../components/header.vue";
+// import homeHeader from "../../components/header.vue";
 
 interface Chapter {
     id: number;
@@ -55,17 +53,17 @@ interface Chapter {
 const chapters: Chapter[] = [
     { id: 1, title: '一、前言', class: 'chapter-card',
      description: '近年来，习近平总书记接连强调“高质量发展”，提出高质量发展是全面建设社会主义现代化国家的首要任务。高质量发展，是一种新的发展理念，是以质量和效益为价值取向的发展，是创新、协调、绿色、开放、共享新发展理念的高度聚合，是创新成为第一动力、协调成为内生特点、绿色成为普遍形态、开放成为必由之路、共享成为根本目的的发展。', 
-      image: '/covers/cover_1.png' ,target: 'chapters/preface'},
+      image: '/chaptersCovers/prefaceCover.jpg' ,target: 'chapters/preface'},
     { id: 2, title: '二、长江三角洲高质量发展评价指标体系',  class: 'chapter-card chapter-right',
     description: '本报告基于政策解读，辅以地理大模型和文本主题挖掘技术，集成多源资料对指标体系进行修正与完善，通过自上而下构建一级指标及其内容、自下而上修正解读结果、自下而上提供备选二级指标，以及自上而下基于专家经验确定二级指标四个步骤，构建了一个更具公信力的长三角高质量发展评价指标体系，在衡量创新发展、协调发展、绿色发展、开放发展和共享发展等方面都起到关键作用。', 
-    image: '/covers/cover_2.png' ,target: 'rankings'},
+    image: '/chaptersCovers/chapter1Cover.png' ,target: 'chapters/chapter1'},
     { id: 3, title: '三、长三角高质量发展(2023)评价结果', class: 'chapter-card',
      description: '评价结果表明长三角高质量发展（2023）平均得分为55.38，总体发展水平较高，呈现多维度协同的高质量发展态势，体现了长三角城市群作为我国经济最具活力、开放程度最高、创新能力最强、吸纳外来人口最多的区域之一，在国家现代化建设大局和全方位开放格局中具有举足轻重的地位。此外还从城市排名、分维度得分、重点城市对比三方面进行了更为细致地分析。', 
      image: '/covers/cover_3.png' ,target: 'chapters_1'},
     { id: 4, title: '四、长三角高质量发展(2023)特征与问题', class: 'chapter-card chapter-right',
      description: '自长三角一体化战略上升为国家级战略已经五年，其整体高质量发展态势和内部发展差异等问题一直备受关注，本报告得出以下主要特征与问题：\n  ①综合得分呈梯度分布，各梯度间有明显落差；\n  ②五个维度发展不同步，落后城市需补齐短板；\n  ③重点城市各维度分化，全面发展仍任重道远。', 
      image: '/background2.jpg' ,target: 'chapters_1'},
-    { id: 4, title: '附录', class: 'chapter-card-last',
+    { id: 5, title: '附录', class: 'chapter-card-last',
     description: '（一）各城市分维度得分 \n （二）长江三角洲高质量发展评价县域探索', 
     image: '/background2.jpg' ,target: 'chapters_1'},
 ];
