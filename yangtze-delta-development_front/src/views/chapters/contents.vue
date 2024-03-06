@@ -24,16 +24,14 @@
       >
         <el-card :class="chapter.class" @click="goTo(chapter.target)">
           <div class="card-image-container">
-            <img
-              :src="chapter.image"
-              alt="Chapter Image"
-              class="card-image"
-            >
+            <img :src="chapter.image" alt="Chapter Image" class="card-image" />
           </div>
 
           <div class="card-header">{{ chapter.title }}</div>
           <div class="card-content">
-            <p style="white-space: pre-line; overflow: hidden">
+            <p
+              style="white-space: pre-line; overflow: hidden; font-size: small"
+            >
               {{ chapter.description }}
             </p>
           </div>
@@ -45,8 +43,6 @@
 
 
 <script setup lang="ts">
-// import homeHeader from "../../components/header.vue";
-
 interface Chapter {
   id: number;
   title: string;
@@ -71,7 +67,7 @@ const chapters: Chapter[] = [
     title: "二、长江三角洲高质量发展评价指标体系",
     class: "chapter-card chapter-right",
     description:
-      "本报告基于政策解读，辅以地理大模型和文本主题挖掘技术，集成多源资料对指标体系进行修正与完善，通过自上而下构建一级指标及其内容、自下而上修正解读结果、自下而上提供备选二级指标，以及自上而下基于专家经验确定二级指标四个步骤，构建了一个更具公信力的长三角高质量发展评价指标体系，在衡量创新发展、协调发展、绿色发展、开放发展和共享发展等方面都起到关键作用。",
+      "本报告基于政策解读，辅以地理大模型和文本主题挖掘技术，集成多源资料对指标体系进行修正与完善，通过自上而下构建一级指标及其内容、自下而上修正解读结果、自下而上提供备选二级指标，以及自上而下基于专家经验确定二级指标四个步骤，构建了一个更具公信力的长三角高质量发展评价指标体系。",
     image: "/chaptersCovers/chapter1Cover.png",
     target: "chapters/chapter1",
   },
@@ -80,7 +76,7 @@ const chapters: Chapter[] = [
     title: "三、长三角高质量发展(2023)评价结果",
     class: "chapter-card",
     description:
-      "评价结果表明长三角高质量发展（2023）平均得分为55.38，总体发展水平较高，呈现多维度协同的高质量发展态势，体现了长三角城市群作为我国经济最具活力、开放程度最高、创新能力最强、吸纳外来人口最多的区域之一，在国家现代化建设大局和全方位开放格局中具有举足轻重的地位。此外还从城市排名、分维度得分、重点城市对比三方面进行了更为细致地分析。",
+      "评价结果表明长三角高质量发展（2023）平均得分为55.38，总体发展水平较高，呈现多维度协同的高质量发展态势，体现了长三角城市群作为我国经济最具活力、开放程度最高、创新能力最强、吸纳外来人口最多的区域之一，在国家现代化建设大局和全方位开放格局中具有举足轻重的地位。",
     image: "/covers/cover_3.png",
     target: "chapters_1",
   },
@@ -89,7 +85,7 @@ const chapters: Chapter[] = [
     title: "四、长三角高质量发展(2023)特征与问题",
     class: "chapter-card chapter-right",
     description:
-      "自长三角一体化战略上升为国家级战略已经五年，其整体高质量发展态势和内部发展差异等问题一直备受关注，本报告得出以下主要特征与问题：\n  ①综合得分呈梯度分布，各梯度间有明显落差；\n  ②五个维度发展不同步，落后城市需补齐短板；\n  ③重点城市各维度分化，全面发展仍任重道远。",
+      "长三角高质量发展态势和内部发展差异等问题一直备受关注，本报告得出以下主要特征与问题：\n  ①综合得分呈梯度分布，各梯度间有明显落差；\n  ②五个维度发展不同步，落后城市需补齐短板；\n  ③重点城市各维度分化，全面发展仍任重道远。",
     image: "/background2.jpg",
     target: "chapters_1",
   },
@@ -151,12 +147,13 @@ const goTo = (page: string) => {
 .chapter-card {
   padding: 0px;
   width: 70vw;
-  height: 420px;
+  height: 360px;
   margin-bottom: 20px;
   margin-right: 20px;
   // margin-left: 5vw;
   transition: background-color 0.35s;
   cursor: pointer;
+  // overflow: auto;
 }
 
 .chapter-right {
@@ -166,12 +163,13 @@ const goTo = (page: string) => {
 .chapter-card-last {
   padding: 0px;
   width: 70vw;
-  height: 420px;
+  height: 360px;
   margin-bottom: 20px;
   margin-right: 20px;
   // margin-left: 5vw;
   transition: background-color 0.35s;
   cursor: pointer;
+  overflow: auto;
 }
 
 .chapter-card-last .card-content {
@@ -204,14 +202,14 @@ const goTo = (page: string) => {
 }
 
 .card-header {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: bold;
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 .card-content {
-  padding: 10px;
-  line-height: 1.5;
+  // padding: 0 10px;
+  line-height: 1.3;
 }
 
 .card-footer {
