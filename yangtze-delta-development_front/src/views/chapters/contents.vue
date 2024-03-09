@@ -59,7 +59,7 @@ const chapters: Chapter[] = [
     class: "chapter-card",
     description:
       "近年来，习近平总书记接连强调“高质量发展”，提出高质量发展是全面建设社会主义现代化国家的首要任务。高质量发展，是一种新的发展理念，是以质量和效益为价值取向的发展，是创新、协调、绿色、开放、共享新发展理念的高度聚合，是创新成为第一动力、协调成为内生特点、绿色成为普遍形态、开放成为必由之路、共享成为根本目的的发展。",
-    image: "/chaptersCovers/prefaceCover.jpg",
+    image: "/chaptersCovers/prefaceCover.png",
     target: "chapters/preface",
   },
   {
@@ -69,7 +69,7 @@ const chapters: Chapter[] = [
     description:
       "本报告基于政策解读，辅以地理大模型和文本主题挖掘技术，集成多源资料对指标体系进行修正与完善，通过自上而下构建一级指标及其内容、自下而上修正解读结果、自下而上提供备选二级指标，以及自上而下基于专家经验确定二级指标四个步骤，构建了一个更具公信力的长三角高质量发展评价指标体系。",
     image: "/chaptersCovers/chapter1Cover.png",
-    target: "chapters/chapter1",
+    target: "chapters/chapter2",
   },
   {
     id: 3,
@@ -77,8 +77,8 @@ const chapters: Chapter[] = [
     class: "chapter-card",
     description:
       "评价结果表明长三角高质量发展（2023）平均得分为55.38，总体发展水平较高，呈现多维度协同的高质量发展态势，体现了长三角城市群作为我国经济最具活力、开放程度最高、创新能力最强、吸纳外来人口最多的区域之一，在国家现代化建设大局和全方位开放格局中具有举足轻重的地位。",
-    image: "/covers/cover_3.png",
-    target: "chapters_1",
+    image: "/chaptersCovers/chapter2Cover.png",
+    target: "chapters/chapter3",
   },
   {
     id: 4,
@@ -86,8 +86,8 @@ const chapters: Chapter[] = [
     class: "chapter-card chapter-right",
     description:
       "长三角高质量发展态势和内部发展差异等问题一直备受关注，本报告得出以下主要特征与问题：\n  ①综合得分呈梯度分布，各梯度间有明显落差；\n  ②五个维度发展不同步，落后城市需补齐短板；\n  ③重点城市各维度分化，全面发展仍任重道远。",
-    image: "/background2.jpg",
-    target: "chapters_1",
+    image: "/chaptersCovers/chapter3Cover.png",
+    target: "chapters/chapter4",
   },
   {
     id: 5,
@@ -95,7 +95,7 @@ const chapters: Chapter[] = [
     class: "chapter-card-last",
     description:
       "（一）各城市分维度得分 \n （二）长江三角洲高质量发展评价县域探索",
-    image: "/background2.jpg",
+    image: "/chaptersCovers/appendixCover.png",
     target: "chapters/appendix",
   },
 ];
@@ -147,7 +147,7 @@ const goTo = (page: string) => {
 .chapter-card {
   padding: 0px;
   width: 70vw;
-  height: 360px;
+  height: 400px;
   margin-bottom: 20px;
   margin-right: 20px;
   // margin-left: 5vw;

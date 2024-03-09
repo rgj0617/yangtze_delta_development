@@ -81,6 +81,30 @@ export default [
                 component: () => import("@/views/chapters/chapter1.vue")
             },
             {
+                path: 'chapter2',
+                name: 'chapter2',
+                meta: {
+                    title: 'Chapter2'
+                },
+                component: () => import("@/views/chapters/chapter2.vue")
+            },
+            {
+                path: 'chapter3',
+                name: 'chapter3',
+                meta: {
+                    title: 'Chapter3'
+                },
+                component: () => import("@/views/chapters/chapter3.vue")
+            },
+            {
+                path: 'chapter4',
+                name: 'chapter4',
+                meta: {
+                    title: 'Chapter4'
+                },
+                component: () => import("@/views/chapters/chapter4.vue")
+            },
+            {
                 path: 'appendix',
                 name: 'appendix',
                 meta: {
