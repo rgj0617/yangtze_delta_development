@@ -58,7 +58,7 @@ export default [
         children: [
             {
                 path: '', //默认加载子页面——导航页
-                name: 'contents',
+                name: 'chapters',
                 meta: {
                     title: 'Chapter contents'
                 },
@@ -71,14 +71,6 @@ export default [
                     title: 'Preface'
                 },
                 component: () => import("@/views/chapters/preface.vue")
-            },
-            {
-                path: 'chapter1',
-                name: 'chapter1',
-                meta: {
-                    title: 'Chapter1'
-                },
-                component: () => import("@/views/chapters/chapter1.vue")
             },
             {
                 path: 'chapter2',

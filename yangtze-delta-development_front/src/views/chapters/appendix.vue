@@ -206,8 +206,8 @@ const chapterDescription = ref("各城市分维度得分及长江三角洲高质
   //图片
   .fig-container {
     padding: 0px;
-    margin: 0px;
-    width: auto;
+    margin: 0 20%;
+    width: 60%;
     height: auto;
     overflow: hidden;
     margin-bottom: 3%;

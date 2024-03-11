@@ -55,14 +55,14 @@
 
     <div class="main">
       <div class="section s1">
-        <video
+        <!-- <video
           src="../../assets/home/bg1.mp4"
           class="bg-video"
           autoplay
           loop
-        ></video>
+        ></video> -->
         <div class="section-content">
-          <span class="title">Sustainable Development Report</span>
+          <span class="title">High quality development report</span>
           <span class="subtitle">
             Evolved from "one person, one set" to leveraging the collective
             strength, a more credible evaluation index system.
@@ -113,7 +113,7 @@
             <img
               src="@/assets/pic/ranking.png"
               alt="Description of the image"
-              style="height: 80vh; width: auto;border-radius: 20px;"
+              style="height: 80vh; width: auto; border-radius: 20px"
             />
           </div>
         </div>
@@ -122,7 +122,7 @@
             <img
               src="@/assets/pic/interactiveMap.png"
               alt="Description of the image"
-              style="height: 80vh; width: auto;border-radius: 20px;"
+              style="height: 80vh; width: auto; border-radius: 20px"
             />
           </div>
           <div class="section3-right">
@@ -136,7 +136,10 @@
                 levels of 41 cities in the Yangtze River Delta. You can view
                 comprehensive or individual dimension development evaluations.
               </div>
-              <div class="section3-right-content-button" @click="goTo('interactiveMap')">
+              <div
+                class="section3-right-content-button"
+                @click="goTo('interactiveMap')"
+              >
                 Start exploring
                 <!-- <ArrowRightOutlined style="color: black" /> -->
               </div>
@@ -168,7 +171,7 @@
             <img
               src="@/assets/pic/dataScreen.png"
               alt="Description of the image"
-              style="height: 80vh; width: auto;border-radius: 20px;"
+              style="height: 80vh; width: auto; border-radius: 20px"
             />
           </div>
         </div>
@@ -590,14 +593,14 @@ html {
         &-button {
           text-align: center;
           line-height: 6vh;
-          margin-top: 2vh;
+          margin-top: 3vh;
           width: 8vw;
           height: 6vh;
           border-radius: 10px;
-          font-size: 2vh;
+          font-size: 1.7vh;
           font-weight: 800;
           text-align: center;
-          color: #000;
+          color: rgb(90, 90, 90, 0.9);
           cursor: pointer;
           background: linear-gradient(
             to right,
@@ -705,23 +708,23 @@ html {
           // align-items: center;
           text-align: center;
           line-height: 6vh;
-          margin-top: 2vh;
+          margin-top: 3vh;
           width: 8vw;
           height: 6vh;
           border-radius: 10px;
-          font-size: 2vh;
+          font-size: 1.7vh;
           font-weight: 800;
           text-align: center;
-          color: #000;
+          color: rgb(90, 90, 90, 0.9);
           cursor: pointer;
           background: linear-gradient(
             to right,
-            rgb(79, 162, 236, 0.9),
-            rgb(111, 249, 239, 0.9)
+            rgb(79, 162, 236),
+            rgb(111, 249, 239)
           );
 
           &:hover {
-            transition: 0.5s;
+            transition: background 1s;
             background: linear-gradient(
               to right,
               rgb(79, 162, 236),
@@ -738,10 +741,12 @@ html {
   }
 
   .bt1 {
+    margin-top: 10vh;
     margin-right: 1vw;
   }
 
   .bt2 {
+    margin-top: 10vh;
     margin-left: 1vw;
     filter: hue-rotate(275deg);
   }

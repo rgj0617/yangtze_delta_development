@@ -110,23 +110,22 @@
       <div class="tableContainer">
         <p class="tableTitle" align="center">表2 长江三角洲高质量发展评价体系</p>
 
-        <el-table class="table" :data="tableData"  border  :span-method="objectSpanMethod">
+        <el-table class="table" :data="tableData"  border :span-method="objectSpanMethod">
           <el-table-column
             prop="dimension"
             label="维度"
-            width="200"
+            width="150"
             align="center"
           ></el-table-column>
           <el-table-column
             prop="index"
             label="二级指标"
-            width="390"
             align="center"
           ></el-table-column>
           <el-table-column
             prop="attribute"
             label="指标属性"
-            width="200"
+            width="150"
             align="center"
           ></el-table-column>
         </el-table>
@@ -266,23 +265,12 @@ const objectSpanMethod = ({ row, rowIndex, columnIndex }: any) => {
 };
 
 
-
 const chapterTitle = ref("二、长江三角洲高质量发展评价指标体系")
 const chapterDescription = ref("本报告基于政策解读，辅以地理大模型和文本主题挖掘技术，集成多源资料对指标体系进行修正与完善，通过自上而下构建一级指标及其内容、自下而上修正解读结果、自下而上提供备选二级指标，以及自上而下基于专家经验确定二级指标四个步骤，构建了一个更具公信力的长三角高质量发展评价指标体系，在衡量创新发展、协调发展、绿色发展、开放发展和共享发展等方面都起到关键作用。")
 
 </script>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <style lang="scss" scoped>
+
+<style lang="scss" scoped>
 .sectionContent {
   display: flex;
   flex-direction: column;
@@ -331,7 +319,8 @@ const chapterDescription = ref("本报告基于政策解读，辅以地理大模
 
   //表格
   .tableContainer {
-    width: auto;
+    width: 70%;
+    margin-left: 15%;
     margin-bottom: 3%;
 
     .tableTitle {
@@ -349,8 +338,8 @@ const chapterDescription = ref("本报告基于政策解读，辅以地理大模
   //图片
   .fig-container {
     padding: 0px;
-    margin: 0px;
-    width: auto;
+    margin: 0 20%;
+    width: 60%;
     height: auto;
     overflow: hidden;
     margin-bottom: 3%;

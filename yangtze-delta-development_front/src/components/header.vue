@@ -58,7 +58,9 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const isActive = (page: string) => {
-  return router.currentRoute.value.name === page;
+  
+  return router.currentRoute.value.matched[0].name === page
+
 };
 
 const goTo = (page: string) => {

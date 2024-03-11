@@ -80,6 +80,22 @@
         </el-col>
         <el-col :span="20" class="yangtzeMap">
           <yangtzeMap :currentMap="activeName" />
+          <div v-if="activeName==5" id="legend">
+            <div class="legend-gradient"></div>
+            <div class="legend-labels">
+              <div class="legend-label">0</div>
+              <div class="legend-label">50</div>
+              <div class="legend-label">100</div>
+            </div>
+          </div>
+          <div v-else id="legend">
+            <div class="legend-gradient2"></div>
+            <div class="legend-labels">
+              <div class="legend-label">0</div>
+              <div class="legend-label">10</div>
+              <div class="legend-label">20</div>
+            </div>
+          </div>
         </el-col>
       </el-row>
     </div>
@@ -100,6 +116,44 @@ const activeName = ref("5");
 </script>
 
 <style scoped lang="scss">
+#legend {
+  position: absolute;
+  bottom: 3%;
+  right: 2%;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  .legend-gradient {
+    width: 300px;
+    height: 20px;
+    background: linear-gradient(
+      to right,
+      #DBEEF6 ,
+      #36869A 
+    );
+    border-radius: 5px;
+  }
+  .legend-gradient2 {
+    width: 300px;
+    height: 20px;
+    background: linear-gradient(
+      to right,
+      #E2F0D9 0%,
+      #385723 100%
+    );
+    border-radius: 5px;
+  }
+  .legend-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    .legend-label {
+      font-size: 12px;
+    }
+  }
+}
+
 :deep(.el-collapse-item__header) {
   font-size: large;
   margin: 8px 0;

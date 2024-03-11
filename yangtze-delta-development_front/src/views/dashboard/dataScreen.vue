@@ -53,7 +53,7 @@ body {
   margin-left: 5%;
 }
 .mapMiddle {
-  height: 85%;
+  height: 83%;
 }
 .mapBottom {
   height: 8%;
@@ -339,7 +339,7 @@ export default {
     },
     //监听单选框的变化，这个动态页面的命脉方法
     handleRadioChange(value) {
-      console.log(value, "RadioChange");
+      // console.log(value, "RadioChange");
       updateMap(value);
       this.initChart(getAnnualScore(this.DBdate, value), "bars");
       if (value == "5") {

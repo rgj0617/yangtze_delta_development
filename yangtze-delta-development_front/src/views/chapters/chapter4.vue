@@ -122,8 +122,8 @@ const chapterDescription = ref("长三角高质量发展态势和内部发展差
   //图片
   .fig-container {
     padding: 0px;
-    margin: 0px;
-    width: auto;
+    margin: 0 20%;
+    width: 60%;
     height: auto;
     overflow: hidden;
     margin-bottom: 3%;

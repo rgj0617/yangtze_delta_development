@@ -390,11 +390,8 @@ function handleMultiBarData(dataset, value) {
         default:
             break;
     }
-    console.log(propertiesSelect, '1112');
-    console.log(dataset['Indicators']['keyName'][propertiesSelect], '222');
     selectedData = dataset['Indicators'][propertiesSelect]
     selectedData.keyName = dataset['Indicators']['keyName'][propertiesSelect];
-    console.log(selectedData, '333');
     return selectedData
 }
 
