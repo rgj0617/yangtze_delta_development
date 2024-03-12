@@ -155,7 +155,7 @@ const activeName = ref("5");
 }
 
 :deep(.el-collapse-item__header) {
-  font-size: large;
+  font-size:0.7vw;
   margin: 8px 0;
   text-align: center;
   // padding: 20px 0 ;

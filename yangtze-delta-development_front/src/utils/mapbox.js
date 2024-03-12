@@ -19,13 +19,69 @@ const colorRangesSingle = [
     {min: 15, max: 20, color: '#90EE90'},
 ]
 
+// 将天地图作为底图
+const vecUrl = "http://t0.tianditu.com/vec_w/wmts?tk=037bbd6475f6b83dc821829e43f9b45e";
+const cvaUrl = "http://t0.tianditu.com/cva_w/wmts?tk=037bbd6475f6b83dc821829e43f9b45e";
+//实例化source对象
+var tdtVec = {
+  //类型为栅格瓦片
+  "type": "raster",
+  'tiles': [
+    //请求地址
+    vecUrl + "&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=vec&STYLE=default&TILEMATRIXSET=w&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=tiles"
+  ],
+  //分辨率
+  'tileSize': 256
+};
+var tdtCva = {
+  "type": "raster",
+  'tiles': [
+    cvaUrl + "&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cva&STYLE=default&TILEMATRIXSET=w&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=tiles"
+  ],
+  'tileSize': 256
+};
+var style={
+  //设置版本号，一定要设置
+  "version": 8,
+  //添加来源
+  "sources": {
+    "tdtVec": tdtVec,
+    "tdtCva": tdtCva
+  },
+  "layers": [
+    {
+      //图层id，要保证唯一性
+      "id": "tdtVec",
+      //图层类型
+      "type": "raster",
+      //数据源
+      "source": "tdtVec",
+      //图层最小缩放级数
+      "minzoom": 0,
+      //图层最大缩放级数
+      "maxzoom": 17
+    },
+    {
+      "id": "tdtCva",
+      "type": "raster",
+      "source": "tdtCva",
+      "minzoom": 0,
+      "maxzoom": 17
+    }
+  ],
+}
+
+
+
+
 export let map = null; // 导出 map 对象
 
 export function loadMap(box) {
     map = new mapboxgl.Map({
         container: box,
         // style: 'mapbox://styles/mapbox/streets-v11',
-        style: 'mapbox://styles/examples/cjgioozof002u2sr5k7t14dim',
+        // style: 'mapbox://styles/examples/cjgioozof002u2sr5k7t14dim',
+        style: style,
         preserveDrawingBuffer: true,
         center: [114, 30],
         zoom: 4
