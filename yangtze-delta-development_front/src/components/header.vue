@@ -6,42 +6,42 @@
         :class="{ active: isActive('home') }"
         @click="goTo('home')"
       >
-        Home
+        首页
       </div>
       <div
         class="left-item"
         :class="{ active: isActive('chapters') }"
         @click="goTo('chapters')"
       >
-        Chapters
+        章节
       </div>
       <div
         class="left-item"
         :class="{ active: isActive('rankings') }"
         @click="goTo('rankings')"
       >
-        Rankings
+        综合排序
       </div>
       <div
         class="left-item"
         :class="{ active: isActive('interactiveMap') }"
         @click="goTo('interactiveMap')"
       >
-        Interactive Map
+        交互地图
       </div>
       <div
         class="left-item"
         :class="{ active: isActive('dataScreen') }"
         @click="goTo('dataScreen')"
       >
-        Data Screen
+        数据大屏
       </div>
       <div
         class="left-item"
         :class="{ active: isActive('downloads') }"
         @click="goTo('downloads')"
       >
-        Downloads&Materials
+      下载与更多
       </div>
     </div>
     <div class="right-box">
@@ -91,7 +91,8 @@ const goTo = (page: string) => {
       height: 100%;
       width: 7vw;
       line-height: 5vh;
-      font-size: 1.6vh;
+      font-size: 2vh;
+      font-weight: bold;
       text-align: center;
       cursor: pointer;
 

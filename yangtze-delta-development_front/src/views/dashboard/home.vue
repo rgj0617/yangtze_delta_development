@@ -7,42 +7,42 @@
           :class="{ active: isActive('home') }"
           @click="goTo('home')"
         >
-          Home
+          首页
         </div>
         <div
           class="left-item"
           :class="{ active: isActive('chapters') }"
           @click="goTo('chapters')"
         >
-          Chapters
+          章节
         </div>
         <div
           class="left-item"
           :class="{ active: isActive('rankings') }"
           @click="goTo('rankings')"
         >
-          Rankings
+          综合排序
         </div>
         <div
           class="left-item"
           :class="{ active: isActive('interactiveMap') }"
           @click="goTo('interactiveMap')"
         >
-          Interactive Map
+          交互地图
         </div>
         <div
           class="left-item"
           :class="{ active: isActive('dataScreen') }"
           @click="goTo('dataScreen')"
         >
-          Data Screen
+          数据大屏
         </div>
         <div
           class="left-item"
           :class="{ active: isActive('downloads') }"
           @click="goTo('downloads')"
         >
-          Downloads&Materials
+          下载与更多
         </div>
       </div>
       <div class="right-box">
@@ -62,17 +62,16 @@
           loop
         ></video> -->
         <div class="section-content">
-          <span class="title">High quality development report</span>
+          <span class="title">长三角高质量发展评价报告</span>
           <span class="subtitle">
-            Evolved from "one person, one set" to leveraging the collective
-            strength, a more credible evaluation index system.
+            本报告面向国家和地区对长三角的发展定位与要求，采用“自上而下”基于专家经验的政策解读法,
+            辅以“自下而上”基于地理大模型的文本主题挖掘技术生成一套借助“众力”、更具公信力的高质量发展评价指标体系。
           </span>
-
-          <a class="bt1" @click="goTo('chapters')">Report</a>
-          <a class="bt2" @click="goTo('interactiveMap')">Result</a>
+          <a class="bt1" @click="goTo('chapters')">阅读报告</a>
+          <a class="bt2" @click="goTo('interactiveMap')">评价结果</a>
         </div>
         <div class="section-footer">
-          <div>Slide to explore more</div>
+          <div>滑动查看更多</div>
           <br />
           <div class="line">
             <ArrowDownOutlined style="fontsize: 30px" />
@@ -94,17 +93,13 @@
               </div>
               <div class="section2-left-content-title2">查看排名和得分</div>
               <div class="section2-left-content-des">
-                Overall, the average score for high-quality development in the
-                Yangtze River Delta is 55.38. Shanghai has the highest level of
-                high-quality development, followed by Jiangsu and Zhejiang,
-                while Anhui has a relatively lower level of high-quality
-                development.
+                长三角高质量发展（2023）平均得分为55.38，总体发展水平较高，呈现创新发展、协调发展、绿色发展、开放发展和共享发展多维度协同的高质量发展态势，体现了长三角城市群作为我国经济最具活力、开放程度最高、创新能力最强、吸纳外来人口最多的区域之一，在国家现代化建设大局和全方位开放格局中具有举足轻重的地位。
               </div>
               <div
                 class="section2-left-content-button"
                 @click="goTo('rankings')"
               >
-                Start exploring
+                开始探索
                 <!-- <ArrowRightOutlined style="color: black" /> -->
               </div>
             </div>
@@ -132,15 +127,13 @@
               </div>
               <div class="section3-right-content-title2">探索交互式地图</div>
               <div class="section3-right-content-des">
-                Our interactive maps showcase the high-quality development
-                levels of 41 cities in the Yangtze River Delta. You can view
-                comprehensive or individual dimension development evaluations.
+                我们的互动地图展示了长三角41个城市的高质量发展水平评价得分及维度介绍。您可以查看全面或单独的维度发展水平评估结果，交互式设计以便于您进一步了解我们的报告内容。
               </div>
               <div
                 class="section3-right-content-button"
                 @click="goTo('interactiveMap')"
               >
-                Start exploring
+                开始探索
                 <!-- <ArrowRightOutlined style="color: black" /> -->
               </div>
             </div>
@@ -154,15 +147,13 @@
               </div>
               <div class="section2-left-content-title2">体验数据大屏</div>
               <div class="section2-left-content-des">
-                You can view the conclusion data of this report in the data
-                screen, including data charts on overall assessment, each
-                dimension, and specific indicators composing each dimension.
+                您可以在数据大屏中查看该报告的结论数据，包括总体评估得分的数据图表、数据地图、每个维度的评价情况以及组成每个维度的具体指标。
               </div>
               <div
                 class="section2-left-content-button"
                 @click="goTo('dataScreen')"
               >
-                Start exploring
+                开始探索
                 <!-- <ArrowRightOutlined style="color: black" /> -->
               </div>
             </div>
@@ -270,7 +261,8 @@ html {
       height: 100%;
       width: 7vw;
       line-height: 5vh;
-      font-size: 1.6vh;
+      font-size: 2vh;
+      font-weight: bold;
       text-align: center;
       cursor: pointer;
 
@@ -583,6 +575,7 @@ html {
         &-des {
           display: flex;
           margin-top: 1vh;
+          margin-bottom: 1vh;
           width: 80%;
           height: 10vh;
           font-size: 1.8vh;
@@ -696,6 +689,7 @@ html {
         &-des {
           display: flex;
           margin-top: 1vh;
+          margin-bottom: 1vh;
           width: 80%;
           height: 10vh;
           font-size: 1.8vh;
@@ -741,12 +735,12 @@ html {
   }
 
   .bt1 {
-    margin-top: 10vh;
+    margin-top: 12vh;
     margin-right: 1vw;
   }
 
   .bt2 {
-    margin-top: 10vh;
+    margin-top: 12vh;
     margin-left: 1vw;
     filter: hue-rotate(275deg);
   }

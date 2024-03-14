@@ -3,20 +3,22 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import MapboxLanguage from '@mapbox/mapbox-gl-language'
 import CityData from '@/assets/json/standardCityBoundary.json'
 import ranking from '@/assets/json/scoreDetail.json'
+import { scoreFormat } from '@/utils/format.ts'
 
+const rankingFormatted = scoreFormat(ranking)
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlbmdjaGFvODg2NiIsImEiOiJjbGhzcWowMHUwYTNyM2VwNXZhaXhjd3Q4In0.FEh2q7sEW88Z1B5GcK_TDg'; //去mapbox官⽹申请
 
 const colorRanges = [
-    {min: 0, max: 45, color: '#E31A1C'},
-    {min: 45, max: 55, color: '#FEB24C'},
-    {min: 55, max: 70, color: '#FFEDA0'},
-    {min: 70, max: 100, color: '#90EE90'},
+    { min: 0, max: 45, color: '#E31A1C' },
+    { min: 45, max: 55, color: '#FEB24C' },
+    { min: 55, max: 70, color: '#FFEDA0' },
+    { min: 70, max: 100, color: '#90EE90' },
 ]
 const colorRangesSingle = [
-    {min: 0, max: 5, color: '#E31A1C'},
-    {min: 5, max: 10, color: '#FEB24C'},
-    {min: 10, max: 15, color: '#FFEDA0'},
-    {min: 15, max: 20, color: '#90EE90'},
+    { min: 0, max: 5, color: '#E31A1C' },
+    { min: 5, max: 10, color: '#FEB24C' },
+    { min: 10, max: 15, color: '#FFEDA0' },
+    { min: 15, max: 20, color: '#90EE90' },
 ]
 
 // 将天地图作为底图
@@ -24,51 +26,52 @@ const vecUrl = "http://t0.tianditu.com/vec_w/wmts?tk=037bbd6475f6b83dc821829e43f
 const cvaUrl = "http://t0.tianditu.com/cva_w/wmts?tk=037bbd6475f6b83dc821829e43f9b45e";
 //实例化source对象
 var tdtVec = {
-  //类型为栅格瓦片
-  "type": "raster",
-  'tiles': [
-    //请求地址
-    vecUrl + "&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=vec&STYLE=default&TILEMATRIXSET=w&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=tiles"
-  ],
-  //分辨率
-  'tileSize': 256
+    //类型为栅格瓦片
+    "type": "raster",
+    'tiles': [
+        //请求地址
+        vecUrl + "&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=vec&STYLE=default&TILEMATRIXSET=w&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=tiles"
+    ],
+    //分辨率
+    'tileSize': 256
 };
 var tdtCva = {
-  "type": "raster",
-  'tiles': [
-    cvaUrl + "&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cva&STYLE=default&TILEMATRIXSET=w&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=tiles"
-  ],
-  'tileSize': 256
+    "type": "raster",
+    'tiles': [
+        cvaUrl + "&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cva&STYLE=default&TILEMATRIXSET=w&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=tiles"
+    ],
+    'tileSize': 256
 };
-var style={
-  //设置版本号，一定要设置
-  "version": 8,
-  //添加来源
-  "sources": {
-    "tdtVec": tdtVec,
-    "tdtCva": tdtCva
-  },
-  "layers": [
-    {
-      //图层id，要保证唯一性
-      "id": "tdtVec",
-      //图层类型
-      "type": "raster",
-      //数据源
-      "source": "tdtVec",
-      //图层最小缩放级数
-      "minzoom": 0,
-      //图层最大缩放级数
-      "maxzoom": 17
+var style = {
+    //设置版本号，一定要设置
+    "version": 8,
+    //添加来源
+    "sources": {
+        "tdtVec": tdtVec,
+        "tdtCva": tdtCva
     },
-    {
-      "id": "tdtCva",
-      "type": "raster",
-      "source": "tdtCva",
-      "minzoom": 0,
-      "maxzoom": 17
-    }
-  ],
+    "layers": [
+        {
+            //图层id，要保证唯一性
+            "id": "tdtVec",
+            //图层类型
+            "type": "raster",
+            //数据源
+            "source": "tdtVec",
+            //图层最小缩放级数
+            "minzoom": 0,
+            //图层最大缩放级数
+            "maxzoom": 17
+        },
+        {
+            "id": "tdtCva",
+            "type": "raster",
+            "source": "tdtCva",
+            "minzoom": 0,
+            "maxzoom": 17
+        }
+    ],
+    "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf"
 }
 
 
@@ -86,7 +89,8 @@ export function loadMap(box) {
         center: [114, 30],
         zoom: 4
     });
-    // map.setPaintProperty('background', 'background-color', 'rgba(0, 0, 0, 0)')
+
+    // 设置汉化
     // map.addControl(new MapboxLanguage({
     //     defaultLanguage: 'zh-Hans'
     // }));
@@ -115,6 +119,42 @@ export function addGeoJson() {
                 'line-width': 1.5
             }
         });
+        // 添加标记符号图层
+        // map.addLayer({
+        //     id: 'cityMarkerLayer',
+        //     type: 'symbol',
+        //     source: 'geojsonSource', // 假设你的 GeoJSON 数据源的名称为 geojsonSource
+        //     layout: {
+        //         'icon-image': 'marker-icon', // 使用内置的标记图标
+        //         'icon-size': 1.5, // 调整标记图标的大小
+        //         'text-field': '{name}', // 使用地级市名称作为文本
+        //         'text-size': 12, // 设置文本大小
+        //         'text-offset': [0, 1], // 调整文本相对于标记的偏移
+        //         'text-anchor': 'top' // 设置文本锚点为顶部
+        //     },
+        //     paint: {
+        //         'text-color': '#000000' // 设置文本颜色
+        //     }
+        // });
+        // 添加地级市名称的文本图层
+        map.addLayer({
+            id: 'cityNameLayer',
+            type: 'symbol',
+            source: 'geojsonSource',
+            layout: {
+                'text-field': '{name}', // 显示地级市名称，假设 GeoJSON 中的属性名称为 name
+                'text-size': 12,
+                'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+                'text-radial-offset': 0.5,
+                'text-justify': 'auto'
+            },
+            paint: {
+                'text-color': '#000', // 文本颜色
+                'text-halo-color': '#FFF', // 文本描边颜色
+                'text-halo-width': 1 // 文本描边宽度
+            },
+            // filter: ['>=', 'length', 0] // 限制边界线长度大于等于 100 的才显示标注
+        });
     });
 }
 
@@ -131,7 +171,7 @@ export function paintMap() {
                 //在geojson中获取name属性
                 ['get', 'name'],
                 //将geojson中的name属性与cityValueData进行匹配，得到正确的综合得分，并根据colorRanges的情况上色
-                ...ranking.reduce((acc, data) => {
+                ...rankingFormatted.reduce((acc, data) => {
                     return [...acc, data.cityName, getColor2(data.score)];
                 }, []),
                 '#000000' // 默认颜色
@@ -170,7 +210,7 @@ export function updateMap(value) {
     map.setPaintProperty('geojsonLayer', 'fill-color', [
         'match',
         ['get', 'name'],
-        ...ranking.reduce((acc, data) => {
+        ...rankingFormatted.reduce((acc, data) => {
             return [...acc, data.cityName, getColor2(data[propertiesSelect])];
         }, []),
         '#000000' // 默认颜色
@@ -178,28 +218,10 @@ export function updateMap(value) {
     bindMapInteractions(value);
 }
 
-// 根据城市值获取对应颜色
-function getColor(value) {
-    if (value > 20) {
-        for (const range of colorRanges) {
-            if (value >= range.min && value <= range.max) {
-                return range.color;
-            }
-        }
-    } else {
-        for (const range of colorRangesSingle) {
-            if (value >= range.min && value <= range.max) {
-                return range.color;
-            }
-        }
-    }
-    return '#000000'; // 默认颜色
-}
-
 // 设置颜色范围
 // const colorRange = ['#ADD8E6','#00008B'];
-const colorRange = ['#DBEEF6','#36869A'];
-const colorRangeMin = ['#E2F0D9','#385723'];
+const colorRange = ['#DBEEF6', '#36869A'];
+const colorRangeMin = ['#E2F0D9', '#385723'];
 
 
 // 创建颜色插值函数(综合得分)
@@ -217,7 +239,7 @@ function getColor2(value) {
 
 // 悬浮地图上时，获取该城市的值
 function getCityValue(cityName, value) {
-    const cityData = ranking.find(data => data.cityName === cityName);
+    const cityData = rankingFormatted.find(data => data.cityName === cityName);
     switch (parseInt(value)) {
         case 0:
             return cityData ? cityData['创新发展'] : 'N/A';

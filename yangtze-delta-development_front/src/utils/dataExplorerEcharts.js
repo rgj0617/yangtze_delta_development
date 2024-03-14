@@ -1,15 +1,20 @@
 // import axios from "axios";
 // import "../../../../src/mock/mockServe.js"
 import * as echarts from "echarts";
-import detail from "@/assets/json/scoreDetail.json"
-import ranking from "@/assets/json/scoreRanking.json"
+import detailUnformatted from "@/assets/json/scoreDetail.json"
+import rankingUnformatted from "@/assets/json/scoreRanking.json"
 import Indicators from "@/assets/json/secondaryIndicators.json"
+import {scoreFormat} from "@/utils/format.ts"
+
+const ranking = scoreFormat(rankingUnformatted);
+
+const detail = scoreFormat(detailUnformatted);
+
 
 
 // 整合数据
 export const getDBData = async () => {
     let dataset = { ranking, detail, Indicators };
-    // console.log(dataset, '原始数据');
     return dataset;
 }
 

@@ -1,6 +1,6 @@
 <template>
   <el-card class="container">
-    <el-table :data="rankingData" stripe>
+    <el-table :data="rankingDataFormatted" stripe>
     <el-table-column prop="ranking" label="Rank" width="100"></el-table-column>
     <el-table-column prop="cityName" label="Country" width="200"></el-table-column>
     <el-table-column prop="score" label="Score" width="200"></el-table-column>
@@ -15,6 +15,9 @@
 
 <script setup>
 import rankingData from "@/assets/json/scoreRanking.json"
+import {scoreFormat} from "@/utils/format.ts"
+
+const rankingDataFormatted = scoreFormat(rankingData)
 
 const getBackgroundColor = (score) =>{
     const percentage = score / 100;
@@ -22,7 +25,6 @@ const getBackgroundColor = (score) =>{
       const filledColorHead = '#95CCDE'; // Green color for filled part
       const filledColorFoot = '#A9B2D4'; // Green color for filled part
       const emptyColor = '#EEEEEE'; // Gray color for empty part
-
       return `linear-gradient(to right, ${filledColorFoot}, ${filledColorHead} ${filledPercentage * 100}%, ${emptyColor} ${filledPercentage * 100}%)`;
 }
 </script>

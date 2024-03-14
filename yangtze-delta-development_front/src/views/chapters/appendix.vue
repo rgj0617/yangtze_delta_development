@@ -58,6 +58,8 @@
 import detailData from "@/assets/json/scoreDetail.json";
 // @ts-ignore
 import chaptersHeader from "./chaptersHeader.vue";
+// @ts-ignore
+import {scoreFormat} from "@/utils/format.ts"
 import { ref } from 'vue';
 
 interface TableDataRow {
@@ -71,15 +73,7 @@ interface TableDataRow {
 }
 
 //将得分四舍五入
-const tableData: TableDataRow[] = detailData.map((item: any) => ({
-  cityName: item.cityName,
-  score: parseFloat(item.score).toFixed(2),
-  创新发展: parseFloat(item["创新发展"]).toFixed(2),
-  协调发展: parseFloat(item["协调发展"]).toFixed(2),
-  绿色发展: parseFloat(item["绿色发展"]).toFixed(2),
-  开放发展: parseFloat(item["开放发展"]).toFixed(2),
-  共享发展: parseFloat(item["共享发展"]).toFixed(2),
-}));
+const tableData: TableDataRow[] = scoreFormat(detailData)
 
 // 修改每一列的颜色
 const columnStyle = ({
@@ -135,18 +129,8 @@ const chapterTitle = ref("附录")
 const chapterDescription = ref("各城市分维度得分及长江三角洲高质量发展评价县域探索图表")
 
 </script>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <style lang="scss" scoped>
+
+<style lang="scss" scoped>
 .sectionContent {
   display: flex;
   flex-direction: column;

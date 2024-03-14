@@ -1,10 +1,9 @@
 <template>
   <div class="container">
     <div class="sectionContent">
-      <span class="title"> Chapters </span>
+      <span class="title"> 章节 </span>
       <span class="description">
-        Research Report on the Evaluation of High-quality Development in the
-        Yangtze River Delta (2023)
+        长江三角洲高质量发展（2023）评价研究报告
       </span>
       <br />
       <el-divider>

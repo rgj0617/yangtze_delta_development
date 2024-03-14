@@ -4,25 +4,25 @@
       <homeHeader />
     </div>
     <div class="sectionContent">
-      <span class="title"> Rankings </span>
+      <span class="title"> 综合排序 </span>
       <span class="description">
-        The overall performance of all 41 Cities in the Yangtze River Delta
-        region
+        长三角高质量发展（2023）41个城市的综合评价得分排序
       </span>
       <br />
-      <el-divider>
+      <!-- <el-divider>
         <el-icon><star-filled /></el-icon>
         <el-icon><star-filled /></el-icon>
         <el-icon><star-filled /></el-icon>
-      </el-divider>
+      </el-divider> -->
+      <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+        <el-tab-pane label="User" name="first">User</el-tab-pane>
+        <el-tab-pane label="Config" name="second">Config</el-tab-pane>
+      </el-tabs>
+      
     </div>
     <div class="dataTable">
       <div class="description">
-        Cities are ranked by their overall score. The overall score measures the
-        total progress towards achieving all high-quality development goals. The
-        score can be interpreted as a percentage of high-quality development
-        goal achievement. A score of 100 indicates that all high-quality
-        development goals have been achieved.
+        城市按综合得分进行排名。综合得分衡量实现所有高质量发展目标的总进展情况。得分可以解释为高质量发展目标实现的百分比。100分表示高质量发展目标全部实现。
       </div>
       <dataTable />
     </div>
@@ -35,6 +35,9 @@ import dataTable from "@/components/rankingTable.vue";
 </script>
 
 <style lang="scss" scoped>
+  :deep(.el-tabs__item) {
+    width: 25vw; /* 设置宽度为200px */
+  }
 .homeHeader {
   position: fixed;
   top: 0;

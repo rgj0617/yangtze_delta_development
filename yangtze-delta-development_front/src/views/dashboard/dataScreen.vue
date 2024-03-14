@@ -115,15 +115,11 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
   overflow: auto;
   li {
-    margin-bottom: 25px; /* 调整行间距 */
+    margin-bottom: 1.5vh; 
   }
   ul {
-    font-size: 1.5rem; /* 设置字体大小为 18 像素 */
+    font-size: 2.1vh; 
   }
-}
-
-.pieCard li {
-  margin-bottom: 25px; /* 调整行间距 */
 }
 .pieBackgroundImage {
   width: 90%;
