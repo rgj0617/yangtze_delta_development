@@ -21,10 +21,10 @@ const rankingDataFormatted = scoreFormat(rankingData)
 
 const getBackgroundColor = (score) =>{
     const percentage = score / 100;
-      const filledPercentage = Math.min(percentage, 1); // Ensure filledPercentage is between 0 and 1
-      const filledColorHead = '#95CCDE'; // Green color for filled part
-      const filledColorFoot = '#A9B2D4'; // Green color for filled part
-      const emptyColor = '#EEEEEE'; // Gray color for empty part
+      const filledPercentage = Math.min(percentage, 1); 
+      const filledColorHead = '#95CCDE'; 
+      const filledColorFoot = '#A9B2D4'; 
+      const emptyColor = '#EEEEEE'; 
       return `linear-gradient(to right, ${filledColorFoot}, ${filledColorHead} ${filledPercentage * 100}%, ${emptyColor} ${filledPercentage * 100}%)`;
 }
 </script>

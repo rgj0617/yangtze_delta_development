@@ -115,10 +115,10 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
   overflow: auto;
   li {
-    margin-bottom: 1.5vh; 
+    margin-bottom: 1.5vh;
   }
   ul {
-    font-size: 2.1vh; 
+    font-size: 2.1vh;
   }
 }
 .pieBackgroundImage {
@@ -136,7 +136,7 @@ body {
 .mapboxBorder {
   height: 100%;
   width: 98%;
-  margin: 0  1%;
+  margin: 0 1%;
   box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.15);
   // border: #475669 1px solid;
   border-radius: 8px;
@@ -231,7 +231,7 @@ body {
                   </div>
                   <div id="pie-item-legend" class="pieLegend"></div>
                 </div>
-                <div v-else id="bars2" style="width: 100%;height: 79%;"></div>
+                <div v-else id="bars2" style="width: 100%; height: 79%"></div>
               </div>
             </div>
           </el-col>
@@ -270,7 +270,6 @@ export default {
       radio: 5,
       backgroundUrl: "",
       showPie: true,
-
     };
   },
   methods: {
