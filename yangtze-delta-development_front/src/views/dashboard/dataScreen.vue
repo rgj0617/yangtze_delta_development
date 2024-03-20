@@ -70,6 +70,18 @@ body {
   height: 53%;
   /* border: 1px yellow solid; */
 }
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pieSelect{
+  width: 20%;
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+}
+
 .pie-item {
   width: 6.8vw;
   height: 6.8vw;
@@ -79,7 +91,9 @@ body {
   height: 80%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  // justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 .pieLegend {
   width: 100%;
@@ -146,7 +160,7 @@ body {
 }
 </style>
 
-<template>
+<template>   
   <div style="width: 100vw; height: 100vh">
     <el-container style="width: 100%; height: 100%">
       <div class="head" style="height: 5.5vh; width: 100%">
@@ -161,6 +175,7 @@ body {
               <div class="bars" id="bars"></div>
             </div>
           </el-col>
+
           <el-col :span="10">
             <div class="charts mapBorder">
               <div class="title">长三角高质量发展空间分布</div>
@@ -184,6 +199,7 @@ body {
               </div>
             </div>
           </el-col>
+          
           <el-col :span="8">
             <div class="charts mapBorder">
               <!-- <div class="title">
@@ -219,17 +235,25 @@ body {
               </div>
               <div class="piesOrBar">
                 <div v-if="showPie" class="charts">
-                  <!-- <div id="pie" style="width: 100%; height: 100%"></div> -->
-                  <div class="title">高质量发展水平Top8</div>
-                  <div class="pieItems">
-                    <div
-                      v-for="i in 8"
-                      :key="i"
-                      :id="'pie-item' + i"
-                      :class="'pie-item' + i + ' pie-item'"
-                    ></div>
+
+                  <div class="flex-container">
+                    <div class="title">{{ selectedCity }}高质量发展水平</div>
+                    <!-- 打开下拉框后直接打字搜索 -->
+                    <el-select class="pieSelect" placeholder="请选择城市" v-model="selectedCity" @change="handleCityChange" filterable>
+                      <el-option 
+                        v-for="city in cityNames"
+                        :key="city"
+                        :label="city" 
+                        :value="city">
+                        {{ city }}
+                      </el-option>
+                    </el-select>
                   </div>
-                  <div id="pie-item-legend" class="pieLegend"></div>
+
+                  <div class="pieItems">
+                    <div id="single-pie-chart" class="charts"></div>
+                  </div>
+                  <!-- <div id="pie-item-legend" class="pieLegend"></div> -->
                 </div>
                 <div v-else id="bars2" style="width: 100%; height: 79%"></div>
               </div>
@@ -254,6 +278,7 @@ import {
   getDBData,
   getMultiBarData,
 } from "@/utils/dataExplorerEcharts.js";
+import { cityNames } from '@/utils/dataExplorerEcharts.js'; //cityNames
 import * as echarts from "echarts";
 import homeHeader from "@/components/header.vue";
 // import { set } from "ol/transform.js";
@@ -270,6 +295,8 @@ export default {
       radio: 5,
       backgroundUrl: "",
       showPie: true,
+      selectedCity:'上海市',
+      cityNames:cityNames,
     };
   },
   methods: {
@@ -292,28 +319,20 @@ export default {
     drawChart(num) {
       this.initChart(getAnnualScore(this.DBdate), "bars");
       // this.initChart(getMultiPieDataNew(this.DBdate), "pie");
-      for (let i = 1; i <= 8; i++) {
-        this.initChart(getMultiPieData(this.DBdate, i), `pie-item${i}`);
-      }
-      this.initChart(getMultiPieData(this.DBdate, "legend"), "pie-item-legend");
+      // for (let i = 1; i <= 8; i++) {
+      //   this.initChart(getMultiPieData(this.DBdate, i), `pie-item${i}`);
+      // }
+      this.initChart(getMultiPieData(this.DBdate, this.selectedCity), "single-pie-chart");
+      // this.initChart(getMultiPieData(this.DBdate, "legend"), "pie-item-legend");
     },
     //监听单选框的变化，这个动态页面的命脉方法
     handleRadioChange(value) {
-      // console.log(value, "RadioChange");
       updateMap(value);
       this.initChart(getAnnualScore(this.DBdate, value), "bars");
       if (value == "5") {
         this.showPie = true;
         this.$nextTick(() => {
-          for (let i = 1; i <= 8; i++) {
-            this.initChart(getMultiPieData(this.DBdate, i), `pie-item${i}`);
-          }
-          this.initChart(
-            getMultiPieData(this.DBdate, "legend"),
-            "pie-item-legend"
-          );
-
-          // this.initChart(getMultiPieDataNew(this.DBdate), "pie");
+          this.initChart(getMultiPieData(this.DBdate, this.selectedCity), "single-pie-chart");
         });
       } else {
         this.showPie = false;
@@ -321,6 +340,12 @@ export default {
           this.initChart(getMultiBarData(this.DBdate, value), "bars2");
         });
       }
+    },
+    handleCityChange(city) {
+      this.selectedCity = city; // 更新选中城市
+      if (this.radio == "5") { // 如果是“综合评价”
+          this.initChart(getMultiPieData(this.DBdate,this.selectedCity), "single-pie-chart");
+       }
     },
   },
   async mounted() {
