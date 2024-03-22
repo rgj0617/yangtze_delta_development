@@ -7,7 +7,7 @@ import Indicators from "@/assets/json/secondaryIndicators.json"
 import {scoreFormat} from "@/utils/format.ts"
 
 const ranking = scoreFormat(rankingUnformatted);
-
+export let cityNames = [...new Set(ranking.map(item => item.cityName))];
 const detail = scoreFormat(detailUnformatted);
 
 
@@ -166,7 +166,7 @@ function handlePieData(dataset) {
     // for(let i = 0 ; i < 8 ; i++){
     //     topCity.push(dataset.ranking[i].cityName);
     // }
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < dataset.detail.length; i++) {
         name = dataset.detail[i].cityName;
         for (let j = 0; j < 5; j++) {
             value.push(dataset.detail[i][barName[j]])
@@ -180,13 +180,16 @@ function handlePieData(dataset) {
         singlePie = {};
         value = [];
     }
+    console.log(optionData);
     return optionData;
 }
 
 //绘制右下角一级指标八个玫瑰图的方法
 export const getMultiPieData = (dataset, num) => {
-
+    console.log('run');
+    console.log(num);
     var multiPieData = handlePieData(dataset);
+    // console.log(multiPieData[1].name);
     // let radius = ["35%","100%"];
     let name = multiPieData[0].barName;
     let legendData = name.map((n) => {
@@ -214,9 +217,10 @@ export const getMultiPieData = (dataset, num) => {
             ]
         };
     } else {
-        for (let i = 1; i <= multiPieData.length; i++) {
-            if (num == i) {
-                singlePieData = multiPieData[i - 1];
+        for (let i = 0; i <= multiPieData.length; i++) {
+            console.log(multiPieData[i].name);
+            if (num == multiPieData[i].name) {
+                singlePieData = multiPieData[i];
                 break;
             }
         }
@@ -229,6 +233,10 @@ export const getMultiPieData = (dataset, num) => {
         //         type: "shadow"
         //     }
         // },
+        legend: {
+            top: 'bottom',  
+            },
+
         tooltip: {
             trigger: 'item',
             formatter: '{a} <br/>{b} : {c} ({d}%)'
@@ -269,7 +277,7 @@ export const getMultiPieData = (dataset, num) => {
                         show: true
                     },
                     labelLine: {
-                        show: false
+                        show: true
                     }
                 },
                 data: optionData
