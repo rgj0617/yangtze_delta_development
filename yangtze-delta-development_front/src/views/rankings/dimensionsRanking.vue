@@ -26,9 +26,7 @@
         />
       </template>
     </el-select>
-    <span class="introduction" style="margin-left: 30px"
-      >维度调整:哪个市，哪个指标，调整哪个维度</span
-    >
+    <!-- <span class="introduction" style="margin-left: 30px"></span> -->
   </div>
 
   <el-card class="container">
@@ -39,14 +37,8 @@
         label="Country"
         width="200"
       ></el-table-column>
-      <!-- <el-table-column
-        prop="score"
-        label="Score"
-        width="200"
-        :formatter="formatScore"
-        sortable
-      ></el-table-column> -->
       <el-table-column label="Score" width="200" sortable="custom">
+        <!-- 实现可变数据的动态排序 -->
         <template v-slot="scope">
           {{ formatScore(scope.row) }}
         </template>
@@ -87,6 +79,7 @@ const formatScore = (row) => {
  * 1、
  */
 const tableSort = ({ column, prop, order }) => {
+  // 直接使用array.sort()方法，对原始数据进行处理
   rankingDetailData.sort((a, b) => {
     const scoreA = formatScore(a);
     const scoreB = formatScore(b);
@@ -104,23 +97,23 @@ const tableSort = ({ column, prop, order }) => {
 // 各维度颜色
 const dimensionColors = ref([
   {
-    value: "#FF6600",
+    value: "#fbe4d5",
     label: "创新发展",
   },
   {
-    value: "#FFDE0A",
+    value: "#d9e2f3",
     label: "协调发展",
   },
   {
-    value: "#1EC79D",
+    value: "#c5e0b3",
     label: "绿色发展",
   },
   {
-    value: "#14CCCC",
+    value: "#ffe599",
     label: "开放发展",
   },
   {
-    value: "#4167F0",
+    value: "#d9c8eb",
     label: "共享发展",
   },
 ]);
@@ -136,11 +129,11 @@ dimensionColors.value.forEach((color) => {
 // 搞定多维度的色带啊
 const getBackgroundColor = (row) => {
   // 先定下来颜色
-  const innovationColor = "#FF6600";
-  const operateColor = "#FFDE0A";
-  const greenColor = "#1EC79D";
-  const openColor = "#14CCCC";
-  const sharingColor = "#4167F0";
+  const innovationColor = "#fbe4d5";
+  const operateColor = "#d9e2f3";
+  const greenColor = "#c5e0b3";
+  const openColor = "#ffe599";
+  const sharingColor = "#d9c8eb";
   const emptyColor = "#EEEEEE";
 
   // console.log(selectedDimension.value,'123');

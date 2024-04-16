@@ -67,8 +67,6 @@ const activeName = ref("5");
 </script>
 
 <style scoped lang="scss">
-
-
 :deep(.el-collapse-item__header) {
   font-size: 0.7vw;
   margin: 8px 0;
@@ -90,7 +88,7 @@ const activeName = ref("5");
   }
   .sectionContent {
     width: 100%;
-    height: 94.3vh;
+    height: 94vh;
   }
   .information {
     height: 100%;

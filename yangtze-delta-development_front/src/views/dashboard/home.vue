@@ -14,7 +14,7 @@
           :class="{ active: isActive('chapters') }"
           @click="goTo('chapters')"
         >
-          章节
+          评价报告
         </div>
         <div
           class="left-item"
@@ -46,6 +46,10 @@
         </div>
       </div>
       <div class="right-box">
+        <img
+          src="/OGMSlogo.png"
+          style="height: 5.5vh; width: auto; margin-right: 3vw"
+        />
         <div class="yes-login">
           <!-- <div class="button-item" @click="goScence()">立即创作</div> -->
           <!-- <div class="button-item" @click="enterLogin()">登录/注册</div> -->
@@ -106,7 +110,7 @@
           </div>
           <div class="section2-right">
             <img
-              src="@/assets/pic/ranking.png"
+              src="/home/banner1.png"
               alt="Description of the image"
               style="height: 80vh; width: auto; border-radius: 20px"
             />
@@ -115,7 +119,7 @@
         <div class="section s3">
           <div class="section3-left">
             <img
-              src="@/assets/pic/interactiveMap.png"
+              src="/home/banner2.png"
               alt="Description of the image"
               style="height: 80vh; width: auto; border-radius: 20px"
             />
@@ -160,7 +164,7 @@
           </div>
           <div class="section2-right">
             <img
-              src="@/assets/pic/dataScreen.png"
+              src="/home/banner3.png"
               alt="Description of the image"
               style="height: 80vh; width: auto; border-radius: 20px"
             />

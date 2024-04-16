@@ -76,7 +76,7 @@ body {
   justify-content: center;
 }
 
-.pieSelect{
+.pieSelect {
   width: 20%;
   align-items: center; /* 垂直居中 */
   justify-content: center; /* 水平居中 */
@@ -129,10 +129,10 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
   overflow: auto;
   li {
-    margin-bottom: 1.5vh;
+    margin-bottom: 0.6vh;
   }
   ul {
-    font-size: 2.1vh;
+    font-size: 1.7vh;
   }
 }
 .pieBackgroundImage {
@@ -160,7 +160,7 @@ body {
 }
 </style>
 
-<template>   
+<template>
   <div style="width: 100vw; height: 100vh">
     <el-container style="width: 100%; height: 100%">
       <div class="head" style="height: 5.5vh; width: 100%">
@@ -199,7 +199,7 @@ body {
               </div>
             </div>
           </el-col>
-          
+
           <el-col :span="8">
             <div class="charts mapBorder">
               <!-- <div class="title">
@@ -258,7 +258,6 @@ body {
                     <li>
                       从内部差距来看，城市协调发展水平得分梯度分布较缓，常州、南京、杭州、苏州、宁波、嘉兴、合肥、绍兴、湖州属于第一梯队，湖州、无锡、舟山、扬州、金华、镇江、温州、上海属于第二梯队，其余25个城市分属第三、四至五梯队。
                     </li>
-
                   </ul>
                 </el-card>
 
@@ -274,7 +273,6 @@ body {
                     <li>
                       区域内梯度变化较小。杭州、黄山、舟山、无锡、南京、合肥、宁波属于第一梯队，芜湖、上海、扬州、苏州、常州、温州属于第二梯队，其余28个城市分属第三、四至五梯队，各梯度间以及梯度内绿色发展水平评分变化较小，呈现整体较高的绿色发展水平。
                     </li>
-
                   </ul>
                 </el-card>
 
@@ -290,7 +288,6 @@ body {
                     <li>
                       整体来看，各城市开放发展水平得分梯度分异显著，且呈现明显的两极分化现象：上海、南京、杭州、苏州属于第一梯队；宁波、无锡、嘉兴、常州、舟山、合肥、南通、徐州属于第二梯队；其余29个城市分属第三、四至五梯队，得分均未达到第一梯队的二分之一。
                     </li>
-
                   </ul>
                 </el-card>
 
@@ -308,29 +305,27 @@ body {
                     </li>
                   </ul>
                 </el-card>
-
-
-
-
-                <!-- 原先的走马灯显示 -->
-                <!-- <el-carousel :interval="4000" type="card" style="height:90%;margin-top:5%">
-                    <el-carousel-item v-for="item in items" :key="item.url" style="display: flex; align-items: center; justify-content: center;">
-                      <img :src="item.url" style="width: 100%; height: 100%;object-fit: cover;"/>
-                    </el-carousel-item>
-                  </el-carousel> -->
               </div>
               <div class="piesOrBar">
                 <div v-if="showPie" class="charts">
-
                   <div class="flex-container">
-                    <div class="title">{{ selectedCity }}高质量发展水平</div>
+                    <div class="title">
+                      {{ selectedCity }}高质量发展各维度评价
+                    </div>
                     <!-- 打开下拉框后直接打字搜索 -->
-                    <el-select class="pieSelect" placeholder="请选择城市" v-model="selectedCity" @change="handleCityChange" filterable>
-                      <el-option 
+                    <el-select
+                      class="pieSelect"
+                      placeholder="请选择城市"
+                      v-model="selectedCity"
+                      @change="handleCityChange"
+                      filterable
+                    >
+                      <el-option
                         v-for="city in cityNames"
                         :key="city"
-                        :label="city" 
-                        :value="city">
+                        :label="city"
+                        :value="city"
+                      >
                         {{ city }}
                       </el-option>
                     </el-select>
@@ -349,7 +344,7 @@ body {
       </el-main>
 
       <el-footer class="foot">
-        Copyright © 2023-2024 南京师范大学-OpenGMS. All Rights Reserved.
+        <!-- Copyright © 2023-2024 南京师范大学-OpenGMS. All Rights Reserved. -->
       </el-footer>
     </el-container>
   </div>
@@ -364,7 +359,7 @@ import {
   getDBData,
   getMultiBarData,
 } from "@/utils/dataExplorerEcharts.js";
-import { cityNames } from '@/utils/dataExplorerEcharts.js'; //cityNames
+import { cityNames } from "@/utils/dataExplorerEcharts.js"; //cityNames
 import * as echarts from "echarts";
 import homeHeader from "@/components/header.vue";
 // import { set } from "ol/transform.js";
@@ -381,8 +376,8 @@ export default {
       radio: 5,
       backgroundUrl: "",
       showPie: true,
-      selectedCity:'上海市',
-      cityNames:cityNames,
+      selectedCity: "上海市",
+      cityNames: cityNames,
     };
   },
   methods: {
@@ -408,7 +403,10 @@ export default {
       // for (let i = 1; i <= 8; i++) {
       //   this.initChart(getMultiPieData(this.DBdate, i), `pie-item${i}`);
       // }
-      this.initChart(getMultiPieData(this.DBdate, this.selectedCity), "single-pie-chart");
+      this.initChart(
+        getMultiPieData(this.DBdate, this.selectedCity),
+        "single-pie-chart"
+      );
       // this.initChart(getMultiPieData(this.DBdate, "legend"), "pie-item-legend");
     },
     //监听单选框的变化，这个动态页面的命脉方法
@@ -418,7 +416,10 @@ export default {
       if (value == "5") {
         this.showPie = true;
         this.$nextTick(() => {
-          this.initChart(getMultiPieData(this.DBdate, this.selectedCity), "single-pie-chart");
+          this.initChart(
+            getMultiPieData(this.DBdate, this.selectedCity),
+            "single-pie-chart"
+          );
         });
       } else {
         this.showPie = false;
@@ -429,9 +430,13 @@ export default {
     },
     handleCityChange(city) {
       this.selectedCity = city; // 更新选中城市
-      if (this.radio == "5") { // 如果是“综合评价”
-          this.initChart(getMultiPieData(this.DBdate,this.selectedCity), "single-pie-chart");
-       }
+      if (this.radio == "5") {
+        // 如果是“综合评价”
+        this.initChart(
+          getMultiPieData(this.DBdate, this.selectedCity),
+          "single-pie-chart"
+        );
+      }
     },
   },
   async mounted() {

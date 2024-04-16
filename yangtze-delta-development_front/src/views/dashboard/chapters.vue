@@ -8,13 +8,13 @@
 </template>
   
   
-  <script setup lang="ts">
+<script setup lang="ts">
 // @ts-ignore
 import homeHeader from "../../components/header.vue";
 </script>
   
   
-  <style lang="scss" scoped>
+<style lang="scss" scoped>
 .homeHeader {
   position: fixed;
   top: 0;

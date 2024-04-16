@@ -1,47 +1,67 @@
 <template>
   <div class="container">
     <div class="sectionContent">
-      <span class="title"> 章节 </span>
+      <span class="title"> 评价报告 </span>
       <span class="description">
         长江三角洲高质量发展（2023）评价研究报告
+        <br />
+        tips:在线阅览中第二页是空白页，请直接翻到第三页开始阅读
       </span>
       <br />
-      <el-divider>
+      <!-- <el-divider>
         <el-icon><star-filled /></el-icon>
         <el-icon><star-filled /></el-icon>
         <el-icon><star-filled /></el-icon>
-      </el-divider>
+      </el-divider> -->
     </div>
+    <el-tabs v-model="activeName" class="tabContent">
+      <el-tab-pane label="在线阅览" name="first" class="ranking">
+        <pdfViewer class="pdfView" />
+      </el-tab-pane>
+      <el-tab-pane label="查看章节" name="second" class="ranking">
+        <el-row class="chapters" :gutter="0">
+          <el-col
+            :span="12"
+            v-for="chapter in chapters"
+            :key="chapter.id"
+            class="chapter-col"
+            justify="center"
+          >
+            <el-card :class="chapter.class" @click="goTo(chapter.target)">
+              <div class="card-image-container">
+                <img
+                  src="/chaptersCovers/coverall.png"
+                  alt="Chapter Image"
+                  class="card-image"
+                />
+              </div>
 
-    <el-row class="chapters" :gutter="0">
-      <el-col
-        :span="12"
-        v-for="chapter in chapters"
-        :key="chapter.id"
-        class="chapter-col"
-        justify="center"
-      >
-        <el-card :class="chapter.class" @click="goTo(chapter.target)">
-          <div class="card-image-container">
-            <img :src="chapter.image" alt="Chapter Image" class="card-image" />
-          </div>
-
-          <div class="card-header">{{ chapter.title }}</div>
-          <div class="card-content">
-            <p
-              style="white-space: pre-line; overflow: hidden; font-size: small"
-            >
-              {{ chapter.description }}
-            </p>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
+              <div class="card-header">{{ chapter.title }}</div>
+              <div class="card-content">
+                <p
+                  style="
+                    white-space: pre-line;
+                    overflow: hidden;
+                    font-size: small;
+                  "
+                >
+                  {{ chapter.description }}
+                </p>
+              </div>
+            </el-card>
+          </el-col>
+        </el-row>
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
 
 <script setup lang="ts">
+import { ref } from "vue";
+// @ts-ignore
+import pdfViewer from "../../components/pdfviewer.vue";
+
 interface Chapter {
   id: number;
   title: string;
@@ -50,6 +70,8 @@ interface Chapter {
   target: string;
   class: string;
 }
+
+const activeName = ref("first");
 
 const chapters: Chapter[] = [
   {
@@ -113,6 +135,44 @@ const goTo = (page: string) => {
 
 
 <style lang="scss" scoped>
+:deep(.el-tabs__item) {
+  width: 25vw; /* 设置宽度为200px */
+  font-size: 1.8vh;
+  font-weight: bold;
+}
+.pdfView {
+  // margin-left: 10%;
+}
+.tabContent {
+  margin: 1.5% 25% 0.5% 25%;
+  display: flex;
+  flex-wrap: wrap;
+  width: 50vw;
+  // overflow: visible;
+  .description {
+    color: rgb(142, 142, 142);
+    font-size: 1.5vh;
+    font-weight: 300;
+    margin-top: 1.2%;
+  }
+  .ranking {
+    height: 150vh;
+    // overflow: auto;
+  }
+  .dataTable {
+    margin: 0.5% 0;
+    height: 100vh;
+    width: 49.5vw;
+    // border:1px black solid;
+    .description {
+      padding-bottom: 2%;
+      line-height: 1.5vh;
+      // color: rgb(142, 142, 142);
+      font-size: 1.2vh;
+      font-weight: 400;
+    }
+  }
+}
 .sectionContent {
   display: flex;
   // justify-content: center;
@@ -128,6 +188,7 @@ const goTo = (page: string) => {
     color: rgb(142, 142, 142);
     font-size: 1.5vh;
     font-weight: 300;
+    line-height: 2.3vh;
     margin-top: 1.2%;
   }
 }
@@ -135,7 +196,7 @@ const goTo = (page: string) => {
 .chapters {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 25%; /* 居中排列 */
+  // margin: 0 25%; /* 居中排列 */
 }
 
 .chapter-col {

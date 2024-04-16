@@ -19,10 +19,7 @@
         <el-icon><star-filled /></el-icon>
       </el-divider> -->
     </div>
-    <el-tabs
-      v-model="activeName"
-      class="tabContent"
-    >
+    <el-tabs v-model="activeName" class="tabContent">
       <el-tab-pane label="综合排名" name="first" class="ranking">
         <div class="dataTable">
           <div class="description">
@@ -85,7 +82,7 @@ const activeName = ref("first");
     margin-top: 1.2%;
   }
 }
-.tabContent{
+.tabContent {
   margin: 1.5% 25% 0.5% 25%;
   display: flex;
   flex-wrap: wrap;
@@ -97,24 +94,22 @@ const activeName = ref("first");
     font-weight: 300;
     margin-top: 1.2%;
   }
-  .ranking{
-    height: 150vh;
+  .ranking {
+    // height: 200vh;
     // overflow: auto;
   }
   .dataTable {
-  margin: 0.5% 0;
-  height: 100vh;
-  width: 49.5vw;
-  // border:1px black solid;
-  .description {
-    padding-bottom: 2%;
-    line-height: 1.5vh;
-    // color: rgb(142, 142, 142);
-    font-size: 1.2vh;
-    font-weight: 400;
+    margin: 0.5% 0;
+    // height: 100vh;
+    width: 49.5vw;
+    // border:1px black solid;
+    .description {
+      padding-bottom: 2%;
+      line-height: 1.5vh;
+      // color: rgb(142, 142, 142);
+      font-size: 1.2vh;
+      font-weight: 400;
+    }
   }
 }
-}
-
-
 </style>

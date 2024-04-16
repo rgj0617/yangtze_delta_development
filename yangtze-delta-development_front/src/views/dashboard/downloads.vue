@@ -52,16 +52,18 @@
           justify="center"
           :key="i"
         >
-          <div class="singleDownload" @click="downloadByUrl(item.url)">
-            <div class="card-image-container">
-              <img
-                :src="'/download/data' + (i + 1) + '.png'"
-                class="card-image"
-              />
-            </div>
-            <div class="description">
-              {{ item.dataName }}
-            </div>
+          <div class="singleDownload">
+            <a :href="item.url" target="_blank">
+              <div class="card-image-container">
+                <img
+                  :src="'/download/data' + (i + 1) + '.png'"
+                  class="card-image"
+                />
+              </div>
+              <div class="description">
+                {{ item.dataName }}
+              </div>
+            </a>
           </div>
         </el-col>
       </el-row>
@@ -75,14 +77,14 @@
       <el-row class="row" :gutter="0">
         <el-col
           v-for="(item, i) in urlWeb"
-          :span="6"
+          :span="12"
           class="chapter-col"
           justify="center"
           :key="i"
         >
           <div class="singleDownload">
             <a :href="item.url" target="_blank">
-              <div class="card-image-container">
+              <div class="card-image-container webContainer">
                 <img
                   :src="'/download/web' + (i + 1) + '.png'"
                   class="card-image"
@@ -109,7 +111,7 @@ const urlReport = ref([
     url: "http://112.4.132.6:8083/data/e10688f0-bfc9-4f4a-922e-ea98533f38ea",
   },
   {
-    reportName: "“一带一路”倡议下的全球城市报告（2022）",
+    reportName: "“一带一路”倡议下的全球城市",
     url: "http://112.4.132.6:8083/data/574de5c5-33b4-4124-adf3-c9a232c88671",
   },
   {
@@ -121,7 +123,7 @@ const urlReport = ref([
     url: "http://112.4.132.6:8083/data/4e7fc096-c82b-4c8a-9895-f91151495788",
   },
   {
-    reportName: "202212-中国城市繁荣活力评估报告",
+    reportName: "2022中国城市繁荣活力评估报告",
     url: "http://112.4.132.6:8083/data/f2b346f8-bf6c-4d76-b9e5-85066bd5929b",
   },
   {
@@ -129,7 +131,7 @@ const urlReport = ref([
     url: "http://112.4.132.6:8083/data/cac0e6b6-2b11-4fba-b9b8-54508cc6766d",
   },
   {
-    reportName: "长三角高质量发展指数报告2020",
+    reportName: "长三角高质量发展指数报告（2020）",
     url: "http://112.4.132.6:8083/data/c68fd275-7ea5-4cdf-8673-2af6bd63af6a",
   },
   {
@@ -141,7 +143,8 @@ const urlReport = ref([
     url: "http://112.4.132.6:8083/data/7b565098-83c9-4ffa-8072-6b55866be1fd",
   },
   {
-    reportName: "长江三角洲城市群发展规划（2015-2030）",
+    // reportName: "长江三角洲城市群发展规划（2015-2030）",
+    reportName: "长江三角洲城市群发展规划",
     url: "http://112.4.132.6:8083/data/efef5a2d-b014-45ba-9f66-ddce1129ae47",
   },
   {
@@ -153,16 +156,16 @@ const urlReport = ref([
     url: "http://112.4.132.6:8083/data/3076fe15-1947-465f-8968-64a0e0808f94",
   },
   {
-    reportName: "长三角生态绿色一体化发展示范区总体方案（2019年）",
+    // reportName: "长三角生态绿色一体化发展示范区总体方案（2019年）",
+    reportName: "长三角生态绿色一体化发展示范区总体方案",
     url: "http://112.4.132.6:8083/data/f965468c-b51b-44b1-9389-d0dd634beb18",
   },
 ]);
 
 const urlData = ref([
   {
-    dataName:
-      "长三角高质量发展评价指标体系评价数据（原数据、归一化数据及结果）",
-    url: "http://112.4.132.6:8083/data/221ae686-aabd-4af6-8a47-7ffbe510cddd",
+    dataName: "长三角高质量发展评价指标体系评价数据下载",
+    url: "http://nnu.geodata.cn/data/datadetails.html?dataguid=111663293898121&docid=0",
   },
 ]);
 
@@ -221,10 +224,11 @@ const downloadByUrl = (url) => {
       margin: 2%;
       cursor: pointer;
       padding-top: 10%;
-      a{
+      a {
         color: black;
         text-decoration: none;
       }
+
       .description {
         font-size: 1.5vh;
         margin-top: 10%;
@@ -239,7 +243,7 @@ const downloadByUrl = (url) => {
         display: flex;
         justify-content: center;
         overflow: visible;
-        border: white 1px solid;
+        // border: white 1px solid;
         :hover {
           transform: scale(1.25);
           transition: transform 0.6s;
@@ -248,6 +252,12 @@ const downloadByUrl = (url) => {
           height: 100%;
           width: 100%;
           object-fit: cover;
+        }
+      }
+      .webContainer {
+        :hover {
+          transform: scale(1.6);
+          transition: transform 0.8s;
         }
       }
     }

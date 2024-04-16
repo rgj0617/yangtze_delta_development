@@ -13,9 +13,60 @@
         <div class="legend-label">100</div>
       </div>
     </div>
-    <div v-else id="legend">
+    <div v-else-if="currentMap == 0" id="legend">
       <div class="legend-title">{{ legendTitle }}维度得分</div>
-      <div class="legend-gradient2"></div>
+      <div
+        class="legend-gradient2"
+        style="background: linear-gradient(to right, #fff4f8 0%, #dc7d61 100%)"
+      ></div>
+      <div class="legend-labels">
+        <div class="legend-label">0</div>
+        <div class="legend-label">10</div>
+        <div class="legend-label">20</div>
+      </div>
+    </div>
+    <div v-else-if="currentMap == 1" id="legend">
+      <div class="legend-title">{{ legendTitle }}维度得分</div>
+      <div
+        class="legend-gradient2"
+        style="background: linear-gradient(to right, #e0e5e9 0%, #73a9d7 100%)"
+      ></div>
+      <div class="legend-labels">
+        <div class="legend-label">0</div>
+        <div class="legend-label">10</div>
+        <div class="legend-label">20</div>
+      </div>
+    </div>
+    <div v-else-if="currentMap == 2" id="legend">
+      <div class="legend-title">{{ legendTitle }}维度得分</div>
+      <div
+        class="legend-gradient2"
+        style="background: linear-gradient(to right, #e9f0e8 0%, #80c67d 100%)"
+      ></div>
+      <div class="legend-labels">
+        <div class="legend-label">0</div>
+        <div class="legend-label">10</div>
+        <div class="legend-label">20</div>
+      </div>
+    </div>
+    <div v-else-if="currentMap == 3" id="legend">
+      <div class="legend-title">{{ legendTitle }}维度得分</div>
+      <div
+        class="legend-gradient2"
+        style="background: linear-gradient(to right, #fff8eb 0%, #f6bb81 100%)"
+      ></div>
+      <div class="legend-labels">
+        <div class="legend-label">0</div>
+        <div class="legend-label">10</div>
+        <div class="legend-label">20</div>
+      </div>
+    </div>
+    <div v-else-if="currentMap == 4" id="legend">
+      <div class="legend-title">{{ legendTitle }}维度得分</div>
+      <div
+        class="legend-gradient2"
+        style="background: linear-gradient(to right, #eaebff 0%, #b67ebd 100%)"
+      ></div>
       <div class="legend-labels">
         <div class="legend-label">0</div>
         <div class="legend-label">10</div>
@@ -99,7 +150,7 @@ onMounted(() => {
   .legend-gradient2 {
     width: 300px;
     height: 20px;
-    background: linear-gradient(to right, #e2f0d9 0%, #385723 100%);
+    // background: linear-gradient(to right, #e2f0d9 0%, #385723 100%);
     border-radius: 5px;
   }
   .legend-labels {

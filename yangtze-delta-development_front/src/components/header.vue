@@ -13,7 +13,7 @@
         :class="{ active: isActive('chapters') }"
         @click="goTo('chapters')"
       >
-        章节
+        评价报告
       </div>
       <div
         class="left-item"
@@ -41,10 +41,14 @@
         :class="{ active: isActive('downloads') }"
         @click="goTo('downloads')"
       >
-      下载与更多
+        下载与更多
       </div>
     </div>
     <div class="right-box">
+      <img
+        src="/OGMSlogo.png"
+        style="height: 5.5vh; width: auto; margin-right: 3vw"
+      />
       <div class="yes-login">
         <!-- 添加右侧内容 -->
       </div>
@@ -58,9 +62,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const isActive = (page: string) => {
-  
-  return router.currentRoute.value.matched[0].name === page
-
+  return router.currentRoute.value.matched[0].name === page;
 };
 
 const goTo = (page: string) => {
