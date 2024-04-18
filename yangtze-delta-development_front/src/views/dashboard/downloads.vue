@@ -108,7 +108,8 @@ import { ref } from "vue";
 const urlReport = ref([
   {
     reportName: "长江三角洲高质量发展（2023）评价研究报告",
-    url: "http://112.4.132.6:8083/data/e10688f0-bfc9-4f4a-922e-ea98533f38ea",
+    // url: "http://112.4.132.6:8083/data/e10688f0-bfc9-4f4a-922e-ea98533f38ea", // 未美化版本pdf
+    url: "http://112.4.132.6:8083/data/333eb1f6-ff97-4431-ae34-875e14067a3b", // 美化版本pdf
   },
   {
     reportName: "“一带一路”倡议下的全球城市",

@@ -49,6 +49,15 @@
         src="/OGMSlogo.png"
         style="height: 5.5vh; width: auto; margin-right: 3vw"
       />
+      <img
+        src="/dataCenterLogo.png"
+        style="
+          height: 4.5vh;
+          width: auto;
+          margin: 0 0.7vw 0.5vh 0;
+          border-radius: 5px;
+        "
+      />
       <div class="yes-login">
         <!-- 添加右侧内容 -->
       </div>

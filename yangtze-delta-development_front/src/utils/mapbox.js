@@ -142,12 +142,26 @@ export function addGeoJson() {
       id: "cityNameLayer",
       type: "symbol",
       source: "geojsonSource",
+      // layout: {
+      //   "text-field": "{name}", // 显示地级市名称，假设 GeoJSON 中的属性名称为 name
+      //   "text-size": 12,
+      //   "text-variable-anchor": ["top", "bottom", "left", "right"],
+      //   "text-radial-offset": 0.5,
+      //   "text-justify": "auto",
+      // },
       layout: {
-        "text-field": "{name}", // 显示地级市名称，假设 GeoJSON 中的属性名称为 name
-        "text-size": 12,
+        "text-field": [
+          "match",
+          ["get", "is_island"],
+          "true",
+          "", // 如果是群岛城市，不显示名字
+          ["get", "name"], // 如果不是群岛城市，显示名字
+        ],
+        "text-size": 14,
         "text-variable-anchor": ["top", "bottom", "left", "right"],
         "text-radial-offset": 0.5,
         "text-justify": "auto",
+        "text-allow-overlap": false, // 不允许文本标签重叠
       },
       paint: {
         "text-color": "#000", // 文本颜色

@@ -22,7 +22,14 @@ export default [
     },
     component: () => import("@/components/pdfviewer.vue"),
   },
-
+  {
+    path: "/test2",
+    name: "test",
+    meta: {
+      title: "SDGs&Sustainable",
+    },
+    component: () => import("@/components/foot.vue"),
+  },
   {
     path: "/:catchAll(.*)",
     name: "error",

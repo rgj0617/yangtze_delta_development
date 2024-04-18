@@ -94,10 +94,10 @@ const activeName = ref("first");
     font-weight: 300;
     margin-top: 1.2%;
   }
-  .ranking {
-    // height: 200vh;
-    // overflow: auto;
-  }
+  // .ranking {
+  // height: 200vh;
+  // overflow: auto;
+  // }
   .dataTable {
     margin: 0.5% 0;
     // height: 100vh;

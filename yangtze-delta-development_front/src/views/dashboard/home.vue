@@ -50,6 +50,15 @@
           src="/OGMSlogo.png"
           style="height: 5.5vh; width: auto; margin-right: 3vw"
         />
+        <img
+          src="/dataCenterLogo.png"
+          style="
+            height: 4.5vh;
+            width: auto;
+            margin: 0 0.7vw 0.5vh 0;
+            border-radius: 5px;
+          "
+        />
         <div class="yes-login">
           <!-- <div class="button-item" @click="goScence()">立即创作</div> -->
           <!-- <div class="button-item" @click="enterLogin()">登录/注册</div> -->
@@ -176,6 +185,7 @@
       <div class="copyright">版权信息</div>
     </div> -->
   </div>
+  <foot />
 </template>
 
 <script setup lang="ts">
@@ -185,6 +195,8 @@ import { ArrowDownOutlined } from "@ant-design/icons-vue";
 // import { usePermissionStore } from "@/stores/permissionStore";
 // import router from "@/router/index.js";
 // import { ref } from "vue";
+// @ts-ignore
+import foot from "@/components/foot.vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
