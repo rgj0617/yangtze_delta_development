@@ -4,7 +4,7 @@
       <homeHeader />
     </div>
     <div class="sectionContent">
-      <span class="title"> 下载 & 更多 </span>
+      <span class="title"> 资源下载 </span>
       <span class="description">
         下载《长江三角洲高质量发展（2023）评价研究报告》及相关数据与资料
       </span>
