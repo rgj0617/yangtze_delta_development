@@ -41,7 +41,14 @@
         :class="{ active: isActive('downloads') }"
         @click="goTo('downloads')"
       >
-        下载与更多
+        资源下载
+      </div>
+      <div
+        class="left-item"
+        :class="{ active: isActive('ours') }"
+        @click="goTo('ours')"
+      >
+        关于我们
       </div>
     </div>
     <div class="right-box">

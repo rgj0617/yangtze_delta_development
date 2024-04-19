@@ -4,6 +4,7 @@ import MapboxLanguage from "@mapbox/mapbox-gl-language";
 import CityData from "@/assets/json/standardCityBoundary.json";
 import ranking from "@/assets/json/scoreDetail.json";
 import { scoreFormat } from "@/utils/format.ts";
+import cityPoint from "@/assets/json/cityCenterPoint.json";
 
 const rankingFormatted = scoreFormat(ranking);
 mapboxgl.accessToken =
@@ -103,7 +104,12 @@ export function addGeoJson() {
     // 加载 GeoJSON 数据源
     map.addSource("geojsonSource", {
       type: "geojson",
-      data: CityData, // 替换为你的 GeoJSON 文件路径
+      data: CityData,
+    });
+    map.addSource("pointGeojsonSource", {
+      // 注意：这里使用的是不同的ID
+      type: "geojson",
+      data: cityPoint,
     });
 
     //初始化上色
@@ -120,56 +126,49 @@ export function addGeoJson() {
         "line-width": 1.5,
       },
     });
-    // 添加标记符号图层
-    // map.addLayer({
-    //     id: 'cityMarkerLayer',
-    //     type: 'symbol',
-    //     source: 'geojsonSource', // 假设你的 GeoJSON 数据源的名称为 geojsonSource
-    //     layout: {
-    //         'icon-image': 'marker-icon', // 使用内置的标记图标
-    //         'icon-size': 1.5, // 调整标记图标的大小
-    //         'text-field': '{name}', // 使用地级市名称作为文本
-    //         'text-size': 12, // 设置文本大小
-    //         'text-offset': [0, 1], // 调整文本相对于标记的偏移
-    //         'text-anchor': 'top' // 设置文本锚点为顶部
-    //     },
-    //     paint: {
-    //         'text-color': '#000000' // 设置文本颜色
-    //     }
-    // });
-    // 添加地级市名称的文本图层
+    // 添加symbol图层以显示文本
     map.addLayer({
-      id: "cityNameLayer",
+      id: "pointLabel",
       type: "symbol",
-      source: "geojsonSource",
-      // layout: {
-      //   "text-field": "{name}", // 显示地级市名称，假设 GeoJSON 中的属性名称为 name
-      //   "text-size": 12,
-      //   "text-variable-anchor": ["top", "bottom", "left", "right"],
-      //   "text-radial-offset": 0.5,
-      //   "text-justify": "auto",
-      // },
+      source: "pointGeojsonSource",
       layout: {
-        "text-field": [
-          "match",
-          ["get", "is_island"],
-          "true",
-          "", // 如果是群岛城市，不显示名字
-          ["get", "name"], // 如果不是群岛城市，显示名字
-        ],
+        "text-field": ["get", "name"], // 使用get表达式来获取"title"属性
         "text-size": 14,
         "text-variable-anchor": ["top", "bottom", "left", "right"],
         "text-radial-offset": 0.5,
         "text-justify": "auto",
-        "text-allow-overlap": false, // 不允许文本标签重叠
       },
       paint: {
         "text-color": "#000", // 文本颜色
         "text-halo-color": "#FFF", // 文本描边颜色
         "text-halo-width": 1, // 文本描边宽度
       },
-      // filter: ['>=', 'length', 0] // 限制边界线长度大于等于 100 的才显示标注
     });
+    // 添加地级市名称的文本图层
+    // map.addLayer({
+    //   id: "cityNameLayer",
+    //   type: "symbol",
+    //   source: "geojsonSource",
+    //   layout: {
+    //     "text-field": [
+    //       "match",
+    //       ["get", "is_island"],
+    //       "true",
+    //       "", // 如果是群岛城市，不显示名字
+    //       ["get", "name"], // 如果不是群岛城市，显示名字
+    //     ],
+    //     "text-size": 14,
+    //     "text-variable-anchor": ["top", "bottom", "left", "right"],
+    //     "text-radial-offset": 0.5,
+    //     "text-justify": "auto",
+    //     "text-allow-overlap": false, // 不允许文本标签重叠
+    //   },
+    //   paint: {
+    //     "text-color": "#000", // 文本颜色
+    //     "text-halo-color": "#FFF", // 文本描边颜色
+    //     "text-halo-width": 1, // 文本描边宽度
+    //   },
+    // });
   });
 }
 

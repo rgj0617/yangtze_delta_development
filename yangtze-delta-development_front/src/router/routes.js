@@ -14,22 +14,22 @@
  */
 export default [
   // 专用测试url，用来测组件
-  {
-    path: "/test1",
-    name: "test",
-    meta: {
-      title: "SDGs&Sustainable",
-    },
-    component: () => import("@/components/pdfviewer.vue"),
-  },
-  {
-    path: "/test2",
-    name: "test",
-    meta: {
-      title: "SDGs&Sustainable",
-    },
-    component: () => import("@/components/foot.vue"),
-  },
+  // {
+  //   path: "/test1",
+  //   name: "test",
+  //   meta: {
+  //     title: "SDGs&Sustainable",
+  //   },
+  //   component: () => import("@/components/pdfviewer.vue"),
+  // },
+  // {
+  //   path: "/test2",
+  //   name: "test",
+  //   meta: {
+  //     title: "SDGs&Sustainable",
+  //   },
+  //   component: () => import("@/components/foot.vue"),
+  // },
   {
     path: "/:catchAll(.*)",
     name: "error",
@@ -40,7 +40,7 @@ export default [
   },
   {
     path: "/",
-    redirect: "/home",
+    redirect: "home",
     meta: {
       title: "SDGs&Sustainable",
     },
@@ -143,5 +143,13 @@ export default [
       title: "SDGs&Sustainable",
     },
     component: () => import("@/views/dashboard/downloads.vue"),
+  },
+  {
+    path: "/ours",
+    name: "ours",
+    meta: {
+      title: "SDGs&Sustainable",
+    },
+    component: () => import("@/views/dashboard/ours.vue"),
   },
 ];
