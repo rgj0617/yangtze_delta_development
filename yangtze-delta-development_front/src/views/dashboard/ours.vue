@@ -19,7 +19,7 @@
 
       <div class="info">
         电话：(025)85891347<br />
-        邮件：opengms@126.com<br />
+        邮箱：opengms@126.com<br />
         地址：江苏省南京市栖霞区文苑路1号 南京师范大学地理科学学院
       </div>
     </div>
@@ -31,7 +31,7 @@
       </div>
       <div class="info">
         电话：(025)85891253<br />
-        邮件：geodata@njnu.edu.cn<br />
+        邮箱：geodata@njnu.edu.cn<br />
         地址：江苏省南京市栖霞区文苑路1号 南京师范大学地理科学学院501
       </div>
     </div>
@@ -47,7 +47,7 @@ import { ref } from "vue";
 
 const chapterTitle = ref("关于我们");
 const chapterDescription = ref(
-  "南京师范大学地理科学学院南京师范大学地理科学学院  开放式地理建模与模拟团队（OpenGMS）  长三角数据中心办公室"
+  "南京师范大学地理科学学院  开放式地理建模与模拟团队（OpenGMS）  长三角数据中心办公室"
 );
 
 // const oursRef = ref<HTMLElement | null>(null);

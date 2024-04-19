@@ -1,7 +1,8 @@
 <template>
   <div class="mainFoot">
     <span class="description">
-      南京师范大学地理科学学院 长三角数据中心办公室 邮箱 geodata@njnu.edu.cn
+      南京师范大学地理科学学院 开放式地理建模与模拟团队（OpenGMS）
+      邮箱：opengms@126.com 长三角数据中心办公室 邮箱 geodata@njnu.edu.cn
     </span>
   </div>
 </template>
