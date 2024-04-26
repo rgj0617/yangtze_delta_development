@@ -6,14 +6,11 @@
     />
 
     <el-card class="mainContext">
-      
-      <p class="para" style="font-weight:bold;">
-        （一）指标体系构建思路
-      </p>
+      <p class="para" style="font-weight: bold">（一）指标体系构建思路</p>
 
       <p class="para">
-        本报告基于政策解读，构建指标主体框架，并辅以地理大模型文本主题挖掘技术，通过集成多源资料对指标体系进行修正与完善，最终由“一人一套”发展为借助“众力”、更具公信力的评价指标体系。构建过程主要有如下四步（图2）：
-      </p>  
+        本报告基于政策解读，构建指标主体框架，并辅以大语言模型文本主题挖掘技术，通过集成多源资料对指标体系进行修正与完善，最终由“一人一套”发展为借助“众力”、更具公信力的评价指标体系。构建过程主要有如下四步（图2）：
+      </p>
 
       <div class="fig-container">
         <img class="fig" src="./chaptersImgs/chapter2Fig1.png" alt="" />
@@ -22,18 +19,16 @@
 
       <p class="paraBold">
         第一步：“自上而下”——基于政策解读构建一级指标及其内容
-      </p>  
-
-      <p class="para">
-        专家解读《长三角区域一体化发展规划纲要》（以下简称《纲要》），根据《纲要》中提出的“坚持创新共建、坚持协调共进、坚持绿色共保、坚持开放共赢、坚持民生共享”五大基本原则，确定构建“创新发展”、“协调发展”、“绿色发展”、“开放发展”和“共享发展”五个维度，形成一级指标；通过《纲要》主要内容，明确五个维度重点落实的具体方面。
-      </p>  
-
-      <p class="paraBold">
-        第二步：“自下而上”——基于地理大模型修正解读结果
       </p>
 
       <p class="para">
-        地理大模型是基于地理学特征，针对地理学的研究对象和研究内容，所构建的具有地理大数据挖掘、地理信息聚合、地理知识发现功能的专业性大模型。在已有地理大模型的基础上，本报告使用长三角相关规划文件、政府报告和现有文献等对其进行知识扩充，并强调资料的时效性，确保结果能够与当前发展策略和实际情况相吻合。经过理解与学习，使得大模型能够自动识别和提取资料中的关键主题和信息点。
+        专家解读《长三角区域一体化发展规划纲要》（以下简称《纲要》），根据《纲要》中提出的“坚持创新共建、坚持协调共进、坚持绿色共保、坚持开放共赢、坚持民生共享”五大基本原则，确定构建“创新发展”、“协调发展”、“绿色发展”、“开放发展”和“共享发展”五个维度，形成一级指标；通过《纲要》主要内容，明确五个维度重点落实的具体方面。
+      </p>
+
+      <p class="paraBold">第二步：“自下而上”——基于地理大模型修正解读结果</p>
+
+      <p class="para">
+        大语言模型是经过大量文本语料训练的深度学习模型，具备类似人类的“思考”能力，能够理解自然语言，进行文本生成、推理问答、对话、文档摘要等工作。在大语言模型基础上，本报告使用长三角相关规划文件、政府报告和现有文献等文本对其进行知识扩充，强调资料的时效性，确保结果能够与当前发展策略和实际情况相吻合。经过理解与学习，使得大语言模型能够自动识别和提取资料中的关键主题和信息点。
       </p>
 
       <p class="para">
@@ -49,14 +44,15 @@
       </p>
 
       <p class="para">
-        这一过程包括“语义关联性分析”和“词频分析”两个关键技术环节。语义关联性分析是指应用关联规则学习方法识别文件资料与潜在指标之间的内在语义联系，确定哪些指标与文本最为相关。具体步骤为：首先，采用标点符号、语义停顿词等语言特征作为分割标志，对文件资料的内容进行句子级别分割，从而得到保留基本语义信息的文本段落单元，在维护文本上下文完整性的同时确保了主题和关键信息提取（文本分割样例如图3所示）。其次，依据确定的一级指标（即五个维度，分别为创新发展、协调发展、绿色发展、开放发展和共享发展）以及它们的内涵定义，基于预训练模型的先验知识，通过迁移学习的方式引入更多外部信息，采用少样本学习（Few-Shot Learning，FSL）方法，利用有限数量的监督信息训练机器学习模型，对文本分割后的句子进行一级指标分类（过程如图4示意）。最后，确定每个文本段落单元相关的二级指标。利用地理大模型将每个文本段落单元转化为词向量表示，以捕捉其语义信息和内容特征；同样的，将二级指标的名称转化为词向量表示，以便与文本段落词向量进行比较；使用欧式距离相似性度量方法，为每个文本段落单元找到与之最相关的若干个二级指标（匹配样例如图5所示）；将这些最相关的二级指标视为文本段落单元的二级分类标签。
+        这一过程包括“语义关联性分析”和“词频分析”两个关键技术环节。语义关联性分析是指应用关联规则学习方法识别文件资料与潜在指标之间的内在语义联系，确定哪些指标与文本最为相关。具体步骤为：首先，采用标点符号、语义停顿词等语言特征作为分割标志，对文件资料的内容进行句子级别分割，从而得到保留基本语义信息的文本段落单元，在维护文本上下文完整性的同时确保了主题和关键信息提取（文本分割样例如图3所示）。其次，依据确定的一级指标（即五个维度，分别为创新发展、协调发展、绿色发展、开放发展和共享发展）以及它们的内涵定义，基于预训练模型的先验知识，通过迁移学习的方式引入更多外部信息，采用少样本学习（Few-Shot
+        Learning，FSL）方法，利用有限数量的监督信息训练机器学习模型，对文本分割后的句子进行一级指标分类（过程如图4示意）。最后，确定每个文本段落单元相关的二级指标。利用地理大模型将每个文本段落单元转化为词向量表示，以捕捉其语义信息和内容特征；同样的，将二级指标的名称转化为词向量表示，以便与文本段落词向量进行比较；使用欧式距离相似性度量方法，为每个文本段落单元找到与之最相关的若干个二级指标（匹配样例如图5所示）；将这些最相关的二级指标视为文本段落单元的二级分类标签。
       </p>
 
       <div class="fig-container">
         <img class="fig" src="./chaptersImgs/chapter2Fig2.png" alt="" />
         <p class="figTitle" align="center">图3 文本分割样例</p>
       </div>
-      
+
       <div class="fig-container">
         <img class="fig" src="./chaptersImgs/chapter2Fig3.png" alt="" />
         <p class="figTitle" align="center">图4 少样本提示学习示意图</p>
@@ -71,17 +67,13 @@
         词频分析是指通过频率统计得到在文本数据中出现频率较高的主题、关键词及其度量指标，识别出政府文件和研究文献中的聚焦点和常用的指标。我们将指标的出现频率由高至低进行排序，每个维度下选择7-10个排序前列的指标定位备选二级指标。
       </p>
 
-      <p class="paraBold">
-        第四步：“自上而下”——基于专家经验确定二级指标
-      </p>
+      <p class="paraBold">第四步：“自上而下”——基于专家经验确定二级指标</p>
 
       <p class="para">
         专家基于指标的代表性、非重复性和可持续获取性原则，对第三步大模型给出的备选二级指标进行严选，每个一级指标维度下确定6个二级指标；若某些指标可获取性受限，则由专家拟定可替代指标。
       </p>
 
-      <p class="paraBold">
-        （二）指标体系
-      </p>
+      <p class="paraBold">（二）指标体系</p>
 
       <p class="para">
         根据上述步骤，通过专家团队和机器学习的不断配合与完善，本报告构建出一套长三角高质量发展评价指标体系（表2）。该指标体系包括5个一级指标和30个二级指标。
@@ -108,9 +100,16 @@
       </p>
 
       <div class="tableContainer">
-        <p class="tableTitle" align="center">表2 长江三角洲高质量发展评价体系</p>
+        <p class="tableTitle" align="center">
+          表2 长江三角洲高质量发展评价体系
+        </p>
 
-        <el-table class="table" :data="tableData"  border :span-method="objectSpanMethod">
+        <el-table
+          class="table"
+          :data="tableData"
+          border
+          :span-method="objectSpanMethod"
+        >
           <el-table-column
             prop="dimension"
             label="维度"
@@ -131,16 +130,16 @@
         </el-table>
       </div>
 
-      <p class="para" style='font-weight: bold;'>
-        （三）数据来源与权重设定
+      <p class="para" style="font-weight: bold">（三）数据来源与权重设定</p>
+
+      <p class="para">
+        本报告的评估对象为长三角设区市单元，共包括41个评价对象数据主要来源于《中国统计年鉴》、《中国城市统计年鉴》、各省市统计年鉴与统计公报、第七次人口普查数据、各类国家/地方机构公布的名单名录，全国10m分辨率士地覆盖数据以及知网、web
+        of science、高德地图等网站。
       </p>
 
       <p class="para">
-        本报告的评估对象为长三角设区市单元，共包括41个评价对象数据主要来源于《中国统计年鉴》、《中国城市统计年鉴》、各省市统计年鉴与统计公报、第七次人口普查数据、各类国家/地方机构公布的名单名录，全国10m分辨率士地覆盖数据以及知网、web of science、高德地图等网站。
-      </p>
-
-      <p class="para">
-        本报告采用“逐级等权法”进行权数的分配，即各维度的权数均为1/5；在某一维度内，指标对所属维度的权重为1/n (n为该维度下指标的个数)；因此，指标最终权数为1/5n。
+        本报告采用“逐级等权法”进行权数的分配，即各维度的权数均为1/5；在某一维度内，指标对所属维度的权重为1/n
+        (n为该维度下指标的个数)；因此，指标最终权数为1/5n。
       </p>
     </el-card>
   </div>
@@ -150,13 +149,12 @@
   <script setup lang="ts">
 // @ts-ignore
 import chaptersHeader from "./chaptersHeader.vue";
-import { ref } from 'vue';
+import { ref } from "vue";
 
 interface TableDataRow {
   dimension: string;
   index: string;
   attribute: string;
-
 }
 
 const tableData: TableDataRow[] = [
@@ -167,7 +165,7 @@ const tableData: TableDataRow[] = [
   },
   {
     dimension: "创新发展",
-    index: "R&D经费占GDP比重",
+    index: "R&D 经费占 GDP 比重",
     attribute: "正向指标",
   },
   {
@@ -206,6 +204,84 @@ const tableData: TableDataRow[] = [
     attribute: "正向指标",
   },
   {
+    dimension: "协调发展",
+    index: "区域人均 GDP 质量指数",
+    attribute: "正向指标",
+  },
+  {
+    dimension: "协调发展",
+    index: "常住人口增长率",
+    attribute: "正向指标",
+  },
+  {
+    dimension: "协调发展",
+    index: "GDP 增长协同指数",
+    attribute: "双向指标",
+  },
+
+  {
+    dimension: "绿色发展",
+    index: "单位 GDP 耗水",
+    attribute: "负向指标",
+  },
+  {
+    dimension: "绿色发展",
+    index: "单位 GDP 建设用地占用面积",
+    attribute: "负向指标",
+  },
+  {
+    dimension: "绿色发展",
+    index: "空气质量优良天数比率",
+    attribute: "正向指标",
+  },
+  {
+    dimension: "绿色发展",
+    index: "生态空间占比",
+    attribute: "正向指标",
+  },
+  {
+    dimension: "绿色发展",
+    index: "单位 GDP 电耗",
+    attribute: "负向指标",
+  },
+  {
+    dimension: "绿色发展",
+    index: "生活垃圾无害化处理率",
+    attribute: "正向指标",
+  },
+
+  {
+    dimension: "开放发展",
+    index: "进出口总额占 GDP 比重",
+    attribute: "正向指标",
+  },
+  {
+    dimension: "开放发展",
+    index: "金融机构外币存款余额",
+    attribute: "正向指标",
+  },
+  {
+    dimension: "开放发展",
+    index: "实际利用外资金额",
+    attribute: "正向指标",
+  },
+  {
+    dimension: "开放发展",
+    index: "旅游外汇收入占旅游总收入的比重",
+    attribute: "正向指标",
+  },
+  {
+    dimension: "开放发展",
+    index: "高铁航空班次数量",
+    attribute: "正向指标",
+  },
+  {
+    dimension: "开放发展",
+    index: "货运量",
+    attribute: "正向指标",
+  },
+
+  {
     dimension: "共享发展",
     index: "公共文体设施15分钟生活圈覆盖率",
     attribute: "正向指标",
@@ -234,7 +310,7 @@ const tableData: TableDataRow[] = [
     dimension: "共享发展",
     index: "路网密度",
     attribute: "正向指标",
-  }
+  },
 ];
 
 const objectSpanMethod = ({ row, rowIndex, columnIndex }: any) => {
@@ -243,7 +319,7 @@ const objectSpanMethod = ({ row, rowIndex, columnIndex }: any) => {
     if (rowIndex > 0 && row.dimension === tableData[rowIndex - 1].dimension) {
       return {
         rowspan: 0,
-        colspan: 0
+        colspan: 0,
       };
     }
 
@@ -259,15 +335,15 @@ const objectSpanMethod = ({ row, rowIndex, columnIndex }: any) => {
 
     return {
       rowspan,
-      colspan: 1
+      colspan: 1,
     };
   }
 };
 
-
-const chapterTitle = ref("二、长江三角洲高质量发展评价指标体系")
-const chapterDescription = ref("本报告基于政策解读，辅以地理大模型和文本主题挖掘技术，集成多源资料对指标体系进行修正与完善，通过自上而下构建一级指标及其内容、自下而上修正解读结果、自下而上提供备选二级指标，以及自上而下基于专家经验确定二级指标四个步骤，构建了一个更具公信力的长三角高质量发展评价指标体系，在衡量创新发展、协调发展、绿色发展、开放发展和共享发展等方面都起到关键作用。")
-
+const chapterTitle = ref("二、长江三角洲高质量发展评价指标体系");
+const chapterDescription = ref(
+  "本报告基于政策解读，辅以地理大模型和文本主题挖掘技术，集成多源资料对指标体系进行修正与完善，通过自上而下构建一级指标及其内容、自下而上修正解读结果、自下而上提供备选二级指标，以及自上而下基于专家经验确定二级指标四个步骤，构建了一个更具公信力的长三角高质量发展评价指标体系，在衡量创新发展、协调发展、绿色发展、开放发展和共享发展等方面都起到关键作用。"
+);
 </script>
 
 <style lang="scss" scoped>
@@ -308,7 +384,7 @@ const chapterDescription = ref("本报告基于政策解读，辅以地理大模
     line-height: 40px;
   }
 
-  .paraBold{
+  .paraBold {
     font-size: 20px;
     white-space: normal;
     text-indent: 2em;

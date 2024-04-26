@@ -1,6 +1,6 @@
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import MapboxLanguage from "@mapbox/mapbox-gl-language";
+// import MapboxLanguage from "@mapbox/mapbox-gl-language";
 import CityData from "@/assets/json/standardCityBoundary.json";
 import ranking from "@/assets/json/scoreDetail.json";
 import { scoreFormat } from "@/utils/format.ts";
@@ -25,9 +25,11 @@ const colorRangesSingle = [
 
 // 将天地图作为底图
 const vecUrl =
-  "http://t0.tianditu.com/vec_w/wmts?tk=037bbd6475f6b83dc821829e43f9b45e";
+  // "http://t0.tianditu.gov.cn/vec_w/wmts?tk=037bbd6475f6b83dc821829e43f9b45e";
+  "https://t0.tianditu.gov.cn/vec_w/wmts?tk=3bb0fffc32732aaaddcf078379682d61";
 const cvaUrl =
-  "http://t0.tianditu.com/cva_w/wmts?tk=037bbd6475f6b83dc821829e43f9b45e";
+  // "http://t0.tianditu.gov.cn/cva_w/wmts?tk=037bbd6475f6b83dc821829e43f9b45e";
+  "https://t0.tianditu.gov.cn/cva_w/wmts?tk=3bb0fffc32732aaaddcf078379682d61";
 //实例化source对象
 var tdtVec = {
   //类型为栅格瓦片
@@ -37,6 +39,7 @@ var tdtVec = {
     vecUrl +
       "&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=vec&STYLE=default&TILEMATRIXSET=w&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=tiles",
   ],
+  crossOrigin: "anonymous",
   //分辨率
   tileSize: 256,
 };
@@ -85,9 +88,9 @@ export let map = null; // 导出 map 对象
 export function loadMap(box) {
   map = new mapboxgl.Map({
     container: box,
-    // style: 'mapbox://styles/mapbox/streets-v11',
-    // style: 'mapbox://styles/examples/cjgioozof002u2sr5k7t14dim',
     style: style,
+    // style: "mapbox://styles/examples/cjgioozof002u2sr5k7t14dim", // 没有任何标注，就像鸡屁股上有个蛋
+    // style: "mapbox://styles/mapbox/streets-v11",
     preserveDrawingBuffer: true,
     center: [114, 30],
     zoom: 4,

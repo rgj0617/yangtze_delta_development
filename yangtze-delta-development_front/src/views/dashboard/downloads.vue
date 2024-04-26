@@ -10,9 +10,7 @@
       </span>
       <br />
       <el-divider>
-        <div style="font-weight: bold; font-size: large">
-          本报告及相关报告、规划书
-        </div>
+        <div style="font-weight: bold; font-size: large">区域规划、报告</div>
       </el-divider>
     </div>
     <div class="download">
@@ -26,10 +24,7 @@
         >
           <div class="singleDownload" @click="downloadByUrl(item.url)">
             <div class="card-image-container">
-              <img
-                :src="'/download/report' + (i + 1) + '.png'"
-                class="card-image"
-              />
+              <img :src="reportPic[i]" class="card-image" />
             </div>
             <div class="description">
               {{ item.reportName }}
@@ -47,18 +42,15 @@
       <el-row class="row" :gutter="0">
         <el-col
           v-for="(item, i) in urlData"
-          :span="6"
+          :span="12"
           class="chapter-col"
           justify="center"
           :key="i"
         >
           <div class="singleDownload">
             <a :href="item.url" target="_blank">
-              <div class="card-image-container">
-                <img
-                  :src="'/download/data' + (i + 1) + '.png'"
-                  class="card-image"
-                />
+              <div class="card-image-container webContainer">
+                <img src="/download/data1.png" class="card-image" />
               </div>
               <div class="description">
                 {{ item.dataName }}
@@ -85,10 +77,7 @@
           <div class="singleDownload">
             <a :href="item.url" target="_blank">
               <div class="card-image-container webContainer">
-                <img
-                  :src="'/download/web' + (i + 1) + '.png'"
-                  class="card-image"
-                />
+                <img :src="webPic[i]" class="card-image" />
               </div>
               <div class="description">
                 {{ item.webName }}
@@ -105,40 +94,69 @@
 import homeHeader from "@/components/header.vue";
 import { ref } from "vue";
 
+// 图片存放路径
+const webPic = ref([]);
+const reportPic = ref([]);
+
+// 异步加载图片
+Promise.all([import("/download/web1.png"), import("/download/web2.png")]).then(
+  (images) => {
+    webPic.value = images.map((image) => image.default);
+  }
+);
+Promise.all([
+  import("/download/report1.png"),
+  import("/download/report2.png"),
+  import("/download/report3.png"),
+  import("/download/report4.png"),
+  import("/download/report5.png"),
+  import("/download/report6.png"),
+  import("/download/report7.png"),
+  // import("/download/report8.png"),
+  import("/download/report9.png"),
+  import("/download/report10.png"),
+  import("/download/report11.png"),
+  import("/download/report12.png"),
+  import("/download/report13.png"),
+]).then((images) => {
+  reportPic.value = images.map((image) => image.default);
+});
+
+// 原文下载路径
 const urlReport = ref([
   {
-    reportName: "长江三角洲高质量发展（2023）评价研究报告",
+    reportName: "长江三角洲高质量发展评价研究报告（2023）",
     // url: "http://112.4.132.6:8083/data/e10688f0-bfc9-4f4a-922e-ea98533f38ea", // 未美化版本pdf
-    url: "http://112.4.132.6:8083/data/333eb1f6-ff97-4431-ae34-875e14067a3b", // 美化版本pdf
+    url: "http://112.4.132.6:8083/data/c48e0287-da3f-4b96-936c-a55183d3b29f", // 美化版本pdf
   },
   {
-    reportName: "“一带一路”倡议下的全球城市",
+    reportName: "“一带一路”倡议下的全球城市（2022）",
     url: "http://112.4.132.6:8083/data/574de5c5-33b4-4124-adf3-c9a232c88671",
   },
   {
-    reportName: "2020长三角政府数据开放一体化报告",
+    reportName: "长三角政府数据开放一体化报告（2020）",
     url: "http://112.4.132.6:8083/data/d50ac3ba-e40a-4de8-993e-a9f0659b899e",
   },
   {
-    reportName: "2022长三角区域协同创新指数（简版）",
+    reportName: "长三角区域协同创新指数（2022简版）",
     url: "http://112.4.132.6:8083/data/4e7fc096-c82b-4c8a-9895-f91151495788",
   },
   {
-    reportName: "2022中国城市繁荣活力评估报告",
+    reportName: "中国城市繁荣活力评估报告（2022）",
     url: "http://112.4.132.6:8083/data/f2b346f8-bf6c-4d76-b9e5-85066bd5929b",
   },
   {
-    reportName: "长江经济带高质量发展评估研究报告",
+    reportName: "长江经济带高质量发展评估研究报告（2022）",
     url: "http://112.4.132.6:8083/data/cac0e6b6-2b11-4fba-b9b8-54508cc6766d",
   },
   {
     reportName: "长三角高质量发展指数报告（2020）",
     url: "http://112.4.132.6:8083/data/c68fd275-7ea5-4cdf-8673-2af6bd63af6a",
   },
-  {
-    reportName: "中国城市繁荣活力2020报告",
-    url: "http://112.4.132.6:8083/data/12f04d66-07b2-497a-a5ab-50f8fa3e2ba7",
-  },
+  // {
+  //   reportName: "中国城市繁荣活力2020报告",
+  //   url: "http://112.4.132.6:8083/data/12f04d66-07b2-497a-a5ab-50f8fa3e2ba7",
+  // },
   {
     reportName: "科技部关于印发《长三角科技创新共同体建设发展规划》的通知",
     url: "http://112.4.132.6:8083/data/7b565098-83c9-4ffa-8072-6b55866be1fd",

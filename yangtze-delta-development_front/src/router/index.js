@@ -3,19 +3,23 @@
  * date:2024/2/27
  * author:watermelo
  */
-import { createRouter, createWebHistory } from 'vue-router';
-import routes from './routes'
-
+import {
+  createRouter,
+  createWebHistory,
+  createWebHashHistory,
+} from "vue-router";
+import routes from "./routes";
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes
+  // history: createWebHistory(),
+  history: createWebHashHistory(),
+  routes,
 });
 
 // 根据meta中的title属性，设置页面标题
 router.beforeEach((to, from, next) => {
-    document.title = to.meta.title || 'Default Title';
-    next();
-  });
+  document.title = to.meta.title || "Default Title";
+  next();
+});
 
 export default router;

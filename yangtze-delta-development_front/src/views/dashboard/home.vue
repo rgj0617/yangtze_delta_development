@@ -60,10 +60,10 @@
         <img
           src="/dataCenterLogo.png"
           style="
-            height: 4.5vh;
+            height: 5.5vh;
             width: auto;
-            margin: 0 0.7vw 0.5vh 0;
-            border-radius: 5px;
+            margin-right: 0.7vw;
+            /* border-radius: 5px; */
           "
         />
         <div class="yes-login">
