@@ -79,6 +79,7 @@ const isActive = (page: string) => {
 const goTo = (page: string) => {
   let route = "/" + page;
   router.push(route);
+  1;
 };
 </script>
   

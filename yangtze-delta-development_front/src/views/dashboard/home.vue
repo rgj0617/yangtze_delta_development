@@ -84,8 +84,9 @@
         <div class="section-content">
           <span class="title">长三角高质量发展评价报告</span>
           <span class="subtitle">
-            本报告面向国家和地区对长三角的发展定位与要求，采用“自上而下”基于专家经验的政策解读法,
-            辅以“自下而上”基于地理大模型的文本主题挖掘技术生成一套借助“众力”、更具公信力的高质量发展评价指标体系。
+            本报告面向国家和地区对长三角的发展定位与要求，采用“自上而下”基于专家经验的政策解读法<br />
+            辅以“自下而上”基于地理大模型的文本主题挖掘技术生成一套借助“众力”、<br />
+            更具公信力的高质量发展评价指标体系。
           </span>
           <a class="bt1" @click="goTo('chapters')">阅读报告</a>
           <a class="bt2" @click="goTo('interactiveMap')">评价结果</a>
@@ -423,7 +424,7 @@ html {
       flex-wrap: wrap;
       justify-content: center;
       align-items: flex-start;
-      width: 50vw;
+      width: 60vw;
       height: 40vh;
       //   background: rgba(110, 64, 64, 0.5);
       z-index: 1;
@@ -442,8 +443,7 @@ html {
         height: 6vh;
         width: 100%;
         text-align: center;
-
-        font-size: 2rem;
+        font-size: 1.3vw;
         font-weight: 500;
         color: white;
       }
@@ -536,7 +536,7 @@ html {
   .section-bg {
     position: relative;
     height: 200vh;
-    background-image: url("../../assets/home/bgz1.png");
+    // background-image: url("../../assets/home/bgz1.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position-x: center;
@@ -603,7 +603,7 @@ html {
           height: 10vh;
           font-size: 1.8vh;
           font-weight: 500;
-          color: gray;
+          color: white;
         }
 
         &-button {
@@ -613,10 +613,11 @@ html {
           width: 8vw;
           height: 6vh;
           border-radius: 10px;
-          font-size: 1.7vh;
+          font-size: 2.4vh;
           font-weight: 800;
           text-align: center;
-          color: rgb(90, 90, 90, 0.9);
+          color: white;
+          // color: rgb(90, 90, 90, 0.9);
           cursor: pointer;
           background: linear-gradient(
             to right,
@@ -717,7 +718,7 @@ html {
           height: 10vh;
           font-size: 1.8vh;
           font-weight: 500;
-          color: gray;
+          color: white;
         }
 
         &-button {
@@ -729,10 +730,11 @@ html {
           width: 8vw;
           height: 6vh;
           border-radius: 10px;
-          font-size: 1.7vh;
+          font-size: 2.4vh;
           font-weight: 800;
           text-align: center;
-          color: rgb(90, 90, 90, 0.9);
+          // color: rgb(90, 90, 90, 0.9);
+          color: white;
           cursor: pointer;
           background: linear-gradient(
             to right,
@@ -758,12 +760,12 @@ html {
   }
 
   .bt1 {
-    margin-top: 12vh;
+    margin-top: 13vh;
     margin-right: 1vw;
   }
 
   .bt2 {
-    margin-top: 12vh;
+    margin-top: 13vh;
     margin-left: 1vw;
     filter: hue-rotate(275deg);
   }

@@ -96,7 +96,7 @@ const chapterDescription = ref(
     .content {
       text-indent: 2em;
       margin: 1vh 0;
-      line-height: 2.2vh;
+      line-height: 2.5vh;
     }
   }
 }

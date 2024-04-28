@@ -4,8 +4,6 @@
       <span class="title"> 评价报告 </span>
       <span class="description">
         长江三角洲高质量发展（2023）评价研究报告
-        <br />
-        tips:在线阅览中第二页是空白页，请直接翻到第三页开始阅读
       </span>
       <br />
       <!-- <el-divider>
@@ -88,7 +86,7 @@ const chapters: Chapter[] = [
     title: "二、长江三角洲高质量发展评价指标体系",
     class: "chapter-card chapter-right",
     description:
-      "本报告基于政策解读，辅以地理大模型和文本主题挖掘技术，集成多源资料对指标体系进行修正与完善，通过自上而下构建一级指标及其内容、自下而上修正解读结果、自下而上提供备选二级指标，以及自上而下基于专家经验确定二级指标四个步骤，构建了一个更具公信力的长三角高质量发展评价指标体系。",
+      "本报告基于政策解读，辅以大语言模型和文本主题挖掘技术，集成多源资料对指标体系进行修正与完善，通过自上而下构建一级指标及其内容、自下而上修正解读结果、自下而上提供备选二级指标，以及自上而下基于专家经验确定二级指标四个步骤，构建了一个更具公信力的长三角高质量发展评价指标体系。",
     image: "/chaptersCovers/chapter1Cover.png",
     target: "chapters/chapter2",
   },
@@ -140,9 +138,9 @@ const goTo = (page: string) => {
   font-size: 1.8vh;
   font-weight: bold;
 }
-.pdfView {
-  // margin-left: 10%;
-}
+// .pdfView {
+//   // margin-left: 10%;
+// }
 .tabContent {
   margin: 1.5% 25% 0.5% 25%;
   display: flex;

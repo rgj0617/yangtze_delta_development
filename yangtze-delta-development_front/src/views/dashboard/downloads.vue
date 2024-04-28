@@ -33,7 +33,7 @@
         </el-col>
       </el-row>
       <br />
-      <el-divider>
+      <el-divider class="divider">
         <div style="font-weight: bold; font-size: large">
           本报告相关数据下载
         </div>
@@ -60,7 +60,7 @@
         </el-col>
       </el-row>
       <br />
-      <el-divider>
+      <el-divider class="divider">
         <div style="font-weight: bold; font-size: large">
           更多数据与模型平台探索
         </div>
@@ -214,6 +214,9 @@ const downloadByUrl = (url) => {
 </script>
     
 <style scoped lang="scss">
+.divider {
+  margin-top: 10vh;
+}
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -231,7 +234,7 @@ const downloadByUrl = (url) => {
 }
 .download {
   margin: 0.5% 25%;
-  min-height: 70vh;
+  // min-height: 100vh;
   .chapter-col {
     :hover {
       background: #ebebeb;

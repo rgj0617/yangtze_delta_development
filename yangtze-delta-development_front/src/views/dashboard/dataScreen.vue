@@ -440,7 +440,7 @@ export default {
     },
   },
   async mounted() {
-    const imageUrl = await import("@/assets/pic/dataExplorer.jpg");
+    const imageUrl = await import("/dataExplorer.jpg");
     this.backgroundUrl = imageUrl.default; // 将图片 URL 赋值给 items.url
     //挂载mapbox
     this.initMapbox();
