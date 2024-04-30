@@ -10,19 +10,20 @@
     <div class="container">
       <div class="title">开放式地理建模与模拟团队（OpenGMS）</div>
       <el-divider></el-divider>
+
       <div class="content">
         开放式地理建模与模拟团队（OpenGMS）致力于推动地理建模技术的发展和应用，打造一个集模型开发、共享、应用于一体的开放科研平台。团队成员具有丰富的理论和实践经验，专注于理论研究与应用实践的结合，探索模型在气候变化、城市规划、环境保护等领域的应用。
       </div>
       <div class="content">
         团队通过开放网络环境实现模型资源的耦合集成，促进智慧共享和开放协作，不断提升模型的精度和可靠性，为相关领域提供支持。同时积极推动国产地理建模软件的发展，构建自主模型生态圈，提升国际影响力，并通过培训、国际合作等促进国产模型的国际化应用，贡献中国智慧和方案。
       </div>
-
       <div class="info">
         电话：(025)85891347<br />
         邮箱：opengms@126.com<br />
         地址：江苏省南京市栖霞区文苑路1号 南京师范大学地理科学学院
       </div>
     </div>
+
     <div class="container">
       <div class="title">国家地球系统科学数据中心 长江三角洲分中心</div>
       <el-divider></el-divider>
@@ -33,6 +34,21 @@
         电话：(025)85891253<br />
         邮箱：geodata@njnu.edu.cn<br />
         地址：江苏省南京市栖霞区文苑路1号 南京师范大学地理科学学院501
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="title">
+        CBAS-南京师范大学节点(可持续发展协同权衡与综合预测科教节点)培育
+      </div>
+      <el-divider></el-divider>
+      <div class="content">
+        南师大节点中心致力于充分发挥南京师范大学地理学综合研究的优势，以SDGs多指标交叉综合建模为切入点，以可持续发展动态模拟与情景分析为核心，以面向可持续发展数字治理的开放式情景预测及决策支持平台构建为出口。基于南师大优秀教育资源，多层次培养SDGs相关方向人才，增进国内外学术交流互访，开展相关理论及模型应用的教育培训，促进数据向知识的转化。
+      </div>
+      <div class="info">
+        电话：(025)85891347<br />
+        邮箱：caomin@njnu.edu.cn<br />
+        地址：江苏省南京市栖霞区文苑路1号 南京师范大学地理科学学院
       </div>
     </div>
   </div>
@@ -47,7 +63,7 @@ import { ref } from "vue";
 
 const chapterTitle = ref("关于我们");
 const chapterDescription = ref(
-  "南京师范大学地理科学学院  开放式地理建模与模拟团队（OpenGMS）  长三角数据中心办公室"
+  "南京师范大学地理科学学院  开放式地理建模与模拟团队（OpenGMS）  长三角数据中心办公室  CBAS-南京师范大学节点"
 );
 
 // const oursRef = ref<HTMLElement | null>(null);
