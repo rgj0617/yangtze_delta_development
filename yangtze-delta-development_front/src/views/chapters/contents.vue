@@ -14,7 +14,7 @@
     </div>
     <el-tabs v-model="activeName" class="tabContent">
       <el-tab-pane label="在线阅览" name="first" class="ranking">
-        <pdfViewer class="pdfView" />
+        <pdfViewer />
       </el-tab-pane>
       <el-tab-pane label="查看章节" name="second" class="ranking">
         <el-row class="chapters" :gutter="0">
@@ -153,13 +153,13 @@ const goTo = (page: string) => {
     font-weight: 300;
     margin-top: 1.2%;
   }
-  .ranking {
-    height: 150vh;
-    // overflow: auto;
-  }
+  // .ranking {
+  //   // height: 150vh;
+  //   // overflow: auto;
+
+  // }
   .dataTable {
     margin: 0.5% 0;
-    height: 100vh;
     width: 49.5vw;
     // border:1px black solid;
     .description {
@@ -273,5 +273,143 @@ const goTo = (page: string) => {
 .card-footer {
   text-align: right;
   align-self: flex-end;
+}
+
+@media (max-width: 1000px) {
+  :deep(.el-tabs__item) {
+    width: 47.5vw; /* 设置宽度为200px */
+    font-size: 2.5vw;
+    font-weight: bold;
+  }
+
+  .tabContent {
+    margin: 1.5% 2.5% 0.5% 2.5%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 95vw;
+    // overflow: visible;
+    .description {
+      color: rgb(142, 142, 142);
+      font-size: 1.5vh;
+      font-weight: 300;
+      margin-top: 1.2%;
+    }
+    .dataTable {
+      margin: 0.5% 0;
+      height: 100vh;
+      width: 95vw;
+      // border:1px black solid;
+      .description {
+        padding-bottom: 2%;
+        line-height: 1.5vh;
+        // color: rgb(142, 142, 142);
+        font-size: 1.2vh;
+        font-weight: 400;
+      }
+    }
+  }
+  .sectionContent {
+    display: flex;
+    // justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 1.5% 0% 0.5% 5%;
+    .title {
+      font-size: 5vw;
+      font-weight: bold;
+    }
+    .description {
+      color: rgb(142, 142, 142);
+      font-size: 1.6vw;
+      font-weight: 500;
+      line-height: 1.5;
+      margin-top: 1.2%;
+    }
+  }
+
+  .chapters {
+    display: flex;
+    flex-wrap: wrap;
+    // margin: 0 25%; /* 居中排列 */
+  }
+
+  .chapter-col {
+    display: flex;
+    justify-content: center;
+  }
+
+  .chapter-card {
+    padding: 0px;
+    width: 70vw;
+    height: 400px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    // margin-left: 5vw;
+    transition: background-color 0.35s;
+    cursor: pointer;
+    // overflow: auto;
+  }
+
+  .chapter-right {
+    margin-right: 0;
+  }
+
+  .chapter-card-last {
+    padding: 0px;
+    width: 70vw;
+    height: 360px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    // margin-left: 5vw;
+    transition: background-color 0.35s;
+    cursor: pointer;
+    overflow: auto;
+  }
+
+  .chapter-card-last .card-content {
+    // white-space: pre-line;
+    text-indent: 0;
+  }
+
+  .chapter-card:hover {
+    background-color: rgba(
+      0,
+      0,
+      0,
+      0.05
+    ); /* 设置鼠标悬停时的背景颜色为稍暗的黑色 */
+  }
+
+  .card-image-container {
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 200px;
+    // display: flex; //关掉这个即可
+    // justify-content: center;
+    overflow: hidden; /* 裁剪超出部分 */
+    .card-image {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .card-header {
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+
+  .card-content {
+    // padding: 0 10px;
+    line-height: 1.3;
+  }
+
+  .card-footer {
+    text-align: right;
+    align-self: flex-end;
+  }
 }
 </style>

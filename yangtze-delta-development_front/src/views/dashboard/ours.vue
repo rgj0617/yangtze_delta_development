@@ -4,7 +4,7 @@
     ref="chaptersHeaderRef"
     :chapterTitle="chapterTitle"
     :chapterDescription="chapterDescription"
-    style="margin-top: 5.5vh"
+    class="chaptersHead"
   />
   <div class="ours" ref="oursRef">
     <div class="container">
@@ -50,6 +50,13 @@
         邮箱：caomin@njnu.edu.cn<br />
         地址：江苏省南京市栖霞区文苑路1号 南京师范大学地理科学学院
       </div>
+      <!-- 这个是添加了一个相对复杂丰富的统计方式 -->
+      <!-- <a href="https://info.flagcounter.com/zpxi"
+        ><img
+          src="https://s01.flagcounter.com/count2/zpxi/bg_FFFFFF/txt_000000/border_CCCCCC/columns_4/maxflags_20/viewers_0/labels_1/pageviews_1/flags_0/percent_0/"
+          alt="Flag Counter"
+          border="0"
+      /></a> -->
     </div>
   </div>
 </template>
@@ -87,10 +94,14 @@ const chapterDescription = ref(
 </script>
 
 <style scoped lang="scss">
+.chaptersHead {
+  margin-top: 5.5vh;
+}
 .ours {
   //   width: 100vw;
   //   height: 100vh;
   background-color: #f2f4f9;
+
   .container {
     background-color: #fff;
     width: 50vw;
@@ -113,6 +124,41 @@ const chapterDescription = ref(
       text-indent: 2em;
       margin: 1vh 0;
       line-height: 2.5vh;
+    }
+  }
+}
+@media (max-width: 1000px) {
+  .chaptersHead {
+    margin-top: 3vh;
+  }
+  .ours {
+    //   width: 100vw;
+    //   height: 100vh;
+    background-color: #f2f4f9;
+
+    .container {
+      background-color: #fff;
+      width: 80vw;
+      margin: 0 0%;
+      height: 100%;
+      padding: 10vw;
+      .title {
+        color: #005a86;
+        font-weight: bold;
+        font-size: x-large;
+        margin: 3vh 0;
+      }
+      .info {
+        color: #005a86;
+        font-weight: bold;
+        line-height: 3vh;
+        margin: 1vh 0;
+      }
+      .content {
+        text-indent: 2em;
+        margin: 1vh 0;
+        line-height: 2.5vh;
+      }
     }
   }
 }

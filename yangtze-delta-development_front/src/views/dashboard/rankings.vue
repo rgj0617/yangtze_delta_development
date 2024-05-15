@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="head" style="height: 5.5vh; width: 100%">
+    <div class="head">
       <homeHeader />
     </div>
     <div class="sectionContent">
@@ -55,12 +55,9 @@ const activeName = ref("first");
   font-size: 1.8vh;
   font-weight: bold;
 }
-.homeHeader {
-  position: fixed;
-  top: 0;
-  left: 0;
+.head {
+  height: 5.5vh;
   width: 100%;
-  z-index: 999; /* 可选，设置层级，确保在其他内容之上 */
 }
 
 .sectionContent {
@@ -109,6 +106,56 @@ const activeName = ref("first");
       // color: rgb(142, 142, 142);
       font-size: 1.2vh;
       font-weight: 400;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  :deep(.el-tabs__item) {
+    width: 47.5vw;
+    font-size: 2.5vw;
+    font-weight: bold;
+  }
+  .head {
+    height: 5vh;
+    width: 100%;
+  }
+  .sectionContent {
+    display: flex;
+    // justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 1.5% 5% 0.5% 5%;
+
+    .title {
+      font-size: 5vw;
+      font-weight: bold;
+    }
+    .description {
+      color: rgb(142, 142, 142);
+      font-size: 1.6vw;
+      font-weight: 500;
+      margin-top: 1.2%;
+    }
+  }
+  .tabContent {
+    margin: 1.5% 2.5% 0.5% 2.5%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 95vw;
+    // overflow: visible;
+    .ranking {
+      .dataTable {
+        margin: 0.5% 0;
+        width: 95vw;
+        .description {
+          padding-bottom: 2%;
+          line-height: 1.4vw;
+          font-size: 1.4vw;
+          font-weight: 300;
+        }
+      }
     }
   }
 }

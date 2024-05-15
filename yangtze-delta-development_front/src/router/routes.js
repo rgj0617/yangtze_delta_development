@@ -14,14 +14,14 @@
  */
 export default [
   // 专用测试url，用来测组件
-  // {
-  //   path: "/test1",
-  //   name: "test",
-  //   meta: {
-  //     title: "SDGs&Sustainable",
-  //   },
-  //   component: () => import("@/components/pdfviewer.vue"),
-  // },
+  {
+    path: "/test1",
+    name: "test",
+    meta: {
+      title: "长三角高质量发展",
+    },
+    component: () => import("@/components/foot.vue"),
+  },
   // {
   //   path: "/test2",
   //   name: "test",
@@ -42,7 +42,7 @@ export default [
     path: "/",
     redirect: "home",
     meta: {
-      title: "SDGs&Sustainable",
+      title: "长三角高质量发展",
     },
     component: () => import("@/views/dashboard/home.vue"),
   },
@@ -50,7 +50,7 @@ export default [
     path: "/home",
     name: "home",
     meta: {
-      title: "SDGs&Sustainable",
+      title: "长三角高质量发展",
     },
     component: () => import("@/views/dashboard/home.vue"),
   },
@@ -58,7 +58,7 @@ export default [
     path: "/chapters",
     name: "chapters",
     meta: {
-      title: "SDGs&Sustainable",
+      title: "长三角高质量发展",
     },
     component: () => import("@/views/dashboard/chapters.vue"),
     children: [
@@ -66,7 +66,7 @@ export default [
         path: "", //默认加载子页面——导航页
         name: "chapters",
         meta: {
-          title: "Chapter contents",
+          title: "长三角高质量发展",
         },
         component: () => import("@/views/chapters/contents.vue"),
       },
@@ -74,7 +74,7 @@ export default [
         path: "preface",
         name: "preface",
         meta: {
-          title: "Preface",
+          title: "长三角高质量发展",
         },
         component: () => import("@/views/chapters/preface.vue"),
       },
@@ -82,7 +82,7 @@ export default [
         path: "chapter2",
         name: "chapter2",
         meta: {
-          title: "Chapter2",
+          title: "长三角高质量发展",
         },
         component: () => import("@/views/chapters/chapter2.vue"),
       },
@@ -90,7 +90,7 @@ export default [
         path: "chapter3",
         name: "chapter3",
         meta: {
-          title: "Chapter3",
+          title: "长三角高质量发展",
         },
         component: () => import("@/views/chapters/chapter3.vue"),
       },
@@ -98,7 +98,7 @@ export default [
         path: "chapter4",
         name: "chapter4",
         meta: {
-          title: "Chapter4",
+          title: "长三角高质量发展",
         },
         component: () => import("@/views/chapters/chapter4.vue"),
       },
@@ -106,7 +106,7 @@ export default [
         path: "appendix",
         name: "appendix",
         meta: {
-          title: "appendix",
+          title: "长三角高质量发展",
         },
         component: () => import("@/views/chapters/appendix.vue"),
       },
@@ -116,7 +116,7 @@ export default [
     path: "/rankings",
     name: "rankings",
     meta: {
-      title: "SDGs&Sustainable",
+      title: "长三角高质量发展",
     },
     component: () => import("@/views/dashboard/rankings.vue"),
   },
@@ -124,7 +124,7 @@ export default [
     path: "/interactiveMap",
     name: "interactiveMap",
     meta: {
-      title: "SDGs&Sustainable",
+      title: "长三角高质量发展",
     },
     component: () => import("@/views/dashboard/interactiveMap.vue"),
   },
@@ -132,7 +132,7 @@ export default [
     path: "/dataScreen",
     name: "dataScreen",
     meta: {
-      title: "SDGs&Sustainable",
+      title: "长三角高质量发展",
     },
     component: () => import("@/views/dashboard/dataScreen.vue"),
   },
@@ -140,7 +140,7 @@ export default [
     path: "/downloads",
     name: "downloads",
     meta: {
-      title: "SDGs&Sustainable",
+      title: "长三角高质量发展",
     },
     component: () => import("@/views/dashboard/downloads.vue"),
   },
@@ -148,7 +148,7 @@ export default [
     path: "/ours",
     name: "ours",
     meta: {
-      title: "SDGs&Sustainable",
+      title: "长三角高质量发展",
     },
     component: () => import("@/views/dashboard/ours.vue"),
   },

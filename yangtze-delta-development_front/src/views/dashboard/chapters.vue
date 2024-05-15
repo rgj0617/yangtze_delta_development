@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="head" style="height: 5.5vh; width: 100%">
+    <div class="head">
       <homeHeader />
     </div>
     <router-view> </router-view>
@@ -15,12 +15,16 @@ import homeHeader from "../../components/header.vue";
   
   
 <style lang="scss" scoped>
-.homeHeader {
-  position: fixed;
-  top: 0;
-  left: 0;
+.head {
+  height: 5.5vh;
   width: 100%;
-  z-index: 999; /* 可选，设置层级，确保在其他内容之上 */
+}
+
+@media (max-width: 1000px) {
+  .head {
+    height: 5vh;
+    width: 100%;
+  }
 }
 </style>
   

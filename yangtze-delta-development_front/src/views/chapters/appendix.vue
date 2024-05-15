@@ -45,8 +45,15 @@
       <div class="fig-container">
         <img class="fig" src="./chaptersImgs/appendix1.png" alt="" />
         <img class="fig" src="./chaptersImgs/appendix2.png" alt="" />
-        <img class="fig" src="./chaptersImgs/appendix3.png" style="width:50%;margin-left: 25%;" alt="" />
-        <p class="figTitle" align="center">图14 长三角高质量发展（2023）县域指标空间分布图</p>
+        <img
+          class="fig"
+          src="./chaptersImgs/appendix3.png"
+          style="width: 50%; margin-left: 25%"
+          alt=""
+        />
+        <p class="figTitle" align="center">
+          图14 长三角高质量发展（2023）县域指标空间分布图
+        </p>
       </div>
     </el-card>
   </div>
@@ -59,8 +66,8 @@ import detailData from "@/assets/json/scoreDetail.json";
 // @ts-ignore
 import chaptersHeader from "./chaptersHeader.vue";
 // @ts-ignore
-import {scoreFormat} from "@/utils/format.ts"
-import { ref } from 'vue';
+import { scoreFormat } from "@/utils/format.ts";
+import { ref } from "vue";
 
 interface TableDataRow {
   cityName: string;
@@ -73,7 +80,7 @@ interface TableDataRow {
 }
 
 //将得分四舍五入
-const tableData: TableDataRow[] = scoreFormat(detailData)
+const tableData: TableDataRow[] = scoreFormat(detailData);
 
 // 修改每一列的颜色
 const columnStyle = ({
@@ -124,10 +131,10 @@ const rowClass = ({
   }
 };
 
-
-const chapterTitle = ref("附录")
-const chapterDescription = ref("各城市分维度得分及长江三角洲高质量发展评价县域探索图表")
-
+const chapterTitle = ref("附录");
+const chapterDescription = ref(
+  "各城市分维度得分及长江三角洲高质量发展评价县域探索图表"
+);
 </script>
 
 <style lang="scss" scoped>
@@ -209,6 +216,18 @@ const chapterDescription = ref("各城市分维度得分及长江三角洲高质
       font-weight: bold;
       white-space: pre-line;
     }
+  }
+}
+
+@media (max-width: 1000px) {
+  .mainContext {
+    display: block;
+    width: 100vw;
+    word-wrap: break-word; /* 自动换行 */
+    margin: 0 auto;
+    // font-family: '仿宋', 'Times New Roman', Times, serif;
+    font-size: 20px;
+    margin-top: 5px;
   }
 }
 </style>

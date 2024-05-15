@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="head" style="height: 5.5vh; width: 100%">
+    <div class="head">
       <homeHeader />
     </div>
     <div class="sectionContent">
@@ -10,7 +10,7 @@
       </span>
       <br />
       <el-divider>
-        <div style="font-weight: bold; font-size: large">区域规划、报告</div>
+        <div class="dividerTitle">区域规划、报告</div>
       </el-divider>
     </div>
     <div class="download">
@@ -34,9 +34,7 @@
       </el-row>
       <br />
       <el-divider class="divider">
-        <div style="font-weight: bold; font-size: large">
-          本报告相关数据下载
-        </div>
+        <div class="dividerTitle">本报告相关数据下载</div>
       </el-divider>
       <br />
       <el-row class="row" :gutter="0">
@@ -61,9 +59,7 @@
       </el-row>
       <br />
       <el-divider class="divider">
-        <div style="font-weight: bold; font-size: large">
-          更多数据与模型平台探索
-        </div>
+        <div class="dividerTitle">更多数据与模型平台探索</div>
       </el-divider>
       <br />
       <el-row class="row" :gutter="0">
@@ -127,7 +123,7 @@ const urlReport = ref([
   {
     reportName: "长江三角洲高质量发展评价研究报告（2023）",
     // url: "http://112.4.132.6:8083/data/e10688f0-bfc9-4f4a-922e-ea98533f38ea", // 未美化版本pdf
-    url: "http://112.4.132.6:8083/data/c48e0287-da3f-4b96-936c-a55183d3b29f", // 美化版本pdf
+    url: "http://112.4.132.6:8083/data/bfabefd3-a8ce-4bd0-adb6-f7e55b6588a4", // 美化版本pdf
   },
   {
     reportName: "“一带一路”倡议下的全球城市（2022）",
@@ -217,6 +213,10 @@ const downloadByUrl = (url) => {
 .divider {
   margin-top: 10vh;
 }
+.dividerTitle {
+  font-weight: bold;
+  font-size: 1vw;
+}
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -231,6 +231,8 @@ const downloadByUrl = (url) => {
 .head {
   width: 100%;
   background-color: white;
+  height: 5.5vh;
+  width: 100%;
 }
 .download {
   margin: 0.5% 25%;
@@ -301,6 +303,88 @@ const downloadByUrl = (url) => {
     font-size: 1.5vh;
     font-weight: 300;
     margin-top: 1.2%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .divider {
+    margin-top: 5vh;
+  }
+  .download {
+    margin: 0.5% 0;
+    // min-height: 100vh;
+    .chapter-col {
+      :hover {
+        background: #ebebeb;
+        transition: background-color 0.8s;
+      }
+      .singleDownload {
+        width: 96%;
+        height: 96%;
+        margin: 2%;
+        cursor: pointer;
+        padding-top: 10%;
+        a {
+          color: black;
+          text-decoration: none;
+        }
+
+        .description {
+          font-size: 1.5vh;
+          margin-top: 10%;
+          text-align: center;
+        }
+        .card-image-container {
+          padding: 0px;
+          width: 50%;
+          box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.2);
+          height: auto;
+          display: flex;
+          justify-content: center;
+          overflow: visible;
+          // border: white 1px solid;
+          :hover {
+            transform: scale(1.25);
+            transition: transform 0.6s;
+          }
+          .card-image {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+        .webContainer {
+          :hover {
+            transform: scale(1.6);
+            transition: transform 0.8s;
+          }
+        }
+      }
+    }
+  }
+  .sectionContent {
+    display: flex;
+    // justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 1.5% 0 0.5% 5%;
+    .title {
+      font-size: 5vw;
+      font-weight: bold;
+    }
+    .description {
+      color: rgb(142, 142, 142);
+      font-size: 1.6vw;
+      font-weight: 500;
+      margin-top: 1.2%;
+    }
+  }
+  .head {
+    width: 100%;
+    background-color: white;
+    height: 5vh;
+    width: 100%;
   }
 }
 </style>

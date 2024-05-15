@@ -16,6 +16,7 @@ export default defineConfig({
     }
   },
   server: {
+    host:'0.0.0.0',
     proxy: {
       '/vec_w': {
         target: 'http://t0.tianditu.gov.cn',

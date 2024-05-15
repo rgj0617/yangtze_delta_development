@@ -1,77 +1,6 @@
 <template>
   <div class="container">
-    <div class="header">
-      <div class="left-box">
-        <div
-          class="left-item"
-          :class="{ active: isActive('home') }"
-          @click="goTo('home')"
-        >
-          首页
-        </div>
-        <div
-          class="left-item"
-          :class="{ active: isActive('chapters') }"
-          @click="goTo('chapters')"
-        >
-          评价报告
-        </div>
-        <div
-          class="left-item"
-          :class="{ active: isActive('rankings') }"
-          @click="goTo('rankings')"
-        >
-          综合排序
-        </div>
-        <div
-          class="left-item"
-          :class="{ active: isActive('interactiveMap') }"
-          @click="goTo('interactiveMap')"
-        >
-          交互地图
-        </div>
-        <div
-          class="left-item"
-          :class="{ active: isActive('dataScreen') }"
-          @click="goTo('dataScreen')"
-        >
-          数据大屏
-        </div>
-        <div
-          class="left-item"
-          :class="{ active: isActive('downloads') }"
-          @click="goTo('downloads')"
-        >
-          资源下载
-        </div>
-        <div
-          class="left-item"
-          :class="{ active: isActive('ours') }"
-          @click="goTo('ours')"
-        >
-          关于我们
-        </div>
-      </div>
-      <div class="right-box">
-        <img
-          src="/OGMSlogo.png"
-          style="height: 5.5vh; width: auto; margin-right: 3vw"
-        />
-        <img
-          src="/dataCenterLogo.png"
-          style="
-            height: 5.5vh;
-            width: auto;
-            margin-right: 0.7vw;
-            /* border-radius: 5px; */
-          "
-        />
-        <div class="yes-login">
-          <!-- <div class="button-item" @click="goScence()">立即创作</div> -->
-          <!-- <div class="button-item" @click="enterLogin()">登录/注册</div> -->
-        </div>
-      </div>
-    </div>
+    <homeHeader />
 
     <div class="main">
       <div class="section s1">
@@ -126,20 +55,13 @@
             </div>
           </div>
           <div class="section2-right">
-            <img
-              src="/home/banner1.png"
-              alt="Description of the image"
-              style="height: 80vh; width: auto; border-radius: 20px"
-            />
+            <img src="/home/banner1.png" alt="Description of the image" />
           </div>
         </div>
+
         <div class="section s3">
           <div class="section3-left">
-            <img
-              src="/home/banner2.png"
-              alt="Description of the image"
-              style="height: 80vh; width: auto; border-radius: 20px"
-            />
+            <img src="/home/banner2.png" alt="Description of the image" />
           </div>
           <div class="section3-right">
             <div class="section3-right-content">
@@ -160,6 +82,7 @@
             </div>
           </div>
         </div>
+
         <div class="section s2">
           <div class="section2-left">
             <div class="section2-left-content">
@@ -180,11 +103,7 @@
             </div>
           </div>
           <div class="section2-right">
-            <img
-              src="/home/banner3.png"
-              alt="Description of the image"
-              style="height: 80vh; width: auto; border-radius: 20px"
-            />
+            <img src="/home/banner3.png" alt="Description of the image" />
           </div>
         </div>
       </div>
@@ -204,14 +123,12 @@ import { ArrowDownOutlined } from "@ant-design/icons-vue";
 // import router from "@/router/index.js";
 // import { ref } from "vue";
 // @ts-ignore
+import homeHeader from "@/components/header.vue";
+// @ts-ignore
 import foot from "@/components/foot.vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-
-const isActive = (page: string) => {
-  return router.currentRoute.value.name === page;
-};
 
 const goTo = (page: string) => {
   let route = "/" + page;
@@ -227,6 +144,12 @@ html {
   overflow: hidden;
   //10px=1em
   font-size: 62.5%;
+}
+img {
+  height: 80vh;
+  width: auto;
+  border-radius: 20px;
+  box-shadow: 4px 12px 12px rgba(0, 0, 0, 0.3);
 }
 @keyframes slideBackgroundColor {
   0% {
@@ -409,15 +332,6 @@ html {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top center;
-
-    .bg-video {
-      height: 100%;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 100%;
-      z-index: 0;
-    }
 
     &-content {
       display: flex;
@@ -1112,6 +1026,207 @@ html {
     height: 100%;
     width: 60vw;
     color: white;
+  }
+}
+
+@media (max-width: 1000px) {
+  img {
+    width: 48vw;
+    height: auto;
+    box-shadow: 8px 12px 12px rgba(0, 0, 0, 0.3);
+  }
+  .main {
+    height: 255vh;
+    overflow: hidden;
+    .section {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: top center;
+      .section-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        width: 95vw;
+        height: 60vh;
+        //   background: rgba(110, 64, 64, 0.5);
+        z-index: 1;
+        .title {
+          height: 10vh;
+          width: 100%;
+          font-size: 11vw;
+          font-weight: 800;
+          color: white;
+        }
+
+        .subtitle {
+          height: 6vh;
+          width: 100%;
+          text-align: center;
+          font-size: 4vw;
+          font-weight: 500;
+          color: white;
+        }
+      }
+    }
+    .section-bg {
+      .s2 {
+        height: 50vh;
+        display: flex;
+        .section2-right {
+          display: flex;
+          flex-wrap: wrap;
+          align-content: center;
+          width: 50%;
+          border-radius: 2vh;
+        }
+        .section2-left {
+          position: relative;
+          width: 50%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &-content {
+            position: relative;
+            left: 0vw;
+            width: 50vw;
+            height: 70vh;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            &-title1 {
+              width: 100%;
+              font-size: 4.5vw;
+              height: 12vw;
+              font-weight: 800;
+            }
+            &-title2 {
+              width: 100%;
+              height: 7vw;
+              font-size: 5vw;
+              font-weight: 800;
+              background: linear-gradient(
+                to right,
+                rgb(79, 162, 236),
+                rgb(111, 249, 239)
+              );
+              background-clip: text;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            }
+            &-des {
+              display: flex;
+              margin-top: 1vh;
+              margin-bottom: 1vh;
+              width: 80%;
+              height: 10vh;
+              font-size: 2vw;
+              font-weight: 500;
+              color: white;
+            }
+            &-button {
+              line-height: 6vw;
+              width: 18vw;
+              height: 6vw;
+              border-radius: 10px;
+              font-size: 2.4vw;
+              font-weight: 800;
+              color: white;
+              cursor: pointer;
+              background: linear-gradient(
+                to right,
+                rgba(79, 162, 236, 0.9),
+                rgba(111, 249, 239, 0.9)
+              );
+            }
+          }
+        }
+      }
+      .s3 {
+        height: 50vh;
+        display: flex;
+        .section3-left {
+          display: flex;
+          flex-wrap: wrap;
+          align-content: center;
+          width: 50%;
+          border-radius: 2vh;
+        }
+        .section3-right {
+          position: relative;
+          width: 50%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &-content {
+            position: relative;
+            left: 0vw;
+            width: 50vw;
+            height: 70vh;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            &-title1 {
+              width: 100%;
+              font-size: 4.5vw;
+              height: 12vw;
+              font-weight: 800;
+            }
+            &-title2 {
+              width: 100%;
+              height: 7vw;
+              font-size: 5vw;
+              font-weight: 800;
+              background: linear-gradient(
+                to right,
+                rgb(79, 162, 236),
+                rgb(111, 249, 239)
+              );
+              background-clip: text;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            }
+            &-des {
+              display: flex;
+              margin-top: 1vh;
+              margin-bottom: 1vh;
+              width: 80%;
+              height: 10vh;
+              font-size: 2vw;
+              font-weight: 500;
+              color: white;
+            }
+            &-button {
+              line-height: 6vw;
+              width: 18vw;
+              height: 6vw;
+              border-radius: 10px;
+              font-size: 2.4vw;
+              font-weight: 800;
+              color: white;
+              cursor: pointer;
+              background: linear-gradient(
+                to right,
+                rgba(79, 162, 236, 0.9),
+                rgba(111, 249, 239, 0.9)
+              );
+            }
+          }
+        }
+      }
+    }
   }
 }
 </style>

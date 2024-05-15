@@ -255,4 +255,15 @@ const chapterDescription = ref(
     }
   }
 }
+@media (max-width: 1000px) {
+  .mainContext {
+    display: block;
+    width: 100vw;
+    word-wrap: break-word; /* 自动换行 */
+    margin: 0 auto;
+    // font-family: '仿宋', 'Times New Roman', Times, serif;
+    font-size: 20px;
+    margin-top: 5px;
+  }
+}
 </style>

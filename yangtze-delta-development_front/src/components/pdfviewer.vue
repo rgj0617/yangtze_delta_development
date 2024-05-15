@@ -79,38 +79,10 @@ onMounted(() => {
 </script>
     
 <style lang="scss" scoped>
-.page-tool {
-  //   position: absolute;
-  //   bottom: 35px;
-  //   padding-left: 15px;
-  //   padding-right: 15px;
-  width: 25vw;
-  margin: 5px 25%;
-  display: flex;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  background: rgb(66, 66, 66);
-  color: white;
-  border-radius: 19px;
-  z-index: 100;
-  //   cursor: pointer;
-  //   margin-left: 25%;
-  //   transform: translateX(-50%);
-  //   border: white solid;
-}
-.page-tool-item {
-  padding: 8px 15px;
-  padding-left: 10px;
-  cursor: pointer;
-}
-.pdf-wrap {
-  //   border: 1px solid black;
-  display: flex;
-  justify-content: center;
-  //   height: 100vh;
-  //   overflow-y: auto;
-}
+// 桌面端显示
+// 桌面端显示
+// 桌面端显示
+
 .pdf-preview {
   //   position: relative;
   //   height: 100vh;
@@ -121,16 +93,82 @@ onMounted(() => {
 
   //   margin: 0 25%;
   //   background: rgb(66, 66, 66);
-}
-.vue-pdf-embed {
-  //   border: 1px solid black;
+  .pdf-wrap {
+    //   border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    //   height: 100vh;
+    //   overflow-y: auto;
+    .vue-pdf-embed {
+      //   border: 1px solid black;
 
-  text-align: center;
-  //   width: 50%;
-  //   height: 60vh;
-  //   margin: 0 10%;
-  box-sizing: border-box;
-  box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.3);
-  //   transform: scale(0.72);
+      text-align: center;
+      //   width: 50%;
+      //   height: 60vh;
+      //   margin: 0 10%;
+      box-sizing: border-box;
+      box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.3);
+      //   transform: scale(0.72);
+    }
+  }
+  .page-tool {
+    //   position: absolute;
+    //   bottom: 35px;
+    //   padding-left: 15px;
+    //   padding-right: 15px;
+    width: 25vw;
+    margin: 5px 25%;
+    display: flex;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    background: rgb(66, 66, 66);
+    color: white;
+    border-radius: 19px;
+    z-index: 100;
+    //   cursor: pointer;
+    //   margin-left: 25%;
+    //   transform: translateX(-50%);
+    //   border: white solid;
+    .page-tool-item {
+      padding: 8px 15px;
+      padding-left: 10px;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .pdf-preview {
+    width: 95vw;
+
+    .pdf-wrap {
+      display: flex;
+      justify-content: center;
+      .vue-pdf-embed {
+        // text-align: center;
+        // box-sizing: border-box;
+        box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    .page-tool {
+      width: 40vw;
+      margin: 5px 30%;
+      display: flex;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      background: rgb(66, 66, 66);
+      color: white;
+      border-radius: 19px;
+      z-index: 100;
+      .page-tool-item {
+        padding: 8px 15px;
+        padding-left: 10px;
+        cursor: pointer;
+      }
+    }
+  }
 }
 </style>

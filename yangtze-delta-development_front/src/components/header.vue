@@ -52,17 +52,8 @@
       </div>
     </div>
     <div class="right-box">
-      <img
-        src="/OGMSlogo.png"
-        style="height: 5.5vh; width: auto; margin-right: 3vw"
-      />
-      <img
-        src="/dataCenterLogo.png"
-        style="height: 5.5vh; width: auto; margin-right: 0.7vw"
-      />
-      <div class="yes-login">
-        <!-- 添加右侧内容 -->
-      </div>
+      <img src="/OGMSlogo.png" class="logoImage" />
+      <img src="/dataCenterLogo.png" class="logoImage" />
     </div>
   </div>
 </template>
@@ -85,7 +76,7 @@ const goTo = (page: string) => {
   
   <style lang="scss" scoped>
 .homeHeader {
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   height: 5.5vh;
@@ -105,7 +96,7 @@ const goTo = (page: string) => {
       height: 100%;
       width: 7vw;
       line-height: 5vh;
-      font-size: 2vh;
+      font-size: 1vw;
       font-weight: bold;
       text-align: center;
       cursor: pointer;
@@ -127,89 +118,69 @@ const goTo = (page: string) => {
   }
 
   .right-box {
+    display: flex;
+
+    .logoImage {
+      height: 5.5vh;
+      width: auto;
+      margin-right: 3vw;
+    }
     height: 100%;
+  }
+}
+@media (max-width: 1000px) {
+  .homeHeader {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 3vh;
+    background: rgba(67, 120, 180, 1);
+    z-index: 2;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    color: white;
 
-    .yes-login {
-      margin-top: 1.5vh;
+    .left-box {
+      height: 100%;
       display: flex;
+      box-sizing: border-box;
 
-      .button-item:first-child {
-        height: 4vh;
-        width: 5vw;
-        background-color: rgb(0, 182, 194);
-        border-radius: 5px;
-        line-height: 4vh;
-        font-size: 1.6vh;
-        font-weight: 500;
+      .left-item {
+        height: 100%;
+        width: 7vw;
+        line-height: 3vh;
+        font-size: 1vw;
+        font-weight: bold;
         text-align: center;
         cursor: pointer;
-        margin-right: 0.5vw;
 
-        &:hover {
-          background-color: rgb(28, 160, 168);
-          transition: 0.5s;
+        &.active {
+          color: #2c4b7f;
+
+          &:hover {
+            color: rgb(0, 182, 194);
+          }
         }
-      }
-
-      .button-item:last-child {
-        height: 4vh;
-        width: 5vw;
-        background-color: rgb(72, 73, 82);
-        border-radius: 5px;
-        line-height: 4vh;
-        font-size: 1.6vh;
-        font-weight: 500;
-        text-align: center;
-        cursor: pointer;
-        margin-right: 0.5vw;
 
         &:hover {
-          background-color: rgb(62, 62, 66);
           transition: 0.5s;
+
+          color: #2c4b7f;
         }
       }
     }
 
-    .no-login {
+    .right-box {
       display: flex;
-      justify-content: flex-end;
-      width: calc(12vw - 2vh);
-      padding: 1vh;
-      font-size: 2vh;
-      font-weight: 600;
-
-      .button-item {
-        height: 4vh;
-        width: 5vw;
-        background-color: rgb(0, 182, 194);
-        border-radius: 5px;
-        line-height: 4vh;
-        font-size: 1.6vh;
-        font-weight: 500;
-        text-align: center;
-        cursor: pointer;
-        margin-right: 1vw;
-
-        &:hover {
-          background-color: rgb(28, 160, 168);
-          transition: 0.5s;
-        }
+      align-content: center;
+      .logoImage {
+        height: 2vh;
+        width: auto;
+        margin-top: 0.5vh;
+        margin-right: 3vw;
       }
-
-      .right-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 1vw;
-
-        .iconButton {
-          position: absolute;
-          color: white;
-          font-size: 36px;
-          margin-top: -25px;
-          margin-left: -10px;
-        }
-      }
+      height: 100%;
     }
   }
 }

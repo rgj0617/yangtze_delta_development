@@ -158,6 +158,38 @@ body {
 :deep(.echarts-legend .zr-text) {
   display: none;
 }
+
+@media (max-width: 1000px) {
+  .leftRanking {
+    height: 100vh;
+  }
+  .middleMap {
+    height: 100vh;
+  }
+  .rightPie {
+    height: 100vh;
+  }
+  .charts {
+    margin: 1vh 0;
+  }
+  .pieCard {
+    width: 90%;
+    height: 90%;
+    margin: 0 5%;
+    position: relative;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+    overflow: auto;
+    li {
+      margin-bottom: 2vw;
+    }
+    ul {
+      font-size: 3vw;
+      line-height: 3.6vw;
+    }
+  }
+}
 </style>
 
 <template>
@@ -169,15 +201,15 @@ body {
 
       <el-main>
         <el-row class="chartsRow" :gutter="20">
-          <el-col :span="6">
-            <div class="charts mapBorder">
+          <el-col :span="isMobile ? 24 : 6">
+            <div class="charts mapBorder leftRanking">
               <div class="title">长三角高质量发展评价排名</div>
               <div class="bars" id="bars"></div>
             </div>
           </el-col>
 
-          <el-col :span="10">
-            <div class="charts mapBorder">
+          <el-col :span="isMobile ? 24 : 10">
+            <div class="charts mapBorder middleMap">
               <div class="title">长三角高质量发展空间分布</div>
               <div class="mapMiddle">
                 <div class="mapboxBorder">
@@ -200,8 +232,8 @@ body {
             </div>
           </el-col>
 
-          <el-col :span="8">
-            <div class="charts mapBorder">
+          <el-col :span="isMobile ? 24 : 8">
+            <div class="charts mapBorder rightPie">
               <!-- <div class="title">
                   介绍内容
                 </div> -->
@@ -378,6 +410,7 @@ export default {
       showPie: true,
       selectedCity: "上海市",
       cityNames: cityNames,
+      isMobile: false,
     };
   },
   methods: {
@@ -438,8 +471,16 @@ export default {
         );
       }
     },
+    checkScreenSize() {
+      this.isMobile = window.matchMedia("(max-width: 1000px)").matches;
+      console.log(this.isMobile, "check over");
+    },
   },
   async mounted() {
+    // 检测屏幕宽度
+    this.checkScreenSize();
+    window.addEventListener("resize", this.checkScreenSize);
+
     const imageUrl = await import("/dataExplorer.jpg");
     this.backgroundUrl = imageUrl.default; // 将图片 URL 赋值给 items.url
     //挂载mapbox
@@ -455,6 +496,9 @@ export default {
   },
   beforeUnmount() {
     this.myChart && this.myChart.destroy();
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.checkScreenSize);
   },
 };
 </script>
