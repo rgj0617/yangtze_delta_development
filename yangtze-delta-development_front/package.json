@@ -16,8 +16,10 @@
     "element-plus": "^2.5.6",
     "mapbox-gl": "^3.1.2",
     "vue": "^3.4.20",
+    "vue-pdf-app": "^2.1.0",
     "vue-pdf-embed": "^2.0.3",
     "vue-router": "^4.0.13",
+    "vue3-pdf-app": "^1.0.3",
     "vue3-pdfjs": "^0.1.6"
   },
   "devDependencies": {

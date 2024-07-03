@@ -14,7 +14,12 @@
     </div>
     <el-tabs v-model="activeName" class="tabContent">
       <el-tab-pane label="在线阅览" name="first" class="ranking">
-        <pdfViewer />
+        <div id="pdf">
+          <VuePdfApp
+            class="pdfContainer"
+            pdf="http://112.4.132.6:8083/data/bfabefd3-a8ce-4bd0-adb6-f7e55b6588a4"
+          ></VuePdfApp>
+        </div>
       </el-tab-pane>
       <el-tab-pane label="查看章节" name="second" class="ranking">
         <el-row class="chapters" :gutter="0">
@@ -58,7 +63,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 // @ts-ignore
-import pdfViewer from "../../components/pdfviewer.vue";
+import VuePdfApp from "vue3-pdf-app";
+import "vue3-pdf-app/dist/icons/main.css";
+// @ts-ignore
+// import pdfViewer from "../../components/pdfviewer.vue";
 
 interface Chapter {
   id: number;
@@ -138,34 +146,42 @@ const goTo = (page: string) => {
   font-size: 1.8vh;
   font-weight: bold;
 }
-// .pdfView {
-//   // margin-left: 10%;
-// }
+
 .tabContent {
   margin: 1.5% 25% 0.5% 25%;
   display: flex;
   flex-wrap: wrap;
   width: 50vw;
-  // overflow: visible;
   .description {
     color: rgb(142, 142, 142);
     font-size: 1.5vh;
     font-weight: 300;
     margin-top: 1.2%;
   }
-  // .ranking {
-  //   // height: 150vh;
-  //   // overflow: auto;
+  .ranking {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    #pdf {
+      width: 100%;
+      .pdfContainer {
+        width: 30vw;
+        // height: 80vh;
+        height: calc(96vh - 300px);
+        box-shadow: 5px 5px 12px 0 rgba(0, 0, 0, 0.3);
 
-  // }
+        margin-left: 10vw;
+
+        border-radius: 10px;
+      }
+    }
+  }
   .dataTable {
     margin: 0.5% 0;
     width: 49.5vw;
-    // border:1px black solid;
     .description {
       padding-bottom: 2%;
       line-height: 1.5vh;
-      // color: rgb(142, 142, 142);
       font-size: 1.2vh;
       font-weight: 400;
     }
@@ -173,7 +189,6 @@ const goTo = (page: string) => {
 }
 .sectionContent {
   display: flex;
-  // justify-content: center;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -194,7 +209,6 @@ const goTo = (page: string) => {
 .chapters {
   display: flex;
   flex-wrap: wrap;
-  // margin: 0 25%; /* 居中排列 */
 }
 
 .chapter-col {
@@ -208,10 +222,8 @@ const goTo = (page: string) => {
   height: 400px;
   margin-bottom: 20px;
   margin-right: 20px;
-  // margin-left: 5vw;
   transition: background-color 0.35s;
   cursor: pointer;
-  // overflow: auto;
 }
 
 .chapter-right {
@@ -224,24 +236,17 @@ const goTo = (page: string) => {
   height: 360px;
   margin-bottom: 20px;
   margin-right: 20px;
-  // margin-left: 5vw;
   transition: background-color 0.35s;
   cursor: pointer;
   overflow: auto;
 }
 
 .chapter-card-last .card-content {
-  // white-space: pre-line;
   text-indent: 0;
 }
 
 .chapter-card:hover {
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.05
-  ); /* 设置鼠标悬停时的背景颜色为稍暗的黑色 */
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .card-image-container {
@@ -249,8 +254,7 @@ const goTo = (page: string) => {
   margin: 0px;
   width: 100%;
   height: 200px;
-  // display: flex; //关掉这个即可
-  // justify-content: center;
+
   overflow: hidden; /* 裁剪超出部分 */
   .card-image {
     height: 100%;
@@ -266,7 +270,6 @@ const goTo = (page: string) => {
 }
 
 .card-content {
-  // padding: 0 10px;
   line-height: 1.3;
 }
 
@@ -298,11 +301,9 @@ const goTo = (page: string) => {
       margin: 0.5% 0;
       height: 100vh;
       width: 95vw;
-      // border:1px black solid;
       .description {
         padding-bottom: 2%;
         line-height: 1.5vh;
-        // color: rgb(142, 142, 142);
         font-size: 1.2vh;
         font-weight: 400;
       }
@@ -310,7 +311,6 @@ const goTo = (page: string) => {
   }
   .sectionContent {
     display: flex;
-    // justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -331,7 +331,6 @@ const goTo = (page: string) => {
   .chapters {
     display: flex;
     flex-wrap: wrap;
-    // margin: 0 25%; /* 居中排列 */
   }
 
   .chapter-col {
@@ -345,10 +344,8 @@ const goTo = (page: string) => {
     height: 400px;
     margin-bottom: 20px;
     margin-right: 20px;
-    // margin-left: 5vw;
     transition: background-color 0.35s;
     cursor: pointer;
-    // overflow: auto;
   }
 
   .chapter-right {
@@ -361,14 +358,12 @@ const goTo = (page: string) => {
     height: 360px;
     margin-bottom: 20px;
     margin-right: 20px;
-    // margin-left: 5vw;
     transition: background-color 0.35s;
     cursor: pointer;
     overflow: auto;
   }
 
   .chapter-card-last .card-content {
-    // white-space: pre-line;
     text-indent: 0;
   }
 
@@ -386,8 +381,7 @@ const goTo = (page: string) => {
     margin: 0px;
     width: 100%;
     height: 200px;
-    // display: flex; //关掉这个即可
-    // justify-content: center;
+
     overflow: hidden; /* 裁剪超出部分 */
     .card-image {
       height: 100%;
@@ -403,7 +397,6 @@ const goTo = (page: string) => {
   }
 
   .card-content {
-    // padding: 0 10px;
     line-height: 1.3;
   }
 
