@@ -1,0 +1,32 @@
+{
+  "name": "sdgnewplatform_front",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
+    "@mapbox/mapbox-gl-language": "^1.0.1",
+    "chroma-js": "^2.4.2",
+    "echarts": "^5.5.0",
+    "element-plus": "^2.5.6",
+    "mapbox-gl": "^3.1.2",
+    "vue": "^3.4.20",
+    "vue-pdf-embed": "^2.0.3",
+    "vue-router": "^4.0.13",
+    "vue3-pdfjs": "^0.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.20",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "normalize.css": "^8.0.1",
+    "sass": "^1.71.1",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vue-tsc": "^1.8.5"
+  }
+}

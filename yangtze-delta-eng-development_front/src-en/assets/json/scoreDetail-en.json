@@ -1,0 +1,372 @@
+
+[
+    {
+      "cityName": "Shanghai",
+      "score": "87.81714541",
+      "Innovation": "16.92354696",
+      "Coordination": "14.63563561",
+      "Green": "16.32752902",
+      "Openness": "20",
+      "Sharing": "19.93043383"
+    },
+    {
+      "cityName": "Hangzhou",
+      "score": "83.86643086",
+      "Innovation": "17.31441422",
+      "Coordination": "18.15250371",
+      "Green": "17.92512536",
+      "Openness": "17.12601684",
+      "Sharing": "13.34837073"
+    },
+    {
+      "cityName": "Nanjing",
+      "score": "83.80869036",
+      "Innovation": "16.45781063",
+      "Coordination": "18.1955548",
+      "Green": "17.13589795",
+      "Openness": "17.36775898",
+      "Sharing": "14.65166799"
+    },
+    {
+      "cityName": "Suzhou(Jiangsu)",
+      "score": "83.0934299",
+      "Innovation": "16.81809117",
+      "Coordination": "17.639599",
+      "Green": "16.23189952",
+      "Openness": "16.37471524",
+      "Sharing": "16.02912498"
+    },
+    {
+      "cityName": "Ningbo",
+      "score": "76.08084606",
+      "Innovation": "13.60015178",
+      "Coordination": "17.6131058",
+      "Green": "16.85859964",
+      "Openness": "13.27767253",
+      "Sharing": "14.73131632"
+    },
+    {
+      "cityName": "Wuxi",
+      "score": "74.9728607",
+      "Innovation": "13.22642118",
+      "Coordination": "15.89589441",
+      "Green": "17.24373167",
+      "Openness": "12.54407624",
+      "Sharing": "16.0627372"
+    },
+    {
+      "cityName": "Hefei",
+      "score": "70.903409",
+      "Innovation": "16.08629096",
+      "Coordination": "17.22217615",
+      "Green": "16.86283412",
+      "Openness": "10.02515379",
+      "Sharing": "10.70695398"
+    },
+    {
+      "cityName": "Changzhou",
+      "score": "69.90476604",
+      "Innovation": "12.17069579",
+      "Coordination": "18.65551745",
+      "Green": "15.88690472",
+      "Openness": "10.18172748",
+      "Sharing": "13.0099206"
+    },
+    {
+      "cityName": "Zhoushan",
+      "score": "64.63593594",
+      "Innovation": "9.164750265",
+      "Coordination": "15.80874365",
+      "Green": "17.35516733",
+      "Openness": "10.07078002",
+      "Sharing": "12.23649467"
+    },
+    {
+      "cityName": "Jiaxing",
+      "score": "64.4931389",
+      "Innovation": "10.41374806",
+      "Coordination": "17.60899757",
+      "Green": "11.45998218",
+      "Openness": "10.89745156",
+      "Sharing": "14.11295954"
+    },
+    {
+      "cityName": "Nantong",
+      "score": "62.72408878",
+      "Innovation": "11.15343564",
+      "Coordination": "14.23457585",
+      "Green": "15.27811392",
+      "Openness": "9.37695757",
+      "Sharing": "12.68100581"
+    },
+    {
+      "cityName": "Yangzhou",
+      "score": "58.9094037",
+      "Innovation": "10.2907168",
+      "Coordination": "15.73663474",
+      "Green": "16.32455151",
+      "Openness": "5.797191243",
+      "Sharing": "10.76030941"
+    },
+    {
+      "cityName": "Wuhu",
+      "score": "58.02117332",
+      "Innovation": "13.27240176",
+      "Coordination": "14.38732946",
+      "Green": "16.43521529",
+      "Openness": "5.705506718",
+      "Sharing": "8.220720093"
+    },
+    {
+      "cityName": "Shaoxing",
+      "score": "57.76927028",
+      "Innovation": "10.5275875",
+      "Coordination": "17.01382971",
+      "Green": "14.71857045",
+      "Openness": "5.001159868",
+      "Sharing": "10.50812275"
+    },
+    {
+      "cityName": "Wenzhou",
+      "score": "57.10118008",
+      "Innovation": "9.863560603",
+      "Coordination": "14.93785185",
+      "Green": "15.74985576",
+      "Openness": "5.313825796",
+      "Sharing": "11.23608607"
+    },
+    {
+      "cityName": "Huzhou",
+      "score": "56.90159548",
+      "Innovation": "9.623883893",
+      "Coordination": "16.69881385",
+      "Green": "13.58452628",
+      "Openness": "6.67882702",
+      "Sharing": "10.31554444"
+    },
+    {
+      "cityName": "Zhenjiang",
+      "score": "56.73921335",
+      "Innovation": "10.82227574",
+      "Coordination": "14.96422314",
+      "Green": "14.81572713",
+      "Openness": "4.827636221",
+      "Sharing": "11.30935112"
+    },
+    {
+      "cityName": "Taizhou(Jiangsu)",
+      "score": "56.62517987",
+      "Innovation": "8.52218865",
+      "Coordination": "13.91971798",
+      "Green": "15.09429204",
+      "Openness": "7.929839044",
+      "Sharing": "11.15914216"
+    },
+    {
+      "cityName": "Jinhua",
+      "score": "56.42211622",
+      "Innovation": "8.709634246",
+      "Coordination": "15.64314631",
+      "Green": "12.35135997",
+      "Openness": "8.491151907",
+      "Sharing": "11.22682379"
+    },
+    {
+      "cityName": "Xuzhou",
+      "score": "56.34326703",
+      "Innovation": "10.6475849",
+      "Coordination": "13.55238508",
+      "Green": "12.08039905",
+      "Openness": "9.340988473",
+      "Sharing": "10.72190952"
+    },
+    {
+      "cityName": "Taizhou(Zhejiang)",
+      "score": "56.0938747",
+      "Innovation": "8.308784789",
+      "Coordination": "14.46863784",
+      "Green": "15.2422813",
+      "Openness": "6.395554378",
+      "Sharing": "11.67861639"
+    },
+    {
+      "cityName": "Huaian",
+      "score": "51.25464439",
+      "Innovation": "7.613034445",
+      "Coordination": "13.61892056",
+      "Green": "15.48832897",
+      "Openness": "4.730625485",
+      "Sharing": "9.80373494"
+    },
+    {
+      "cityName": "Yancheng",
+      "score": "51.2296609",
+      "Innovation": "7.236993455",
+      "Coordination": "12.62541216",
+      "Green": "14.66253756",
+      "Openness": "6.693196544",
+      "Sharing": "10.01152118"
+    },
+    {
+      "cityName": "Ma'anshan",
+      "score": "50.69204036",
+      "Innovation": "9.281743296",
+      "Coordination": "13.07156812",
+      "Green": "13.23009355",
+      "Openness": "5.255882105",
+      "Sharing": "9.852753286"
+    },
+    {
+      "cityName": "Huangshan",
+      "score": "47.87449146",
+      "Innovation": "7.426103531",
+      "Coordination": "13.23912501",
+      "Green": "17.43373356",
+      "Openness": "2.156392705",
+      "Sharing": "7.619136653"
+    },
+    {
+      "cityName": "Quzhou",
+      "score": "47.5264753",
+      "Innovation": "7.910849207",
+      "Coordination": "13.58771564",
+      "Green": "13.07105958",
+      "Openness": "2.592437558",
+      "Sharing": "10.36441331"
+    },
+    {
+      "cityName": "Tongling",
+      "score": "46.98563437",
+      "Innovation": "9.707575445",
+      "Coordination": "11.73403081",
+      "Green": "13.54330663",
+      "Openness": "3.717773268",
+      "Sharing": "8.282948213"
+    },
+    {
+      "cityName": "Lianyungang",
+      "score": "46.31368078",
+      "Innovation": "7.024589836",
+      "Coordination": "12.43452416",
+      "Green": "12.81411993",
+      "Openness": "4.538034733",
+      "Sharing": "9.50241212"
+    },
+    {
+      "cityName": "Chuzhou",
+      "score": "45.62934072",
+      "Innovation": "8.049687661",
+      "Coordination": "12.33740732",
+      "Green": "12.95916613",
+      "Openness": "4.294942688",
+      "Sharing": "7.988136918"
+    },
+    {
+      "cityName": "Suqian",
+      "score": "45.58088171",
+      "Innovation": "6.136406018",
+      "Coordination": "13.67627319",
+      "Green": "11.57738865",
+      "Openness": "4.766535688",
+      "Sharing": "9.42427817"
+    },
+    {
+      "cityName": "Lishui",
+      "score": "44.64626495",
+      "Innovation": "7.220661053",
+      "Coordination": "13.91314472",
+      "Green": "14.03047104",
+      "Openness": "1.68343408",
+      "Sharing": "7.798554063"
+    },
+    {
+      "cityName": "Xuancheng",
+      "score": "44.45406194",
+      "Innovation": "7.984711014",
+      "Coordination": "11.51615981",
+      "Green": "12.63364866",
+      "Openness": "4.101884672",
+      "Sharing": "8.217657785"
+    },
+    {
+      "cityName": "Anqing",
+      "score": "42.15954138",
+      "Innovation": "6.31143169",
+      "Coordination": "11.94378697",
+      "Green": "12.9406801",
+      "Openness": "1.878915545",
+      "Sharing": "9.084727081"
+    },
+    {
+      "cityName": "Bengbu",
+      "score": "41.46032516",
+      "Innovation": "9.27503809",
+      "Coordination": "9.938577556",
+      "Green": "10.16940307",
+      "Openness": "4.362879209",
+      "Sharing": "7.714427231"
+    },
+    {
+      "cityName": "Lu'an",
+      "score": "40.67985086",
+      "Innovation": "5.02512087",
+      "Coordination": "11.14396676",
+      "Green": "12.68995766",
+      "Openness": "3.363014374",
+      "Sharing": "8.457791194"
+    },
+    {
+      "cityName": "Chizhou",
+      "score": "39.60153618",
+      "Innovation": "6.964547288",
+      "Coordination": "9.483596573",
+      "Green": "13.34623761",
+      "Openness": "2.293069601",
+      "Sharing": "7.514085103"
+    },
+    {
+      "cityName": "Huaibei",
+      "score": "39.55404031",
+      "Innovation": "6.823214702",
+      "Coordination": "12.23917687",
+      "Green": "9.888705921",
+      "Openness": "2.215008836",
+      "Sharing": "8.387933974"
+    },
+    {
+      "cityName": "Fuyang",
+      "score": "39.19083477",
+      "Innovation": "4.67841538",
+      "Coordination": "10.79926001",
+      "Green": "9.96101253",
+      "Openness": "3.48148179",
+      "Sharing": "10.27066506"
+    },
+    {
+      "cityName": "Huainan",
+      "score": "37.91824469",
+      "Innovation": "4.684602786",
+      "Coordination": "12.02306935",
+      "Green": "9.298932352",
+      "Openness": "2.602041843",
+      "Sharing": "9.309598354"
+    },
+    {
+      "cityName": "Suzhou(Anhui)",
+      "score": "37.28140048",
+      "Innovation": "4.752342226",
+      "Coordination": "10.59762837",
+      "Green": "11.12060451",
+      "Openness": "2.322516036",
+      "Sharing": "8.488309334"
+    },
+    {
+      "cityName": "Bozhou",
+      "score": "37.24914834",
+      "Innovation": "4.124747966",
+      "Coordination": "10.46693194",
+      "Green": "11.11255665",
+      "Openness": "2.522078001",
+      "Sharing": "9.022833789"
+    }
+  ]

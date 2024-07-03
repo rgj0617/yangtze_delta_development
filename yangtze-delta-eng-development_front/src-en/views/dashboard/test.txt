@@ -1,0 +1,3192 @@
+<template>
+  <div class="container">
+    <homeHeader />
+    <div class="main">
+      <div class="section s1">
+        <div class="section-content">
+          <span class="title"
+            >The Yangtze River Delta High-Quality Development Evaluation
+            Report</span
+          >
+          <span class="subtitle">
+            This report, oriented towards the national and regional development
+            positioning and requirements of the Yangtze River Delta, adopts a
+            "top-down" policy interpretation method based on expert experience.
+            Supplemented by a "bottom-up" approach based on large-scale
+            geographic models and text theme mining techniques to generate a set
+            of methods that leverage "collective strength", a more credible
+            high-quality development evaluation index system.
+          </span>
+          <a class="bt1" @click="goTo('chapters')">Report</a>
+          <a class="bt2" @click="goTo('interactiveMap')">Result</a>
+        </div>
+        <div class="section-footer">
+          <div>Swipe to view more.</div>
+          <br />
+          <div class="line">
+            <ArrowDownOutlined style="fontsize: 30px" />
+          </div>
+          <div class="line">
+            <ArrowDownOutlined style="fontsize: 30px" />
+          </div>
+          <div class="line">
+            <ArrowDownOutlined style="fontsize: 30px" />
+          </div>
+        </div>
+      </div>
+      <div class="section-bg">
+        <div class="section s2">
+          <div class="section2-left">
+            <div class="section2-left-content">
+              <div class="section2-left-content-title1">
+                View Rankings & Scores
+              </div>
+              <div class="section2-left-content-title2">查看排名和得分</div>
+              <div class="section2-left-content-des">
+                The overall level of high-quality development of the Yangtze
+                River Delta (2023) is high, presenting a multi-dimensional
+                synergistic high-quality development of innovation,
+                co-ordination, green development, open development and shared
+                development
+              </div>
+              <div
+                class="section2-left-content-button"
+                @click="goTo('rankings')"
+              >
+                Explore
+              </div>
+            </div>
+          </div>
+          <div class="section2-right">
+            <img src="/home/banner1.png" alt="Description of the image" />
+          </div>
+        </div>
+        <div class="section s3">
+          <div class="section3-left">
+            <img src="/home/banner2.png" alt="Description of the image" />
+          </div>
+          <div class="section3-right">
+            <div class="section3-right-content">
+              <div class="section3-right-content-title1">
+                Explore Interactive Maps
+              </div>
+              <div class="section3-right-content-title2">探索交互式地图</div>
+              <div class="section3-right-content-des">
+                Our interactive map shows the quality development level
+                assessment scores and dimension descriptions for 41 cities in
+                the Yangtze River Delta. You can view the full or individual
+                dimension development level assessment results.
+              </div>
+              <div
+                class="section3-right-content-button"
+                @click="goTo('interactiveMap')"
+              >
+                Explore
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section s2">
+          <div class="section2-left">
+            <div class="section2-left-content">
+              <div class="section2-left-content-title1">
+                Explore data dashboard
+              </div>
+              <div class="section2-left-content-title2">体验数据大屏</div>
+              <div class="section2-left-content-des">
+                You can view the conclusion data of the report on the data
+                dashboard, including data charts and maps for the overall
+                assessment scores, evaluations for each dimension, and the
+                specific indicators that make up each dimension.
+              </div>
+              <div
+                class="section2-left-content-button"
+                @click="goTo('dataScreen')"
+              >
+                Explore
+              </div>
+            </div>
+          </div>
+          <div class="section2-right">
+            <img src="/home/banner3.png" alt="Description of the image" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <foot />
+</template>
+<script setup lang="ts">
+import { ArrowDownOutlined } from "@ant-design/icons-vue";
+import homeHeader from "@/components/header.vue";
+import foot from "@/components/foot.vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const goTo = (page: string) => {
+  let route = "/" + page;
+  router.push(route);
+};
+</script>
+<style lang="scss" scoped>
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-size: 62.5%;
+}
+img {
+  height: 80vh;
+  width: auto;
+  border-radius: 20px;
+  box-shadow: 4px 12px 12px rgba(0, 0, 0, 0.3);
+}
+@keyframes slideBackgroundColor {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  background: linear-gradient(to bottom right, #4378b4, #93d0e0, #adaed2);
+  background-size: 200% 200%;
+  animation: slideBackgroundColor 10s ease infinite;
+  &::-webkit-scrollbar {
+    width: 1px;
+  }
+  &::-moz-scrollbar {
+    width: 1px;
+  }
+}
+.header {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 5.5vh;
+  background: rgba(67, 120, 180, 0.8);
+  z-index: 2;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  .left-box {
+    height: 100%;
+    display: flex;
+    box-sizing: border-box;
+    .left-item {
+      height: 100%;
+      width: 7vw;
+      line-height: 5vh;
+      font-size: 2vh;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+      &.active {
+        color: #2c4b7f;
+        &:hover {
+          color: rgb(0, 182, 194);
+        }
+      }
+      &:hover {
+        transition: 0.5s;
+        color: #2c4b7f;
+      }
+    }
+  }
+  .right-box {
+    height: 100%;
+    .yes-login {
+      margin-top: 1.5vh;
+      display: flex;
+      .button-item:first-child {
+        height: 4vh;
+        width: 5vw;
+        background-color: rgb(0, 182, 194);
+        border-radius: 5px;
+        line-height: 4vh;
+        font-size: 1.6vh;
+        font-weight: 500;
+        text-align: center;
+        cursor: pointer;
+        margin-right: 0.5vw;
+        &:hover {
+          background-color: rgb(28, 160, 168);
+          transition: 0.5s;
+        }
+      }
+      .button-item:last-child {
+        height: 4vh;
+        width: 5vw;
+        background-color: rgb(72, 73, 82);
+        border-radius: 5px;
+        line-height: 4vh;
+        font-size: 1.6vh;
+        font-weight: 500;
+        text-align: center;
+        cursor: pointer;
+        margin-right: 0.5vw;
+        &:hover {
+          background-color: rgb(62, 62, 66);
+          transition: 0.5s;
+        }
+      }
+    }
+    .no-login {
+      display: flex;
+      justify-content: flex-end;
+      width: calc(12vw - 2vh);
+      padding: 1vh;
+      font-size: 2vh;
+      font-weight: 600;
+      .button-item {
+        height: 4vh;
+        width: 5vw;
+        background-color: rgb(0, 182, 194);
+        border-radius: 5px;
+        line-height: 4vh;
+        font-size: 1.6vh;
+        font-weight: 500;
+        text-align: center;
+        cursor: pointer;
+        margin-right: 1vw;
+        &:hover {
+          background-color: rgb(28, 160, 168);
+          transition: 0.5s;
+        }
+      }
+      .right-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1vw;
+        .iconButton {
+          position: absolute;
+          color: white;
+          font-size: 36px;
+          margin-top: -25px;
+          margin-left: -10px;
+        }
+      }
+    }
+  }
+}
+.main {
+  height: 400vh;
+  overflow-x: hidden;
+  .section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    &-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      width: 60vw;
+      height: 40vh;
+      z-index: 1;
+      .title {
+        text-align: center;
+        padding-top: 2vh;
+        height: 16vh;
+        width: 100%;
+        font-size: 6vh;
+        font-weight: 800;
+        color: white;
+      }
+      .subtitle {
+        height: 6vh;
+        width: 100%;
+        text-align: center;
+        font-size: 1vw;
+        font-weight: 500;
+        color: white;
+      }
+      a {
+        position: relative;
+        text-decoration: none;
+        font-size: 3em;
+        font-weight: 700;
+        transition: 0.5s;
+        padding: 10px 30px;
+        color: white;
+        overflow: hidden;
+        -webkit-box-reflect: below 1px linear-gradient(transparent, #0003);
+        &:hover {
+          border-radius: 10px;
+          cursor: pointer;
+          background: #21ebff;
+          color: #111;
+          box-shadow: 0 0 50px #21ebff;
+          transition-delay: 0.5s;
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 10px;
+          height: 10px;
+          border-top: 2px solid #21ebff;
+          border-left: 2px solid #21ebff;
+          transition: 0.5s;
+          transition-delay: 0.5s;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 10px;
+          height: 10px;
+          border-bottom: 2px solid #21ebff;
+          border-right: 2px solid #21ebff;
+          transition: 0.5s;
+          transition-delay: 0.5s;
+        }
+        &:hover::before {
+          border-radius: 10px;
+          width: 100%;
+          height: 100%;
+          transition-delay: 0s;
+        }
+        &:hover::after {
+          border-radius: 10px;
+          width: 100%;
+          height: 100%;
+          transition-delay: 0s;
+        }
+      }
+    }
+    &-footer {
+      position: absolute;
+      bottom: 10vh;
+      width: 100vw;
+      height: 8vh;
+      text-align: center;
+      font-size: 2vh;
+      color: white;
+    }
+  }
+  .s1 {
+    height: 100vh;
+  }
+  .section-bg {
+    position: relative;
+    height: 200vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: 4vh;
+  }
+  .s2 {
+    height: 100vh;
+    display: flex;
+    .section2-left {
+      position: relative;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &-content {
+        position: relative;
+        left: 5vw;
+        padding: 1vh 0vw 1vh 5vw;
+        width: 30vw;
+        height: 50vh;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+        &-title1 {
+          width: 100%;
+          height: 10vh;
+          font-size: 2.4vw;
+          font-weight: 800;
+        }
+        &-title2 {
+          width: 100%;
+          height: 10vh;
+          font-size: 3vw;
+          font-weight: 800;
+          background: linear-gradient(
+            to right,
+            rgb(79, 162, 236),
+            rgb(111, 249, 239)
+          );
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        &-des {
+          display: flex;
+          margin-top: 1vh;
+          margin-bottom: 1vh;
+          width: 80%;
+          height: 10vh;
+          font-size: 1.8vh;
+          font-weight: 500;
+          color: white;
+        }
+        &-button {
+          text-align: center;
+          line-height: 6vh;
+          margin-top: 4vh;
+          width: 8vw;
+          height: 6vh;
+          border-radius: 10px;
+          font-size: 2.4vh;
+          font-weight: 800;
+          text-align: center;
+          color: white;
+          cursor: pointer;
+          background: linear-gradient(
+            to right,
+            rgb(79, 162, 236, 0.9),
+            rgb(111, 249, 239, 0.9)
+          );
+          &:hover {
+            transition: 0.5s;
+            background: linear-gradient(
+              to right,
+              rgb(79, 162, 236),
+              rgb(111, 249, 239)
+            );
+          }
+        }
+        :deep(.anticon svg) {
+          color: #000;
+        }
+      }
+    }
+    .section2-right {
+      width: 50%;
+      height: 85%;
+      border-radius: 2vh;
+      background-image: url("../../assets/home/bg2.png");
+    }
+  }
+  .s3 {
+    height: 100vh;
+    display: flex;
+    .section3-left {
+      width: 50%;
+      height: 85%;
+      border-radius: 2vh;
+      background-image: url("../../assets/home/bg3.png");
+      display: flex; 
+      justify-content: flex-end; 
+    }
+    .section3-right {
+      position: relative;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &-content {
+        position: relative;
+        left: -5vw;
+        padding: 1vh 0vw 1vh 5vw;
+        width: 30vw;
+        height: 50vh;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+        &-title1 {
+          width: 100%;
+          height: 10vh;
+          font-size: 2.4vw;
+          font-weight: 800;
+        }
+        &-title2 {
+          width: 100%;
+          height: 10vh;
+          font-size: 3vw;
+          font-weight: 800;
+          background: linear-gradient(
+            to right,
+            rgb(79, 162, 236),
+            rgb(111, 249, 239)
+          );
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        &-des {
+          display: flex;
+          margin-top: 1vh;
+          margin-bottom: 1vh;
+          width: 80%;
+          height: 10vh;
+          font-size: 1.8vh;
+          font-weight: 500;
+          color: white;
+        }
+        &-button {
+          text-align: center;
+          line-height: 6vh;
+          margin-top: 4vh;
+          width: 8vw;
+          height: 6vh;
+          border-radius: 10px;
+          font-size: 2.4vh;
+          font-weight: 800;
+          text-align: center;
+          color: white;
+          cursor: pointer;
+          background: linear-gradient(
+            to right,
+            rgb(79, 162, 236),
+            rgb(111, 249, 239)
+          );
+          &:hover {
+            transition: background 1s;
+            background: linear-gradient(
+              to right,
+              rgb(79, 162, 236),
+              rgb(111, 249, 239)
+            );
+          }
+        }
+        :deep(.anticon svg) {
+          color: #000;
+        }
+      }
+    }
+  }
+  .bt1 {
+    margin-top: 13vh;
+    margin-right: 1vw;
+  }
+  .bt2 {
+    margin-top: 13vh;
+    margin-left: 1vw;
+    filter: hue-rotate(275deg);
+  }
+  .slide-show {
+    position: relative;
+    box-sizing: border-box;
+    height: 70vh;
+    .title {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 12%;
+      left: 50%;
+      font-size: 5.2vh;
+      font-weight: 600;
+      width: fit-content;
+      color: white;
+      span {
+        background: linear-gradient(
+          to right,
+          rgb(79, 162, 236),
+          rgb(111, 249, 239)
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+    .scroll {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 60%;
+      left: 50%;
+      display: flex;
+      width: 80vw;
+      height: 50vh;
+      overflow: hidden;
+    }
+    .img-box {
+      display: flex;
+      column-gap: 10px;
+    }
+    .img-box > div,
+    .img-box > div .bg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5vw;
+    }
+    .img-box .bg {
+      width: 20vw;
+      height: 100%;
+      filter: hue-rotate(1deg);
+      cursor: pointer;
+      transition: filter 0.5s;
+      img {
+        position: absolute;
+        border-radius: 10px 10px 0 0;
+        width: 100%;
+        top: 0%;
+        height: 60%;
+        object-fit: cover;
+        z-index: 1;
+      }
+      .description {
+        position: absolute;
+        background: linear-gradient(
+          to right,
+          rgb(79, 162, 236),
+          rgb(111, 249, 239)
+        );
+        border-radius: 10px;
+        width: 20vw;
+        height: 100%;
+        .small-title {
+          position: absolute;
+          top: 70%;
+          left: 10%;
+          font-size: 2vh;
+          font-weight: 600;
+        }
+        .small-tip {
+          position: absolute;
+          top: 78%;
+          left: 10%;
+          font-size: 1.4vh;
+          color: hsla(0, 0%, 100%, 0.8);
+        }
+      }
+    }
+    .scroll > div {
+      white-space: nowrap;
+      animation: animate var(--t) linear infinite;
+      animation-delay: calc(var(--t) * -1);
+    }
+    @keyframes animate {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+    .scroll > div:nth-child(2) {
+      animation: animate2 var(--t) linear infinite;
+      animation-delay: calc(var(--t) / -2);
+    }
+    @keyframes animate2 {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-200%);
+      }
+    }
+    .scroll:hover > div {
+      animation-play-state: paused;
+    }
+  }
+  .more-func {
+    position: relative;
+    box-sizing: border-box;
+    height: 115vh;
+    .title {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 5%;
+      left: 50%;
+      font-size: 5.2vh;
+      font-weight: 600;
+      width: fit-content;
+      color: white;
+      :last-child {
+        padding-left: 1vw;
+        background: linear-gradient(
+          to right,
+          rgb(79, 162, 236),
+          rgb(111, 249, 239)
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+    .big-container {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 32%;
+      left: 50%;
+      width: 50vw;
+      height: 45vh;
+      border-radius: 20px;
+      background-color: rgb(23, 26, 29);
+      img {
+        position: absolute;
+        height: 80%;
+        width: 50%;
+        right: 5%;
+        top: 10%;
+      }
+      .text {
+        .title {
+          position: absolute;
+          font-size: 2.4vh;
+          top: 25%;
+          left: 8%;
+          background: linear-gradient(
+            to right,
+            rgb(79, 162, 236),
+            rgb(111, 249, 239)
+          );
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        .tip {
+          color: white;
+          position: absolute;
+          font-size: 1.6vh;
+          top: 32%;
+          left: 3.5%;
+          width: 20vw;
+          span {
+            display: block;
+          }
+        }
+      }
+    }
+    .small-container {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 78%;
+      left: 50%;
+      width: 50vw;
+      height: 50vh;
+      color: white;
+      display: flex;
+      .small-box {
+        position: relative;
+        height: 100%;
+        width: 24vw;
+        border-radius: 20px;
+        background-color: rgb(23, 26, 29);
+        img {
+          width: 100%;
+          border-radius: 20px 20px 0 0;
+        }
+        .title {
+          position: absolute;
+          font-size: 2.4vh;
+          top: 65%;
+          left: 20%;
+          background: linear-gradient(
+            to right,
+            rgb(79, 162, 236),
+            rgb(111, 249, 239)
+          );
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        .tip {
+          position: absolute;
+          font-size: 1.6vh;
+          top: 70%;
+          left: 8%;
+          width: 20vw;
+        }
+      }
+      .small-box:last-child {
+        margin-left: 2vw;
+      }
+    }
+  }
+  .end-enter {
+    position: relative;
+    color: white;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 40vh;
+    .into-title {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 25%;
+      left: 50%;
+      font-size: 5.2vh;
+      font-weight: 600;
+      width: fit-content;
+      background: linear-gradient(
+        90deg,
+        white 0,
+        white 40%,
+        rgb(111, 249, 239, 0.7) 45%,
+        rgb(111, 249, 239, 0.9) 50%,
+        rgb(111, 249, 239, 0.7) 55%,
+        white 60%,
+        white 100%
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .enter-button {
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      line-height: 5vh;
+      margin-top: 2vh;
+      width: 8vw;
+      height: 5vh;
+      border-radius: 10px;
+      font-size: 2vh;
+      font-weight: 800;
+      text-align: center;
+      color: #000;
+      cursor: pointer;
+      background: linear-gradient(
+        to right,
+        rgb(79, 162, 236, 0.9),
+        rgb(111, 249, 239, 0.9)
+      );
+      &:hover {
+        transition: 0.5s;
+        background: linear-gradient(
+          to right,
+          rgb(79, 162, 236),
+          rgb(111, 249, 239)
+        );
+      }
+    }
+  }
+}
+.footer {
+  height: 13vh;
+  width: 100%;
+  position: relative;
+  .copyright {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 60vw;
+    color: white;
+  }
+}
+@media (max-width: 1000px) {
+  img {
+    width: 48vw;
+    height: auto;
+    box-shadow: 8px 12px 12px rgba(0, 0, 0, 0.3);
+  }
+  .main {
+    height: 255vh;
+    overflow: hidden;
+    .section {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: top center;
+      .section-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        width: 95vw;
+        height: 60vh;
+        z-index: 1;
+        .title {
+          height: 10vh;
+          width: 100%;
+          font-size: 11vw;
+          font-weight: 800;
+          color: white;
+        }
+        .subtitle {
+          height: 6vh;
+          width: 100%;
+          text-align: center;
+          font-size: 4vw;
+          font-weight: 500;
+          color: white;
+        }
+      }
+    }
+    .section-bg {
+      .s2 {
+        height: 50vh;
+        display: flex;
+        .section2-right {
+          display: flex;
+          flex-wrap: wrap;
+          align-content: center;
+          width: 50%;
+          border-radius: 2vh;
+        }
+        .section2-left {
+          position: relative;
+          width: 50%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &-content {
+            position: relative;
+            left: 0vw;
+            width: 50vw;
+            height: 70vh;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            &-title1 {
+              width: 100%;
+              font-size: 4.5vw;
+              height: 12vw;
+              font-weight: 800;
+            }
+            &-title2 {
+              width: 100%;
+              height: 7vw;
+              font-size: 5vw;
+              font-weight: 800;
+              background: linear-gradient(
+                to right,
+                rgb(79, 162, 236),
+                rgb(111, 249, 239)
+              );
+              background-clip: text;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            }
+            &-des {
+              display: flex;
+              margin-top: 1vh;
+              margin-bottom: 1vh;
+              width: 80%;
+              height: 10vh;
+              font-size: 2vw;
+              font-weight: 500;
+              color: white;
+            }
+            &-button {
+              line-height: 6vw;
+              width: 18vw;
+              height: 6vw;
+              border-radius: 10px;
+              font-size: 2.4vw;
+              font-weight: 800;
+              color: white;
+              cursor: pointer;
+              background: linear-gradient(
+                to right,
+                rgba(79, 162, 236, 0.9),
+                rgba(111, 249, 239, 0.9)
+              );
+            }
+          }
+        }
+      }
+      .s3 {
+        height: 50vh;
+        display: flex;
+        .section3-left {
+          display: flex;
+          flex-wrap: wrap;
+          align-content: center;
+          width: 50%;
+          border-radius: 2vh;
+        }
+        .section3-right {
+          position: relative;
+          width: 50%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &-content {
+            position: relative;
+            left: 0vw;
+            width: 50vw;
+            height: 70vh;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            &-title1 {
+              width: 100%;
+              font-size: 4.5vw;
+              height: 12vw;
+              font-weight: 800;
+            }
+            &-title2 {
+              width: 100%;
+              height: 7vw;
+              font-size: 5vw;
+              font-weight: 800;
+              background: linear-gradient(
+                to right,
+                rgb(79, 162, 236),
+                rgb(111, 249, 239)
+              );
+              background-clip: text;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            }
+            &-des {
+              display: flex;
+              margin-top: 1vh;
+              margin-bottom: 1vh;
+              width: 80%;
+              height: 10vh;
+              font-size: 2vw;
+              font-weight: 500;
+              color: white;
+            }
+            &-button {
+              line-height: 6vw;
+              width: 18vw;
+              height: 6vw;
+              border-radius: 10px;
+              font-size: 2.4vw;
+              font-weight: 800;
+              color: white;
+              cursor: pointer;
+              background: linear-gradient(
+                to right,
+                rgba(79, 162, 236, 0.9),
+                rgba(111, 249, 239, 0.9)
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</style>
+<template>
+  <div class="container">
+    <div class="head">
+      <homeHeader />
+    </div>
+    <div class="sectionContent">
+      <el-row class="normal">
+        <div class="information">
+          <el-card class="normal">
+            <el-collapse accordion v-model="activeName">
+              <el-collapse-item name="5">
+                <template #title>
+                  Comprehensive Evaluation
+                  <el-icon><star-filled /></el-icon>
+                </template>
+                <div>
+                  The average score for high-quality development in the Yangtze
+                  River Delta (2023) is 55.38. Shanghai ranks the highest in
+                  high-quality development with a score of 87.82; Jiangsu and
+                  Zhejiang follow, with average scores of 61.35 and 60.50,
+                  respectively; Anhui has a relatively lower level of
+                  high-quality development, with an average score of 44.98,
+                  which is about half of Shanghai's level.
+                </div>
+              </el-collapse-item>
+              <el-collapse-item title="Innovation" name="0">
+                <div>
+                  The level of innovation development varies significantly among
+                  cities in the Yangtze River Delta, with high levels of
+                  innovation primarily concentrated in a few core cities of the
+                  region. Spatially, the high-scoring cities are mainly
+                  concentrated in Shanghai and its surrounding cities, as well
+                  as the provincial capitals, also showing a "flying geese"
+                  formation distribution.
+                </div>
+              </el-collapse-item>
+              <el-collapse-item title="Coordination" name="1">
+                <div>
+                  Most cities within the region show a higher level of
+                  coordinated development. Spatially, cities with high levels of
+                  coordinated development are mainly concentrated in the
+                  northern part of Zhejiang Province and the southern cities of
+                  Jiangsu Province, showing a strip-like continuous
+                  distribution.
+                </div>
+              </el-collapse-item>
+              <el-collapse-item title="Green" name="2">
+                <div>
+                  The level of green development shows minor differences among
+                  cities in the Yangtze River Delta, with the smallest gap among
+                  the five dimensions. Spatially, cities with high levels of
+                  green development are widely distributed, with block-like
+                  distributions within each province and region.
+                </div>
+              </el-collapse-item>
+              <el-collapse-item title="Openness" name="3">
+                <div>
+                  There is a significant difference in the level of openness
+                  development among cities in the Yangtze River Delta, with high
+                  scores concentrated in core cities such as Shanghai, Nanjing,
+                  Hangzhou, and Suzhou. Spatially, the high-scoring cities are
+                  concentrated in the eastern part of the Yangtze River Delta,
+                  with Shanghai as the main open core extending to the
+                  surrounding areas.
+                </div>
+              </el-collapse-item>
+              <el-collapse-item title="Sharing" name="4">
+                <div>
+                  There are some differences in the level of shared development
+                  among cities in the Yangtze River Delta, and Shanghai's level
+                  of shared development is significantly higher than other
+                  cities. Spatially, high-scoring cities are concentrated around
+                  Shanghai and its neighboring cities, including southern
+                  Jiangsu and northern Zhejiang, showing a strip-like continuous
+                  distribution.
+                </div>
+              </el-collapse-item>
+            </el-collapse>
+          </el-card>
+        </div>
+        <div class="yangtzeMap">
+          <yangtzeMap :currentMap="activeName" />
+        </div>
+      </el-row>
+    </div>
+  </div>
+</template>
+<script setup>
+import homeHeader from "@/components/header.vue";
+import yangtzeMap from "@/components/map.vue";
+import { ref } from "vue";
+const activeName = ref("5");
+</script>
+<style scoped lang="scss">
+:deep(.el-collapse-item__header) {
+  font-size: 0.7vw;
+  margin: 8px 0;
+  text-align: center;
+  font-weight: bold;
+}
+.container {
+  display: hidden;
+  height: 100vh;
+  width: 100vw;
+  .head {
+    height: 5.5vh;
+    width: 100%;
+  }
+  .normal {
+    width: 100%;
+    height: 100%;
+  }
+  .sectionContent {
+    width: 100%;
+    height: 94vh;
+  }
+  .information {
+    height: 100%;
+    width: 15%;
+  }
+  .yangtzeMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 85%;
+  }
+}
+@media (max-width: 1000px) {
+  :deep(.el-collapse-item__header) {
+    font-size: 0.9vh;
+    margin: 8px 0;
+    font-weight: bold;
+  }
+  .container {
+    height: 100vh;
+    width: 100vw;
+    .head {
+      height: 3vh;
+      width: 100%;
+    }
+    .sectionContent {
+      width: 100%;
+      height: 96vh;
+      .normal {
+        width: 100%;
+        height: 100%;
+        .information {
+          height: 100%;
+          width: 20%;
+        }
+        .yangtzeMap {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 80%;
+        }
+      }
+    }
+  }
+}
+</style>
+<template>
+  <homeHeader />
+  <chaptersHeader
+    ref="chaptersHeaderRef"
+    :chapterTitle="chapterTitle"
+    :chapterDescription="chapterDescription"
+    class="chaptersHead"
+  />
+  <div class="ours" ref="oursRef">
+    <div class="container">
+      <div class="title">
+        Open Geographical Modeling and Simulation Team (OpenGMS)
+      </div>
+      <el-divider></el-divider>
+      <div class="content">
+        The Open Geographical Modeling and Simulation Team (OpenGMS) is
+        dedicated to advancing the development and application of geographical
+        modeling technology, and building an open research platform that
+        integrates model development, sharing, and application. The team members
+        have rich theoretical and practical experience, focusing on the
+        integration of theoretical research and practical application, exploring
+        the use of models in fields such as climate change, urban planning, and
+        environmental protection.
+      </div>
+      <div class="content">
+        The team achieves the coupling integration of model resources through an
+        open network environment, promoting smart sharing and open
+        collaboration, continuously enhancing the accuracy and reliability of
+        models, and providing support for related fields. At the same time, it
+        actively promotes the development of domestic geographical modeling
+        software, builds an independent model ecosystem, enhances international
+        influence, and promotes the international application of domestic models
+        through training and international cooperation, contributing Chinese
+        wisdom and solutions.
+      </div>
+      <div class="info">
+        phone：(025)85891347<br />
+        email：opengms@126.com<br />
+        address： Wenyuan Road, Qixia District, Nanjing, Jiangsu Province,
+        School of Geographic Sciences, Nanjing Normal University
+      </div>
+    </div>
+    <div class="container">
+      <div class="title">
+        Yangtze River Delta Sub-center, National Earth System Science Data
+        Center
+      </div>
+      <el-divider></el-divider>
+      <div class="content">
+        The Yangtze River Delta Sub-center of the National Earth System Science
+        Data Center was established based on Nanjing Normal University. It is
+        managed by the Key Laboratory of Virtual Geographic Environment of the
+        Ministry of Education and the Jiangsu Provincial Key Laboratory of
+        Geographic Information Science. The goal is to build a long-term,
+        stable, and resource-rich data service website platform. This center
+        focuses on tracking hot issues, developing governance projects and
+        engineering efforts in the Yangtze River Delta region. It actively
+        provides online data services and integrates multi-disciplinary data
+        resources in geology, geography, atmospheric science, environmental
+        science, and marine science. These resources include climate,
+        atmospheric environment, water resources, soil resources, and ecological
+        environments. The center aims to train a cadre of specialists skilled in
+        data integration, data services, and data sharing, and to promote the
+        sustainable, stable, and healthy development of sharing projects.
+      </div>
+      <div class="info">
+        phone：(025)85891253<br />
+        email：geodata@njnu.edu.cn<br />
+        address： Wenyuan Road, Qixia District, Nanjing, Jiangsu Province,
+        School of Geographic Sciences, Nanjing Normal University
+      </div>
+    </div>
+    <div class="container">
+      <div class="title">
+        The CBAS-Nanjing Normal University Node (Sustainable Development
+        Collaborative Trade-offs and Integrated Forecasting Science and
+        Education Node)
+      </div>
+      <el-divider></el-divider>
+      <div class="content">
+        The Nanjing Normal University node center is committed to fully
+        leveraging the comprehensive research strengths of the university's
+        geography department. It focuses on multi-indicator cross-integration
+        modeling of SDGs as the entry point, with sustainable development
+        dynamic simulation and scenario analysis at its core, and aims to build
+        an open scenario prediction and decision-support platform for
+        sustainable development digital governance. Leveraging Nanjing Normal
+        University's excellent educational resources, the center cultivates
+        talents in various SDGs-related fields at multiple levels, enhances
+        academic exchanges and visits both domestically and internationally,
+        conducts education and training on relevant theories and model
+        applications, and promotes the transformation of data into knowledge.
+      </div>
+      <div class="info">
+        phone：(025)85891347<br />
+        email：caomin@njnu.edu.cn<br />
+        address：Wenyuan Road, Qixia District, Nanjing, Jiangsu Province, School
+        of Geographic Sciences, Nanjing Normal University
+      </div>
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+import homeHeader from "@/components/header.vue";
+import chaptersHeader from "../chapters/chaptersHeader.vue";
+import { ref } from "vue";
+const chapterTitle = ref("About us");
+const chapterDescription = ref(
+  "School of Geographic Sciences, Nanjing Normal University, Open Geographical Modeling and Simulation Team (OpenGMS), Yangtze River Delta Data Center Office, CBAS-Nanjing Normal University Node"
+);
+</script>
+<style scoped lang="scss">
+.chaptersHead {
+  margin-top: 5.5vh;
+}
+.ours {
+  background-color: #f2f4f9;
+  .container {
+    background-color: #fff;
+    width: 50vw;
+    margin: 0 25%;
+    height: 100%;
+    padding: 5vh;
+    .title {
+      color: #005a86;
+      font-weight: bold;
+      font-size: x-large;
+      margin: 3vh 0;
+    }
+    .info {
+      color: #005a86;
+      font-weight: bold;
+      line-height: 3vh;
+      margin: 1vh 0;
+    }
+    .content {
+      text-indent: 2em;
+      margin: 1vh 0;
+      line-height: 2.5vh;
+    }
+  }
+}
+@media (max-width: 1000px) {
+  .chaptersHead {
+    margin-top: 3vh;
+  }
+  .ours {
+    background-color: #f2f4f9;
+    .container {
+      background-color: #fff;
+      width: 80vw;
+      margin: 0 0%;
+      height: 100%;
+      padding: 10vw;
+      .title {
+        color: #005a86;
+        font-weight: bold;
+        font-size: x-large;
+        margin: 3vh 0;
+      }
+      .info {
+        color: #005a86;
+        font-weight: bold;
+        line-height: 3vh;
+        margin: 1vh 0;
+      }
+      .content {
+        text-indent: 2em;
+        margin: 1vh 0;
+        line-height: 2.5vh;
+      }
+    }
+  }
+}
+</style>
+<template>
+  <div class="container">
+    <div class="head">
+      <homeHeader />
+    </div>
+    <div class="sectionContent">
+      <span class="title"> Rankings </span>
+      <span class="description">
+        The Yangtze River Delta High-Quality Development (2023) comprehensive
+        evaluation scores of 41 cities ranked
+      </span>
+      <br />
+    </div>
+    <el-tabs v-model="activeName" class="tabContent">
+      <el-tab-pane label="Comprehensive Ranking" name="first" class="ranking">
+        <div class="dataTable">
+          <div class="description">
+            Cities are ranked according to their comprehensive scores. The
+            comprehensive score measures the overall progress towards achieving
+            all high-quality development goals. The score can be interpreted as
+            the percentage of high-quality development goals achieved. A score
+            of 100 indicates that all high-quality development goals have been
+            fully realized.
+          </div>
+          <dataTable />
+        </div>
+      </el-tab-pane>
+      <el-tab-pane
+        label="Explore the rankings of each dimension"
+        name="second"
+        class="ranking"
+      >
+        <div class="dataTable">
+          <div class="description">
+            Cities are ranked based on their comprehensive scores. The
+            comprehensive score is composed of five dimensions: "Innovation,"
+            "Coordination," "Green," "Openness," and "Sharing," each dimension
+            scoring from 0 to 20 points. A score of 20 points indicates that all
+            targets for that dimension within the high-quality development goals
+            have been fully achieved.
+          </div>
+          <dimensionTable />
+        </div>
+      </el-tab-pane>
+    </el-tabs>
+  </div>
+</template>
+<script setup>
+import homeHeader from "@/components/header.vue";
+import { ref } from "vue";
+import dataTable from "../rankings/rankingTable.vue";
+import dimensionTable from "../rankings/dimensionsRanking.vue";
+const activeName = ref("first");
+</script>
+<style lang="scss" scoped>
+:deep(.el-tabs__item) {
+  width: 25vw; 
+  font-size: 1.8vh;
+  font-weight: bold;
+}
+.head {
+  height: 5.5vh;
+  width: 100%;
+}
+.sectionContent {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 1.5% 25% 0.5% 25%;
+  .title {
+    font-size: 5vh;
+    font-weight: bold;
+  }
+  .description {
+    color: rgb(142, 142, 142);
+    font-size: 1.5vh;
+    font-weight: 300;
+    margin-top: 1.2%;
+  }
+}
+.tabContent {
+  margin: 1.5% 25% 0.5% 25%;
+  display: flex;
+  flex-wrap: wrap;
+  width: 50vw;
+  .description {
+    color: rgb(142, 142, 142);
+    font-size: 1.5vh;
+    font-weight: 300;
+    margin-top: 1.2%;
+  }
+  .dataTable {
+    margin: 0.5% 0;
+    width: 49.5vw;
+    .description {
+      padding-bottom: 2%;
+      line-height: 1.5vh;
+      font-size: 1.2vh;
+      font-weight: 400;
+    }
+  }
+}
+@media (max-width: 1000px) {
+  :deep(.el-tabs__item) {
+    width: 47.5vw;
+    font-size: 2.5vw;
+    font-weight: bold;
+  }
+  .head {
+    height: 5vh;
+    width: 100%;
+  }
+  .sectionContent {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 1.5% 5% 0.5% 5%;
+    .title {
+      font-size: 5vw;
+      font-weight: bold;
+    }
+    .description {
+      color: rgb(142, 142, 142);
+      font-size: 1.6vw;
+      font-weight: 500;
+      margin-top: 1.2%;
+    }
+  }
+  .tabContent {
+    margin: 1.5% 2.5% 0.5% 2.5%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 95vw;
+    .ranking {
+      .dataTable {
+        margin: 0.5% 0;
+        width: 95vw;
+        .description {
+          padding-bottom: 2%;
+          line-height: 1.4vw;
+          font-size: 1.4vw;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+}
+</style>
+<template>
+  <div class="container">
+    <div class="head">
+      <homeHeader />
+    </div>
+    <div class="sectionContent">
+      <span class="title"> Resource Download </span>
+      <span class="description">
+        Download the "Yangtze River Delta High-Quality Development (2023)
+        Evaluation Research Report" along with related data and materials.
+      </span>
+      <br />
+      <el-divider>
+        <div class="dividerTitle">Regional Planning, Reports</div>
+      </el-divider>
+    </div>
+    <div class="download">
+      <el-row class="row" :gutter="0">
+        <el-col
+          v-for="(item, i) in urlReport"
+          :span="6"
+          class="chapter-col"
+          justify="center"
+          :key="i"
+        >
+          <div class="singleDownload" @click="downloadByUrl(item.url)">
+            <div class="card-image-container">
+              <img :src="reportPic[i]" class="card-image" />
+            </div>
+            <div class="description">
+              {{ item.reportName }}
+            </div>
+          </div>
+        </el-col>
+      </el-row>
+      <br />
+      <el-divider class="divider">
+        <div class="dividerTitle">Download data related to this report</div>
+      </el-divider>
+      <br />
+      <el-row class="row" :gutter="0">
+        <el-col
+          v-for="(item, i) in urlData"
+          :span="12"
+          class="chapter-col"
+          justify="center"
+          :key="i"
+        >
+          <div class="singleDownload">
+            <a :href="item.url" target="_blank">
+              <div class="card-image-container webContainer">
+                <img src="/download/data1.png" class="card-image" />
+              </div>
+              <div class="description">
+                {{ item.dataName }}
+              </div>
+            </a>
+          </div>
+        </el-col>
+      </el-row>
+      <br />
+      <el-divider class="divider">
+        <div class="dividerTitle">Explore more data and model platforms</div>
+      </el-divider>
+      <br />
+      <el-row class="row" :gutter="0">
+        <el-col
+          v-for="(item, i) in urlWeb"
+          :span="12"
+          class="chapter-col"
+          justify="center"
+          :key="i"
+        >
+          <div class="singleDownload">
+            <a :href="item.url" target="_blank">
+              <div class="card-image-container webContainer">
+                <img :src="webPic[i]" class="card-image" />
+              </div>
+              <div class="description">
+                {{ item.webName }}
+              </div>
+            </a>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+  </div>
+</template>
+<script setup>
+import homeHeader from "@/components/header.vue";
+import { ref } from "vue";
+const webPic = ref([]);
+const reportPic = ref([]);
+Promise.all([import("/download/web1.png"), import("/download/web2.png")]).then(
+  (images) => {
+    webPic.value = images.map((image) => image.default);
+  }
+);
+Promise.all([
+  import("/download/report1.png"),
+  import("/download/report2.png"),
+  import("/download/report3.png"),
+  import("/download/report4.png"),
+  import("/download/report5.png"),
+  import("/download/report6.png"),
+  import("/download/report7.png"),
+  import("/download/report9.png"),
+  import("/download/report10.png"),
+  import("/download/report11.png"),
+  import("/download/report12.png"),
+  import("/download/report13.png"),
+]).then((images) => {
+  reportPic.value = images.map((image) => image.default);
+});
+const urlReport = ref([
+  {
+    reportName:
+      "Yangtze River Delta High-Quality Development Evaluation Study Report (2023)",
+    url: "http:
+  },
+  {
+    reportName: "Global Cities under the 'Belt and Road' Initiative (2022)",
+    url: "http:
+  },
+  {
+    reportName:
+      "Yangtze River Delta Government Data Open Integration Report (2020)",
+    url: "http:
+  },
+  {
+    reportName:
+      "Yangtze River Delta Regional Collaborative Innovation Index (2022 Simplified)",
+    url: "http:
+  },
+  {
+    reportName: "China Urban Prosperity and Vitality Assessment Report (2022)",
+    url: "http:
+  },
+  {
+    reportName:
+      "Yangtze River Economic Belt High-Quality Development Evaluation Study Report (2022)",
+    url: "http:
+  },
+  {
+    reportName:
+      "Yangtze River Delta High-Quality Development Index Report (2020)",
+    url: "http:
+  },
+  {
+    reportName:
+      "Ministry of Science and Technology Notification on Issuing 'Development Plan for the Yangtze River Delta Science and Technology Innovation Community'",
+    url: "http:
+  },
+  {
+    reportName: "Yangtze River Delta Urban Agglomeration Development Plan",
+    url: "http:
+  },
+  {
+    reportName:
+      "Outline of the Regional Integration Development Plan of the Yangtze River Delta",
+    url: "http:
+  },
+  {
+    reportName:
+      "Yangtze River Delta Ecological and Green Integrated Development Demonstration Zone National Territory Spatial Master Plan (2021–2035)",
+    url: "http:
+  },
+  {
+    reportName:
+      "General Plan for the Yangtze River Delta Ecological and Green Integrated Development Demonstration Zone",
+    url: "http:
+  },
+]);
+const urlData = ref([
+  {
+    dataName:
+      "Yangtze River Delta High-Quality Development Evaluation Indicator System Data Download",
+    url: "http:
+  },
+]);
+const urlWeb = ref([
+  {
+    webName:
+      "Explore -> OpenGMS Open Geospatial Modeling and Simulation Platform",
+    url: "https:
+  },
+  {
+    webName: "Explore -> Yangtze River Delta Data Center",
+    url: "http:
+  },
+]);
+const downloadByUrl = (url) => {
+  try {
+    const element = document.createElement("a");
+    element.setAttribute("href", url);
+    element.style.display = "none";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  } catch (error) {
+    console.error("下载文件时出错：", error);
+  }
+};
+</script>
+<style scoped lang="scss">
+.divider {
+  margin-top: 10vh;
+}
+.dividerTitle {
+  font-weight: bold;
+  font-size: 1vw;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.homeHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999; 
+}
+.head {
+  width: 100%;
+  background-color: white;
+  height: 5.5vh;
+  width: 100%;
+}
+.download {
+  margin: 0.5% 25%;
+  .chapter-col {
+    :hover {
+      background: #ebebeb;
+      transition: background-color 0.8s;
+    }
+    .singleDownload {
+      width: 96%;
+      height: 96%;
+      margin: 2%;
+      cursor: pointer;
+      padding-top: 10%;
+      a {
+        color: black;
+        text-decoration: none;
+      }
+      .description {
+        font-size: 1.5vh;
+        margin-top: 10%;
+        text-align: center;
+      }
+      .card-image-container {
+        padding: 0px;
+        margin-left: 25%;
+        width: 50%;
+        box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.2);
+        height: auto;
+        display: flex;
+        justify-content: center;
+        overflow: visible;
+        :hover {
+          transform: scale(1.25);
+          transition: transform 0.6s;
+        }
+        .card-image {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+      .webContainer {
+        :hover {
+          transform: scale(1.6);
+          transition: transform 0.8s;
+        }
+      }
+    }
+  }
+}
+.sectionContent {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 1.5% 25% 0.5% 25%;
+  .title {
+    font-size: 5vh;
+    font-weight: bold;
+  }
+  .description {
+    color: rgb(142, 142, 142);
+    font-size: 1.5vh;
+    font-weight: 300;
+    margin-top: 1.2%;
+  }
+}
+@media (max-width: 1000px) {
+  .divider {
+    margin-top: 5vh;
+  }
+  .download {
+    margin: 0.5% 0;
+    .chapter-col {
+      :hover {
+        background: #ebebeb;
+        transition: background-color 0.8s;
+      }
+      .singleDownload {
+        width: 96%;
+        height: 96%;
+        margin: 2%;
+        cursor: pointer;
+        padding-top: 10%;
+        a {
+          color: black;
+          text-decoration: none;
+        }
+        .description {
+          font-size: 1.5vh;
+          margin-top: 10%;
+          text-align: center;
+        }
+        .card-image-container {
+          padding: 0px;
+          width: 50%;
+          box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.2);
+          height: auto;
+          display: flex;
+          justify-content: center;
+          overflow: visible;
+          :hover {
+            transform: scale(1.25);
+            transition: transform 0.6s;
+          }
+          .card-image {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+        .webContainer {
+          :hover {
+            transform: scale(1.6);
+            transition: transform 0.8s;
+          }
+        }
+      }
+    }
+  }
+  .sectionContent {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 1.5% 0 0.5% 5%;
+    .title {
+      font-size: 5vw;
+      font-weight: bold;
+    }
+    .description {
+      color: rgb(142, 142, 142);
+      font-size: 1.6vw;
+      font-weight: 500;
+      margin-top: 1.2%;
+    }
+  }
+  .head {
+    width: 100%;
+    background-color: white;
+    height: 5vh;
+    width: 100%;
+  }
+}
+</style>
+<style lang="scss" scoped>
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+}
+.charts {
+  width: 100%;
+  height: 100%;
+}
+.mapBorder {
+  box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+.chartsRow {
+  width: 100%;
+  height: 100%;
+}
+.head {
+  width: 100%;
+  background-color: white;
+}
+.foot {
+  width: 100%;
+  height: 0.0001%;
+  text-align: center;
+  font-size: 16px;
+}
+.title {
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;
+  height: 6%;
+  color: #2f89cf;
+  font-size: 2vh;
+  padding: 0.5vh;
+  font-weight: bold;
+}
+.bars {
+  height: 93%;
+  width: 90%;
+  margin-left: 5%;
+}
+.mapMiddle {
+  height: 83%;
+}
+.mapBottom {
+  height: 8%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.introduce {
+  height: 38vh;
+  position: relative;
+}
+.piesOrBar {
+  height: 53%;
+}
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pieSelect {
+  width: 20%;
+  align-items: center; 
+  justify-content: center; 
+}
+.pie-item {
+  width: 6.8vw;
+  height: 6.8vw;
+  position: relative;
+}
+.pieItems {
+  height: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.pieLegend {
+  width: 100%;
+  height: 8%;
+}
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 200px;
+  margin: 0;
+}
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: #d3dce6;
+}
+.el-carousel__item--card {
+  height: 50%;
+}
+.el-carousel__item--card {
+  margin-top: 4%;
+}
+.pieCard {
+  width: 86%;
+  height: 88%;
+  margin: 0 5%;
+  padding: 1% 2%;
+  position: relative;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  overflow: auto;
+}
+.pieBackgroundImage {
+  width: 90%;
+  height: 90%;
+  margin: 0 5%;
+  object-fit: cover;
+  z-index: 0;
+  position: absolute;
+  border-radius: 10px;
+}
+.el-main {
+  overflow: auto;
+}
+.mapboxBorder {
+  height: 100%;
+  width: 98%;
+  margin: 0 1%;
+  box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+:deep(.echarts-legend .zr-text) {
+  display: none;
+}
+@media (max-width: 1000px) {
+  .leftRanking {
+    height: 100vh;
+  }
+  .middleMap {
+    height: 100vh;
+  }
+  .rightPie {
+    height: 100vh;
+  }
+  .charts {
+    margin: 1vh 0;
+  }
+  .pieCard {
+    width: 90%;
+    height: 90%;
+    margin: 0 5%;
+    position: relative;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    overflow: auto;
+    li {
+      margin-bottom: 2vw;
+    }
+    ul {
+      font-size: 3vw;
+      line-height: 3.6vw;
+    }
+  }
+}
+</style>
+<template>
+  <div style="width: 100vw; height: 100vh">
+    <el-container style="width: 100%; height: 100%">
+      <div class="head" style="height: 5.5vh; width: 100%">
+        <homeHeader></homeHeader>
+      </div>
+      <el-main>
+        <el-row class="chartsRow" :gutter="20">
+          <el-col :span="isMobile ? 24 : 6">
+            <div class="charts mapBorder leftRanking">
+              <div class="title">
+                Yangtze River Delta High-Quality Development Evaluation Ranking
+              </div>
+              <div class="bars" id="bars"></div>
+            </div>
+          </el-col>
+          <el-col :span="isMobile ? 24 : 10">
+            <div class="charts mapBorder middleMap">
+              <div class="title">
+                Spatial Distribution of High-Quality Development Level in the
+                Yangtze River Delta
+              </div>
+              <div class="mapMiddle">
+                <div class="mapboxBorder">
+                  <div
+                    id="mapbox"
+                    style="width: 100%; height: 100%; border-radius: 8px"
+                  ></div>
+                </div>
+              </div>
+              <div class="mapBottom">
+                <el-radio-group v-model="radio" @change="handleRadioChange">
+                  <el-radio :label="5" class="radio-item"
+                    >Comprehensive</el-radio
+                  >
+                  <el-radio :label="0" class="radio-item">Innovation</el-radio>
+                  <el-radio :label="1" class="radio-item"
+                    >Coordination</el-radio
+                  >
+                  <el-radio :label="2" class="radio-item">Green</el-radio>
+                  <el-radio :label="3" class="radio-item">Openness</el-radio>
+                  <el-radio :label="4" class="radio-item">Sharing</el-radio>
+                </el-radio-group>
+              </div>
+            </div>
+          </el-col>
+          <el-col :span="isMobile ? 24 : 8">
+            <div class="charts mapBorder rightPie">
+              <div class="title">
+                Details of the High-Quality Development Evaluation in the
+                Yangtze River Delta
+              </div>
+              <div class="introduce">
+                <img
+                  :src="backgroundUrl"
+                  class="pieBackgroundImage"
+                  alt="Background Image"
+                />
+                <el-card class="pieCard" v-if="radio == 5">
+                  Shanghai is the core of high-quality development in the
+                  Yangtze River Delta cities, with the strongest open economy
+                  and the most extensive public services in the region. However,
+                  due to its absolute advantageous position, its score in
+                  coordinated development is relatively low.
+                  <br />
+                  <br />
+                  Nanjing also shows a relatively balanced level of high-quality
+                  development, with high evaluation results in all dimensions,
+                  and performs better than Shanghai in terms of coordinated
+                  development and green development.
+                  <br />
+                  <br />
+                  Hangzhou is on par with Nanjing, also showing a relatively
+                  balanced level of high-quality development, with an emphasis
+                  on innovation development, green development, and coordinated
+                  development dimensions.
+                  <br />
+                  <br />
+                  Hefei exhibits strong competitiveness in the three dimensions
+                  of innovation development, coordinated development, and green
+                  development, but still needs to make efforts in the aspects of
+                  open development and sharing development.
+                  <br />
+                  <br />
+                </el-card>
+                <el-card class="pieCard" v-if="radio == 0">
+                  The levels of innovative development among the cities in the
+                  Yangtze River Delta vary significantly, with cities having
+                  high levels of innovative development mainly concentrated in a
+                  few core regional cities.
+                  <br />
+                  <br />
+                  In terms of spatial distribution, high-scoring cities are
+                  primarily concentrated in Shanghai and its neighboring cities,
+                  as well as in the provincial capitals, also showing a "goose
+                  formation" pattern of distribution along axes.
+                  <br />
+                  <br />
+                  Hangzhou, Shanghai, Suzhou, Nanjing, and Hefei have
+                  significantly higher scores than other cities, belonging to
+                  the first echelon and are the main engines of innovation
+                  development in the Yangtze River Delta; Ningbo, Wuhu, Wuxi,
+                  and Changzhou belong to the second echelon.
+                  <br />
+                  <br />
+                  The remaining 32 cities are categorized into the third,
+                  fourth, to fifth echelons, with relatively lower levels of
+                  innovative development.
+                  <br />
+                  <br />
+                </el-card>
+                <el-card class="pieCard" v-if="radio == 1">
+                  Most cities in the region generally exhibit a high level of
+                  coordinated development. In terms of spatial distribution,
+                  cities with high levels of coordinated development are mainly
+                  concentrated in the northern part of Zhejiang Province and the
+                  southern part of Jiangsu Province, showing a patchy and
+                  contiguous distribution.
+                  <br />
+                  <br />
+                  The top 10 cities in the Yangtze River Delta for coordinated
+                  development are Changzhou, Nanjing, Hangzhou, Suzhou, Ningbo,
+                  Jiaxing, Hefei, Shaoxing, and Huzhou, among which cities in
+                  Zhejiang Province account for half, indicating that Zhejiang
+                  Province has a relatively high level of coordinated
+                  development.
+                  <br />
+                  <br />
+                  In terms of internal disparities, the gradient distribution of
+                  the cities' coordinated development scores is relatively
+                  gentle. Changzhou, Nanjing, Hangzhou, Suzhou, Ningbo, Jiaxing,
+                  Hefei, Shaoxing, and Huzhou belong to the first echelon.
+                  Huzhou, Wuxi, Zhoushan, Yangzhou, Jinhua, Zhenjiang, Wenzhou,
+                  and Shanghai belong to the second echelon, while the remaining
+                  25 cities are distributed across the third, fourth, and fifth
+                  echelons.
+                  <br />
+                  <br />
+                </el-card>
+                <el-card class="pieCard" v-if="radio == 2">
+                  The differences in green development levels among the cities
+                  in the Yangtze River Delta are relatively small, with the
+                  internal disparities being the smallest among the five
+                  dimensions. In terms of spatial distribution, cities with high
+                  levels of green development are widely distributed, forming
+                  patches within the regions of each province and city.
+                  <br />
+                  <br />
+                  In particular, the top 10 cities for green development in the
+                  Yangtze River Delta are Hangzhou, Huangshan, Zhoushan, Wuxi,
+                  Nanjing, Hefei, Ningbo, Wuhu, and Shanghai. Against the
+                  backdrop of the overall high level of green development in the
+                  Yangtze River Delta, these cities possess even more superior
+                  capabilities in green development.
+                  <br />
+                  <br />
+                  The gradient changes within the region are relatively small.
+                  Hangzhou, Huangshan, Zhoushan, Wuxi, Nanjing, Hefei, and
+                  Ningbo belong to the first echelon, while Wuhu, Shanghai,
+                  Yangzhou, Suzhou, Changzhou, and Wenzhou belong to the second
+                  echelon. The remaining 28 cities are distributed across the
+                  third, fourth, and fifth echelons. The scores for green
+                  development levels among and within each echelon change
+                  little, showing an overall high level of green development.
+                  <br />
+                </el-card>
+                <el-card class="pieCard" v-if="radio == 3">
+                  There is a significant difference in the level of open
+                  development among the cities in the Yangtze River Delta, with
+                  high-scoring cities concentrated in core cities such as
+                  Shanghai, Nanjing, Hangzhou, and Suzhou. In terms of spatial
+                  distribution, high-scoring cities are concentrated in the
+                  eastern part of the Yangtze River Delta, extending from
+                  Shanghai, the main core of openness, to its surrounding areas.
+                  <br />
+                  <br />
+                  In particular, the top 10 cities for open development in the
+                  Yangtze River Delta are Shanghai, Nanjing, Hangzhou, Suzhou,
+                  Ningbo, Wuxi, Jiaxing, Changzhou, and Zhoushan. Shanghai's
+                  level of openness is significantly higher than other cities,
+                  scoring full marks; apart from a few core cities, the level of
+                  open development in other cities remains relatively low.
+                  <br />
+                  <br />
+                  Overall, the scores for the level of open development among
+                  the cities show a significant gradient differentiation and
+                  exhibit a clear polarization phenomenon: Shanghai, Nanjing,
+                  Hangzhou, and Suzhou belong to the first echelon; Ningbo,
+                  Wuxi, Jiaxing, Changzhou, and Zhoushan, along with Hefei,
+                  Nantong, and Xuzhou, belong to the second echelon; the
+                  remaining 29 cities are distributed across the third, fourth,
+                  and fifth echelons, with scores not reaching half of the first
+                  echelon.
+                  <br />
+                </el-card>
+                <el-card class="pieCard" v-if="radio == 4">
+                  There are certain differences in the level of shared
+                  development among the cities in the Yangtze River Delta, with
+                  Shanghai's level of shared development significantly higher
+                  than that of other cities. In terms of spatial distribution,
+                  high-scoring cities are concentrated in Shanghai and its
+                  surrounding cities, including the southern part of Jiangsu and
+                  the northern part of Zhejiang, showing a patchy and contiguous
+                  distribution characteristic.
+                  <br />
+                  <br />
+                  In particular, the top 10 cities for shared development in the
+                  Yangtze River Delta are Shanghai, Wuxi, Suzhou, Ningbo,
+                  Nanjing, Jiaxing, Hangzhou, Changzhou, and Nantong. Cities in
+                  Jiangsu Province account for half, demonstrating that Jiangsu
+                  Province has a relatively high level of shared development.
+                  <br />
+                  <br />
+                  The gradient differentiation of shared development levels
+                  among cities is obvious, with Shanghai, Wuxi, and Suzhou
+                  belonging to the first echelon, and Ningbo, Nanjing, Jiaxing,
+                  Hangzhou, Changzhou, and Nantong belonging to the second
+                  echelon. The remaining 32 cities are distributed across the
+                  third, fourth, and fifth echelons. Although the score
+                  differences among the cities ranked later are small, there is
+                  a significant gap compared to the echelons ranked at the top,
+                  and the internal gap in the level of shared development is
+                  relatively large.
+                  <br />
+                </el-card>
+              </div>
+              <div class="piesOrBar">
+                <div v-if="showPie" class="charts">
+                  <div class="flex-container">
+                    <div class="title">
+                      Evaluation of High-Quality Development Dimensions in
+                      {{ selectedCity }}
+                    </div>
+                    <el-select
+                      class="pieSelect"
+                      placeholder="Select a City"
+                      v-model="selectedCity"
+                      @change="handleCityChange"
+                      filterable
+                    >
+                      <el-option
+                        v-for="city in cityNames"
+                        :key="city"
+                        :label="city"
+                        :value="city"
+                      >
+                        {{ city }}
+                      </el-option>
+                    </el-select>
+                  </div>
+                  <div class="pieItems">
+                    <div id="single-pie-chart" class="charts"></div>
+                  </div>
+                </div>
+                <div v-else id="bars2" style="width: 100%; height: 44vh"></div>
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+      </el-main>
+      <el-footer class="foot">
+      </el-footer>
+    </el-container>
+  </div>
+</template>
+<script>
+import { map, loadMap, addGeoJson, updateMap } from "@/utils/mapbox.js";
+import {
+  getAnnualScore,
+  getMultiPieData,
+  getMultiPieDataNew,
+  getDBData,
+  getMultiBarData,
+} from "@/utils/dataExplorerEcharts.js";
+import { cityNames } from "@/utils/dataExplorerEcharts.js";
+import * as echarts from "echarts";
+import homeHeader from "@/components/header.vue";
+export default {
+  name: "annual",
+  components: {
+    homeHeader,
+  },
+  data() {
+    return {
+      DBdate: {},
+      AnnualScoreOption: {},
+      radio: 5,
+      backgroundUrl: "",
+      showPie: true,
+      selectedCity: "Shanghai",
+      cityNames: cityNames,
+      isMobile: false,
+    };
+  },
+  methods: {
+    initMapbox() {
+      loadMap("mapbox");
+      map.setCenter([119.14, 31.37]);
+      map.setZoom(5.5);
+    },
+    initChart(chartData, dom) {
+      let myChart = echarts.init(document.getElementById(dom));
+      myChart.setOption({});
+      myChart.setOption(chartData);
+      window.addEventListener("resize", () => {
+        myChart.resize();
+      });
+    },
+    drawChart(num) {
+      this.initChart(getAnnualScore(this.DBdate), "bars");
+      this.initChart(
+        getMultiPieData(this.DBdate, this.selectedCity),
+        "single-pie-chart"
+      );
+    },
+    handleRadioChange(value) {
+      updateMap(value);
+      this.initChart(getAnnualScore(this.DBdate, value), "bars");
+      if (value == "5") {
+        this.showPie = true;
+        this.$nextTick(() => {
+          this.initChart(
+            getMultiPieData(this.DBdate, this.selectedCity),
+            "single-pie-chart"
+          );
+        });
+      } else {
+        this.showPie = false;
+        this.$nextTick(() => {
+          this.initChart(getMultiBarData(this.DBdate, value), "bars2");
+        });
+      }
+    },
+    handleCityChange(city) {
+      this.selectedCity = city;
+      if (this.radio == "5") {
+        this.initChart(
+          getMultiPieData(this.DBdate, this.selectedCity),
+          "single-pie-chart"
+        );
+      }
+    },
+    checkScreenSize() {
+      this.isMobile = window.matchMedia("(max-width: 1000px)").matches;
+    },
+  },
+  async mounted() {
+    this.checkScreenSize();
+    window.addEventListener("resize", this.checkScreenSize);
+    const imageUrl = await import("/dataExplorer.jpg");
+    this.backgroundUrl = imageUrl.default;
+    this.initMapbox();
+    addGeoJson();
+    getDBData().then((res) => {
+      this.DBdate = res;
+      this.drawChart();
+    });
+  },
+  beforeUnmount() {
+    this.myChart && this.myChart.destroy();
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.checkScreenSize);
+  },
+};
+</script>
+<template>
+  <div class="container">
+    <div class="head">
+      <homeHeader />
+    </div>
+    <router-view> </router-view>
+  </div>
+</template>
+<script setup lang="ts">
+import homeHeader from "../../components/header.vue";
+</script>
+<style lang="scss" scoped>
+.head {
+  height: 5.5vh;
+  width: 100%;
+}
+@media (max-width: 1000px) {
+  .head {
+    height: 5vh;
+    width: 100%;
+  }
+}
+</style>
+<template>
+  <div class="dimensionSelection">
+    <span class="introduction">Dimension Filtering：</span>
+    <el-select
+      v-model="selectedDimension"
+      multiple
+      placeholder="Select"
+      style="width: 190px"
+    >
+      <el-option
+        v-for="item in dimensionColors"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      >
+        <div class="flex items-center">
+          <el-tag :color="item.value" style="margin-right: 8px" size="small" />
+          <span :style="{ color: item.value }">{{ item.label }}</span>
+        </div>
+      </el-option>
+      <template #tag>
+        <el-tag
+          v-for="color in selectedDimension"
+          :key="color.value"
+          :color="color"
+        />
+      </template>
+    </el-select>
+  </div>
+  <el-card class="container">
+    <el-table :data="rankingDetailData" stripe @sort-change="tableSort">
+      <el-table-column type="index" label="Rank" width="100"></el-table-column>
+      <el-table-column
+        prop="cityName"
+        label="City"
+        width="200"
+      ></el-table-column>
+      <el-table-column label="Score" width="200" sortable="custom">
+        <template v-slot="scope">
+          {{ formatScore(scope.row) }}
+        </template>
+      </el-table-column>
+      <el-table-column label="Performance">
+        <template v-slot="scope">
+          <div
+            :style="{
+              background: getBackgroundColor(scope.row),
+              height: '20px',
+            }"
+          ></div>
+        </template>
+      </el-table-column>
+    </el-table>
+  </el-card>
+</template>
+<script setup>
+import rankingDetailData from "@/assets/json/scoreDetail-en.json";
+import { scoreFormat } from "@/utils/format.ts";
+import { ref } from "vue";
+const formatScore = (row) => {
+  var score = 0;
+  selectedDimension.value.forEach((item) => {
+    dimensionColors.value.forEach((dimension) => {
+      if (item == dimension.value) {
+        score += Number(row[dimension.label]);
+      }
+    });
+  });
+  return Number(parseFloat(score).toFixed(2));
+};
+const tableSort = ({ column, prop, order }) => {
+  rankingDetailData.sort((a, b) => {
+    const scoreA = formatScore(a);
+    const scoreB = formatScore(b);
+    if (order === "ascending") {
+      return scoreA - scoreB;
+    } else {
+      return scoreB - scoreA;
+    }
+  });
+};
+const dimensionColors = ref([
+  {
+    value: "#fbe4d5",
+    label: "Innovation",
+  },
+  {
+    value: "#d9e2f3",
+    label: "Coordination",
+  },
+  {
+    value: "#c5e0b3",
+    label: "Green",
+  },
+  {
+    value: "#ffe599",
+    label: "Openness",
+  },
+  {
+    value: "#d9c8eb",
+    label: "Sharing",
+  },
+]);
+const selectedDimension = ref([]);
+dimensionColors.value.forEach((color) => {
+  selectedDimension.value.push(color.value);
+});
+const getBackgroundColor = (row) => {
+  const innovationColor = "#fbe4d5";
+  const operateColor = "#d9e2f3";
+  const greenColor = "#c5e0b3";
+  const openColor = "#ffe599";
+  const sharingColor = "#d9c8eb";
+  const emptyColor = "#EEEEEE";
+  var arr = [];
+  selectedDimension.value.forEach((element) => {
+    dimensionColors.value.forEach((item) => {
+      if (item.value == element) {
+        var data = {};
+        data.dimension = item.label;
+        data.score = Number(row[item.label]);
+        arr.push(data);
+        return;
+      }
+    });
+  });
+  return `linear-gradient(to right, 
+    ${innovationColor} 0%, ${innovationColor} ${arraySum(arr, 1)}%, 
+    ${operateColor} ${arraySum(arr, 1)}%, ${operateColor} ${arraySum(arr, 2)}%, 
+    ${greenColor} ${arraySum(arr, 2)}%, ${greenColor} ${arraySum(arr, 3)}%, 
+    ${openColor} ${arraySum(arr, 3)}%, ${openColor} ${arraySum(arr, 4)}%, 
+    ${sharingColor} ${arraySum(arr, 4)}%, ${sharingColor} ${arraySum(arr, 5)}%,
+    ${emptyColor} ${arraySum(arr, 5)}%, ${emptyColor} 100%)`;
+};
+const arraySum = (arr, n) => {
+  let sum = 0;
+  var dimensionOrder = [
+    "Innovation",
+    "Coordination",
+    "Green",
+    "Openness",
+    "Sharing",
+  ];
+  for (let i = 0; i < n; i++) {
+    arr.forEach((item) => {
+      if (item.dimension == dimensionOrder[i]) {
+        sum += item.score;
+      }
+    });
+  }
+  return sum;
+};
+</script>
+<style lang="scss" scoped>
+.el-tag {
+  border: none;
+  aspect-ratio: 1;
+}
+.dimensionSelection {
+  margin-bottom: 2vh;
+  width: 50vw;
+  position: relative;
+  .introduction {
+    position: relative;
+    top: 2px;
+    line-height: 20px;
+    color: rgb(100, 100, 100);
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+.container {
+  padding-bottom: 50px;
+}
+</style>
+<template>
+  <el-card class="container">
+    <el-table :data="rankingDataFormatted" stripe>
+      <el-table-column
+        prop="ranking"
+        label="Rank"
+        width="100"
+      ></el-table-column>
+      <el-table-column
+        prop="cityName"
+        label="City"
+        width="200"
+      ></el-table-column>
+      <el-table-column
+        prop="score"
+        label="Score"
+        width="200"
+        sortable
+      ></el-table-column>
+      <el-table-column label="Performance">
+        <template v-slot="scope">
+          <div
+            :style="{
+              background: getBackgroundColor(scope.row.score),
+              height: '20px',
+            }"
+          ></div>
+        </template>
+      </el-table-column>
+    </el-table>
+  </el-card>
+</template>
+<script setup>
+import rankingData from "@/assets/json/scoreRanking.json";
+import { scoreFormat } from "@/utils/format.ts";
+const rankingDataFormatted = scoreFormat(rankingData);
+const getBackgroundColor = (score) => {
+  const percentage = score / 100;
+  const filledPercentage = Math.min(percentage, 1);
+  const filledColorHead = "#95CCDE";
+  const filledColorFoot = "#A9B2D4";
+  const emptyColor = "#EEEEEE";
+  return `linear-gradient(to right, ${filledColorFoot}, ${filledColorHead} ${
+    filledPercentage * 100
+  }%, ${emptyColor} ${filledPercentage * 100}%)`;
+};
+</script>
+<style lang="scss" scoped>
+.container {
+  padding-bottom: 50px;
+}
+</style>
+<template>
+  <div class="homeHeader">
+    <div class="left-box">
+      <div
+        class="left-item"
+        :class="{ active: isActive('home') }"
+        @click="goTo('home')"
+      >
+        Home
+      </div>
+      <div
+        class="left-item"
+        :class="{ active: isActive('chapters') }"
+        @click="goTo('chapters')"
+      >
+        Report
+      </div>
+      <div
+        class="left-item"
+        :class="{ active: isActive('rankings') }"
+        @click="goTo('rankings')"
+      >
+        Rankings
+      </div>
+      <div
+        class="left-item"
+        :class="{ active: isActive('interactiveMap') }"
+        @click="goTo('interactiveMap')"
+      >
+        InteractiveMap
+      </div>
+      <div
+        class="left-item"
+        :class="{ active: isActive('dataScreen') }"
+        @click="goTo('dataScreen')"
+      >
+        DataScreen
+      </div>
+      <div
+        class="left-item"
+        :class="{ active: isActive('downloads') }"
+        @click="goTo('downloads')"
+      >
+        Download
+      </div>
+      <div
+        class="left-item"
+        :class="{ active: isActive('ours') }"
+        @click="goTo('ours')"
+      >
+        About us
+      </div>
+    </div>
+    <div class="right-box">
+      <img src="/OGMSlogo.png" class="logoImage" />
+      <img src="/dataCenterLogo.png" class="logoImage" />
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+import { useRouter } from "vue-router";
+const router = useRouter();
+const isActive = (page: string) => {
+  return router.currentRoute.value.matched[0].name === page;
+};
+const goTo = (page: string) => {
+  let route = "/" + page;
+  router.push(route);
+};
+</script>
+<style lang="scss" scoped>
+.homeHeader {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 5.5vh;
+  background: rgba(67, 120, 180, 1);
+  z-index: 2;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  .left-box {
+    height: 100%;
+    display: flex;
+    box-sizing: border-box;
+    .left-item {
+      height: 100%;
+      width: 7.8vw;
+      line-height: 5vh;
+      font-size: 1vw;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+      &.active {
+        color: #2c4b7f;
+        &:hover {
+          color: rgb(0, 182, 194);
+        }
+      }
+      &:hover {
+        transition: 0.5s;
+        color: #2c4b7f;
+      }
+    }
+  }
+  .right-box {
+    display: flex;
+    .logoImage {
+      height: 5.5vh;
+      width: auto;
+      margin-right: 3vw;
+    }
+    height: 100%;
+  }
+}
+@media (max-width: 1000px) {
+  .homeHeader {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 3vh;
+    background: rgba(67, 120, 180, 1);
+    z-index: 2;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    .left-box {
+      height: 100%;
+      display: flex;
+      box-sizing: border-box;
+      .left-item {
+        height: 100%;
+        width: 7vw;
+        line-height: 3vh;
+        font-size: 1vw;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        &.active {
+          color: #2c4b7f;
+          &:hover {
+            color: rgb(0, 182, 194);
+          }
+        }
+        &:hover {
+          transition: 0.5s;
+          color: #2c4b7f;
+        }
+      }
+    }
+    .right-box {
+      display: flex;
+      align-content: center;
+      .logoImage {
+        height: 2vh;
+        width: auto;
+        margin-top: 0.5vh;
+        margin-right: 3vw;
+      }
+      height: 100%;
+    }
+  }
+}
+</style>
+<template>
+  <div class="mapboxBorder">
+    <div
+      id="mapbox"
+      style="width: 100%; height: 100%; border-radius: 18px"
+    ></div>
+    <div v-if="currentMap == 5" id="legend">
+      <div class="legend-title">Comprehensive Evaluation Score</div>
+      <div class="legend-gradient"></div>
+      <div class="legend-labels">
+        <div class="legend-label">0</div>
+        <div class="legend-label">50</div>
+        <div class="legend-label">100</div>
+      </div>
+    </div>
+    <div v-else-if="currentMap == 0" id="legend">
+      <div class="legend-title">{{ legendTitle }}Dimension Scores</div>
+      <div
+        class="legend-gradient2"
+        style="background: linear-gradient(to right, #fff4f8 0%, #dc7d61 100%)"
+      ></div>
+      <div class="legend-labels">
+        <div class="legend-label">0</div>
+        <div class="legend-label">10</div>
+        <div class="legend-label">20</div>
+      </div>
+    </div>
+    <div v-else-if="currentMap == 1" id="legend">
+      <div class="legend-title">{{ legendTitle }}Dimension Scores</div>
+      <div
+        class="legend-gradient2"
+        style="background: linear-gradient(to right, #e0e5e9 0%, #73a9d7 100%)"
+      ></div>
+      <div class="legend-labels">
+        <div class="legend-label">0</div>
+        <div class="legend-label">10</div>
+        <div class="legend-label">20</div>
+      </div>
+    </div>
+    <div v-else-if="currentMap == 2" id="legend">
+      <div class="legend-title">{{ legendTitle }}Dimension Scores</div>
+      <div
+        class="legend-gradient2"
+        style="background: linear-gradient(to right, #e9f0e8 0%, #80c67d 100%)"
+      ></div>
+      <div class="legend-labels">
+        <div class="legend-label">0</div>
+        <div class="legend-label">10</div>
+        <div class="legend-label">20</div>
+      </div>
+    </div>
+    <div v-else-if="currentMap == 3" id="legend">
+      <div class="legend-title">{{ legendTitle }}Dimension Scores</div>
+      <div
+        class="legend-gradient2"
+        style="background: linear-gradient(to right, #fff8eb 0%, #f6bb81 100%)"
+      ></div>
+      <div class="legend-labels">
+        <div class="legend-label">0</div>
+        <div class="legend-label">10</div>
+        <div class="legend-label">20</div>
+      </div>
+    </div>
+    <div v-else-if="currentMap == 4" id="legend">
+      <div class="legend-title">{{ legendTitle }}Dimension Scores</div>
+      <div
+        class="legend-gradient2"
+        style="background: linear-gradient(to right, #eaebff 0%, #b67ebd 100%)"
+      ></div>
+      <div class="legend-labels">
+        <div class="legend-label">0</div>
+        <div class="legend-label">10</div>
+        <div class="legend-label">20</div>
+      </div>
+    </div>
+  </div>
+</template>
+<script setup>
+import { map, loadMap, addGeoJson, updateMap } from "@/utils/mapbox.js";
+import { onMounted, ref, watch } from "vue";
+const legendTitle = ref("");
+const initMapbox = () => {
+  loadMap("mapbox");
+  map.setCenter([119.14, 31.22]);
+  map.setZoom(6.4);
+};
+const props = defineProps({
+  currentMap: String,
+});
+watch(
+  () => props.currentMap,
+  (newValue, oldValue) => {
+    if (newValue) {
+      switch (Number(newValue)) {
+        case 0:
+          legendTitle.value = "Innovation";
+          break;
+        case 1:
+          legendTitle.value = "Coordination";
+          break;
+        case 2:
+          legendTitle.value = "Green";
+          break;
+        case 3:
+          legendTitle.value = "Openness";
+          break;
+        case 4:
+          legendTitle.value = "Sharing";
+          break;
+      }
+      updateMap(newValue);
+    }
+  }
+);
+onMounted(() => {
+  initMapbox();
+  addGeoJson();
+});
+</script>
+<style lang="scss" scoped>
+#legend {
+  position: absolute;
+  bottom: 3%;
+  right: 2%;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  .legend-title {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .legend-gradient {
+    width: 300px;
+    height: 20px;
+    background: linear-gradient(to right, #dbeef6, #36869a);
+    border-radius: 5px;
+  }
+  .legend-gradient2 {
+    width: 300px;
+    height: 20px;
+    border-radius: 5px;
+  }
+  .legend-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    .legend-label {
+      font-size: 12px;
+    }
+  }
+}
+.mapboxBorder {
+  height: 98%;
+  width: 98%;
+  padding: 0;
+  margin: 0.5%;
+  box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.15);
+  border-radius: 18px;
+}
+</style>
+<template>
+  <div class="pdf-preview">
+    <div class="pdf-wrap">
+      <vue-pdf-embed
+        :source="state.source"
+        :style="scaleFun"
+        class="vue-pdf-embed"
+        :page="state.pageNum"
+      />
+    </div>
+    <div class="page-tool">
+      <div class="page-tool-item" @click="lastPage">Previous Page</div>
+      <div class="page-tool-item" @click="nextPage">Next Page</div>
+      <div class="page-tool-item">{{ state.pageNum }}/{{ state.numPages }}</div>
+      <div class="page-tool-item" @click="pageZoomOut">Enlarge</div>
+      <div class="page-tool-item" @click="pageZoomIn">Shrink</div>
+    </div>
+  </div>
+</template>
+<script lang="ts" setup>
+import { reactive, onMounted, computed } from "vue";
+import VuePdfEmbed from "vue-pdf-embed";
+import { ElMessage } from "element-plus";
+import pdfurl from "@/assets/altimate.pdf";
+const state = reactive({
+  source: pdfurl,
+  pageNum: 1,
+  scale: 1,
+  numPages: 44,
+});
+const scaleFun = computed(() => {
+  return {
+    width: "70vh",
+    transform: `scale(${state.scale})`,
+  };
+});
+function lastPage() {
+  if (state.pageNum > 1) {
+    state.pageNum -= 1;
+  }
+}
+function nextPage() {
+  if (state.pageNum < state.numPages) {
+    state.pageNum += 1;
+  }
+}
+function pageZoomOut() {
+  if (state.scale < 1) {
+    state.scale += 0.1;
+  } else {
+    ElMessage({
+      message: "已经放大到最大了",
+      type: "warning",
+    });
+  }
+}
+function pageZoomIn() {
+  if (state.scale > 0.6) {
+    state.scale -= 0.1;
+  } else {
+    ElMessage({
+      message: "已经缩放到最小了",
+      type: "warning",
+    });
+  }
+}
+onMounted(() => {
+});
+</script>
+<style lang="scss" scoped>
+.pdf-preview {
+  width: 50vw;
+  .pdf-wrap {
+    display: flex;
+    justify-content: center;
+    .vue-pdf-embed {
+      text-align: center;
+      box-sizing: border-box;
+      box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.3);
+    }
+  }
+  .page-tool {
+    width: 25vw;
+    margin: 5px 25%;
+    display: flex;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    background: rgb(66, 66, 66);
+    color: white;
+    border-radius: 19px;
+    z-index: 100;
+    .page-tool-item {
+      padding: 8px 15px;
+      padding-left: 10px;
+      cursor: pointer;
+    }
+  }
+}
+@media (max-width: 1000px) {
+  .pdf-preview {
+    width: 95vw;
+    .pdf-wrap {
+      display: flex;
+      justify-content: center;
+      .vue-pdf-embed {
+        box-shadow: 0 5px 12px 0 rgba(0, 0, 0, 0.3);
+      }
+    }
+    .page-tool {
+      width: 40vw;
+      margin: 5px 30%;
+      display: flex;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      background: rgb(66, 66, 66);
+      color: white;
+      border-radius: 19px;
+      z-index: 100;
+      .page-tool-item {
+        padding: 8px 15px;
+        padding-left: 10px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+</style>

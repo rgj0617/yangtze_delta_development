@@ -1,0 +1,208 @@
+
+[
+  {
+    "ranking": "1",
+    "cityName": "Shanghai",
+    "score": "87.81714541"
+  },
+  {
+    "ranking": "2",
+    "cityName": "Hangzhou",
+    "score": "83.86643086"
+  },
+  {
+    "ranking": "3",
+    "cityName": "Nanjing",
+    "score": "83.80869036"
+  },
+  {
+    "ranking": "4",
+    "cityName": "Suzhou",
+    "score": "83.0934299"
+  },
+  {
+    "ranking": "5",
+    "cityName": "Ningbo",
+    "score": "76.08084606"
+  },
+  {
+    "ranking": "6",
+    "cityName": "Wuxi",
+    "score": "74.9728607"
+  },
+  {
+    "ranking": "7",
+    "cityName": "Hefei",
+    "score": "70.903409"
+  },
+  {
+    "ranking": "8",
+    "cityName": "Changzhou",
+    "score": "69.90476604"
+  },
+  {
+    "ranking": "9",
+    "cityName": "Zhoushan",
+    "score": "64.63593594"
+  },
+  {
+    "ranking": "10",
+    "cityName": "Jiaxing",
+    "score": "64.4931389"
+  },
+  {
+    "ranking": "11",
+    "cityName": "Nantong",
+    "score": "62.72408878"
+  },
+  {
+    "ranking": "12",
+    "cityName": "Yangzhou",
+    "score": "58.9094037"
+  },
+  {
+    "ranking": "13",
+    "cityName": "Wuhu",
+    "score": "58.02117332"
+  },
+  {
+    "ranking": "14",
+    "cityName": "Shaoxing",
+    "score": "57.76927028"
+  },
+  {
+    "ranking": "15",
+    "cityName": "Wenzhou",
+    "score": "57.10118008"
+  },
+  {
+    "ranking": "16",
+    "cityName": "Huzhou",
+    "score": "56.90159548"
+  },
+  {
+    "ranking": "17",
+    "cityName": "Zhenjiang",
+    "score": "56.73921335"
+  },
+  {
+    "ranking": "18",
+    "cityName": "Taizhou",
+    "score": "56.62517987"
+  },
+  {
+    "ranking": "19",
+    "cityName": "Jinhua",
+    "score": "56.42211622"
+  },
+  {
+    "ranking": "20",
+    "cityName": "Xuzhou",
+    "score": "56.34326703"
+  },
+  {
+    "ranking": "21",
+    "cityName": "Taizhou",
+    "score": "56.0938747"
+  },
+  {
+    "ranking": "22",
+    "cityName": "Huaian",
+    "score": "51.25464439"
+  },
+  {
+    "ranking": "23",
+    "cityName": "Yancheng",
+    "score": "51.2296609"
+  },
+  {
+    "ranking": "24",
+    "cityName": "Ma'anshan",
+    "score": "50.69204036"
+  },
+  {
+    "ranking": "25",
+    "cityName": "Huangshan",
+    "score": "47.87449146"
+  },
+  {
+    "ranking": "26",
+    "cityName": "Quzhou",
+    "score": "47.5264753"
+  },
+  {
+    "ranking": "27",
+    "cityName": "Tongling",
+    "score": "46.98563437"
+  },
+  {
+    "ranking": "28",
+    "cityName": "Lianyungang",
+    "score": "46.31368078"
+  },
+  {
+    "ranking": "29",
+    "cityName": "Chuzhou",
+    "score": "45.62934072"
+  },
+  {
+    "ranking": "30",
+    "cityName": "Suqian",
+    "score": "45.58088171"
+  },
+  {
+    "ranking": "31",
+    "cityName": "Lishui",
+    "score": "44.64626495"
+  },
+  {
+    "ranking": "32",
+    "cityName": "Xuancheng",
+    "score": "44.45406194"
+  },
+  {
+    "ranking": "33",
+    "cityName": "Anqing",
+    "score": "42.15954138"
+  },
+  {
+    "ranking": "34",
+    "cityName": "Bengbu",
+    "score": "41.46032516"
+  },
+  {
+    "ranking": "35",
+    "cityName": "Lu'an",
+    "score": "40.67985086"
+  },
+  {
+    "ranking": "36",
+    "cityName": "Chizhou",
+    "score": "39.60153618"
+  },
+  {
+    "ranking": "37",
+    "cityName": "Huaibei",
+    "score": "39.55404031"
+  },
+  {
+    "ranking": "38",
+    "cityName": "Fuyang",
+    "score": "39.19083477"
+  },
+  {
+    "ranking": "39",
+    "cityName": "Huainan",
+    "score": "37.91824469"
+  },
+  {
+    "ranking": "40",
+    "cityName": "Suzhou",
+    "score": "37.28140048"
+  },
+  {
+    "ranking": "41",
+    "cityName": "Bozhou",
+    "score": "37.24914834"
+  }
+]
