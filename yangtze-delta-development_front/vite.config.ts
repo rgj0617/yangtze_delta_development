@@ -10,6 +10,7 @@ function resolve(dir: string) {
 export default defineConfig({
   base: "./", //等同于  assetsPublicPath :'./'
   plugins: [vue()],
+
   resolve: {
     alias: {
       '@': resolve('src'),
@@ -17,6 +18,8 @@ export default defineConfig({
   },
   server: {
     host:'0.0.0.0',
+    port:8030,
+
     proxy: {
       '/vec_w': {
         target: 'http://t0.tianditu.gov.cn',

@@ -52,8 +52,8 @@
       </div>
     </div>
     <div class="right-box">
-      <img src="/OGMSlogo.png" class="logoImage" />
-      <img src="/dataCenterLogo.png" class="logoImage" />
+      <!-- <img src="/OGMSlogo.png" class="logoImage" />
+      <img src="/dataCenterLogo.png" class="logoImage" /> -->
     </div>
   </div>
 </template>
@@ -74,7 +74,7 @@ const goTo = (page: string) => {
 };
 </script>
   
-  <style lang="scss" scoped>
+<style lang="scss" scoped>
 .homeHeader {
   position: fixed;
   top: 0;

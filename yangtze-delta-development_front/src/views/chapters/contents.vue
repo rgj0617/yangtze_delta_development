@@ -15,9 +15,13 @@
     <el-tabs v-model="activeName" class="tabContent">
       <el-tab-pane label="在线阅览" name="first" class="ranking">
         <div id="pdf">
-          <VuePdfApp
+          <!-- <VuePdfApp
             class="pdfContainer"
             pdf="http://112.4.132.6:8083/data/bfabefd3-a8ce-4bd0-adb6-f7e55b6588a4"
+          ></VuePdfApp> -->
+          <VuePdfApp
+            class="pdfContainer"
+            pdf="https://img.iduodou.com/images/docs/20241126/81F6CF6D-0325-48E6-869F-DF4DE2370928.pdf?attname=%E5%AE%9A%E7%A8%BF-%E9%95%BF%E4%B8%89%E8%A7%92%E9%AB%98%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BB%B7%E5%AE%8C%E6%95%B4%E7%89%880430.pdf"
           ></VuePdfApp>
         </div>
       </el-tab-pane>
@@ -162,6 +166,40 @@ const goTo = (page: string) => {
     width: 100%;
     display: flex;
     justify-content: center;
+    .chapters {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      .chapter-col {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        .chapter-card {
+          padding: 0px;
+          width: 100%;
+          height: 400px;
+          margin-bottom: 20px;
+          margin-right: 20px;
+          transition: background-color 0.35s;
+          cursor: pointer;
+        }
+
+        .chapter-right {
+          margin-right: 10px;
+        }
+
+        .chapter-card-last {
+          padding: 0px;
+          width: 70vw;
+          height: 360px;
+          margin-bottom: 20px;
+          margin-right: 20px;
+          transition: background-color 0.35s;
+          cursor: pointer;
+          overflow: auto;
+        }
+      }
+    }
     #pdf {
       width: 100%;
       .pdfContainer {
@@ -204,41 +242,6 @@ const goTo = (page: string) => {
     line-height: 2.3vh;
     margin-top: 1.2%;
   }
-}
-
-.chapters {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.chapter-col {
-  display: flex;
-  justify-content: center;
-}
-
-.chapter-card {
-  padding: 0px;
-  width: 70vw;
-  height: 400px;
-  margin-bottom: 20px;
-  margin-right: 20px;
-  transition: background-color 0.35s;
-  cursor: pointer;
-}
-
-.chapter-right {
-  margin-right: 0;
-}
-
-.chapter-card-last {
-  padding: 0px;
-  width: 70vw;
-  height: 360px;
-  margin-bottom: 20px;
-  margin-right: 20px;
-  transition: background-color 0.35s;
-  cursor: pointer;
-  overflow: auto;
 }
 
 .chapter-card-last .card-content {

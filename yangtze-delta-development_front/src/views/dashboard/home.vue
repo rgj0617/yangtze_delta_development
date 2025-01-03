@@ -11,7 +11,7 @@
           loop
         ></video> -->
         <div class="section-content">
-          <span class="title">长三角高质量发展评价报告</span>
+          <span class="title">长三角高质量发展评价与可视化系统</span>
           <span class="subtitle">
             本报告面向国家和地区对长三角的发展定位与要求，采用“自上而下”基于专家经验的政策解读法<br />
             辅以“自下而上”基于地理大模型的文本主题挖掘技术生成一套借助“众力”、<br />
@@ -112,7 +112,7 @@
       <div class="copyright">版权信息</div>
     </div> -->
   </div>
-  <foot />
+  <!-- <foot /> -->
 </template>
 
 <script setup lang="ts">
