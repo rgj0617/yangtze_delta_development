@@ -43,7 +43,7 @@
               </div>
               <div class="section2-left-content-title2">查看排名和得分</div>
               <div class="section2-left-content-des">
-                长三角高质量发展（2023）平均得分为55.38，总体发展水平较高，呈现创新发展、协调发展、绿色发展、开放发展和共享发展多维度协同的高质量发展态势，体现了长三角城市群作为我国经济最具活力、开放程度最高、创新能力最强、吸纳外来人口最多的区域之一，在国家现代化建设大局和全方位开放格局中具有举足轻重的地位。
+                长三角高质量发展总体水平较高，呈现创新发展、协调发展、绿色发展、开放发展和共享发展多维度协同的高质量发展态势，体现了长三角城市群作为我国经济最具活力、开放程度最高、创新能力最强、吸纳外来人口最多的区域之一，在国家现代化建设大局和全方位开放格局中具有举足轻重的地位。
               </div>
               <div
                 class="section2-left-content-button"
@@ -55,13 +55,19 @@
             </div>
           </div>
           <div class="section2-right">
-            <img src="/home/banner1.png" alt="Description of the image" />
+            <img
+              :src="bannerPic[yearStore.year][0]"
+              alt="Description of the image"
+            />
           </div>
         </div>
 
         <div class="section s3">
           <div class="section3-left">
-            <img src="/home/banner2.png" alt="Description of the image" />
+            <img
+              :src="bannerPic[yearStore.year][1]"
+              alt="Description of the image"
+            />
           </div>
           <div class="section3-right">
             <div class="section3-right-content">
@@ -103,7 +109,10 @@
             </div>
           </div>
           <div class="section2-right">
-            <img src="/home/banner3.png" alt="Description of the image" />
+            <img
+              :src="bannerPic[yearStore.year][2]"
+              alt="Description of the image"
+            />
           </div>
         </div>
       </div>
@@ -112,10 +121,11 @@
       <div class="copyright">版权信息</div>
     </div> -->
   </div>
-  <!-- <foot /> -->
+  <foot />
 </template>
 
-<script setup lang="ts">
+<script setup >
+import { ref } from "vue";
 import { ArrowDownOutlined } from "@ant-design/icons-vue";
 // import { ArrowDownOutlined, ArrowRightOutlined } from "@ant-design/icons-vue";
 // import { text } from "stream/consumers";
@@ -127,10 +137,33 @@ import homeHeader from "@/components/header.vue";
 // @ts-ignore
 import foot from "@/components/foot.vue";
 import { useRouter } from "vue-router";
-
+// @ts-ignore
+import { useYearStore } from "@/store/year.js";
+const yearStore = useYearStore();
 const router = useRouter();
 
-const goTo = (page: string) => {
+const bannerPic = ref({
+  2023: [],
+  2024: [],
+});
+Promise.all([
+  import("/home/2023/banner1.png"),
+  import("/home/2023/banner2.png"),
+  import("/home/2023/banner3.png"),
+]).then((images) => {
+  // @ts-ignore
+  bannerPic.value["2023"] = images.map((image) => image.default);
+});
+Promise.all([
+  import("/home/2024/banner1.png"),
+  import("/home/2024/banner2.png"),
+  import("/home/2024/banner3.png"),
+]).then((images) => {
+  // @ts-ignore
+  bannerPic.value["2024"] = images.map((image) => image.default);
+});
+
+const goTo = (page) => {
   let route = "/" + page;
   router.push(route);
 };

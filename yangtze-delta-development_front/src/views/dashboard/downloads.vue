@@ -6,7 +6,7 @@
     <div class="sectionContent">
       <span class="title"> 资源下载 </span>
       <span class="description">
-        下载《长江三角洲高质量发展（2023）评价研究报告》及相关数据与资料
+        下载《长江三角洲高质量发展评价研究报告》及相关数据与资料
       </span>
       <br />
       <el-divider>
@@ -101,6 +101,7 @@ Promise.all([import("/download/web1.png"), import("/download/web2.png")]).then(
   }
 );
 Promise.all([
+  import("/download/report0.png"),
   import("/download/report1.png"),
   import("/download/report2.png"),
   import("/download/report3.png"),
@@ -121,59 +122,62 @@ Promise.all([
 // 原文下载路径
 const urlReport = ref([
   {
-    reportName: "长江三角洲高质量发展评价研究报告（2023）",
-    // url: "http://112.4.132.6:8083/data/e10688f0-bfc9-4f4a-922e-ea98533f38ea", // 未美化版本pdf
-    url: "http://112.4.132.6:8083/data/bfabefd3-a8ce-4bd0-adb6-f7e55b6588a4", // 美化版本pdf
+    reportName: "长江三角洲高质量发展评价研究报告（2024年编制）",
+    url: "http://221.224.35.86:38083/data/f4724bcd-c6a0-43a2-9c60-a4b1a24916e1", // 美化版本pdf
+  },
+  {
+    reportName: "长江三角洲高质量发展评价研究报告（2023年编制）",
+    url: "http://221.224.35.86:38083/data/41fc2b46-b7a2-42d0-b5ac-46bafa708ddd", // 美化版本pdf
   },
   {
     reportName: "“一带一路”倡议下的全球城市（2022）",
-    url: "http://112.4.132.6:8083/data/574de5c5-33b4-4124-adf3-c9a232c88671",
+    url: "http://221.224.35.86:38083/data/574de5c5-33b4-4124-adf3-c9a232c88671",
   },
   {
     reportName: "长三角政府数据开放一体化报告（2020）",
-    url: "http://112.4.132.6:8083/data/d50ac3ba-e40a-4de8-993e-a9f0659b899e",
+    url: "http://221.224.35.86:38083/data/d50ac3ba-e40a-4de8-993e-a9f0659b899e",
   },
   {
     reportName: "长三角区域协同创新指数（2022简版）",
-    url: "http://112.4.132.6:8083/data/4e7fc096-c82b-4c8a-9895-f91151495788",
+    url: "http://221.224.35.86:38083/data/4e7fc096-c82b-4c8a-9895-f91151495788",
   },
   {
     reportName: "中国城市繁荣活力评估报告（2022）",
-    url: "http://112.4.132.6:8083/data/f2b346f8-bf6c-4d76-b9e5-85066bd5929b",
+    url: "http://221.224.35.86:38083/data/f2b346f8-bf6c-4d76-b9e5-85066bd5929b",
   },
   {
     reportName: "长江经济带高质量发展评估研究报告（2022）",
-    url: "http://112.4.132.6:8083/data/cac0e6b6-2b11-4fba-b9b8-54508cc6766d",
+    url: "http://221.224.35.86:38083/data/cac0e6b6-2b11-4fba-b9b8-54508cc6766d",
   },
   {
     reportName: "长三角高质量发展指数报告（2020）",
-    url: "http://112.4.132.6:8083/data/c68fd275-7ea5-4cdf-8673-2af6bd63af6a",
+    url: "http://221.224.35.86:38083/data/c68fd275-7ea5-4cdf-8673-2af6bd63af6a",
   },
   // {
   //   reportName: "中国城市繁荣活力2020报告",
-  //   url: "http://112.4.132.6:8083/data/12f04d66-07b2-497a-a5ab-50f8fa3e2ba7",
+  //   url: "http://221.224.35.86:38083/data/12f04d66-07b2-497a-a5ab-50f8fa3e2ba7",
   // },
   {
     reportName: "科技部关于印发《长三角科技创新共同体建设发展规划》的通知",
-    url: "http://112.4.132.6:8083/data/7b565098-83c9-4ffa-8072-6b55866be1fd",
+    url: "http://221.224.35.86:38083/data/7b565098-83c9-4ffa-8072-6b55866be1fd",
   },
   {
     // reportName: "长江三角洲城市群发展规划（2015-2030）",
     reportName: "长江三角洲城市群发展规划",
-    url: "http://112.4.132.6:8083/data/efef5a2d-b014-45ba-9f66-ddce1129ae47",
+    url: "http://221.224.35.86:38083/data/efef5a2d-b014-45ba-9f66-ddce1129ae47",
   },
   {
     reportName: "长江三角洲区域一体化发展规划纲要",
-    url: "http://112.4.132.6:8083/data/241e0c4e-45db-4f22-b643-094f7f8e68de",
+    url: "http://221.224.35.86:38083/data/241e0c4e-45db-4f22-b643-094f7f8e68de",
   },
   {
     reportName: "长三角生态绿色一体化发展示范区国土空间总体规划（2021—2035年）",
-    url: "http://112.4.132.6:8083/data/3076fe15-1947-465f-8968-64a0e0808f94",
+    url: "http://221.224.35.86:38083/data/3076fe15-1947-465f-8968-64a0e0808f94",
   },
   {
     // reportName: "长三角生态绿色一体化发展示范区总体方案（2019年）",
     reportName: "长三角生态绿色一体化发展示范区总体方案",
-    url: "http://112.4.132.6:8083/data/f965468c-b51b-44b1-9389-d0dd634beb18",
+    url: "http://221.224.35.86:38083/data/f965468c-b51b-44b1-9389-d0dd634beb18",
   },
 ]);
 

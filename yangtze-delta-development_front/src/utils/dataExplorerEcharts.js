@@ -1,18 +1,44 @@
 // import axios from "axios";
 // import "../../../../src/mock/mockServe.js"
 import * as echarts from "echarts";
-import detailUnformatted from "@/assets/json/scoreDetail.json";
-import rankingUnformatted from "@/assets/json/scoreRanking.json";
-import Indicators from "@/assets/json/secondaryIndicators.json";
+// import detailUnformatted from "@/assets/json/scoreDetail.json";
+// import rankingUnformatted from "@/assets/json/scoreRanking.json";
+// import Indicators from "@/assets/json/secondaryIndicators.json";
 import { scoreFormat } from "@/utils/format.ts";
+import { useYearStore } from "@/store/year.js";
+const yearStore = useYearStore();
 
-const ranking = scoreFormat(rankingUnformatted);
-const detail = scoreFormat(detailUnformatted);
-export let cityNames = [...new Set(ranking.map((item) => item.cityName))];
+// 定义一个异步函数来加载和格式化 ranking 数据
+const loadAndFormatRankingData = async () => {
+  try {
+    // 动态引入 ranking 数据
+    const modules = import.meta.glob("/src/assets/json/**/*.json");
+    const detailModulePath = `/src/assets/json/${yearStore.year}/scoreDetail.json`;
+    const detailModule = await modules[detailModulePath]();
+    const rankingModulePath = `/src/assets/json/${yearStore.year}/scoreRanking.json`;
+    const rankingModule = await modules[rankingModulePath]();
+    const indicatorsModulePath = `/src/assets/json/${yearStore.year}/secondaryIndicators.json`;
+    const indicatorsModule = await modules[indicatorsModulePath]();
+    const detail = scoreFormat(detailModule.default || detailModule);
+    const ranking = scoreFormat(rankingModule.default || rankingModule);
+    const indicators = indicatorsModule.default || indicatorsModule;
 
+    return { ranking, detail, indicators };
+  } catch (error) {
+    console.error("Failed to load or format ranking data:", error);
+    return null; // 返回错误处理或默认值
+  }
+};
+
+// const detail = scoreFormat(detailUnformatted);
+export let cityNames;
 // 整合数据
 export const getDBData = async () => {
-  let dataset = { ranking, detail, Indicators };
+  var { ranking, detail, indicators } = await loadAndFormatRankingData();
+  console.log(indicators, 51);
+
+  cityNames = [...new Set(ranking.map((item) => item.cityName))];
+  let dataset = { ranking, detail, indicators };
   return dataset;
 };
 
@@ -45,10 +71,13 @@ function handleAnnualScore(dataset, value) {
       propertiesSelect = "score";
       break;
   }
+
   for (let i = 0; i < dataset.detail.length; i++) {
     dataAxis.push(dataset.detail[i].cityName);
     data.push(dataset.detail[i][propertiesSelect]);
   }
+  console.log(dataAxis, data, 15);
+
   optionDate = [dataAxis, data];
   return optionDate;
 }
@@ -401,13 +430,15 @@ function handleMultiBarData(dataset, value) {
     default:
       break;
   }
-  selectedData = dataset["Indicators"][propertiesSelect];
-  selectedData.keyName = dataset["Indicators"]["keyName"][propertiesSelect];
+  selectedData = dataset["indicators"][propertiesSelect];
+  selectedData.keyName = dataset["indicators"]["keyName"][propertiesSelect];
   return selectedData;
 }
 
 //绘制右下角二级指标的详细数据柱状图
 export const getMultiBarData = (dataset, value) => {
+  console.log(dataset, value, 12592);
+
   let multiBarData = handleMultiBarData(dataset, value);
   let option = {
     tooltip: {

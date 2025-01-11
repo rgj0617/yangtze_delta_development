@@ -3,7 +3,7 @@
     <div class="sectionContent">
       <span class="title"> 评价报告 </span>
       <span class="description">
-        长江三角洲高质量发展（2023）评价研究报告
+        长江三角洲高质量发展评价研究报告（{{ yearStore.year }}年编制）
       </span>
       <br />
       <!-- <el-divider>
@@ -20,8 +20,14 @@
             pdf="http://112.4.132.6:8083/data/bfabefd3-a8ce-4bd0-adb6-f7e55b6588a4"
           ></VuePdfApp> -->
           <VuePdfApp
+            v-if="yearStore.year == 2023"
             class="pdfContainer"
-            pdf="https://img.iduodou.com/images/docs/20241126/81F6CF6D-0325-48E6-869F-DF4DE2370928.pdf?attname=%E5%AE%9A%E7%A8%BF-%E9%95%BF%E4%B8%89%E8%A7%92%E9%AB%98%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BB%B7%E5%AE%8C%E6%95%B4%E7%89%880430.pdf"
+            pdf="https://img.iduodou.com/images/docs/20250110/AFE0BBF8-D5EC-485B-9B98-5E3A6A6C7AEF.pdf?attname=%E9%95%BF%E4%B8%89%E8%A7%92%E9%AB%98%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BB%B7%E5%AE%8C%E6%95%B4%E7%89%88%EF%BC%882023%E5%B9%B4%E7%BC%96%E5%88%B6%EF%BC%89.pdf"
+          ></VuePdfApp>
+          <VuePdfApp
+            v-else-if="yearStore.year == 2024"
+            class="pdfContainer"
+            pdf="https://img.iduodou.com/images/docs/20250108/60315529-D41A-47E8-A50A-9930207EB0AB.pdf?attname=%E9%95%BF%E4%B8%89%E8%A7%92%E9%AB%98%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BB%B7%E5%AE%8C%E6%95%B4%E7%89%882024%E6%9C%80%E6%96%B0(010601).pdf"
           ></VuePdfApp>
         </div>
       </el-tab-pane>
@@ -70,6 +76,9 @@ import { ref } from "vue";
 import VuePdfApp from "vue3-pdf-app";
 import "vue3-pdf-app/dist/icons/main.css";
 // @ts-ignore
+import { useYearStore } from "@/store/year.js";
+const yearStore = useYearStore();
+// @ts-ignore
 // import pdfViewer from "../../components/pdfviewer.vue";
 
 interface Chapter {
@@ -104,16 +113,16 @@ const chapters: Chapter[] = [
   },
   {
     id: 3,
-    title: "三、长三角高质量发展(2023)评价结果",
+    title: "三、长三角高质量发展评价结果",
     class: "chapter-card",
     description:
-      "评价结果表明长三角高质量发展（2023）平均得分为55.38，总体发展水平较高，呈现多维度协同的高质量发展态势，体现了长三角城市群作为我国经济最具活力、开放程度最高、创新能力最强、吸纳外来人口最多的区域之一，在国家现代化建设大局和全方位开放格局中具有举足轻重的地位。",
+      "评价结果表明长三角高质量发展平均得分为55.38，总体发展水平较高，呈现多维度协同的高质量发展态势，体现了长三角城市群作为我国经济最具活力、开放程度最高、创新能力最强、吸纳外来人口最多的区域之一，在国家现代化建设大局和全方位开放格局中具有举足轻重的地位。",
     image: "/chaptersCovers/chapter2Cover.png",
     target: "chapters/chapter3",
   },
   {
     id: 4,
-    title: "四、长三角高质量发展(2023)特征与问题",
+    title: "四、长三角高质量发展特征与问题",
     class: "chapter-card chapter-right",
     description:
       "长三角高质量发展态势和内部发展差异等问题一直备受关注，本报告得出以下主要特征与问题：\n  ①综合得分呈梯度分布，各梯度间有明显落差；\n  ②五个维度发展不同步，落后城市需补齐短板；\n  ③重点城市各维度分化，全面发展仍任重道远。",
@@ -123,11 +132,19 @@ const chapters: Chapter[] = [
   {
     id: 5,
     title: "附录",
-    class: "chapter-card-last",
+    class: "chapter-card",
     description:
       "（一）各城市分维度得分 \n （二）长江三角洲高质量发展评价县域探索",
     image: "/chaptersCovers/appendixCover.png",
     target: "chapters/appendix",
+  },
+  {
+    id: 6,
+    title: "待更新...",
+    class: "chapter-card  chapter-right",
+    description: "新年度研究报告待更新",
+    image: "/chaptersCovers/appendixCover.png",
+    target: "chapters",
   },
 ];
 
@@ -299,6 +316,58 @@ const goTo = (page: string) => {
       font-size: 1.5vh;
       font-weight: 300;
       margin-top: 1.2%;
+    }
+    .ranking {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      .chapters {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        .chapter-col {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          .chapter-card {
+            padding: 0px;
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+            margin-right: 20px;
+            transition: background-color 0.35s;
+            cursor: pointer;
+          }
+
+          .chapter-right {
+            margin-right: 10px;
+          }
+
+          .chapter-card-last {
+            padding: 0px;
+            width: 70vw;
+            height: 360px;
+            margin-bottom: 20px;
+            margin-right: 20px;
+            transition: background-color 0.35s;
+            cursor: pointer;
+            overflow: auto;
+          }
+        }
+      }
+      #pdf {
+        width: 100%;
+        .pdfContainer {
+          width: 90vw;
+          // height: 80vh;
+          height: calc(96vh - 300px);
+          box-shadow: 5px 5px 12px 0 rgba(0, 0, 0, 0.3);
+
+          margin-left: 2.5vw;
+
+          border-radius: 10px;
+        }
+      }
     }
     .dataTable {
       margin: 0.5% 0;

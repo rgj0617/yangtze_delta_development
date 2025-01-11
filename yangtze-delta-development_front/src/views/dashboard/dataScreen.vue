@@ -99,26 +99,26 @@ body {
   width: 100%;
   height: 8%;
 }
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 200px;
-  margin: 0;
+.carousel {
+  width: 100%;
+  height: 95%;
 }
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
+.carouselItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%; /* 设置每个轮播项的宽度 */
+  height: 100%; /* 设置每个轮播项的高度 */
+}
+.carouselImg {
+  // width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+:deep(.el-carousel__container) {
+  height: 100%;
 }
 
-.el-carousel__item:nth-child(2n + 1) {
-  background-color: #d3dce6;
-}
-.el-carousel__item--card {
-  height: 50%;
-}
-.el-carousel__item--card {
-  margin-top: 4%;
-}
 .pieCard {
   width: 90%;
   height: 90%;
@@ -238,7 +238,7 @@ body {
                   介绍内容
                 </div> -->
               <div class="title">长三角高质量发展评价详情</div>
-              <div class="introduce">
+              <div class="introduce" v-if="year == 2023">
                 <img
                   :src="backgroundUrl"
                   class="pieBackgroundImage"
@@ -292,7 +292,6 @@ body {
                     </li>
                   </ul>
                 </el-card>
-
                 <!-- 绿色 -->
                 <el-card class="pieCard" v-if="radio == 2">
                   <ul>
@@ -307,7 +306,6 @@ body {
                     </li>
                   </ul>
                 </el-card>
-
                 <!-- 开放 -->
                 <el-card class="pieCard" v-if="radio == 3">
                   <ul>
@@ -322,7 +320,6 @@ body {
                     </li>
                   </ul>
                 </el-card>
-
                 <!-- 共享 -->
                 <el-card class="pieCard" v-if="radio == 4">
                   <ul>
@@ -337,6 +334,21 @@ body {
                     </li>
                   </ul>
                 </el-card>
+              </div>
+              <div class="introduce" v-if="year == 2024">
+                <el-carousel :interval="4000" type="card" class="carousel">
+                  <el-carousel-item
+                    v-for="item in 6"
+                    :key="item"
+                    class="carouselItem"
+                  >
+                    <img
+                      :src="getImageSrc(item)"
+                      alt="innovation1"
+                      class="carouselImg"
+                    />
+                  </el-carousel-item>
+                </el-carousel>
               </div>
               <div class="piesOrBar">
                 <div v-if="showPie" class="charts">
@@ -394,6 +406,7 @@ import {
 import { cityNames } from "@/utils/dataExplorerEcharts.js"; //cityNames
 import * as echarts from "echarts";
 import homeHeader from "@/components/header.vue";
+import { useYearStore } from "@/store/year.js";
 // import { set } from "ol/transform.js";
 
 export default {
@@ -411,17 +424,78 @@ export default {
       selectedCity: "上海市",
       cityNames: cityNames,
       isMobile: false,
+      imgSrc: {},
     };
   },
+  watch: {
+    async year(newVal, oldVal) {
+      await this.initMapbox();
+
+      getDBData().then((res) => {
+        this.DBdate = res;
+        //绘制图表
+        this.handleRadioChange(this.radio);
+      });
+    },
+  },
+  computed: {
+    // 从 Pinia 中读取状态
+    year() {
+      const yearStore = useYearStore();
+      return yearStore.year;
+    },
+  },
   methods: {
+    getImageSrc(item) {
+      let imageNamePrefix;
+      switch (this.radio) {
+        case 0:
+          imageNamePrefix = "innovation";
+          break;
+        case 1:
+          imageNamePrefix = "coordinate";
+          break;
+        case 2:
+          imageNamePrefix = "green";
+          break;
+        case 3:
+          imageNamePrefix = "open";
+          break;
+        case 4:
+          imageNamePrefix = "share";
+          break;
+        case 5:
+          imageNamePrefix = "whole";
+          if (item > 3) {
+            item -= 3;
+          }
+          break;
+      }
+      if (item >= 1 && item <= 6) {
+        return `${
+          import.meta.env.BASE_URL
+        }dataScreen/2024/${imageNamePrefix}${item}.jpg`;
+      }
+      return ""; // 如果超出范围，返回空字符串或其他默认图片路径
+    },
     //初始化mapbox控件的方法
-    initMapbox() {
-      loadMap("mapbox");
+    async initMapbox() {
+      await loadMap("mapbox");
       map.setCenter([119.14, 31.37]); //修改地图中心点
       map.setZoom(5.5); //设置缩放级别
+      map.on("styledata", async () => {
+        await addGeoJson();
+        // updateMap(this.radio);
+      });
     },
     //echarts的方法，包括了初始化和渲染，只需要传入数据和需要放置图表的位置即可
     initChart(chartData, dom) {
+      let oldChart = echarts.getInstanceByDom(document.getElementById(dom));
+
+      // 如果存在实例，则销毁它
+      if (oldChart) {
+        oldChart.dispose();
+      }
       let myChart = echarts.init(document.getElementById(dom));
       myChart.setOption({});
       myChart.setOption(chartData);
@@ -429,7 +503,7 @@ export default {
         myChart.resize();
       });
     },
-    //绘制主页所有图标的方法
+    //绘制主页所有图表的方法
     drawChart(num) {
       this.initChart(getAnnualScore(this.DBdate), "bars");
       // this.initChart(getMultiPieDataNew(this.DBdate), "pie");
@@ -475,6 +549,18 @@ export default {
       this.isMobile = window.matchMedia("(max-width: 1000px)").matches;
       console.log(this.isMobile, "check over");
     },
+    // imgPromise() {
+    //   Promise.all([
+    //     import("/download/report1.png"),
+    //     import("/download/report2.png"),
+    //     import("/download/report3.png"),
+    //     import("/download/report4.png"),
+    //     import("/download/report5.png"),
+    //     import("/download/report6.png"),
+    //   ]).then((images) => {
+    //     this.imgSrc = images.map((image) => image.default);
+    //   });
+    // },
   },
   async mounted() {
     // 检测屏幕宽度
@@ -484,9 +570,7 @@ export default {
     const imageUrl = await import("/dataExplorer.jpg");
     this.backgroundUrl = imageUrl.default; // 将图片 URL 赋值给 items.url
     //挂载mapbox
-    this.initMapbox();
-    //添加矢量图层
-    addGeoJson();
+    await this.initMapbox();
     //读取数据库数据
     getDBData().then((res) => {
       this.DBdate = res;

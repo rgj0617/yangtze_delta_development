@@ -3,17 +3,17 @@ import vue from '@vitejs/plugin-vue'
 import path from 'path';
 // https://vitejs.dev/config/
 
-function resolve(dir: string) {
-  return path.join(__dirname, dir);
-}
+// function resolve(dir: string) {
+//   return path.join(__dirname, dir);
+// }
 
 export default defineConfig({
-  base: "./", //等同于  assetsPublicPath :'./'
+  base: "/high-qualityDev/", //等同于  assetsPublicPath :'./'
   plugins: [vue()],
 
   resolve: {
     alias: {
-      '@': resolve('src'),
+      '@': path.resolve(__dirname,'src'),
     }
   },
   server: {

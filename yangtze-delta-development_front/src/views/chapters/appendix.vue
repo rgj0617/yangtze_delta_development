@@ -52,7 +52,7 @@
           alt=""
         />
         <p class="figTitle" align="center">
-          图14 长三角高质量发展（2023）县域指标空间分布图
+          图14 长三角高质量发展县域指标空间分布图
         </p>
       </div>
     </el-card>

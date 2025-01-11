@@ -5,7 +5,9 @@
       style="width: 100%; height: 100%; border-radius: 18px"
     ></div>
     <div v-if="currentMap == 5" id="legend">
-      <div class="legend-title">综合评价得分</div>
+      <div class="legend-title">
+        {{ legendTitle ? legendTitle : "综合评价" }}得分
+      </div>
       <div class="legend-gradient"></div>
       <div class="legend-labels">
         <div class="legend-label">0</div>
@@ -14,7 +16,7 @@
       </div>
     </div>
     <div v-else-if="currentMap == 0" id="legend">
-      <div class="legend-title">{{ legendTitle }}维度得分</div>
+      <div class="legend-title">{{ legendTitle }}得分</div>
       <div
         class="legend-gradient2"
         style="background: linear-gradient(to right, #fff4f8 0%, #dc7d61 100%)"
@@ -26,7 +28,7 @@
       </div>
     </div>
     <div v-else-if="currentMap == 1" id="legend">
-      <div class="legend-title">{{ legendTitle }}维度得分</div>
+      <div class="legend-title">{{ legendTitle }}得分</div>
       <div
         class="legend-gradient2"
         style="background: linear-gradient(to right, #e0e5e9 0%, #73a9d7 100%)"
@@ -38,7 +40,7 @@
       </div>
     </div>
     <div v-else-if="currentMap == 2" id="legend">
-      <div class="legend-title">{{ legendTitle }}维度得分</div>
+      <div class="legend-title">{{ legendTitle }}得分</div>
       <div
         class="legend-gradient2"
         style="background: linear-gradient(to right, #e9f0e8 0%, #80c67d 100%)"
@@ -50,7 +52,7 @@
       </div>
     </div>
     <div v-else-if="currentMap == 3" id="legend">
-      <div class="legend-title">{{ legendTitle }}维度得分</div>
+      <div class="legend-title">{{ legendTitle }}得分</div>
       <div
         class="legend-gradient2"
         style="background: linear-gradient(to right, #fff8eb 0%, #f6bb81 100%)"
@@ -62,7 +64,7 @@
       </div>
     </div>
     <div v-else-if="currentMap == 4" id="legend">
-      <div class="legend-title">{{ legendTitle }}维度得分</div>
+      <div class="legend-title">{{ legendTitle }}得分</div>
       <div
         class="legend-gradient2"
         style="background: linear-gradient(to right, #eaebff 0%, #b67ebd 100%)"
@@ -79,18 +81,30 @@
 <script setup>
 import { map, loadMap, addGeoJson, updateMap } from "@/utils/mapbox.js";
 import { onMounted, ref, watch } from "vue";
-
+import { useYearStore } from "@/store/year.js";
+const yearStore = useYearStore();
 const legendTitle = ref("");
 
-const initMapbox = () => {
-  loadMap("mapbox");
+const initMapbox = async () => {
+  await loadMap("mapbox");
   map.setCenter([119.14, 31.22]); //修改地图中心点
   map.setZoom(6.4); //设置缩放级别
+  map.on("styledata", async () => {
+    await addGeoJson();
+    updateMap(props.currentMap);
+  });
 };
 
 const props = defineProps({
   currentMap: String,
 });
+
+watch(
+  () => yearStore.year,
+  async (newValue, oldValue) => {
+    await initMapbox();
+  }
+);
 
 // 监听父组件传递过来的 currentMap 数据的变化
 watch(
@@ -99,19 +113,22 @@ watch(
     if (newValue) {
       switch (Number(newValue)) {
         case 0:
-          legendTitle.value = "创新";
+          legendTitle.value = "创新维度";
           break;
         case 1:
-          legendTitle.value = "协调";
+          legendTitle.value = "协调维度";
           break;
         case 2:
-          legendTitle.value = "绿色";
+          legendTitle.value = "绿色维度";
           break;
         case 3:
-          legendTitle.value = "开放";
+          legendTitle.value = "开放维度";
           break;
         case 4:
-          legendTitle.value = "共享";
+          legendTitle.value = "共享维度";
+          break;
+        case 5:
+          legendTitle.value = "综合评价";
           break;
       }
       updateMap(newValue);
@@ -119,11 +136,9 @@ watch(
   }
 );
 
-onMounted(() => {
+onMounted(async () => {
   //挂载mapbox
-  initMapbox();
-  //添加矢量图层
-  addGeoJson();
+  await initMapbox();
 });
 </script>
 

@@ -58,10 +58,26 @@
 </template>
   
 <script setup>
-import rankingDetailData from "@/assets/json/scoreDetail.json";
+// import rankingDetailData from "@/assets/json/scoreDetail.json";
 import { scoreFormat } from "@/utils/format.ts";
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
+// @ts-ignore
+import { useYearStore } from "@/store/year.js";
 
+const yearStore = useYearStore();
+const rankingDetailData = ref([]);
+
+watchEffect(async () => {
+  const year = yearStore.year;
+  // 使用 import.meta.glob 代替动态路径
+  const modules = import.meta.glob("/src/assets/json/**/*.json");
+  const modulePath = `/src/assets/json/${year}/scoreDetail.json`;
+
+  if (modules[modulePath]) {
+    const module = await modules[modulePath]();
+    rankingDetailData.value = module.default;
+  }
+});
 // 计算score列的数据
 const formatScore = (row) => {
   var score = 0;
@@ -76,11 +92,11 @@ const formatScore = (row) => {
 };
 
 /**计算后的结果进行排序，原理：
- * 1、
+ * 1、自己看吧，懒得说了
  */
 const tableSort = ({ column, prop, order }) => {
   // 直接使用array.sort()方法，对原始数据进行处理
-  rankingDetailData.sort((a, b) => {
+  rankingDetailData.value.sort((a, b) => {
     const scoreA = formatScore(a);
     const scoreB = formatScore(b);
     if (order === "ascending") {

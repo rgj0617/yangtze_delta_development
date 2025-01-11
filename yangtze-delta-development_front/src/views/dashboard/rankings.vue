@@ -6,7 +6,7 @@
     <div class="sectionContent">
       <span class="title"> 综合排序 </span>
       <span class="description">
-        长三角高质量发展（2023）41个城市的综合评价得分排序
+        长三角高质量发展41个城市的综合评价得分排序（{{ yearStore.year }}编制）
       </span>
       <br />
       <!-- <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
@@ -45,7 +45,9 @@ import homeHeader from "@/components/header.vue";
 import { ref } from "vue";
 import dataTable from "../rankings/rankingTable.vue";
 import dimensionTable from "../rankings/dimensionsRanking.vue";
-
+// @ts-ignore
+import { useYearStore } from "@/store/year.js";
+const yearStore = useYearStore();
 const activeName = ref("first");
 </script>
 

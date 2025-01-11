@@ -2,28 +2,39 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 // import MapboxLanguage from "@mapbox/mapbox-gl-language";
 import CityData from "@/assets/json/standardCityBoundary.json";
-import ranking from "@/assets/json/scoreDetail.json";
 import { scoreFormat } from "@/utils/format.ts";
 import cityPoint from "@/assets/json/cityCenterPoint.json";
+import { useYearStore } from "@/store/year.js";
+const yearStore = useYearStore();
 
-const rankingFormatted = scoreFormat(ranking);
+// 定义一个异步函数来加载和格式化 ranking 数据
+const loadAndFormatRankingData = async () => {
+  try {
+    // 动态引入 ranking 数据
+    const modules = import.meta.glob("/src/assets/json/**/*.json");
+    const modulePath = `/src/assets/json/${yearStore.year}/scoreDetail.json`;
+    const rankingModule = await modules[modulePath]();
+    //   rankingDataFormatted.value = scoreFormat(module.default);
+
+    // const rankingModule = await import(
+    //   `/src/assets/json/${yearStore.year}/scoreDetail.json`
+    // );
+    const ranking = rankingModule.default || rankingModule;
+
+    // 格式化 ranking 数据
+    return scoreFormat(ranking);
+  } catch (error) {
+    console.error("Failed to load or format ranking data:", error);
+    return null; // 返回错误处理或默认值
+  }
+};
+
+var rankingFormatted = [];
+
 mapboxgl.accessToken =
   // "pk.eyJ1IjoiY2hlbmdjaGFvODg2NiIsImEiOiJjbGhzcWowMHUwYTNyM2VwNXZhaXhjd3Q4In0.FEh2q7sEW88Z1B5GcK_TDg"; //去mapbox官⽹申请
   // "pk.eyJ1IjoiY2hlbmdiZW5jaGFvIiwiYSI6ImNsODU3aGRiODA0Y2UzcHBzZmFlcmdqZ2sifQ.8k59W_pB_Riwe6o-MneRlA";
   "pk.eyJ1IjoiY2hlbmdjaGFvY2hhbyIsImEiOiJjbGU1aDZ2eWUwMXp4M29udmFnNnNyZjBhIn0.2Kd0ZX06ReEdBnZ9XU4XUA";
-
-const colorRanges = [
-  { min: 0, max: 45, color: "#E31A1C" },
-  { min: 45, max: 55, color: "#FEB24C" },
-  { min: 55, max: 70, color: "#FFEDA0" },
-  { min: 70, max: 100, color: "#90EE90" },
-];
-const colorRangesSingle = [
-  { min: 0, max: 5, color: "#E31A1C" },
-  { min: 5, max: 10, color: "#FEB24C" },
-  { min: 10, max: 15, color: "#FFEDA0" },
-  { min: 15, max: 20, color: "#90EE90" },
-];
 
 // 将天地图作为底图
 const vecUrl =
@@ -87,7 +98,8 @@ var style = {
 
 export let map = null; // 导出 map 对象
 
-export function loadMap(box) {
+export async function loadMap(box) {
+  rankingFormatted = await loadAndFormatRankingData();
   map = new mapboxgl.Map({
     container: box,
     style: style,
@@ -149,31 +161,6 @@ export function addGeoJson() {
         "text-halo-width": 1, // 文本描边宽度
       },
     });
-    // 添加地级市名称的文本图层
-    // map.addLayer({
-    //   id: "cityNameLayer",
-    //   type: "symbol",
-    //   source: "geojsonSource",
-    //   layout: {
-    //     "text-field": [
-    //       "match",
-    //       ["get", "is_island"],
-    //       "true",
-    //       "", // 如果是群岛城市，不显示名字
-    //       ["get", "name"], // 如果不是群岛城市，显示名字
-    //     ],
-    //     "text-size": 14,
-    //     "text-variable-anchor": ["top", "bottom", "left", "right"],
-    //     "text-radial-offset": 0.5,
-    //     "text-justify": "auto",
-    //     "text-allow-overlap": false, // 不允许文本标签重叠
-    //   },
-    //   paint: {
-    //     "text-color": "#000", // 文本颜色
-    //     "text-halo-color": "#FFF", // 文本描边颜色
-    //     "text-halo-width": 1, // 文本描边宽度
-    //   },
-    // });
   });
 }
 
@@ -226,6 +213,7 @@ export function updateMap(value) {
     default:
       break;
   }
+
   map.setPaintProperty("geojsonLayer", "fill-color", [
     "match",
     ["get", "name"],
@@ -238,6 +226,7 @@ export function updateMap(value) {
     }, []),
     "#000000", // 默认颜色
   ]);
+
   bindMapInteractions(value);
 }
 

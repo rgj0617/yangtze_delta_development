@@ -37,8 +37,7 @@
     font-size: 1.6vh;
   }
   .counter {
-    margin-top: 1vh;
-    margin-left: 1vw;
+    margin: auto 1vw;
   }
 }
 

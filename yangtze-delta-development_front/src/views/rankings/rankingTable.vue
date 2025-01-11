@@ -33,12 +33,31 @@
 </template>
 
 <script setup>
-import rankingData from "@/assets/json/scoreRanking.json";
+import { watchEffect, ref } from "vue";
+// import rankingData from "@/assets/json/scoreRanking.json";
 import { scoreFormat } from "@/utils/format.ts";
+// @ts-ignore
+import { useYearStore } from "@/store/year.js";
+const yearStore = useYearStore();
+const rankingDataFormatted = ref([]);
 
-const rankingDataFormatted = scoreFormat(rankingData);
+watchEffect(async () => {
+  const year = yearStore.year;
+  // 使用 import.meta.glob 代替动态路径
+  const modules = import.meta.glob("/src/assets/json/**/*.json");
+  const modulePath = `/src/assets/json/${year}/scoreRanking.json`;
+
+  if (modules[modulePath]) {
+    const module = await modules[modulePath]();
+    rankingDataFormatted.value = scoreFormat(module.default);
+  }
+  // const filePath = `/src/assets/json/${year}/scoreRanking.json`;
+  // const module = await import(/* @vite-ignore */ filePath);
+  // rankingDataFormatted.value = scoreFormat(module.default);
+});
 
 const getBackgroundColor = (score) => {
+  if (score == null) return "transparent";
   const percentage = score / 100;
   const filledPercentage = Math.min(percentage, 1);
   const filledColorHead = "#95CCDE";
