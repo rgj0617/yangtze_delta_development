@@ -14,7 +14,7 @@
           <span class="title">长三角高质量发展评价与可视化系统</span>
           <span class="subtitle">
             本报告面向国家和地区对长三角的发展定位与要求，采用“自上而下”基于专家经验的政策解读法<br />
-            辅以“自下而上”基于地理大模型的文本主题挖掘技术生成一套借助“众力”、<br />
+            辅以“自下而上”基于大语言模型的文本主题挖掘技术生成一套借助“众力”、<br />
             更具公信力的高质量发展评价指标体系。
           </span>
           <a class="bt1" @click="goTo('chapters')">阅读报告</a>
@@ -56,9 +56,21 @@
           </div>
           <div class="section2-right">
             <img
+              class="mobileImg"
               :src="bannerPic[yearStore.year][0]"
               alt="Description of the image"
             />
+            <div class="bookshelf">
+              <div
+                v-for="(imgSrc, index) in coverPages"
+                :key="index"
+                class="book"
+                :style="{ 'margin-left': `${index * 6}vw` }"
+                @click="goTo('chapters', index)"
+              >
+                <img :src="imgSrc" :alt="'Book ' + (index + 1)" />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -146,6 +158,7 @@ const bannerPic = ref({
   2023: [],
   2024: [],
 });
+const coverPages = ref([]);
 Promise.all([
   import("/home/2023/banner1.png"),
   import("/home/2023/banner2.png"),
@@ -163,13 +176,58 @@ Promise.all([
   bannerPic.value["2024"] = images.map((image) => image.default);
 });
 
-const goTo = (page) => {
+Promise.all([
+  import("/home/2023/banner1.png"),
+  import("/home/2024/banner1.png"),
+]).then((images) => {
+  // @ts-ignore
+  coverPages.value = images.map((image) => image.default);
+});
+const goTo = (page, index) => {
+  if (index >= 0) {
+    let targetYear = 2023 + index;
+    if (targetYear != yearStore.year) {
+      yearStore.changeYear();
+    }
+  }
   let route = "/" + page;
   router.push(route);
 };
 </script>
 
 <style lang="scss" scoped>
+.section2-right .mobileImg {
+  display: none; /* 隐藏图片 */
+}
+
+.bookshelf {
+  position: relative;
+  width: 90%;
+  height: 100%;
+  // overflow: hidden;
+}
+
+.book {
+  position: absolute; /* 允许自由定位 */
+  transition: transform 0.6s ease, z-index 0.6s ease, box-shadow 0.6s ease;
+  cursor: pointer;
+  border-radius: 0.8vh;
+  box-shadow: 0 6px 9px rgba(0, 0, 0, 0.3); /* 默认阴影较轻 */
+}
+
+.book:hover {
+  z-index: 10;
+  transform: scale(1.02) translate(0, -20px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 16px 32px rgba(0, 0, 0, 0.3),
+    0 24px 48px rgba(0, 0, 0, 0.2);
+}
+
+.book img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 0.8vh;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
 body,
 html {
   margin: 0;
@@ -592,7 +650,6 @@ img {
       width: 50%;
       height: 85%;
       border-radius: 2vh;
-      background-image: url("../../assets/home/bg2.png");
     }
   }
 
@@ -1063,6 +1120,12 @@ img {
 }
 
 @media (max-width: 1000px) {
+  .bookshelf {
+    display: none; /* 隐藏 bookshelf 部分 */
+  }
+  .section2-right .mobileImg {
+    display: block; /* 显示图片 */
+  }
   img {
     width: 48vw;
     height: auto;

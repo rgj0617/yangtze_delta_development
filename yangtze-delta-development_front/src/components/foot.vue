@@ -28,7 +28,7 @@
   width: 100%;
   height: 4vh;
   background: rgba(67, 120, 180, 0.8);
-  z-index: 2;
+  z-index: 99;
   box-sizing: border-box;
   // text-align: center;
   .description {
@@ -48,7 +48,7 @@
     width: 100%;
     height: 3vh;
     background: rgba(67, 120, 180, 0.8);
-    z-index: 2;
+    z-index: 99;
     box-sizing: border-box;
     .description {
       color: white;

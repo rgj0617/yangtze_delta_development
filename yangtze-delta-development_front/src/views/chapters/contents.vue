@@ -22,12 +22,12 @@
           <VuePdfApp
             v-if="yearStore.year == 2023"
             class="pdfContainer"
-            pdf="https://img.iduodou.com/images/docs/20250110/AFE0BBF8-D5EC-485B-9B98-5E3A6A6C7AEF.pdf?attname=%E9%95%BF%E4%B8%89%E8%A7%92%E9%AB%98%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BB%B7%E5%AE%8C%E6%95%B4%E7%89%88%EF%BC%882023%E5%B9%B4%E7%BC%96%E5%88%B6%EF%BC%89.pdf"
+            pdf="https://img.iduodou.com/images/docs/20250114/44E730F6-52AA-4AEE-8F5C-CCFE6297566A.pdf?attname=2023%E9%95%BF%E4%B8%89%E8%A7%92%E9%AB%98%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BB%B7%E5%AE%8C%E6%95%B4%E7%89%88250113.pdf"
           ></VuePdfApp>
           <VuePdfApp
             v-else-if="yearStore.year == 2024"
             class="pdfContainer"
-            pdf="https://img.iduodou.com/images/docs/20250108/60315529-D41A-47E8-A50A-9930207EB0AB.pdf?attname=%E9%95%BF%E4%B8%89%E8%A7%92%E9%AB%98%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BB%B7%E5%AE%8C%E6%95%B4%E7%89%882024%E6%9C%80%E6%96%B0(010601).pdf"
+            pdf="https://img.iduodou.com/images/docs/20250114/A72D154E-07F2-4480-A79C-183B18802206.pdf?attname=%E9%95%BF%E4%B8%89%E8%A7%92%E9%AB%98%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BB%B7%E5%AE%8C%E6%95%B4%E7%89%882024%E6%9C%80%E6%96%B0(011303).pdf"
           ></VuePdfApp>
         </div>
       </el-tab-pane>

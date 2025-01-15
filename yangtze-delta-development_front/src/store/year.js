@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 export const useYearStore = defineStore("year", () => {
-  const year = ref(2023);
+  const year = ref(2024);
 
   function changeYear() {
     if (year.value === 2023) {

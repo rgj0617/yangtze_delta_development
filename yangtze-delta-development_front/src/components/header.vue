@@ -161,12 +161,12 @@ const goTo = (page: string) => {
 }
 
 .homeHeader {
+  z-index: 99;
   position: fixed;
   top: 0;
   width: 100%;
   height: 5.5vh;
   background: rgba(67, 120, 180, 1);
-  z-index: 2;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -274,7 +274,7 @@ const goTo = (page: string) => {
     width: 100%;
     height: 3vh;
     background: rgba(67, 120, 180, 1);
-    z-index: 2;
+    z-index: 99;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;

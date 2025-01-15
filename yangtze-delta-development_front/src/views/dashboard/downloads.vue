@@ -103,11 +103,16 @@ Promise.all([import("/download/web1.png"), import("/download/web2.png")]).then(
 Promise.all([
   import("/download/report0.png"),
   import("/download/report1.png"),
+  import("/download/report15.png"),
+  import("/download/report16.png"),
+  import("/download/report14.png"),
+
   import("/download/report2.png"),
-  import("/download/report3.png"),
   import("/download/report4.png"),
   import("/download/report5.png"),
   import("/download/report6.png"),
+  import("/download/report3.png"),
+
   import("/download/report7.png"),
   // import("/download/report8.png"),
   import("/download/report9.png"),
@@ -123,19 +128,27 @@ Promise.all([
 const urlReport = ref([
   {
     reportName: "长江三角洲高质量发展评价研究报告（2024年编制）",
-    url: "http://221.224.35.86:38083/data/f4724bcd-c6a0-43a2-9c60-a4b1a24916e1", // 美化版本pdf
+    url: "http://221.224.35.86:38083/data/8880dcc6-1fcd-4783-881e-d7172545cad9", // 美化版本pdf
   },
   {
     reportName: "长江三角洲高质量发展评价研究报告（2023年编制）",
-    url: "http://221.224.35.86:38083/data/41fc2b46-b7a2-42d0-b5ac-46bafa708ddd", // 美化版本pdf
+    url: "http://221.224.35.86:38083/data/84278a06-1391-4d36-b14b-65cba82d3ba5", // 美化版本pdf
+  },
+  {
+    reportName: "长三角城市跨城通勤年度报告（2023）",
+    url: "http://221.224.35.86:38083/data/577b6337-0362-4282-b4e0-24efa490bb58",
+  },
+  {
+    reportName: "长三角区域协同创新指数报告（2023）",
+    url: "http://221.224.35.86:38083/data/802aa97b-827b-4ac7-890c-1ea7a62f098e",
+  },
+  {
+    reportName: "长三角生态绿色一体化发展示范区生态环境质量报告（2022）",
+    url: "http://221.224.35.86:38083/data/d0c9b059-d40c-49dc-a7ef-4d73eca46019",
   },
   {
     reportName: "“一带一路”倡议下的全球城市（2022）",
     url: "http://221.224.35.86:38083/data/574de5c5-33b4-4124-adf3-c9a232c88671",
-  },
-  {
-    reportName: "长三角政府数据开放一体化报告（2020）",
-    url: "http://221.224.35.86:38083/data/d50ac3ba-e40a-4de8-993e-a9f0659b899e",
   },
   {
     reportName: "长三角区域协同创新指数（2022简版）",
@@ -148,6 +161,10 @@ const urlReport = ref([
   {
     reportName: "长江经济带高质量发展评估研究报告（2022）",
     url: "http://221.224.35.86:38083/data/cac0e6b6-2b11-4fba-b9b8-54508cc6766d",
+  },
+  {
+    reportName: "长三角政府数据开放一体化报告（2020）",
+    url: "http://221.224.35.86:38083/data/d50ac3ba-e40a-4de8-993e-a9f0659b899e",
   },
   {
     reportName: "长三角高质量发展指数报告（2020）",
@@ -230,13 +247,14 @@ const downloadByUrl = (url) => {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 999; /* 可选，设置层级，确保在其他内容之上 */
+  z-index: 99; /* 可选，设置层级，确保在其他内容之上 */
 }
 .head {
   width: 100%;
   background-color: white;
   height: 5.5vh;
   width: 100%;
+  z-index: 99;
 }
 .download {
   margin: 0.5% 25%;
