@@ -70,6 +70,14 @@
           @change="onYearChange(2024)"
         />
         <label class="option" for="option2">2024</label>
+        <input
+          id="option3"
+          name="options"
+          type="radio"
+          :checked="yearStore.year === 2025"
+          @change="onYearChange(2025)"
+        />
+        <label class="option" for="option3">2025</label>
         <span class="background"></span>
       </div>
       <img src="/OGMSlogo.png" class="logoImage" />
@@ -89,9 +97,7 @@ const yearStore = useYearStore();
 const router = useRouter();
 
 const onYearChange = (newYear: number) => {
-  if (yearStore.year !== newYear) {
-    yearStore.changeYear();
-  }
+  yearStore.setYear(newYear);
 };
 
 const isActive = (page: string) => {
@@ -136,7 +142,7 @@ const goTo = (page: string) => {
 }
 .filter-switch .background {
   position: absolute;
-  width: 49%;
+  width: 33%;
   height: 40px;
   background-color: #94cfdf;
   // top: 0px;
@@ -145,7 +151,10 @@ const goTo = (page: string) => {
   transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 #option2:checked ~ .background {
-  left: 50%;
+  left: 33%;
+}
+#option3:checked ~ .background {
+  left: 66%;
 }
 #option1:checked + label[for="option1"] {
   color: #2c4b7f;
@@ -155,8 +164,13 @@ const goTo = (page: string) => {
   color: #2c4b7f;
   font-weight: 600;
 }
+#option3:checked + label[for="option3"] {
+  color: #2c4b7f;
+  font-weight: 600;
+}
 #option1:not(:checked) + label[for="option1"],
-#option2:not(:checked) + label[for="option2"] {
+#option2:not(:checked) + label[for="option2"],
+#option3:not(:checked) + label[for="option3"] {
   color: #ffffff;
 }
 
