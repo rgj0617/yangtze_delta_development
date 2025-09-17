@@ -24,11 +24,25 @@
       </div>
       <div
         class="left-item"
+        :class="{ active: isActive('compared') }"
+        @click="goTo('compared')"
+      >
+        对比探索
+      </div>
+      <div
+        class="left-item"
+        :class="{ active: isActive('decision') }"
+        @click="goTo('decision')"
+      >
+        决策辅助
+      </div>
+      <!-- <div
+        class="left-item"
         :class="{ active: isActive('interactiveMap') }"
         @click="goTo('interactiveMap')"
       >
         交互地图
-      </div>
+      </div> -->
       <div
         class="left-item"
         :class="{ active: isActive('dataScreen') }"

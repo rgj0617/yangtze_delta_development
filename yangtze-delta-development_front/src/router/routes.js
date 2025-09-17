@@ -120,14 +120,30 @@ export default [
     },
     component: () => import("@/views/dashboard/rankings.vue"),
   },
-  {
-    path: "/interactiveMap",
-    name: "interactiveMap",
+    {
+    path: "/compared",
+    name: "compared",
     meta: {
       title: "长三角高质量发展",
     },
-    component: () => import("@/views/dashboard/interactiveMap.vue"),
+    component: () => import("@/views/dashboard/compared.vue"),
   },
+  {
+    path: "/decision",
+    name: "decision",
+    meta: {
+      title: "长三角高质量发展",
+    },
+    component: () => import("@/views/dashboard/decision.vue"),
+  },
+  // {
+  //   path: "/interactiveMap",
+  //   name: "interactiveMap",
+  //   meta: {
+  //     title: "长三角高质量发展",
+  //   },
+  //   component: () => import("@/views/dashboard/interactiveMap.vue"),
+  // },
   {
     path: "/dataScreen",
     name: "dataScreen",
