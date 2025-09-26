@@ -157,6 +157,7 @@ const router = useRouter();
 const bannerPic = ref({
   2023: [],
   2024: [],
+  2025: [],
 });
 const coverPages = ref([]);
 Promise.all([
@@ -175,10 +176,18 @@ Promise.all([
   // @ts-ignore
   bannerPic.value["2024"] = images.map((image) => image.default);
 });
-
+Promise.all([
+  import("/home/2025/banner1.png"),
+  import("/home/2025/banner2.png"),
+  import("/home/2025/banner3.png"),
+]).then((images) => {
+  // @ts-ignore
+  bannerPic.value["2025"] = images.map((image) => image.default);
+});
 Promise.all([
   import("/home/2023/banner1.png"),
   import("/home/2024/banner1.png"),
+  import("/home/2025/banner1.png"),
 ]).then((images) => {
   // @ts-ignore
   coverPages.value = images.map((image) => image.default);

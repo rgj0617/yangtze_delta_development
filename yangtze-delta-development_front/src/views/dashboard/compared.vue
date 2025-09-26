@@ -21,16 +21,16 @@
     </div>
     <el-tabs v-model="activeName" class="tabContent">
       <!-- 这一块主要做成类似编程语言排行榜的效果 -->
-      <el-tab-pane label="最新排名" name="first" class="ranking">
+      <el-tab-pane label="综合对比" name="first" class="ranking">
         <div class="dataTable">
           <div class="description">
             最新版报告城市按综合得分进行排名。给出了最新年份报告得分较次年报告对比变化。
           </div>
-          <dataTable />
+          <compareTable />
         </div>
       </el-tab-pane>
       <!-- 这里主要呈现一个折线图效果，用户选择起止时间展示折线图，用户可以选择展示的维度或指标，以及要参与比较的地级市 -->
-      <el-tab-pane label="对比分析" name="second" class="ranking">
+      <el-tab-pane label="详细对比" name="second" class="ranking">
         <div class="dataTable">
           <div class="description">
             对比分析历年总得分、各维度得分、各指标结果
@@ -46,7 +46,8 @@
 import homeHeader from "@/components/header.vue";
 import { ref } from "vue";
 import dataTable from "../rankings/rankingTable.vue";
-import dimensionTable from "../rankings/dimensionsRanking.vue";
+import compareTable from "../rankings/compareTable.vue";
+import dimensionTable from "../rankings/dimensionsCompared.vue";
 // @ts-ignore
 import { useYearStore } from "@/store/year.js";
 const yearStore = useYearStore();
