@@ -14,7 +14,7 @@
       <el-table-column
         prop="score"
         label="Score"
-        width="200"
+        width="202"
         sortable
       ></el-table-column>
       <el-table-column label="Performance">
