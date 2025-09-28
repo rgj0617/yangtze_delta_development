@@ -43,7 +43,7 @@
 
 <script setup>
 import homeHeader from "@/components/header.vue";
-import yangtzeMap from "@/components/map.vue";
+import yangtzeMap from "@/components/map.vue"; // 注意，该组件的中的引用已修改
 import { ref, watch } from "vue";
 import evaluationDescription from "@/assets/json/evaluationDescription.json";
 import { useYearStore } from "@/store/year.js";
