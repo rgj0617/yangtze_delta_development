@@ -79,7 +79,7 @@
 </template>
 
 <script setup>
-import { map, loadMap, addGeoJson, updateMap } from "@/utils/mapbox.js";
+import { map, loadMap, addGeoJson, updateMap, rankingFormatted } from "@/utils/mapbox-decision.js";
 import { onMounted, ref, watch } from "vue";
 import { useYearStore } from "@/store/year.js";
 const yearStore = useYearStore();
@@ -88,7 +88,7 @@ const legendTitle = ref("");
 const initMapbox = async () => {
   await loadMap("mapbox");
   map.setCenter([119.14, 31.22]); //修改地图中心点
-  map.setZoom(6.4); //设置缩放级别
+  map.setZoom(6); //设置缩放级别
   map.on("styledata", async () => {
     await addGeoJson();
     updateMap(props.currentMap);
@@ -97,6 +97,7 @@ const initMapbox = async () => {
 
 const props = defineProps({
   currentMap: String,
+  updateData: Object
 });
 
 watch(
@@ -135,6 +136,23 @@ watch(
     }
   }
 );
+
+// 一个处理小工具，a为数字字符串，b为数字，最后返回字符串
+const add = (a, b) => {
+  return String(Number(a) + b)
+}
+
+// 监听传递过来的 updateData 的变化修改地图样式
+watch(
+  () => props.updateData,
+  (newValue, oldValue) => {
+    const index = rankingFormatted.findIndex((element) => element.cityName === newValue.city)
+    rankingFormatted[index].score = add(rankingFormatted[index].score, newValue.delta)
+    rankingFormatted[index][newValue.dimension] = add(rankingFormatted[index][newValue.dimension], newValue.delta)
+    updateMap(props.currentMap)
+  },
+  {deep: true}
+)
 
 onMounted(async () => {
   //挂载mapbox

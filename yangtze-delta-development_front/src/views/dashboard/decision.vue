@@ -7,6 +7,9 @@
       <el-row class="normal">
         <div class="information">
           <el-card class="normal">
+            <div>
+              <h2>目标地级市：{{ selectedCityStore.get() }}</h2>
+            </div>
             <el-collapse v-model="activeName" accordion>
               <el-collapse-item name="5">
                 <template #title>
@@ -16,25 +19,25 @@
                 <div>{{ evaluationDescription[yearStore.year][0] }}</div>
               </el-collapse-item>
               <el-collapse-item title="创新" name="0">
-                <div>{{ evaluationDescription[yearStore.year][1] }}</div>
+                <dimension :indicators="innovation" dimension="创新发展" @update-score="updateScore"/>
               </el-collapse-item>
               <el-collapse-item title="协调" name="1">
-                <div>{{ evaluationDescription[yearStore.year][2] }}</div>
+                 <dimension :indicators="coordination" dimension="协调发展" @update-score="updateScore"/>
               </el-collapse-item>
               <el-collapse-item title="绿色" name="2">
-                <div>{{ evaluationDescription[yearStore.year][3] }}</div>
+                <dimension :indicators="green" dimension="绿色发展" @update-score="updateScore"/>
               </el-collapse-item>
               <el-collapse-item title="开放" name="3">
-                <div>{{ evaluationDescription[yearStore.year][4] }}</div>
+                <dimension :indicators="open" dimension="开放发展" @update-score="updateScore"/>
               </el-collapse-item>
               <el-collapse-item title="共享" name="4">
-                <div>{{ evaluationDescription[yearStore.year][5] }}</div>
+                <dimension :indicators="share" dimension="共享发展" @update-score="updateScore"/>
               </el-collapse-item>
             </el-collapse>
           </el-card>
         </div>
         <div class="yangtzeMap">
-          <yangtzeMap :currentMap="activeName" />
+          <yangtzeMap :currentMap="activeName" :update-data="updateData"/>
         </div>
       </el-row>
     </div>
@@ -49,12 +52,30 @@ import evaluationDescription from "@/assets/json/evaluationDescription.json";
 import { useYearStore } from "@/store/year.js";
 const yearStore = useYearStore();
 
+import { useSelectedCityStore } from "@/store/selectedCity.js"
+const selectedCityStore = useSelectedCityStore();
+
+import dimension from "../decision/dimension.vue";
+import structure from "@/assets/json/structure.json"
+
+const innovation = structure["创新发展"];
+const coordination = structure["协调发展"];
+const green = structure["绿色发展"];
+const open = structure["开放发展"];
+const share = structure["共享发展"];
+
 const activeName = ref("5");
 watch(activeName, (newValue, oldValue) => {
   if (!newValue) {
     activeName.value = oldValue; // 恢复上一个有效值
   }
 });
+
+// 像map组件传递用户更新的数据
+const updateData = ref(null)
+const updateScore = (data) => {
+  updateData.value = data
+}
 </script>
 
 <style scoped lang="scss">
