@@ -422,7 +422,7 @@ export default {
       backgroundUrl: "",
       showPie: true,
       selectedCity: "上海市",
-      cityNames: cityNames,
+      cityNames: [], // 初始化为空数组，等待异步数据加载
       isMobile: false,
       imgSrc: {},
     };
@@ -575,11 +575,16 @@ export default {
     //挂载mapbox
     await this.initMapbox();
     //读取数据库数据
-    const res = await getDBData();
-    this.DBdate = res;
-    this.cityNames = res.cityNames;
-    //绘制图表
-    this.drawChart();
+    try {
+      const res = await getDBData();
+      this.DBdate = res;
+      this.cityNames = res.cityNames || [];
+      //绘制图表
+      this.drawChart();
+    } catch (error) {
+      console.error('数据加载失败:', error);
+      this.cityNames = [];
+    }
   },
   beforeUnmount() {
     this.myChart && this.myChart.destroy();
