@@ -41,6 +41,10 @@ import { ref, onMounted, onUnmounted, watch, reactive, computed } from 'vue';
 import { useSelectedCityStore } from "@/store/selectedCity.js"
 const selectedCityStore = useSelectedCityStore();
 import { innovation } from "@/utils/indicatorCalculator.js";
+import { coordinate } from "@/utils/coordinateCalculator.js";
+import { green } from "@/utils/greenCalculator.js";
+import { open } from "@/utils/openCalculator.js";
+import { share } from "@/utils/shareCalculator.js";
 import { ElMessage } from 'element-plus';
 /*
 指标的tips相关内容
@@ -83,6 +87,7 @@ onUnmounted(() => {
 */
 const props = defineProps({
   indicator: Object,
+  dimension: String, // 添加dimension属性
 })
 // console.log(props.indicator.formula);
 
@@ -106,7 +111,8 @@ function countChineseCharacters(str) {
 const variables = reactive({})
 const initializeVariables = () => {
   props.indicator.variables.forEach(element => {
-    variables[element.name] = 0
+    // 将变量初始化为其最小值，确保在有效范围内
+    variables[element.name] = element.min || 0
   });
 } 
 
@@ -115,21 +121,107 @@ const emit = defineEmits(['transmitData'])
 // 根据用户输入的变量值更新指标结果
 const updateIndicator = () => {
   const city = selectedCityStore.get().value
-  const dimension = props.indicator.parent
   const indicatorName = props.indicator.name
-  const delta = innovation(city, indicatorName, variables)
-  console.log(delta)
-  if(delta === -9999) {
-    ElMessage.error('输入错误，请检查输入！')
+  let delta = -9999
+
+  // 数据验证
+  if (!city || city === '未选择') {
+    ElMessage.warning('请先选择城市！')
+    return
   }
-  else {
+
+  if (!props.dimension) {
+    ElMessage.error('维度信息缺失！')
+    return
+  }
+
+  if (!indicatorName) {
+    ElMessage.error('指标名称缺失！')
+    return
+  }
+
+  // 验证变量输入
+  const hasInvalidInput = props.indicator.variables.some(variable => {
+    const value = variables[variable.name]
+    if (value === undefined || value === null) {
+      ElMessage.warning(`请输入${variable.name}的值！`)
+      return true
+    }
+    // 检查数值是否为有效数字
+    if (isNaN(value)) {
+      ElMessage.warning(`${variable.name}必须是有效数字！`)
+      return true
+    }
+    // 检查范围，但对初始值给予宽松处理
+    if (value < variable.min || value > variable.max) {
+      // 如果值等于初始化的最小值，则允许通过
+      if (value === (variable.min || 0)) {
+        return false
+      }
+      ElMessage.warning(`${variable.name}的值应在${variable.min}-${variable.max}之间！`)
+      return true
+    }
+    return false
+  })
+
+  if (hasInvalidInput) {
+    return
+  }
+
+  console.log('更新指标:', {
+    city,
+    indicatorName,
+    dimension: props.dimension,
+    variables
+  })
+
+  try {
+    // 根据维度选择对应的计算函数
+    switch (props.dimension) {
+      case "创新发展":
+        delta = innovation(city, indicatorName, variables)
+        break
+      case "协调发展":
+        delta = coordinate(city, indicatorName, variables)
+        break
+      case "绿色发展":
+        delta = green(city, indicatorName, variables)
+        break
+      case "开放发展":
+        delta = open(city, indicatorName, variables)
+        break
+      case "共享发展":
+        delta = share(city, indicatorName, variables)
+        break
+      default:
+        console.error('未知的发展维度:', props.dimension)
+        ElMessage.error(`未知的发展维度: ${props.dimension}`)
+        return
+    }
+
+    console.log('计算结果:', delta)
+    
+    // 只有明确的错误值才认为计算失败
+    if (delta === -9999 || delta === undefined || delta === null || !Number.isFinite(delta)) {
+      ElMessage.error('计算失败，请检查输入参数是否正确！')
+      return
+    }
+
+    // 成功计算
     const data = {
       city,
-      dimension,
+      dimension: props.dimension,
+      indicator: indicatorName,
       delta
     }
+    
     emit('transmitData', data)
+    ElMessage.success(`${indicatorName}计算成功！变化值: ${delta.toFixed(4)}`)
     toggleVisible()
+    
+  } catch (error) {
+    console.error('计算过程中发生错误:', error)
+    ElMessage.error(`计算过程中发生错误: ${error.message || '未知错误'}`)
   }
 }
 

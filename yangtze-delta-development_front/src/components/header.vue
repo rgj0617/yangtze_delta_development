@@ -36,13 +36,6 @@
       >
         决策辅助
       </div>
-      <!-- <div
-        class="left-item"
-        :class="{ active: isActive('interactiveMap') }"
-        @click="goTo('interactiveMap')"
-      >
-        交互地图
-      </div> -->
       <div
         class="left-item"
         :class="{ active: isActive('dataScreen') }"
@@ -67,14 +60,13 @@
     </div>
     <div class="right-box">
       <!-- <div class="left-item">切换年份:</div> -->
-      <div id="firstFilter" class="filter-switch" :class="{ disabled: isComparedPage }">
+      <div id="firstFilter" class="filter-switch" v-if="!isActive('compared')">
         <input
           id="option1"
           name="options"
           type="radio"
           :checked="yearStore.year === 2023"
           @change="onYearChange(2023)"
-          :disabled="isComparedPage"
         />
         <label class="option" for="option1">2023</label>
         <input
@@ -83,7 +75,6 @@
           type="radio"
           :checked="yearStore.year === 2024"
           @change="onYearChange(2024)"
-          :disabled="isComparedPage"
         />
         <label class="option" for="option2">2024</label>
         <input
@@ -92,7 +83,6 @@
           type="radio"
           :checked="yearStore.year === 2025"
           @change="onYearChange(2025)"
-          :disabled="isComparedPage"
         />
         <label class="option" for="option3">2025</label>
         <span class="background"></span>
@@ -108,23 +98,15 @@
   
 <script setup lang="ts">
 import { useRouter } from "vue-router";
-import { computed } from "vue";
 // @ts-ignore
 import { useYearStore } from "@/store/year.js";
 const yearStore = useYearStore();
 const router = useRouter();
 
-// 检测是否在对比探索页面
-const isComparedPage = computed(() => {
-  return router.currentRoute.value.matched[0].name === 'compared';
-});
-
 const onYearChange = (newYear: number) => {
-  // 如果在对比探索页面，不允许切换年份
-  if (isComparedPage.value) {
-    return;
+  if (yearStore.year !== newYear) {
+    yearStore.changeYear();
   }
-  yearStore.setYear(newYear);
 };
 
 const isActive = (page: string) => {
@@ -365,13 +347,4 @@ const goTo = (page: string) => {
   }
 }
 </style>
-  
-.filter-switch.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.filter-switch.disabled label {
-  cursor: not-allowed;
-}
   

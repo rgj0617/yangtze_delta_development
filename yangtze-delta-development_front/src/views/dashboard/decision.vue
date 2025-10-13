@@ -19,19 +19,19 @@
                 <div>{{ evaluationDescription[yearStore.year][0] }}</div>
               </el-collapse-item>
               <el-collapse-item title="创新" name="0">
-                <dimension :indicators="innovation" @update-score="updateScore"/>
+                <dimension :indicators="innovation" dimension="创新发展" @update-score="updateScore"/>
               </el-collapse-item>
               <el-collapse-item title="协调" name="1">
-                 <dimension :indicators="coordination" />
+                 <dimension :indicators="coordination" dimension="协调发展" @update-score="updateScore"/>
               </el-collapse-item>
               <el-collapse-item title="绿色" name="2">
-                <dimension :indicators="green" />
+                <dimension :indicators="green" dimension="绿色发展" @update-score="updateScore"/>
               </el-collapse-item>
               <el-collapse-item title="开放" name="3">
-                <dimension :indicators="open" />
+                <dimension :indicators="open" dimension="开放发展" @update-score="updateScore"/>
               </el-collapse-item>
               <el-collapse-item title="共享" name="4">
-                <dimension :indicators="share" />
+                <dimension :indicators="share" dimension="共享发展" @update-score="updateScore"/>
               </el-collapse-item>
             </el-collapse>
           </el-card>

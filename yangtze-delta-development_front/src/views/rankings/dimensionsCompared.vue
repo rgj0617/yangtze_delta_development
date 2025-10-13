@@ -64,7 +64,7 @@
 
       <!-- 中：按钮操作 -->
       <div class="cityActions">
-        <el-button type="primary" size="large" style="width: 100%" @click="selectAll">全选</el-button>
+        <el-button type="primary" size="large" style="width: 100%" @click="selectAll()">随机选择</el-button>
         <el-button type="danger" size="large" style="width: 100%" @click="clearAll">清空</el-button>
       </div>
 
@@ -88,7 +88,7 @@
     <!-- 底部提示条 -->
     <div class="cityNotice">
       已选择 {{ selectedCities.length }} / {{ cityList.length }} 个城市
-      <span class="advice">（建议选择 5-10 个城市以获得最佳效果）</span>
+      <span class="advice">（建议选择 5-8 个城市以获得最佳效果）</span>
     </div>
   </div>
 </div>
@@ -152,15 +152,19 @@ const resizeChart = () => {
     chartInstance.resize();
   }
 };
-const selectAll = () => {
-  selectedCities.value = [...cityList.value];
+const selectAll = (count = 5) => {
+  const copiedArr = [...cityList.value];
+  const shuffledArr = copiedArr.sort(() => Math.random() - 0.5);
+  const result = shuffledArr.slice(0, count);
+  selectedCities.value = result;
 };
 
 const clearAll = () => {
   selectedCities.value = [];
+  
   updateChart();
+  selectedCities.value = [];
 };
-
 
 // ------------------- 加载所有年份数据 -------------------
 onMounted(async () => {
@@ -174,7 +178,6 @@ onMounted(async () => {
       allData.value[year] = module.default;
     }
   }
-
   // 默认取最新年份的城市列表
   const years = Object.keys(allData.value).sort();
   if (years.length > 0) {
@@ -184,7 +187,6 @@ onMounted(async () => {
       selectedCities.value = [cityList.value[0]];
     }
   }
-
   // 延迟到 DOM 渲染完成后再初始化 ECharts
   await nextTick();
   setTimeout(() => {
@@ -218,9 +220,7 @@ const dimensionColors = ref([
 ]);
 
 const selectedDimension = ref(dimensionColors.value.map(d => d.value));
-
 const toggleDimension = (color) => {
-  
   const idx = selectedDimension.value.indexOf(color);
   if (idx > -1) {
     selectedDimension.value.splice(idx, 1);
@@ -234,7 +234,6 @@ const toggleDimension = (color) => {
 const chartRef = ref(null);
 let chartInstance = null;
 let resizeObserver = null;
-
 const initChartWithResizeObserver = () => {
   if (!chartRef.value) return;
   
@@ -274,32 +273,77 @@ const calculateScore = (row) => {
   });
   return Number(score.toFixed(2));
 };
-
+ // 拼接"对比"
 // ------------------- 图表更新 -------------------
 const updateChart = () => {
-  if (!chartInstance || selectedCities.value.length === 0 || selectedDimension.value.length === 0) return;
+  if (!chartInstance) return;
 
-  const years = Object.keys(allData.value).sort();
-  const filteredYears = years.filter(year => year >= startYear.value && year <= endYear.value);
-
-  const series = selectedCities.value.map(city => {
+  // 情况1：无数据（城市为空或维度为空）
+  if (selectedCities.value.length === 0 || selectedDimension.value.length === 0) {
+    chartInstance.setOption({
+      title: { text: '暂未选择城市或对比维度', subtext: '请先选择城市和对比维度' ,left:'center',
+      textStyle: {
+          fontSize: 32, // 字体大小（默认约12-14，可根据需要调整为16/18/20等）
+          fontWeight: 'bold' // 可选：加粗字体更醒目
+        },
+      subtextStyle: {
+          fontSize: 24 // 副标题字体大小
+        }},
+      legend: { data: [] }, // 清空图例
+      xAxis: { show: false }, // 清空x轴数据
+      yAxis: { show: false }, // 清空y轴数据
+      series: [] // 清空系列数据
+    }, true);
+    return; // 处理完空数据就退出
+  }
+  else{
+    const years = Object.keys(allData.value).sort();
+    const filteredYears = years.filter(year => year >= startYear.value && year <= endYear.value);
+    const dimensionText = selectedDimension.value.map(color => dimensionColors.value.find(d => d.value === color)?.label || color).join('+'); // 数组转字符串（用加号分隔）
+    const titleText = `“${dimensionText}”维度对比`;
+    const series = selectedCities.value.map(city => {
     const data = filteredYears.map(year => {
       const cityData = allData.value[year]?.find(item => item.cityName === city);
       return cityData ? calculateScore(cityData) : null;
     });
     return { name: city, type: "line", data };
   });
+   // 计算所有数据的有效范围（排除null值）
+  const allValues = series.flatMap(s => s.data.filter(d => d !== null));
+  let yMin, yMax;
+  if (allValues.length === 0) {
+    // 无有效数据时的默认范围
+    yMin = 0;
+    yMax = 100;
+  } else {
+    const dataMin = Math.min(...allValues);
+    const dataMax = Math.max(...allValues);
+    const range = dataMax - dataMin;
+    // 偏移量：数据范围的5%（若数据相同则用固定值）
+    const offset = range > 0 ? range * 0.05 : 5;
+    // 确保y轴起点不小于0（根据业务需求调整）
+    yMin = Math.floor(Math.max(dataMin - offset, 0));
+    yMax = Math.ceil(dataMax );
+  }
 
-  const option = {
-    title: { text: "城市维度对比" },
+    const option = {
+    title: { text: titleText ,left:'center'},
     tooltip: { trigger: "axis" },
-    legend: { data: selectedCities.value },
-    xAxis: { type: "category", data: filteredYears },
-    yAxis: { type: "value", name: "Score" },
+    legend: { data: selectedCities.value,top:'30px' },
+    xAxis: { type: "category", data: filteredYears},
+    yAxis: { type: "value", name: "Score", min: yMin, max: yMax },
     series
   };
 
-  chartInstance.setOption(option, true);
+    chartInstance.setOption(option, true);
+      if (!chartInstance || selectedCities.value.length === 0 || selectedDimension.value.length === 0) 
+    chartInstance.setOption({
+      title: { text: '暂无数据' },
+      series: [] // 清空系列数据
+    })
+  }
+
+  
 };
 
 // ------------------- 监听变化 -------------------
@@ -618,7 +662,7 @@ const getBackgroundColor = (row) => {
    padding-left: 0; /* 清除可能的左内边距 */
   border-left: none; /* 确保无左侧边框 */
   justify-content: center;
-  width: 60px;
+  width: 70px;
   gap: 30px;
 }
 .cityActions .el-button {
