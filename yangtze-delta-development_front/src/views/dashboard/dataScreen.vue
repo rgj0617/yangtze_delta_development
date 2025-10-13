@@ -335,10 +335,10 @@ body {
                   </ul>
                 </el-card>
               </div>
-              <div class="introduce" v-if="year == 2024">
+              <div class="introduce" v-if="[2024, 2025].includes(year)">
                 <el-carousel :interval="4000" type="card" class="carousel">
                   <el-carousel-item
-                    v-for="item in 6"
+                    v-for="item in (year === 2025 ? 4 : 6)"
                     :key="item"
                     class="carouselItem"
                   >
@@ -428,16 +428,14 @@ export default {
     };
   },
   watch: {
-    async year(newVal, oldVal) {
-      await this.initMapbox();
-
-      getDBData().then((res) => {
-        this.DBdate = res;
-        //绘制图表
-        this.handleRadioChange(this.radio);
-      });
-    },
+  async year(newVal, oldVal) {
+    await this.initMapbox();
+    const res = await getDBData();
+    this.DBdate = res;
+    this.cityNames = res.cityNames;
+    this.drawChart();
   },
+},
   computed: {
     // 从 Pinia 中读取状态
     year() {
@@ -447,36 +445,41 @@ export default {
   },
   methods: {
     getImageSrc(item) {
+      const year = this.year;
       let imageNamePrefix;
-      switch (this.radio) {
-        case 0:
-          imageNamePrefix = "innovation";
-          break;
-        case 1:
-          imageNamePrefix = "coordinate";
-          break;
-        case 2:
-          imageNamePrefix = "green";
-          break;
-        case 3:
-          imageNamePrefix = "open";
-          break;
-        case 4:
-          imageNamePrefix = "share";
-          break;
-        case 5:
-          imageNamePrefix = "whole";
-          if (item > 3) {
-            item -= 3;
-          }
-          break;
+      
+      // 2025年特殊处理：所有维度都使用 whole 图片
+      if (year === 2025) {
+        imageNamePrefix = "whole";
+      } else {
+        // 2024年及其他年份的原有逻辑
+        switch (this.radio) {
+          case 0:
+            imageNamePrefix = "innovation";
+            break;
+          case 1:
+            imageNamePrefix = "coordinate";
+            break;
+          case 2:
+            imageNamePrefix = "green";
+            break;
+          case 3:
+            imageNamePrefix = "open";
+            break;
+          case 4:
+            imageNamePrefix = "share";
+            break;
+          case 5:
+            imageNamePrefix = "whole";
+            if (item > 3) {
+              item -= 3;
+            }
+            break;
+        }
       }
-      if (item >= 1 && item <= 6) {
-        return `${
-          import.meta.env.BASE_URL
-        }dataScreen/2024/${imageNamePrefix}${item}.jpg`;
-      }
-      return ""; // 如果超出范围，返回空字符串或其他默认图片路径
+      
+      const url = `${import.meta.env.BASE_URL}dataScreen/${year}/${imageNamePrefix}${item}.jpg`;
+      return url;
     },
     //初始化mapbox控件的方法
     async initMapbox() {
@@ -572,11 +575,11 @@ export default {
     //挂载mapbox
     await this.initMapbox();
     //读取数据库数据
-    getDBData().then((res) => {
-      this.DBdate = res;
-      //绘制图表
-      this.drawChart();
-    });
+    const res = await getDBData();
+    this.DBdate = res;
+    this.cityNames = res.cityNames;
+    //绘制图表
+    this.drawChart();
   },
   beforeUnmount() {
     this.myChart && this.myChart.destroy();
