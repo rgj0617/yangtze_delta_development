@@ -13,7 +13,7 @@
               :key="year"
               :label="year"
               :value="year"
-              
+              :disabled="year===2023"
             />
             <!-- 禁用2023和与自身对比 -->
           </el-select>
