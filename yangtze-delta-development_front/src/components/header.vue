@@ -104,9 +104,7 @@ const yearStore = useYearStore();
 const router = useRouter();
 
 const onYearChange = (newYear: number) => {
-  if (yearStore.year !== newYear) {
-    yearStore.changeYear();
-  }
+  yearStore.setYear(newYear);
 };
 
 const isActive = (page: string) => {

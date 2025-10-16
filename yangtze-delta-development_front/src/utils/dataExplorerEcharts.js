@@ -38,7 +38,7 @@ export const getDBData = async () => {
   console.log(indicators, 51);
 
   cityNames = [...new Set(ranking.map((item) => item.cityName))];
-  let dataset = { ranking, detail, indicators };
+  let dataset = { ranking, detail, indicators, cityNames };
   return dataset;
 };
 

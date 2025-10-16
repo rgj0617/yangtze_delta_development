@@ -32,7 +32,7 @@
           v-for="item in dimensionColors"
           :key="item.value"
           class="dimensionItem"
-          :class="{ active: selectedDimension.includes(item.value) }"
+          :class="{ active: selectedDimension === item.value }"
           @click="toggleDimension(item.value)"
         >
           <el-tag :color="item.value" size="small" />
@@ -54,7 +54,10 @@
             v-for="city in cityList"
             :key="city"
             class="cityItem"
-            :class="{ active: selectedCities.includes(city) }"
+            :class="{ 
+              active: selectedCities.includes(city),
+              disabled: !selectedCities.includes(city) && selectedCities.length >= 8
+            }"
             @click="toggleCity(city)"
           >
             {{ city }}
@@ -87,8 +90,9 @@
 
     <!-- 底部提示条 -->
     <div class="cityNotice">
-      已选择 {{ selectedCities.length }} / {{ cityList.length }} 个城市
-      <span class="advice">（建议选择 5-8 个城市以获得最佳效果）</span>
+      已选择 {{ selectedCities.length }} / 8 个城市
+      <span class="advice" v-if="selectedCities.length < 8">（建议选择 5-8 个城市以获得最佳效果）</span>
+      <span class="warning" v-else>（已达到最大选择数量）</span>
     </div>
   </div>
 </div>
@@ -140,8 +144,14 @@ const allData = ref({});          // 所有年份数据 {year: [cityData]}
 const toggleCity = (city) => {
   const idx = selectedCities.value.indexOf(city);
   if (idx > -1) {
+    // 如果城市已选中，则移除
     selectedCities.value.splice(idx, 1);
   } else {
+    // 如果城市未选中，检查是否已达到最大选择数量
+    if (selectedCities.value.length >= 8) {
+      // 达到最大限制时不执行任何操作，也不显示警告
+      return;
+    }
     selectedCities.value.push(city);
   }
   updateChart();
@@ -153,10 +163,13 @@ const resizeChart = () => {
   }
 };
 const selectAll = (count = 5) => {
+  // 确保选择数量不超过8个
+  const maxCount = Math.min(count, 8, cityList.value.length);
   const copiedArr = [...cityList.value];
   const shuffledArr = copiedArr.sort(() => Math.random() - 0.5);
-  const result = shuffledArr.slice(0, count);
+  const result = shuffledArr.slice(0, maxCount);
   selectedCities.value = result;
+  updateChart();
 };
 
 const clearAll = () => {
@@ -212,22 +225,53 @@ onUnmounted(() => {
 
 // ------------------- 维度相关 -------------------
 const dimensionColors = ref([
-  { value: "#fbe4d5", label: "创新发展" },
-  { value: "#d9e2f3", label: "协调发展" },
+  { value: "#fac39f", label: "创新发展" },
+  { value: "#bfd3f9", label: "协调发展" },
   { value: "#c5e0b3", label: "绿色发展" },
   { value: "#ffe599", label: "开放发展" },
   { value: "#d9c8eb", label: "共享发展" },
 ]);
 
-const selectedDimension = ref(dimensionColors.value.map(d => d.value));
+const selectedDimension = ref(null);
 const toggleDimension = (color) => {
-  const idx = selectedDimension.value.indexOf(color);
-  if (idx > -1) {
-    selectedDimension.value.splice(idx, 1);
-  } else {
-    selectedDimension.value.push(color);
-  }
+  // 单选逻辑：如果点击的是当前选中的维度，则取消选择；否则选择新的维度
+  selectedDimension.value = selectedDimension.value === color ? null : color;
   updateChart();
+};
+
+// 生成基于维度颜色的深浅色系列
+const generateColorSeries = (baseColor, count) => {
+  if (!baseColor || count <= 0) return [];
+  
+  // 将十六进制颜色转换为RGB
+  const hexToRgb = (hex) => {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  };
+  
+  // 将RGB转换为十六进制
+  const rgbToHex = (r, g, b) => {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  };
+  
+  const baseRgb = hexToRgb(baseColor);
+  if (!baseRgb) return [baseColor];
+  
+  const colors = [];
+  for (let i = 0; i < count; i++) {
+    // 生成从浅到深的颜色系列
+    const factor = 0.3 + (0.7 * i / Math.max(count - 1, 1)); // 从0.3到1.0
+    const r = Math.round(255 - (255 - baseRgb.r) * factor);
+    const g = Math.round(255 - (255 - baseRgb.g) * factor);
+    const b = Math.round(255 - (255 - baseRgb.b) * factor);
+    colors.push(rgbToHex(r, g, b));
+  }
+  
+  return colors;
 };
 
 // ------------------- ECharts -------------------
@@ -265,13 +309,12 @@ const handleResize = () => {
 
 // ------------------- 计算分数 -------------------
 const calculateScore = (row) => {
-  let score = 0;
-  selectedDimension.value.forEach(color => {
-    dimensionColors.value.forEach(dim => {
-      if (dim.value === color) score += Number(row[dim.label]) || 0;
-    });
-  });
-  return Number(score.toFixed(2));
+  if (!selectedDimension.value) return 0;
+  
+  const selectedDim = dimensionColors.value.find(dim => dim.value === selectedDimension.value);
+  if (!selectedDim) return 0;
+  
+  return Number((Number(row[selectedDim.label]) || 0).toFixed(2));
 };
  // 拼接"对比"
 // ------------------- 图表更新 -------------------
@@ -279,7 +322,7 @@ const updateChart = () => {
   if (!chartInstance) return;
 
   // 情况1：无数据（城市为空或维度为空）
-  if (selectedCities.value.length === 0 || selectedDimension.value.length === 0) {
+  if (selectedCities.value.length === 0 || !selectedDimension.value) {
     chartInstance.setOption({
       title: { text: '暂未选择城市或对比维度', subtext: '请先选择城市和对比维度' ,left:'center',
       textStyle: {
@@ -299,15 +342,29 @@ const updateChart = () => {
   else{
     const years = Object.keys(allData.value).sort();
     const filteredYears = years.filter(year => year >= startYear.value && year <= endYear.value);
-    const dimensionText = selectedDimension.value.map(color => dimensionColors.value.find(d => d.value === color)?.label || color).join('+'); // 数组转字符串（用加号分隔）
-    const titleText = `“${dimensionText}”维度对比`;
-    const series = selectedCities.value.map(city => {
-    const data = filteredYears.map(year => {
-      const cityData = allData.value[year]?.find(item => item.cityName === city);
-      return cityData ? calculateScore(cityData) : null;
+    const selectedDim = dimensionColors.value.find(d => d.value === selectedDimension.value);
+    const dimensionText = selectedDim ? selectedDim.label : '未知维度';
+    const titleText = `"${dimensionText}"维度对比`;
+    
+    // 生成基于维度颜色的深浅色系列
+    const baseColor = selectedDimension.value;
+    const colorSeries = generateColorSeries(baseColor, filteredYears.length);
+    
+    // 重新组织数据：每个年份作为一个series，城市作为X轴
+    const series = filteredYears.map((year, index) => {
+      const data = selectedCities.value.map(city => {
+        const cityData = allData.value[year]?.find(item => item.cityName === city);
+        return cityData ? calculateScore(cityData) : null;
+      });
+      return { 
+        name: year, 
+        type: "bar", 
+        data,
+        itemStyle: {
+          color: colorSeries[index] || baseColor
+        }
+      };
     });
-    return { name: city, type: "line", data };
-  });
    // 计算所有数据的有效范围（排除null值）
   const allValues = series.flatMap(s => s.data.filter(d => d !== null));
   let yMin, yMax;
@@ -329,18 +386,13 @@ const updateChart = () => {
     const option = {
     title: { text: titleText ,left:'center'},
     tooltip: { trigger: "axis" },
-    legend: { data: selectedCities.value,top:'30px' },
-    xAxis: { type: "category", data: filteredYears},
+    legend: { data: filteredYears, top:'30px' },
+    xAxis: { type: "category", data: selectedCities.value },
     yAxis: { type: "value", name: "Score", min: yMin, max: yMax },
     series
   };
 
     chartInstance.setOption(option, true);
-      if (!chartInstance || selectedCities.value.length === 0 || selectedDimension.value.length === 0) 
-    chartInstance.setOption({
-      title: { text: '暂无数据' },
-      series: [] // 清空系列数据
-    })
   }
 
   
@@ -354,13 +406,20 @@ watch([selectedCities, selectedDimension, startYear, endYear], () => {
 // ------------------- 表格排序 -------------------
 const rankingDetailData = ref([]);
 const formatScore = (row) => {
-  let score = 0;
-  selectedDimension.value.forEach(item => {
-    dimensionColors.value.forEach(dim => {
-      if (item === dim.value) score += Number(row[dim.label]) || 0;
-    });
-  });
-  return Number(score.toFixed(2));
+  // //let score = 0;
+  // selectedDimension.value.forEach(item => {
+  //   dimensionColors.value.forEach(dim => {
+  //     if (item === dim.value) score += Number(row[dim.label]) || 0;
+  //   });
+  // });
+  // return Number(score.toFixed(2));
+  
+  if (!selectedDimension.value) return 0;
+  
+  const selectedDim = dimensionColors.value.find(dim => dim.value === selectedDimension.value);
+  if (!selectedDim) return 0;
+  
+  return Number((Number(row[selectedDim.label]) || 0).toFixed(2));
 };
 
 const tableSort = ({ column, prop, order }) => {
@@ -373,28 +432,16 @@ const tableSort = ({ column, prop, order }) => {
 
 // ------------------- 多维度背景色 -------------------
 const getBackgroundColor = (row) => {
-  const emptyColor = "#EEEEEE";
-  const arr = selectedDimension.value.map(color => {
-    const dim = dimensionColors.value.find(d => d.value === color);
-    return { dimension: dim.label, score: Number(row[dim.label]) || 0 };
-  });
-
-  const dimensionOrder = ["创新发展","协调发展","绿色发展","开放发展","共享发展"];
-  let sumPercent = (n) => {
-    let sum = 0;
-    for (let i=0;i<n;i++) {
-      arr.forEach(item => { if(item.dimension === dimensionOrder[i]) sum += item.score; });
-    }
-    return sum;
-  };
-
-  return `linear-gradient(to right,
-    #fbe4d5 0%, #fbe4d5 ${sumPercent(1)}%, 
-    #d9e2f3 ${sumPercent(1)}%, #d9e2f3 ${sumPercent(2)}%, 
-    #c5e0b3 ${sumPercent(2)}%, #c5e0b3 ${sumPercent(3)}%, 
-    #ffe599 ${sumPercent(3)}%, #ffe599 ${sumPercent(4)}%, 
-    #d9c8eb ${sumPercent(4)}%, #d9c8eb ${sumPercent(5)}%, 
-    ${emptyColor} ${sumPercent(5)}%, ${emptyColor} 100%)`;
+  if (!selectedDimension.value) return "#EEEEEE";
+  
+  const selectedDim = dimensionColors.value.find(d => d.value === selectedDimension.value);
+  if (!selectedDim) return "#EEEEEE";
+  
+  const score = Number(row[selectedDim.label]) || 0;
+  const maxScore = 100; // 假设最大分数为100，可根据实际情况调整
+  const percentage = Math.min((score / maxScore) * 100, 100);
+  
+  return `linear-gradient(to right, ${selectedDimension.value} 0%, ${selectedDimension.value} ${percentage}%, #EEEEEE ${percentage}%, #EEEEEE 100%)`;
 };
 </script>
 
@@ -488,6 +535,14 @@ const getBackgroundColor = (row) => {
   color: #1a4f8a;
   font-weight: 600;
 }
+.cityItem.disabled {
+  background: #f5f5f5;
+  color: #ccc;
+  cursor: not-allowed;
+}
+.cityItem.disabled:hover {
+  background: #f5f5f5;
+}
 .cityActions {
   display: flex;
   flex-direction: column;
@@ -507,6 +562,11 @@ const getBackgroundColor = (row) => {
 }
 .cityNotice .advice {
   color: #d9534f;
+  font-style: italic;
+}
+.cityNotice .warning {
+  color: #e74c3c;
+  font-weight: 600;
   font-style: italic;
 }
 .selectionContainer {

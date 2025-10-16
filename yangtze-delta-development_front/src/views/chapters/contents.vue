@@ -29,6 +29,11 @@
             class="pdfContainer"
             pdf="https://img.iduodou.com/images/docs/20250114/A72D154E-07F2-4480-A79C-183B18802206.pdf?attname=%E9%95%BF%E4%B8%89%E8%A7%92%E9%AB%98%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BB%B7%E5%AE%8C%E6%95%B4%E7%89%882024%E6%9C%80%E6%96%B0(011303).pdf"
           ></VuePdfApp>
+          <VuePdfApp
+            v-else-if="yearStore.year == 2025"
+            class="pdfContainer"
+            pdf="https://img.iduodou.com/images/docs/20251015/FDB067D1-0B04-4CDA-931F-C60A657FEF14.pdf?attname=2025%E9%95%BF%E4%B8%89%E8%A7%92%E9%AB%98%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BB%B71015_A4_%E4%BD%8E%E5%88%86%E8%BE%A8%E7%8E%87%E7%89%88.pdf"
+          ></VuePdfApp>
         </div>
       </el-tab-pane>
       <el-tab-pane label="查看章节" name="second" class="ranking">

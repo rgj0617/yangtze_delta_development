@@ -2,6 +2,12 @@
   <el-card class="container">
     <el-table :data="comparisonData" stripe class="adaptive-table">
       <el-table-column
+        prop="cityName"
+        label="Country"
+        width="200"
+        align="center"
+      />
+      <el-table-column
         prop="currentRanking"
         width="125"
         align="center"
@@ -42,6 +48,7 @@
         width="200"
         align="center"
         sortable
+        prop="rankingChange"
       >
         <template v-slot="scope">
           <div class="change-indicator">
@@ -63,12 +70,7 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column
-        prop="cityName"
-        label="Country"
-        width="200"
-        align="center"
-      />
+      
       <el-table-column
         prop="currentScore"
         :label="currentSelectedYear + ' Ratings'"
