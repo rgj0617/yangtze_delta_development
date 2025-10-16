@@ -46,10 +46,12 @@ export function share(city, secondaryIndicator, data) {
         console.error('未知的二级指标:', secondaryIndicator)
         return -9999
     }
+    // console.log(result)
     const weight = 10 / 3
     if (result > 1) result = 1
     else if (result < 0) result = 0
     result = (result - origin[secondaryIndicator][index]) * weight
+    
     if (Number.isFinite(result)) return result
     else return -9999
     
@@ -74,7 +76,7 @@ const share2 = (data) => {
 }
 
 const share3 = (data) => {
-  const baseRes = data['教师数'] / data['学生数'] * 100
+  const baseRes = data['中小学教师数'] / data['中小学学生数'] * 100
   const normalization = 8.4
   const normalizationRes = baseRes / normalization
   return normalizationRes

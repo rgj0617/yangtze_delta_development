@@ -8,7 +8,8 @@
         <div class="information">
           <el-card class="normal">
             <div>
-              <h2>目标地级市：{{ selectedCityStore.get() }}</h2>
+              <h2 v-if="selectedCityStore.get().value!=='未选择'">{{ selectedCityStore.get() }}</h2>
+              <h2 v-else>请选择一个地级市</h2>
             </div>
             <el-collapse v-model="activeName" accordion>
               <el-collapse-item name="5">
@@ -34,6 +35,9 @@
                 <dimension :indicators="share" dimension="共享发展" @update-score="updateScore"/>
               </el-collapse-item>
             </el-collapse>
+            <div class="tip">
+              本工具目前仅支持2025年数据
+            </div>
           </el-card>
         </div>
         <div class="yangtzeMap">
@@ -112,6 +116,10 @@ const updateScore = (data) => {
     align-items: center;
     height: 100%;
     width: 85%;
+  }
+  .tip {
+    color: #bbbbbb;
+    font-size: 14px;
   }
 }
 

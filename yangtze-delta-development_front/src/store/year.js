@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 export const useYearStore = defineStore("year", () => {
-  const year = ref(2024); // 默认显示2024年份
+  const year = ref(2025); // 默认显示2025年份
 
   function changeYear() {
     if (year.value === 2023) {

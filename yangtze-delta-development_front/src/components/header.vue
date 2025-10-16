@@ -60,7 +60,7 @@
     </div>
     <div class="right-box">
       <!-- <div class="left-item">切换年份:</div> -->
-      <div id="firstFilter" class="filter-switch" v-if="!isActive('compared')">
+      <div id="firstFilter" class="filter-switch" v-if="!isActive('compared') && !isActive('decision') && !isActive('ours')">
         <input
           id="option1"
           name="options"
@@ -115,6 +115,9 @@ const isActive = (page: string) => {
 
 const goTo = (page: string) => {
   let route = "/" + page;
+  if (page === 'decision') {
+    yearStore.setYear(2025)
+  }
   router.push(route);
   1;
 };
