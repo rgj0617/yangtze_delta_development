@@ -17,7 +17,10 @@
                   综合评价
                   <el-icon><star-filled /></el-icon>
                 </template>
-                <div>{{ evaluationDescription[yearStore.year][0] }}</div>
+                <div>本栏目下地图展示了长三角地区各个地级市的综合得分情况</div>
+                <div>
+                  展开下面对应的栏目可以查看各个维度得分情况，并且可以选取二级指标进行自定义修改，辅助指导决策。
+                </div>
               </el-collapse-item>
               <el-collapse-item title="创新" name="0">
                 <dimension :indicators="innovation" dimension="创新发展" @update-score="updateScore"/>
