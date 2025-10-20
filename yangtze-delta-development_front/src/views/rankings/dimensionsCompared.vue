@@ -12,6 +12,7 @@
           placeholder="开始年份"
           style="width: 120px"
           value-format="YYYY"
+          :disabled-date="disabledDate"
         />
         <span style="margin: 0 10px;">至</span>
         <el-date-picker
@@ -20,6 +21,7 @@
           placeholder="结束年份"
           style="width: 120px"
           value-format="YYYY"
+          :disabled-date="disabledDate"
         />
       </div>
     </div>
@@ -130,14 +132,22 @@
   
 <script setup>
 
-import { ref, watch, onMounted, onUnmounted, nextTick } from "vue";
+import { ref, watch, onMounted, onUnmounted, nextTick, computed } from "vue";
 import * as echarts from "echarts";
 import { scoreFormat } from "@/utils/format.ts";
 
 // ------------------- 年份和城市相关 -------------------
-const availableYears = ref([2025, 2024, 2023]); // 可选年份
-const startYear = ref(Math.min(...availableYears.value));  // 默认最早年份
-const endYear = ref(Math.max(...availableYears.value));    // 默认最新年份
+const availableYears = computed(() => {
+  return Object.keys(allData.value).map(year => parseInt(year)).sort();
+}); // 根据实际数据计算可用年份
+const startYear = ref("2024");  // 默认开始年份
+const endYear = ref("2025");    // 默认结束年份
+
+// 禁用没有数据的年份，同时禁用2023年
+const disabledDate = (date) => {
+  const year = date.getFullYear();
+  return !availableYears.value.includes(year) || year === 2023;
+};
 const selectedCities = ref([]);   // 当前选中的城市
 const cityList = ref([]);         // 最新年份的城市列表
 const allData = ref({});          // 所有年份数据 {year: [cityData]}
@@ -195,6 +205,12 @@ onMounted(async () => {
   const years = Object.keys(allData.value).sort();
   if (years.length > 0) {
     const latestYear = years[years.length - 1];
+    const earliestYear = years[1];
+    
+    // 设置默认年份范围
+    startYear.value = earliestYear;
+    endYear.value = latestYear;
+    
     cityList.value = allData.value[latestYear].map((item) => item.cityName);
     if (cityList.value.length > 0) {
       selectedCities.value = [cityList.value[0]];
@@ -362,6 +378,9 @@ const updateChart = () => {
         data,
         itemStyle: {
           color: colorSeries[index] || baseColor
+        },
+        emphasis: {
+          disabled: true
         }
       };
     });
@@ -389,7 +408,13 @@ const updateChart = () => {
     legend: { data: filteredYears, top:'30px' },
     xAxis: { type: "category", data: selectedCities.value },
     yAxis: { type: "value", name: "Score", min: yMin, max: yMax },
-    series
+    series,
+    // 禁用颜色淡化效果
+    emphasis: {
+      disabled: true
+    },
+    // 全局禁用blur效果
+    blurScope: 'none'
   };
 
     chartInstance.setOption(option, true);
@@ -447,6 +472,7 @@ const getBackgroundColor = (row) => {
 
   
 <style lang="scss" scoped>
+@use "@/styles/responsive.scss" as *;
 /* 全局浅蓝色主题 */
 :deep(.el-select),
 :deep(.el-input),
@@ -457,16 +483,14 @@ const getBackgroundColor = (row) => {
 }
 
 .timeAndDimension {
-  flex: 1 ;   /* 时间和维度相对较小 */
-  
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
 .citySelection.large {
-  flex: 2 1 auto;   /* 城市选择框更大 */
-  min-width: 500px; /* 最小宽度更宽 */
+  min-width: 0;
   display: flex;
   flex-direction: column;
 }
@@ -570,14 +594,18 @@ const getBackgroundColor = (row) => {
   font-style: italic;
 }
 .selectionContainer {
-  display: flex;
-  flex-wrap: wrap; /* 适应小屏幕自动换行 */
-  gap: 25px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 1.2vw, 18px);
+  align-items: start;
   padding: 15px 20px;
   background: #f5faff; /* 淡蓝背景 */
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 123, 255, 0.1);
   margin-bottom: 20px;
+}
+.selectionContainer .selectionCard {
+  min-width: 0; /* 保证两列在较窄容器下也不换行 */
 }
 .selectionCard {
   flex: 1 1 auto;
@@ -728,5 +756,25 @@ const getBackgroundColor = (row) => {
 .cityActions .el-button {
   margin-left: 0 !important; /* 清除左内边距 */
   text-align: center; /* 确保文字居中，避免内容偏移 */
+}
+@include mobile {
+  .selectionContainer {
+    grid-template-columns: 1fr;
+  }
+}
+@include tablet {
+  .selectionContainer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@include desktop {
+  .selectionContainer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@include desktop_hd {
+  .selectionContainer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 </style>

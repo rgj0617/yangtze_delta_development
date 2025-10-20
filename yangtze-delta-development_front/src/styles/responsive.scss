@@ -1,0 +1,285 @@
+// 响应式断点定义
+$breakpoints: (
+  mobile: 768px,      // 移动端：0-768px
+  tablet: 1100px,     // 平板端：768px-1024px  
+  laptop: 1440px,     // 笔记本：1024px-1440px
+  desktop: 1920px     // 桌面端：1440px+
+);
+
+// 媒体查询混合器
+@mixin mobile {
+  @media (max-width: #{map-get($breakpoints, mobile) - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{map-get($breakpoints, mobile)}) and (max-width: #{map-get($breakpoints, tablet) - 1px}) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (min-width: #{map-get($breakpoints, tablet)}) and (max-width: #{map-get($breakpoints, laptop) - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{map-get($breakpoints, laptop)}) and (max-width: #{map-get($breakpoints, desktop) - 1px}) {
+    @content;
+  }
+}
+
+// ≥1920px 的高清桌面端
+@mixin desktop_hd {
+  @media (min-width: #{map-get($breakpoints, desktop)}) {
+    @content;
+  }
+}
+
+// 小于平板端（移动端）
+@mixin mobile-tablet {
+  @media (max-width: #{map-get($breakpoints, tablet) - 1px}) {
+    @content;
+  }
+}
+
+// 大于移动端（平板端及以上）
+@mixin tablet-up {
+  @media (min-width: #{map-get($breakpoints, mobile)}) {
+    @content;
+  }
+}
+
+// 大于平板端（笔记本及以上）
+@mixin laptop-up {
+  @media (min-width: #{map-get($breakpoints, tablet)}) {
+    @content;
+  }
+}
+
+// 响应式容器类
+.container-responsive {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @include mobile {
+    padding: 0 15px;
+  }
+
+  @include tablet {
+    padding: 0 30px;
+  }
+
+  @include laptop {
+    padding: 0 40px;
+  }
+
+  @include desktop {
+    padding: 0 60px;
+  }
+}
+
+// 响应式字体大小
+.responsive-title {
+  @include mobile {
+    font-size: 2.5rem;
+  }
+
+  @include tablet {
+    font-size: 3rem;
+  }
+
+  @include laptop {
+    font-size: 3.5rem;
+  }
+
+  @include desktop {
+    font-size: 4rem;
+  }
+}
+
+.responsive-subtitle {
+  @include mobile {
+    font-size: 1rem;
+  }
+
+  @include tablet {
+    font-size: 1.1rem;
+  }
+
+  @include laptop {
+    font-size: 1.2rem;
+  }
+
+  @include desktop {
+    font-size: 1.3rem;
+  }
+}
+
+// 响应式间距
+.responsive-margin {
+  @include mobile {
+    margin: 1rem 5%;
+  }
+
+  @include tablet {
+    margin: 1.5rem 10%;
+  }
+
+  @include laptop {
+    margin: 2rem 15%;
+  }
+
+  @include desktop {
+    margin: 2.5rem 20%;
+  }
+}
+
+// 响应式网格布局
+.responsive-grid {
+  display: grid;
+  gap: 20px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  @include laptop {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+}
+
+// 响应式Flex布局
+.responsive-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  @include mobile {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  @include tablet {
+    flex-direction: row;
+    gap: 20px;
+  }
+}
+
+// 隐藏/显示工具类
+.hide-mobile {
+  @include mobile {
+    display: none !important;
+  }
+}
+
+.hide-tablet {
+  @include tablet {
+    display: none !important;
+  }
+}
+
+.hide-laptop {
+  @include laptop {
+    display: none !important;
+  }
+}
+
+.hide-desktop {
+  @include desktop {
+    display: none !important;
+  }
+}
+
+.show-mobile-only {
+  display: none;
+  @include mobile {
+    display: block !important;
+  }
+}
+
+.show-tablet-only {
+  display: none;
+  @include tablet {
+    display: block !important;
+  }
+}
+
+// 响应式图片
+.responsive-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+
+  @include mobile {
+    max-height: 200px;
+  }
+
+  @include tablet {
+    max-height: 300px;
+  }
+
+  @include laptop {
+    max-height: 400px;
+  }
+
+  @include desktop {
+    max-height: 500px;
+  }
+}
+
+// 响应式表格
+.responsive-table {
+  width: 100%;
+  overflow-x: auto;
+
+  @include mobile {
+    font-size: 0.8rem;
+  }
+
+  @include tablet {
+    font-size: 0.9rem;
+  }
+
+  @include laptop-up {
+    font-size: 1rem;
+  }
+}
+
+// 响应式卡片
+.responsive-card {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  @include mobile {
+    padding: 15px;
+    margin: 10px 0;
+  }
+
+  @include tablet {
+    padding: 20px;
+    margin: 15px 0;
+  }
+
+  @include laptop-up {
+    padding: 25px;
+    margin: 20px 0;
+  }
+}

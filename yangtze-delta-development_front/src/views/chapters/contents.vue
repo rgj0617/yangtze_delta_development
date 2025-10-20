@@ -225,12 +225,12 @@ const goTo = (page: string) => {
     #pdf {
       width: 100%;
       .pdfContainer {
-        width: 30vw;
+        width: 40vw;
         // height: 80vh;
         height: calc(96vh - 300px);
         box-shadow: 5px 5px 12px 0 rgba(0, 0, 0, 0.3);
 
-        margin-left: 10vw;
+        margin-left: 5vw;
 
         border-radius: 10px;
       }
@@ -301,6 +301,133 @@ const goTo = (page: string) => {
 .card-footer {
   text-align: right;
   align-self: flex-end;
+}
+@media (min-width: 1901px) and (max-width: 2500px) {
+  .ranking {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      #pdf {
+        width: 100%;
+        .pdfContainer {
+          width: 35vw; /* 仿照2560px设置，PDF容器宽度 */
+          height: calc(96vh - 300px);
+          box-shadow: 5px 5px 12px 0 rgba(0, 0, 0, 0.3);
+          margin-left: 25vw; /* 仿照2560px设置，使用左边距居中 */
+          border-radius: 10px;
+        }
+      }
+    }
+}
+// 中等高分辨率显示 (1441px-1919px)
+@media (min-width: 1441px) and (max-width: 1900px) {
+  :deep(.el-tabs__item) {
+    width: 48vw; /* 两个标签并排，适配中等分辨率 */
+    font-size: 2.0vw;
+    font-weight: bold;
+  }
+
+  .tabContent {
+    margin: 1.2% 0 0.5% 0; /* 移除左右边距，实现整个页面居中 */
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw; /* 内容区占满整个视口宽度 */
+    .description {
+      color: rgb(142, 142, 142);
+      font-size: 1.4vh;
+      font-weight: 300;
+      margin-top: 1.2%;
+    }
+    .ranking {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      #pdf {
+        width: 100%;
+        .pdfContainer {
+          width: 45vw; /* 仿照2560px设置，PDF容器宽度 */
+          height: calc(96vh - 300px);
+          box-shadow: 5px 5px 12px 0 rgba(0, 0, 0, 0.3);
+          margin-left: 25vw; /* 仿照2560px设置，使用左边距居中 */
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+
+  .sectionContent {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 1.2% 3% 0.5% 3%;
+    .title {
+      font-size: 4.5vw; /* 标题在中等分辨率下适中大小 */
+      font-weight: bold;
+    }
+    .description {
+      color: rgb(142, 142, 142);
+      font-size: 1.4vw;
+      font-weight: 500;
+      line-height: 1.5;
+      margin-top: 1.2%;
+    }
+  }
+}
+
+@media (max-width: 1440px) {
+  :deep(.el-tabs__item) {
+    width: 47.5vw; /* 两个标签并排，适配1440宽度 */
+    font-size: 2.2vw;
+    font-weight: bold;
+  }
+
+  .tabContent {
+    margin: 1.5% 0 0.5% 0; /* 移除左右边距，实现整个页面居中 */
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw; /* 内容区占满整个视口宽度 */
+    .description {
+      color: rgb(142, 142, 142);
+      font-size: 1.5vh;
+      font-weight: 300;
+      margin-top: 1.2%;
+    }
+    .ranking {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      #pdf {
+        width: 100%;
+        .pdfContainer {
+          width: 70vw; /* 在线阅览PDF在1440下放大 */
+          height: calc(96vh - 300px);
+          box-shadow: 5px 5px 12px 0 rgba(0, 0, 0, 0.3);
+          margin-left: 12.5vw; /* 仿照2560px设置，使用左边距居中 */
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+
+  .sectionContent {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 1.5% 5% 0.5% 5%;
+    .title {
+      font-size: 5vw; /* 标题在1440下使用vw以更贴合屏宽 */
+      font-weight: bold;
+    }
+    .description {
+      color: rgb(142, 142, 142);
+      font-size: 1.6vw;
+      font-weight: 500;
+      line-height: 1.5;
+      margin-top: 1.2%;
+    }
+  }
 }
 
 @media (max-width: 1000px) {

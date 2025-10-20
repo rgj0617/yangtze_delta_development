@@ -4,22 +4,22 @@
       <el-table-column
         prop="cityName"
         label="Country"
-        width="200"
+        width="120"
         align="center"
       />
       <el-table-column
         prop="currentRanking"
-        width="125"
+        width="105"
         align="center"
       >
         <template #header>
-          <el-select v-model="currentSelectedYear" size="small" style="width: 90px">
+          <el-select v-model="currentSelectedYear" size="small" style="width: 80px">
             <el-option
               v-for="year in availableYears"
               :key="year"
               :label="year"
               :value="year"
-              
+              :disabled="year===2023"
             />
             <!-- 禁用2023和与自身对比 -->
           </el-select>
@@ -27,11 +27,11 @@
         </el-table-column>
       <el-table-column
         prop="previousRanking"
-        width="125"
+        width="105"
         align="center"
       >
         <template #header>
-          <el-select v-model="selectedYear" size="small" style="width: 90px">
+          <el-select v-model="selectedYear" size="small" style="width: 80px">
             <el-option
               v-for="year in availableYears"
               :key="year"
@@ -45,7 +45,7 @@
       </el-table-column>
       <el-table-column
         label="Rank_Change"
-        width="200"
+        
         align="center"
         sortable
         prop="rankingChange"
@@ -285,5 +285,27 @@ const getChangeClass = (change) => {
 
 :deep(.el-table td) {
   padding: 8px 0;
+}
+
+/* 针对1920*1080 125%缩放（有效分辨率1536px）的优化 */
+@media (min-width: 1536px) and (max-width: 1920px) {
+  :deep(.el-table th) {
+    font-size: 9px; /* 减小表头字体大小，防止列名叠行 */
+    line-height: 1.2;
+    white-space: nowrap; /* 强制单行显示 */
+  }
+  
+  :deep(.el-table td) {
+    font-size: 12px; /* 相应调整表格内容字体大小 */
+  }
+  /* 排序按钮容器优化 */
+  :deep(.el-table th .caret-wrapper) {
+    width: 10px; /* 减小排序按钮容器宽度 */
+    margin-left: 1px; /* 减小左边距 */
+  }
+  /* 针对下拉选择器的优化 */
+  :deep(.el-select) {
+    font-size: 11px;
+  }
 }
 </style>

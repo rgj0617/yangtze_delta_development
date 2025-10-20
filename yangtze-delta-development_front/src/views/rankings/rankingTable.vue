@@ -9,12 +9,12 @@
       <el-table-column
         prop="cityName"
         label="Country"
-        width="200"
+        sortable
       ></el-table-column>
       <el-table-column
         prop="score"
         label="Score"
-        width="202"
+        
         sortable
       ></el-table-column>
       <el-table-column label="Performance">

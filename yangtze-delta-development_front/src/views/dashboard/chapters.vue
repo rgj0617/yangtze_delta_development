@@ -20,7 +20,7 @@ import homeHeader from "../../components/header.vue";
   width: 100%;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1440px) {
   .head {
     height: 5vh;
     width: 100%;

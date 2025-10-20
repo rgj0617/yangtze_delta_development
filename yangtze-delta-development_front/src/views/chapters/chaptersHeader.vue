@@ -50,6 +50,33 @@ const props = defineProps({
   }
 }
 
+// 中等高分辨率显示 (1441px-1919px)
+@media (min-width: 1441px) and (max-width: 1900px) {
+  .sectionContent {
+    margin: 1.2% 3% 0.5% 3%;
+    .title {
+      font-size: 4.5vw;
+    }
+    .description {
+      font-size: 1.4vw;
+      line-height: 1.5;
+    }
+  }
+}
+
+@media (max-width: 1440px) {
+  .sectionContent {
+    margin: 1.5% 5% 0.5% 5%;
+    .title {
+      font-size: 5vw;
+    }
+    .description {
+      font-size: 1.6vw;
+      line-height: 1.5;
+    }
+  }
+}
+
 @media (max-width: 1000px) {
   .container {
     width: 100%;

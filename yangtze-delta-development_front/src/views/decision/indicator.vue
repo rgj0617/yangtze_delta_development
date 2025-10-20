@@ -18,7 +18,7 @@
         <div class="variable-container">
           <div class="variable" v-for="(item, index) in indicator.variables" :key="index">
             <div>{{ item.name }}</div>
-            <el-input-number v-model="variables[item.name]" :min="item.min" :max="item.max" :step="item.step">
+            <el-input-number v-model="variables[item.name]" :precision="item.precision" :min="item.min" :max="item.max" :step="item.step">
               <template #suffix>
                 <span>{{ item.unit }}</span>
               </template>
@@ -91,10 +91,10 @@ const props = defineProps({
 })
 // console.log(props.indicator.formula);
 
-const popoverWidth = ref(330);
+const popoverWidth = ref(350); // popover min width
 const formulaLength = props.indicator.formula.length;
 const CCLength = countChineseCharacters(props.indicator.formula)
-popoverWidth.value = Math.max(popoverWidth.value, CCLength * 14 + (formulaLength - CCLength) / 2 * 16);
+popoverWidth.value = Math.max(popoverWidth.value, CCLength * 16 + (formulaLength - CCLength) / 2 * 16);
 
 // 这是一个计算字符串中汉字数量的工具
 function countChineseCharacters(str) {
@@ -110,11 +110,30 @@ function countChineseCharacters(str) {
 // 初始化所有基础变量
 const variables = reactive({})
 const initializeVariables = () => {
-  props.indicator.variables.forEach(element => {
-    // 将变量初始化为其最小值，确保在有效范围内
-    variables[element.name] = element.min || 0
-  });
-} 
+  if(selectedCityStore.get().value === '未选择'){
+    props.indicator.variables.forEach(element => {
+      // 将变量初始化为其最小值，确保在有效范围内
+      variables[element.name] = element.min || 0
+    });
+  }
+  else {
+    const city = selectedCityStore.get().value
+    props.indicator.variables.forEach(element => {
+      if('initial' in element) {
+        variables[element.name] = element.initial[city]
+      }
+    })
+  }
+}
+
+// 监听选择的城市变化，初始化变量为对应的值
+watch(
+  () => selectedCityStore.get().value,
+  (newValue, oldValue) => {
+    // console.log("监听到了变化")
+    initializeVariables()
+  }
+)
 
 const emit = defineEmits(['transmitData'])
 
@@ -168,12 +187,12 @@ const updateIndicator = () => {
     return
   }
 
-  console.log('更新指标:', {
-    city,
-    indicatorName,
-    dimension: props.dimension,
-    variables
-  })
+  // console.log('更新指标:', {
+  //   city,
+  //   indicatorName,
+  //   dimension: props.dimension,
+  //   variables
+  // })
 
   try {
     // 根据维度选择对应的计算函数
@@ -199,20 +218,21 @@ const updateIndicator = () => {
         return
     }
 
-    console.log('计算结果:', delta)
+    // console.log('计算结果:', delta)
     
     // 只有明确的错误值才认为计算失败
     if (delta === -9999 || delta === undefined || delta === null || !Number.isFinite(delta)) {
+      // console.log(delta)
       ElMessage.error('计算失败，请检查输入参数是否正确！')
       return
     }
 
     // 成功计算
     const data = {
-      city,
-      dimension: props.dimension,
-      indicator: indicatorName,
-      delta
+      city, // 修改的城市
+      dimension: props.dimension, // 修改的维度
+      indicator: indicatorName, // 修改的指标
+      delta // 修改造成的分数变化
     }
     
     emit('transmitData', data)
@@ -265,5 +285,7 @@ const buttonDisabled = computed(() => {
     justify-content: space-evenly;
   }
 }
-
+::v-deep(.el-input-number) {
+  width: 170px;
+}
 </style>

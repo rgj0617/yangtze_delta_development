@@ -56,9 +56,13 @@ const activeName = ref("first");
 
 <style lang="scss" scoped>
 :deep(.el-tabs__item) {
-  width: 25vw; /* 设置宽度为200px */
+  width: 25vw;
+  max-width: 600px; /* 保持与内容区一半宽度一致的上限 */
   font-size: 1.8vh;
   font-weight: bold;
+}
+:deep(.el-tabs__header) {
+  margin-bottom: 12px; /* tabs与下方内容上下间隔 */
 }
 .head {
   height: 5.5vh;
@@ -67,7 +71,6 @@ const activeName = ref("first");
 
 .sectionContent {
   display: flex;
-  // justify-content: center;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -89,33 +92,27 @@ const activeName = ref("first");
   display: flex;
   flex-wrap: wrap;
   width: 50vw;
-  // overflow: visible;
+  max-width: 1300px; /* 限制内容区域最大宽度，避免超宽屏过度拉伸 */
   .description {
     color: rgb(142, 142, 142);
     font-size: 1.5vh;
     font-weight: 300;
     margin-top: 1.2%;
   }
-  // .ranking {
-  // height: 200vh;
-  // overflow: auto;
-  // }
   .dataTable {
     margin: 0.5% 0;
-    // height: 100vh;
-    width: 49.5vw;
-    // border:1px black solid;
+    width: 49.5vw; /* 恢复固定宽度，避免表格偏移 */
+    max-width: 1190px; /* 与内容区宽度上限匹配，保证对齐 */
     .description {
       padding-bottom: 2%;
       line-height: 1.5vh;
-      // color: rgb(142, 142, 142);
       font-size: 1.2vh;
       font-weight: 400;
     }
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1440px) {
   :deep(.el-tabs__item) {
     width: 47.5vw;
     font-size: 2.5vw;
@@ -127,7 +124,6 @@ const activeName = ref("first");
   }
   .sectionContent {
     display: flex;
-    // justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -149,7 +145,6 @@ const activeName = ref("first");
     display: flex;
     flex-wrap: wrap;
     width: 95vw;
-    // overflow: visible;
     .ranking {
       .dataTable {
         margin: 0.5% 0;

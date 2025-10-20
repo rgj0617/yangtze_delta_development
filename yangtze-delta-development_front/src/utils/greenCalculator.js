@@ -60,7 +60,7 @@ export function green(city, secondaryIndicator, data) {
 }
 
 const green1 = (data) => {
-  const baseRes = data['总用水量'] / data['国内生产总值']
+  const baseRes = data['总用水量'] / data['市区GDP']
   const normalization = 5.5
   const normalizationRes = baseRes / normalization
   return normalizationRes

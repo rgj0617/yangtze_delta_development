@@ -35,9 +35,9 @@
       <el-table-column
         prop="cityName"
         label="Country"
-        width="200"
+        sortable
       ></el-table-column>
-      <el-table-column label="Score" width="200" sortable="custom">
+      <el-table-column label="Score"  sortable="custom">
         <!-- 实现可变数据的动态排序 -->
         <template v-slot="scope">
           {{ formatScore(scope.row) }}
