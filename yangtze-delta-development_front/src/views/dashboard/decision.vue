@@ -97,7 +97,7 @@ onUnmounted(() => {
   font-weight: bold;
 }
 .container {
-  display: hidden;
+  // display: hidden;
   height: 100vh;
   width: 100vw;
   .head {
@@ -123,9 +123,23 @@ onUnmounted(() => {
     height: 100%;
     width: 85%;
   }
+  @media (max-width: 1366px) {
+    .information {
+      height: 100%;
+      width: 17.5%;
+    }
+    .yangtzeMap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 82.5%;
+    }
+  }
+
   .tip {
     color: #bbbbbb;
-    font-size: 14px;
+    font-size: .75rem;
   }
 }
 
