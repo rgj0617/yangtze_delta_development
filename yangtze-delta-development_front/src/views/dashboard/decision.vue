@@ -54,7 +54,7 @@
 <script setup>
 import homeHeader from "@/components/header.vue";
 import yangtzeMap from "@/components/map.vue";
-import { ref, watch } from "vue";
+import { onUnmounted, ref, watch } from "vue";
 import evaluationDescription from "@/assets/json/evaluationDescription.json";
 import { useYearStore } from "@/store/year.js";
 const yearStore = useYearStore();
@@ -83,6 +83,9 @@ const updateData = ref(null)
 const updateScore = (data) => {
   updateData.value = data
 }
+onUnmounted(() => {
+  selectedCityStore.set()
+})
 </script>
 
 <style scoped lang="scss">
