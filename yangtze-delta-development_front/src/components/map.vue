@@ -243,9 +243,15 @@ const calcRankChange = (city, dimension) => {
   }
   const index = ranking.findIndex((element) => element.city === city)
   let i = index
-  while(i>0 && ranking[i-1].score<scoreChanges[dimension]) i--;
+  console.log(ranking)
+  while(i>0 && ranking[i-1].score<scoreChanges[dimension]) {
+    i--
+  }
   if(i!==index) return index - i;
-  while(i<40 && ranking[i+i].score>scoreChanges[dimension]) i++;
+  while(i<40 && ranking[i+i].score>scoreChanges[dimension]) {
+    console.log(i)
+    i++
+  }
   if(i!==index) return index - i;
   return 0
 }
@@ -273,21 +279,50 @@ watch(
 const add = (a, b) => {
   return String(Number(a) + b)
 }
+// 减法
+const sub = (a, b) => {
+  return String(Number(a) - b)
+}
 
+
+// 记录历史修改内容
+const changeHistory = reactive([])
+
+// 检查修改历史记录，保证每个指标仅修改一次
+const checkChangeHistory = (change, cityIndex) => {
+  const index = changeHistory.findIndex((element) => {
+    return (element.city === change.city && element.indicator === change.indicator)
+  })
+  if(index !== -1) {
+    const removeChange = changeHistory[index]
+    changeHistory.slice(index, index)
+    rankingFormatted[cityIndex].score = sub(rankingFormatted[cityIndex].score, removeChange.delta)
+    rankingFormatted[cityIndex][removeChange.dimension] = sub(rankingFormatted[cityIndex][removeChange.dimension], removeChange.delta)
+  }
+}
 
 // 监听传递过来的 updateData 的变化修改地图样式
 watch(
   () => props.updateData,
   (newValue, oldValue) => {
-    console.log(newValue)
+    // console.log(newValue)
     const index = rankingFormatted.findIndex((element) => element.cityName === newValue.city)
+
+    checkChangeHistory(newValue, index)
+
+    // 计算分数变化
     scoreChanges['综合'] = rankingFormatted[index].score = add(rankingFormatted[index].score, newValue.delta)
     scoreChanges[newValue.dimension.replace('发展', '')] = rankingFormatted[index][newValue.dimension] = add(rankingFormatted[index][newValue.dimension], newValue.delta)
-    console.log(originRankingFormatted)
+    // console.log(originRankingFormatted)
     updateMap(props.currentMap)
+
+    // 记录修改
+    changeHistory.push(newValue)
+
+    // 计算排名变化
     rankChanges['综合'] = calcRankChange(newValue.city, '综合')
     rankChanges[newValue.dimension.replace('发展', '')] = calcRankChange(newValue.city, newValue.dimension.replace('发展', ''))
-    console.log(rankChanges)
+    // console.log(rankChanges)
   },
   {deep: true}
 )

@@ -95,7 +95,7 @@ const open5 = (data) => {
 }
 
 const open6 = (data) => {
-  const baseRes = (data['铁路货运量']+data['公路货运量'] +data['水运货运量']+data['航空货运量']+data['管道货运量'])/ data['总人口']
+  const baseRes = (data['铁路货运量']+data['公路货运量']+data['水运货运量']+data['航空货运量']+data['管道货运量'])/ data['总人口']
   const normalization = 4.9342
   const normalizationRes = baseRes / normalization
   return normalizationRes

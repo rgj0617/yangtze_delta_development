@@ -2,7 +2,7 @@
   <div class="indicatorContainer">
     <indicator v-for="item in indicators" :key="item.name" :indicator="item" :dimension="dimension" @transmit-data="transmitData"/>
   </div>
-  <div class="coordinateContainer">
+  <!-- <div class="coordinateContainer">
     <indicator v-for="item in coordinates" :key="item.name" :indicator="item" :dimension="dimension" @transmit-data="transmitData"/>
   </div>
   <div class="shareContainer">
@@ -13,17 +13,17 @@
   </div>
   <div class="greenContainer">
     <indicator v-for="item in greens" :key="item.name" :indicator="item" :dimension="dimension" @transmit-data="transmitData"/>
-  </div>
+  </div> -->
 </template>
 <script setup>
 import indicator from './indicator.vue';
 
 const props = defineProps({
   indicators: Array,
-  coordinates: Array,
-  shares: Array,
-  opens: Array,
-  greens: Array,
+  // coordinates: Array,
+  // shares: Array,
+  // opens: Array,
+  // greens: Array,
   dimension: String, // 添加dimension属性
 });
 

@@ -60,7 +60,7 @@
     </div>
     <div class="right-box">
       <!-- <div class="left-item">切换年份:</div> -->
-      <div id="firstFilter" class="filter-switch" v-if="!isActive('compared') && !isActive('decision') && !isActive('ours')">
+      <div id="firstFilter" class="filter-switch" v-if="!isActive('compared') && !isActive('decision') && !isActive('ours') && !isActive('downloads')">
         <input
           id="option1"
           name="options"

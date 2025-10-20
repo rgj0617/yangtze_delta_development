@@ -22,19 +22,19 @@
                   展开下面对应的栏目可以查看各个维度得分情况，并且可以选取二级指标进行自定义修改，辅助指导决策。
                 </div>
               </el-collapse-item>
-              <el-collapse-item title="创新" name="0">
+              <el-collapse-item title="创新发展" name="0">
                 <dimension :indicators="innovation" dimension="创新发展" @update-score="updateScore"/>
               </el-collapse-item>
-              <el-collapse-item title="协调" name="1">
+              <el-collapse-item title="协调发展" name="1">
                  <dimension :indicators="coordination" dimension="协调发展" @update-score="updateScore"/>
               </el-collapse-item>
-              <el-collapse-item title="绿色" name="2">
+              <el-collapse-item title="绿色发展" name="2">
                 <dimension :indicators="green" dimension="绿色发展" @update-score="updateScore"/>
               </el-collapse-item>
-              <el-collapse-item title="开放" name="3">
+              <el-collapse-item title="开放发展" name="3">
                 <dimension :indicators="open" dimension="开放发展" @update-score="updateScore"/>
               </el-collapse-item>
-              <el-collapse-item title="共享" name="4">
+              <el-collapse-item title="共享发展" name="4">
                 <dimension :indicators="share" dimension="共享发展" @update-score="updateScore"/>
               </el-collapse-item>
             </el-collapse>
