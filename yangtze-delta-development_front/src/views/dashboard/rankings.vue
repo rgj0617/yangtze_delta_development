@@ -54,6 +54,7 @@ const activeName = ref("first");
 <style lang="scss" scoped>
 :deep(.el-tabs__item) {
   width: 25vw; /* 设置宽度为200px */
+  max-width: 550px;
   font-size: 1.8vh;
   font-weight: bold;
 }
@@ -86,6 +87,7 @@ const activeName = ref("first");
   display: flex;
   flex-wrap: wrap;
   width: 50vw;
+  max-width: 1100px;
   // overflow: visible;
   .description {
     color: rgb(142, 142, 142);
@@ -101,6 +103,7 @@ const activeName = ref("first");
     margin: 0.5% 0;
     // height: 100vh;
     width: 49.5vw;
+    max-width: 1090px;
     // border:1px black solid;
     .description {
       padding-bottom: 2%;
@@ -112,7 +115,7 @@ const activeName = ref("first");
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1440px) {
   :deep(.el-tabs__item) {
     width: 47.5vw;
     font-size: 2.5vw;

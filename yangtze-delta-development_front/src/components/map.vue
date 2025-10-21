@@ -331,6 +331,7 @@ onMounted(async () => {
   //挂载mapbox
   await initMapbox();
   initializeChanges()
+  initializeChanges()
 });
 </script>
 

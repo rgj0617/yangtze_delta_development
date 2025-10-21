@@ -138,7 +138,121 @@ onMounted(() => {
   }
 }
 
-@media (max-width: 1000px) {
+// 超高分辨率显示 (2560px及以上，适配150%缩放)
+@media (min-width: 2560px) {
+  .pdf-preview {
+    width: 35vw;
+    
+    .pdf-wrap {
+      display: flex;
+      justify-content: center;
+      .vue-pdf-embed {
+        box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    .page-tool {
+      width: 15vw;
+      margin: 8px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgb(66, 66, 66);
+      color: white;
+      border-radius: 25px;
+      z-index: 100;
+      padding: 0 5px;
+      .page-tool-item {
+        padding: 12px 18px;
+        cursor: pointer;
+        font-size: 1rem;
+        border-radius: 20px;
+        transition: background-color 0.3s ease;
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+}
+
+// 中等高分辨率显示 (1441px-1921px)
+@media (min-width: 1441px) and (max-width: 1919px) {
+  .pdf-preview {
+    width: 35vw; /* 仿照2560px设置，与PDF容器宽度一致 */
+    
+    .pdf-wrap {
+      display: flex;
+      justify-content: center;
+      .vue-pdf-embed {
+        box-shadow: 0 5px 14px 0 rgba(0, 0, 0, 0.32);
+      }
+    }
+
+    .page-tool {
+      width: 18vw; /* 仿照2560px比例设置，工具栏宽度 */
+      margin: 6px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgb(66, 66, 66);
+      color: white;
+      border-radius: 20px;
+      z-index: 100;
+      padding: 0 2px;
+      .page-tool-item {
+        padding: 9px 14px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        border-radius: 16px;
+        transition: background-color 0.3s ease;
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+}
+
+// 高分辨率显示 (1922px-2559px)
+@media (min-width: 1922px) and (max-width: 2559px) {
+  .pdf-preview {
+    width: 40vw;
+    
+    .pdf-wrap {
+      display: flex;
+      justify-content: center;
+      .vue-pdf-embed {
+        box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.35);
+      }
+    }
+
+    .page-tool {
+      width: 18vw;
+      margin: 6px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgb(66, 66, 66);
+      color: white;
+      border-radius: 22px;
+      z-index: 100;
+      padding: 0 3px;
+      .page-tool-item {
+        padding: 10px 16px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        border-radius: 18px;
+        transition: background-color 0.3s ease;
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
   .pdf-preview {
     width: 95vw;
 
