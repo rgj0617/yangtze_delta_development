@@ -243,12 +243,12 @@ const calcRankChange = (city, dimension) => {
   }
   const index = ranking.findIndex((element) => element.city === city)
   let i = index
-  console.log(ranking)
+  
   while(i>0 && ranking[i-1].score<scoreChanges[dimension]) {
     i--
   }
   if(i!==index) return index - i;
-  while(i<40 && ranking[i+i].score>scoreChanges[dimension]) {
+  while(i<40 && ranking[i+1].score>scoreChanges[dimension]) {
     console.log(i)
     i++
   }

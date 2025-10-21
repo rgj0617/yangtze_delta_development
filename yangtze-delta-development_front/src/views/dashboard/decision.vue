@@ -17,8 +17,8 @@
                   综合评价
                   <el-icon><star-filled /></el-icon>
                 </template>
-                <div>本栏目下地图展示了长三角地区各个地级市的综合得分情况</div>
-                <div>
+                <div style="font-size: .9rem;">本栏目下地图展示了长三角地区各个地级市的综合得分情况。</div>
+                <div style="font-size: .9rem;">
                   展开下面对应的栏目可以查看各个维度得分情况，并且可以选取二级指标进行自定义修改，辅助指导决策。
                 </div>
               </el-collapse-item>
@@ -90,7 +90,7 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 :deep(.el-collapse-item__header) {
-  font-size: 0.7vw;
+  font-size: .9vw;
   margin: 8px 0;
   text-align: center;
   // padding: 20px 0 ;

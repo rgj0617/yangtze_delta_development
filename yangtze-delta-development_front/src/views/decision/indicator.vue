@@ -9,7 +9,7 @@
       ref="popoverRef"
     >
       <template #reference>
-        <div ref="referenceRef">{{ indicator.name }}</div>
+        <div ref="referenceRef" style="font-size: .9rem;">{{ indicator.name }}</div>
       </template>
       <div class="popover-contanier" v-show="indicator.formula != ''">
         <div class="formula">
