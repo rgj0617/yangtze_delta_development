@@ -86,6 +86,9 @@
       <div class="change-score">
         <div class="table-header">
           <div class="header-cell">维度</div>
+          <div class="header-cell">当前得分</div>
+          <div class="header-cell">得分变化</div>
+          <div class="header-cell">当前排名</div>
           <div class="header-cell">排名变化</div>
         </div>
         <div 
@@ -95,18 +98,56 @@
           :style="{ background: dimensionColors[i] }"
         >
           <div class="table-cell dimension-name">{{ i }}</div>
-          <div class="table-cell rank-change">
-            <span 
+          <div class="table-cell content">
+            <span
               :class="{
-                'rank-up': rankChanges[i] > 0,
-                'rank-down': rankChanges[i] < 0,
-                'rank-same': rankChanges[i] === 0
+                'up': scoreChanges[i] > 0,
+                'down': scoreChanges[i] < 0,
+                'same': scoreChanges[i] === 0
+              }"            
+            >
+              {{ parseFloat(add(scoreChanges[i] ,getScoreAndRank(i)[0])).toFixed(2) }}
+            </span>
+          </div>
+          <div class="table-cell content">
+            <span
+              :class="{
+                'up': scoreChanges[i] > 0,
+                'down': scoreChanges[i] < 0,
+                'same': scoreChanges[i] === 0
               }"
             >
-              {{ rankChanges[i] > 0 ? '+' : '' }}{{ rankChanges[i] }}
+              {{ scoreChanges[i] > 0 ? '+' : '' }}{{ parseFloat(scoreChanges[i]).toFixed(2) }}
               <span class="arrow-icon">
-                <template v-if="rankChanges[i] > 0">↑</template>
-                <template v-else-if="rankChanges[i] < 0">↓</template>
+                <template v-if="scoreChanges[i] > 0">↑</template>
+                <template v-else-if="scoreChanges[i] < 0">↓</template>
+                <template v-else>—</template>
+              </span>
+            </span>
+          </div>
+          <div class="table-cell content">
+            <span
+              :class="{
+                'up': rankChanges[i] < 0,
+                'down': rankChanges[i] > 0,
+                'same': rankChanges[i] === 0
+              }"            
+            >
+              {{ getScoreAndRank(i)[1] + rankChanges[i] }}
+            </span>
+          </div>
+          <div class="table-cell content">
+            <span 
+              :class="{
+                'up': rankChanges[i] < 0,
+                'down': rankChanges[i] > 0,
+                'same': rankChanges[i] === 0
+              }"
+            >
+              {{ rankChanges[i] > 0 ? rankChanges[i] : -rankChanges[i] }}
+              <span class="arrow-icon">
+                <template v-if="rankChanges[i] > 0">↓</template>
+                <template v-else-if="rankChanges[i] < 0">↑</template>
                 <template v-else>—</template>
               </span>
             </span>
@@ -200,6 +241,40 @@ const dimensionColors = {
   '共享': 'linear-gradient(to right, #D1B5DE, #fff)',    
   '综合': 'linear-gradient(to right, #8EBDCB, #fff)'
 }
+
+// 根据城市获取对应的维度分数和排名
+const getScoreAndRank = (dimension) => {
+  const city = selectedCityStore.get().value
+  if(city === '未选择') {
+    return [0, 0]
+  }
+  else {
+    let ranking
+    switch (dimension) {
+      case '创新':
+        ranking = indicatorRanking
+        break
+      case '协调':
+        ranking = coordinateRanking
+        break
+      case '绿色':
+        ranking = greenRanking
+        break
+      case '开放':
+        ranking = openRanking
+        break
+      case '共享':
+        ranking = shareRanking
+        break
+      case '综合':
+        ranking = overallRanking
+        break
+    }
+    const index = ranking.findIndex((element) => element.city === city)
+    return [ranking[index].score, ranking[index].rank]
+  }
+}
+
 // 记录变化的变量
 const scoreChanges = reactive({})
 const rankChanges = reactive({})
@@ -244,16 +319,16 @@ const calcRankChange = (city, dimension) => {
   const index = ranking.findIndex((element) => element.city === city)
   let i = index
   
-  while(i>0 && ranking[i-1].score<scoreChanges[dimension]) {
+  while(i>0 && ranking[i-1].score<ranking[index].score+parseFloat(scoreChanges[dimension])) {
     i--
   }
-  if(i!==index) return index - i;
-  while(i<40 && ranking[i+1].score>scoreChanges[dimension]) {
-    console.log(i)
+  // if(i!==index) return index - i;
+  while(i<40 && ranking[i+1].score>ranking[index].score+parseFloat(scoreChanges[dimension])) {
     i++
   }
-  if(i!==index) return index - i;
-  return 0
+  console.log(i, index)
+  if(i!==index) return i - index;
+  else return 0
 }
 
 // 清除所有修改
@@ -284,7 +359,6 @@ const sub = (a, b) => {
   return String(Number(a) - b)
 }
 
-
 // 记录历史修改内容
 const changeHistory = reactive([])
 
@@ -296,8 +370,14 @@ const checkChangeHistory = (change, cityIndex) => {
   if(index !== -1) {
     const removeChange = changeHistory[index]
     changeHistory.slice(index, index)
+    scoreChanges['综合'] -= removeChange.delta
+    scoreChanges[removeChange.dimension.replace('发展', '')] -= removeChange.delta
     rankingFormatted[cityIndex].score = sub(rankingFormatted[cityIndex].score, removeChange.delta)
     rankingFormatted[cityIndex][removeChange.dimension] = sub(rankingFormatted[cityIndex][removeChange.dimension], removeChange.delta)
+    
+        // 计算排名变化
+    rankChanges['综合'] = calcRankChange(removeChange.city, '综合')
+    rankChanges[removeChange.dimension.replace('发展', '')] = calcRankChange(removeChange.city, removeChange.dimension.replace('发展', ''))
   }
 }
 
@@ -311,9 +391,12 @@ watch(
     checkChangeHistory(newValue, index)
 
     // 计算分数变化
-    scoreChanges['综合'] = rankingFormatted[index].score = add(rankingFormatted[index].score, newValue.delta)
-    scoreChanges[newValue.dimension.replace('发展', '')] = rankingFormatted[index][newValue.dimension] = add(rankingFormatted[index][newValue.dimension], newValue.delta)
+    scoreChanges['综合'] += newValue.delta
+    scoreChanges[newValue.dimension.replace('发展', '')] += newValue.delta
+    rankingFormatted[index].score = add(rankingFormatted[index].score, newValue.delta)
+    rankingFormatted[index][newValue.dimension] = add(rankingFormatted[index][newValue.dimension], newValue.delta)
     // console.log(originRankingFormatted)
+    console.log(scoreChanges)
     updateMap(props.currentMap)
 
     // 记录修改
@@ -322,7 +405,7 @@ watch(
     // 计算排名变化
     rankChanges['综合'] = calcRankChange(newValue.city, '综合')
     rankChanges[newValue.dimension.replace('发展', '')] = calcRankChange(newValue.city, newValue.dimension.replace('发展', ''))
-    // console.log(rankChanges)
+    console.log(rankChanges)
   },
   {deep: true}
 )
@@ -330,7 +413,6 @@ watch(
 onMounted(async () => {
   //挂载mapbox
   await initMapbox();
-  initializeChanges()
   initializeChanges()
 });
 </script>
@@ -387,7 +469,7 @@ onMounted(async () => {
   padding: 20px;
   border-radius: 8px;
   font-family: 'Microsoft YaHei', Arial, sans-serif;
-  width: 350px;
+  width: 410px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   
   .change-record-title {
@@ -429,7 +511,7 @@ onMounted(async () => {
     
     .table-header {
       display: grid;
-      grid-template-columns: 50% 50%;
+      grid-template-columns: repeat(5, 20%);
       // background: linear-gradient(135deg, #4378B4 0%, #ffffff 100%);
       background: #4378B4;
       color: white;
@@ -449,7 +531,7 @@ onMounted(async () => {
     
     .table-row {
       display: grid;
-      grid-template-columns: 50% 50%;
+      grid-template-columns: repeat(5, 20%);
       border-bottom: 1px solid #e0e0e0;
       transition: background-color 0.2s;
       
@@ -481,7 +563,7 @@ onMounted(async () => {
           color: #333;
         }
         
-        &.rank-change {
+        &.content {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -491,15 +573,15 @@ onMounted(async () => {
             align-items: center;
             font-weight: 600;
             
-            &.rank-up {
+            &.up {
               color: #52c41a;
             }
             
-            &.rank-down {
+            &.down {
               color: #f5222d;
             }
             
-            &.rank-same {
+            &.same {
               color: #999;
             }
             
