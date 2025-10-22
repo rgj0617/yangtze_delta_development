@@ -36,10 +36,10 @@ export function open(city, secondaryIndicator, data) {
       case "旅游外汇收入占旅游总收入的比重":
         result = open4(data)
         break
-      case "日均高铁航空班次数量":
+      case "高铁航空班次数量":
         result = open5(data)
         break
-      case "人均货运量":
+      case "货运量":
         result = open6(data)
         break
       default:
@@ -89,14 +89,14 @@ const open4 = (data) => {
 }
 
 const open5 = (data) => {
-  const baseRes = (data['日均高铁班次'] + data['日均飞机班次']) / 10000
+  const baseRes = (data['日均高铁班次'] + data['日均飞机班次'])
   const normalization = 2648
   const normalizationRes = baseRes / normalization
   return normalizationRes
 }
 
 const open6 = (data) => {
-  const baseRes = (data['铁路货运量']+data['公路货运量']+data['水运货运量']+data['航空货运量']+data['管道货运量'])/ data['总人口']
+  const baseRes = data['货物运输总量（铁路+公路+水运+航空+管道）']
   const normalization = 4.9342
   const normalizationRes = baseRes / normalization
   return normalizationRes

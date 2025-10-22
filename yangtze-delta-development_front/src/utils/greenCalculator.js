@@ -75,7 +75,7 @@ const green1 = (data) => {
 
 const green2 = (data) => {
   const baseRes = data['建设用地面积'] / data['GDP']
-  console.log(baseRes)
+  // console.log(baseRes)
   const normalization = 0.08
   if (baseRes <= normalization) {
     return 1
@@ -94,7 +94,7 @@ const green3 = (data) => {
 }
 
 const green4 = (data) => {
-  const baseRes = (data['林地面积'] + data['草地面积']+ data ['水体面积']+ data['湿地面积']) / data['总面积'] * 100
+  const baseRes = data['生态空间面积（林地+草地+水体+湿地）']  / data['总面积'] * 100
   const normalization = 25
   const normalizationRes = baseRes / normalization
   return normalizationRes

@@ -83,7 +83,7 @@ const share3 = (data) => {
 }
 
 const share4 = (data) => {
-  const baseRes = data['养老机构床位总数'] / (data['常住人口']*data['七普65岁及以上人口比']) * 1000
+  const baseRes = data['养老机构床位总数'] / data['65岁及以上人口数'] * 1000
   const normalization = 36.1189346932042
   const normalizationRes = baseRes / normalization
   return normalizationRes

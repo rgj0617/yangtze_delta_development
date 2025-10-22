@@ -33,7 +33,7 @@ export function innovation(city, secondaryIndicator, data) {
       case "万人发明专利数":
         result = innovation3(data)
         break
-      case "高新技术产值占比":
+      case "单位GDP高新技术企业数量":
         result = innovation4(data)
         break
       case "受高等教育人数占比":
@@ -93,7 +93,7 @@ const innovation5 = (data) => {
 }
 
 const innovation6 = (data) => {
-  const baseRes = (data['知网中文文献数'] + data['WOS英文文献数']) / data['总人口']
+  const baseRes = (data['知网中文文献数'] + data['WOS英文文献数']) / 10000
   const normalization = 1
   const normalizationRes = baseRes / normalization
   return normalizationRes
