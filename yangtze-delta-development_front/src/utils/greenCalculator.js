@@ -47,8 +47,10 @@ export function green(city, secondaryIndicator, data) {
         return -9999
     }
     const weight = 10 / 3
+    // console.log(result)
     if (result > 1) result = 1
     else if (result < 0) result = 0
+    // console.log(result, origin[secondaryIndicator])
     result = (result - origin[secondaryIndicator][index]) * weight
     if (Number.isFinite(result)) return result
     else return -9999
@@ -62,15 +64,26 @@ export function green(city, secondaryIndicator, data) {
 const green1 = (data) => {
   const baseRes = data['总用水量'] / data['市区GDP']
   const normalization = 5.5
-  const normalizationRes = baseRes / normalization
-  return normalizationRes
+  if (baseRes <= normalization) {
+    return 1
+  } else if (baseRes <= 3*normalization) {
+    return 1.5 - (baseRes / (2 * normalization))
+  } else {
+    return 0
+  }
 }
 
 const green2 = (data) => {
   const baseRes = data['建设用地面积'] / data['GDP']
+  console.log(baseRes)
   const normalization = 0.08
-  const normalizationRes = baseRes / normalization
-  return normalizationRes
+  if (baseRes <= normalization) {
+    return 1
+  } else if (baseRes <= 3*normalization) {
+    return 1.5 - (baseRes / (2 * normalization))
+  } else {
+    return 0
+  }
 }
 
 const green3 = (data) => {
@@ -90,8 +103,13 @@ const green4 = (data) => {
 const green5 = (data) => {
   const baseRes = data['全社会用电量'] / data['国内地区生产总值']
   const normalization = 315.77
-  const normalizationRes = baseRes / normalization
-  return normalizationRes
+  if (baseRes <= normalization) {
+    return 1
+  } else if (baseRes <= 3*normalization) {
+    return 1.5 - (baseRes / (2 * normalization))
+  } else {
+    return 0
+  }
 }
 
 const green6 = (data) => {

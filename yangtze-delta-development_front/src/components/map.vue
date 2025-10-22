@@ -326,7 +326,7 @@ const calcRankChange = (city, dimension) => {
   while(i<40 && ranking[i+1].score>ranking[index].score+parseFloat(scoreChanges[dimension])) {
     i++
   }
-  console.log(i, index)
+  // console.log(i, index)
   if(i!==index) return i - index;
   else return 0
 }
@@ -396,7 +396,7 @@ watch(
     rankingFormatted[index].score = add(rankingFormatted[index].score, newValue.delta)
     rankingFormatted[index][newValue.dimension] = add(rankingFormatted[index][newValue.dimension], newValue.delta)
     // console.log(originRankingFormatted)
-    console.log(scoreChanges)
+    // console.log(scoreChanges)
     updateMap(props.currentMap)
 
     // 记录修改
@@ -405,7 +405,7 @@ watch(
     // 计算排名变化
     rankChanges['综合'] = calcRankChange(newValue.city, '综合')
     rankChanges[newValue.dimension.replace('发展', '')] = calcRankChange(newValue.city, newValue.dimension.replace('发展', ''))
-    console.log(rankChanges)
+    // console.log(rankChanges)
   },
   {deep: true}
 )

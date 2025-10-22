@@ -62,8 +62,13 @@ const coordinate1 = (data) => {
   }
   const baseRes = data['城镇常住居民人均可支配收入'] / data['农村常住居民人均可支配收入'] * 100
   const normalization = 1.75
-  const normalizationRes = baseRes / normalization
-  return normalizationRes
+  if (baseRes <= normalization) {
+    return 1
+  } else if (baseRes <= 3*normalization) {
+    return 1.5 - (baseRes / (2 * normalization))
+  } else {
+    return 0
+  }
 }
 
 const coordinate2 = (data) => {
@@ -112,6 +117,13 @@ const coordinate6 = (data) => {
   }
   const baseRes = data['GDP增长率']  / data['长三角GDP增长率']
   const normalization = 1
-  const normalizationRes = baseRes / normalization
-  return normalizationRes
+  // const normalizationRes = baseRes / normalization
+  // return normalizationRes
+  if (baseRes < 0) {
+    return 0
+  } else if (baseRes <= 1) {
+    return baseRes / normalization
+  } else {
+    return (2 - baseRes) / normalization
+  }
 }
