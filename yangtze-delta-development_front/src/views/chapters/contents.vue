@@ -174,7 +174,7 @@ const goTo = (page: string) => {
 }
 
 .tabContent {
-  margin: 1.5% 25% 0.5% 25%;
+  margin: 1.5% 25% 2.5% 25%;
   display: flex;
   flex-wrap: wrap;
   width: 50vw;
@@ -226,8 +226,8 @@ const goTo = (page: string) => {
       width: 100%;
       .pdfContainer {
         width: 40vw;
-        // height: 80vh;
-        height: calc(96vh - 300px);
+        height: 88vh;
+        // height: calc(96vh - 300px);
         box-shadow: 5px 5px 12px 0 rgba(0, 0, 0, 0.3);
 
         margin-left: 5vw;
@@ -311,9 +311,9 @@ const goTo = (page: string) => {
         width: 100%;
         .pdfContainer {
           width: 35vw; /* 仿照2560px设置，PDF容器宽度 */
-          height: calc(96vh - 300px);
+          height: 88vh;
           box-shadow: 5px 5px 12px 0 rgba(0, 0, 0, 0.3);
-          margin-left: 25vw; /* 仿照2560px设置，使用左边距居中 */
+          margin-left: 7.5vw; /* 仿照2560px设置，使用左边距居中 */
           border-radius: 10px;
         }
       }
@@ -328,10 +328,11 @@ const goTo = (page: string) => {
   }
 
   .tabContent {
-    margin: 1.2% 0 0.5% 0; /* 移除左右边距，实现整个页面居中 */
+    margin: 1.2% 2.5% 2.5% 2.5%; /* 移除左右边距，实现整个页面居中 */
     display: flex;
     flex-wrap: wrap;
-    width: 100vw; /* 内容区占满整个视口宽度 */
+    // width: 100vw; /* 内容区占满整个视口宽度 */
+    width: 95vw;
     .description {
       color: rgb(142, 142, 142);
       font-size: 1.4vh;
@@ -346,7 +347,7 @@ const goTo = (page: string) => {
         width: 100%;
         .pdfContainer {
           width: 45vw; /* 仿照2560px设置，PDF容器宽度 */
-          height: calc(96vh - 300px);
+          height: 88vh;
           box-shadow: 5px 5px 12px 0 rgba(0, 0, 0, 0.3);
           margin-left: 25vw; /* 仿照2560px设置，使用左边距居中 */
           border-radius: 10px;
@@ -383,10 +384,11 @@ const goTo = (page: string) => {
   }
 
   .tabContent {
-    margin: 1.5% 0 0.5% 0; /* 移除左右边距，实现整个页面居中 */
+    margin: 1.5% 2.5% 2.5% 2.5%; /* 移除左右边距，实现整个页面居中 */
     display: flex;
     flex-wrap: wrap;
-    width: 100vw; /* 内容区占满整个视口宽度 */
+    // width: 100vw; /* 内容区占满整个视口宽度 */
+    width: 95vw;
     .description {
       color: rgb(142, 142, 142);
       font-size: 1.5vh;
@@ -401,7 +403,7 @@ const goTo = (page: string) => {
         width: 100%;
         .pdfContainer {
           width: 70vw; /* 在线阅览PDF在1440下放大 */
-          height: calc(96vh - 300px);
+          height: 88vh;
           box-shadow: 5px 5px 12px 0 rgba(0, 0, 0, 0.3);
           margin-left: 12.5vw; /* 仿照2560px设置，使用左边距居中 */
           border-radius: 10px;
@@ -438,7 +440,7 @@ const goTo = (page: string) => {
   }
 
   .tabContent {
-    margin: 1.5% 2.5% 0.5% 2.5%;
+    margin: 1.5% 2.5% 2.5% 2.5%;
     display: flex;
     flex-wrap: wrap;
     width: 95vw;
@@ -491,8 +493,8 @@ const goTo = (page: string) => {
         width: 100%;
         .pdfContainer {
           width: 90vw;
-          // height: 80vh;
-          height: calc(96vh - 300px);
+          height: 88vh;
+          // height: calc(96vh - 300px);
           box-shadow: 5px 5px 12px 0 rgba(0, 0, 0, 0.3);
 
           margin-left: 2.5vw;
