@@ -46,6 +46,7 @@ export function innovation(city, secondaryIndicator, data) {
     const weight = 10 / 3
     if (result > 1) result = 1
     else if (result < 0) result = 0
+    console.log(result)
     result = (result - origin[secondaryIndicator][index]) * weight
     if (Number.isFinite(result)) return result
     else return -9999

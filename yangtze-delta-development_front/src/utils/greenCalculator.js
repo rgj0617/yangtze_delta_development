@@ -101,8 +101,9 @@ const green4 = (data) => {
 }
 
 const green5 = (data) => {
-  const baseRes = data['全社会用电量'] / data['国内地区生产总值']
+  const baseRes = data['全社会用电量'] / data['国内地区生产总值'] * 10000
   const normalization = 315.77
+  // console.log(baseRes)
   if (baseRes <= normalization) {
     return 1
   } else if (baseRes <= 3*normalization) {

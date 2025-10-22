@@ -44,6 +44,7 @@ export function coordinate(city, secondaryIndicator, data) {
         break
     }
     const weight = 10 / 3
+    console.log(result)
     if (result > 1) result = 1
     else if (result < 0) result = 0
     result = (result - origin[secondaryIndicator][index]) * weight
@@ -60,8 +61,9 @@ const coordinate1 = (data) => {
   if (!data['城镇常住居民人均可支配收入'] || !data['农村常住居民人均可支配收入']) {
     return -9999
   }
-  const baseRes = data['城镇常住居民人均可支配收入'] / data['农村常住居民人均可支配收入'] * 100
+  const baseRes = data['城镇常住居民人均可支配收入'] / data['农村常住居民人均可支配收入']
   const normalization = 1.75
+  console.log(baseRes)
   if (baseRes <= normalization) {
     return 1
   } else if (baseRes <= 3*normalization) {

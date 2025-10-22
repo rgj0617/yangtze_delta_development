@@ -81,8 +81,9 @@ const open3 = (data) => {
 }
 
 const open4 = (data) => {
-  const baseRes = data['旅游外汇收入'] / data['旅游总收入'] * 100
+  const baseRes = data['旅游外汇收入'] / data['旅游总收入']
   const normalization = 0.361806209292816
+  console.log(baseRes)
   const normalizationRes = baseRes / normalization
   return normalizationRes
 }

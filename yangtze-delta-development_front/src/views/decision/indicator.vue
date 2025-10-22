@@ -40,7 +40,7 @@
 import { ref, onMounted, onUnmounted, watch, reactive, computed } from 'vue';
 import { useSelectedCityStore } from "@/store/selectedCity.js"
 const selectedCityStore = useSelectedCityStore();
-import { innovation } from "@/utils/indicatorCalculator.js";
+import { innovation } from "@/utils/innovationCalculator.js";
 import { coordinate } from "@/utils/coordinateCalculator.js";
 import { green } from "@/utils/greenCalculator.js";
 import { open } from "@/utils/openCalculator.js";
