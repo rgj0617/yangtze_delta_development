@@ -88,7 +88,22 @@ const formatScore = (row) => {
       }
     });
   });
-  return Number(parseFloat(score).toFixed(2));
+  
+  // 计算出的分数进行四舍五入
+  const calculatedScore = Math.round((Number(score) + Number.EPSILON) * 100) / 100;
+  
+  // 获取JSON中原始的score值
+  const originalScore = Number(row.score);
+  
+  // 只有选择所有维度时，才执行分数比较判断
+  if (selectedDimension.value.length === dimensionColors.value.length) {
+    // 如果计算出的分数与JSON中的score不同，则使用JSON中的原始score值
+    if (Math.abs(calculatedScore - originalScore) > 0.001) {
+      return originalScore.toFixed(2);
+    }
+  }
+  
+  return calculatedScore.toFixed(2);
 };
 
 /**计算后的结果进行排序，原理：
