@@ -118,6 +118,7 @@ const activeName = ref("first");
 @media (max-width: 1440px) {
   :deep(.el-tabs__item) {
     width: 47.5vw;
+    max-width: 720px;
     font-size: 2.5vw;
     font-weight: bold;
   }
@@ -149,11 +150,13 @@ const activeName = ref("first");
     display: flex;
     flex-wrap: wrap;
     width: 95vw;
+    max-width: 1440px;
     // overflow: visible;
     .ranking {
       .dataTable {
         margin: 0.5% 0;
         width: 95vw;
+        max-width: 1440px;
         .description {
           padding-bottom: 2%;
           line-height: 1.4vw;
