@@ -173,6 +173,7 @@
 import chaptersHeader from "./chaptersHeader.vue";
 import { ref } from "vue";
 import VuePdfApp from "vue3-pdf-app";
+import "vue3-pdf-app/dist/icons/main.css";
 import { useYearStore } from "@/store/year.js";
 const yearStore = useYearStore();
 

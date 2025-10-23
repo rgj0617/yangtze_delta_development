@@ -101,13 +101,14 @@ Promise.all([import("/download/web1.png"), import("/download/web2.png")]).then(
   }
 );
 Promise.all([
+  import("/download/report17.png"),
   import("/download/report0.png"),
   import("/download/report1.png"),
   import("/download/report15.png"),
   import("/download/report16.png"),
   import("/download/report14.png"),
 
-  import("/download/report2.png"),
+  // import("/download/report2.png"),
   import("/download/report4.png"),
   import("/download/report5.png"),
   import("/download/report6.png"),
@@ -126,6 +127,10 @@ Promise.all([
 
 // 原文下载路径
 const urlReport = ref([
+  {
+    reportName: "长江三角洲高质量发展评价研究报告（2025年编制）",
+    url: "", // 美化版本pdf
+  },
   {
     reportName: "长江三角洲高质量发展评价研究报告（2024年编制）",
     url: "http://221.224.35.86:38083/data/8880dcc6-1fcd-4783-881e-d7172545cad9", // 美化版本pdf
@@ -146,10 +151,10 @@ const urlReport = ref([
     reportName: "长三角生态绿色一体化发展示范区生态环境质量报告（2022）",
     url: "http://221.224.35.86:38083/data/d0c9b059-d40c-49dc-a7ef-4d73eca46019",
   },
-  {
-    reportName: "“一带一路”倡议下的全球城市（2022）",
-    url: "http://221.224.35.86:38083/data/574de5c5-33b4-4124-adf3-c9a232c88671",
-  },
+  // {
+  //   reportName: "“一带一路”倡议下的全球城市（2022）",
+  //   url: "http://221.224.35.86:38083/data/574de5c5-33b4-4124-adf3-c9a232c88671",
+  // },
   {
     reportName: "长三角区域协同创新指数（2022简版）",
     url: "http://221.224.35.86:38083/data/4e7fc096-c82b-4c8a-9895-f91151495788",
