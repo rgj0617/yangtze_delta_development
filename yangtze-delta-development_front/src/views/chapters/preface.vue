@@ -86,6 +86,8 @@
 // @ts-ignore
 import chaptersHeader from "./chaptersHeader.vue";
 import { ref } from "vue";
+import { useYearStore } from "@/store/year.js";
+const yearStore = useYearStore();
 
 interface TableDataRow {
   index: string;
