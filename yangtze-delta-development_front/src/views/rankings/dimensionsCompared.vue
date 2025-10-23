@@ -49,7 +49,7 @@
       <!-- 左：可选城市 -->
       <div class="cityListBox">
         <div class="cityListHeader">
-          可用城市 (共 {{ cityList.length }} 个)
+          可选城市 (共 {{ cityList.length }} 个)
         </div>
         <el-scrollbar style="height: 240px;">
           <div
@@ -407,7 +407,7 @@ const updateChart = () => {
     tooltip: { trigger: "axis" },
     legend: { data: filteredYears, top:'30px' },
     xAxis: { type: "category", data: selectedCities.value },
-    yAxis: { type: "value", name: "Score", min: yMin, max: yMax },
+    yAxis: { type: "value", name: "得分", min: yMin, max: yMax },
     series,
     // 禁用颜色淡化效果
     emphasis: {

@@ -31,19 +31,19 @@
 
   <el-card class="container">
     <el-table :data="rankingDetailData" stripe @sort-change="tableSort">
-      <el-table-column type="index" label="Rank" width="100"></el-table-column>
+      <el-table-column type="index" label="排名" width="100"></el-table-column>
       <el-table-column
         prop="cityName"
-        label="Country"
+        label="地级市"
         sortable
       ></el-table-column>
-      <el-table-column label="Score"  sortable="custom">
+      <el-table-column label="得分"  sortable="custom">
         <!-- 实现可变数据的动态排序 -->
         <template v-slot="scope">
           {{ formatScore(scope.row) }}
         </template>
       </el-table-column>
-      <el-table-column label="Performance">
+      <el-table-column label="综合表现">
         <template v-slot="scope">
           <div
             :style="{

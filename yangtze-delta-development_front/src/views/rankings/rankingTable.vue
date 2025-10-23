@@ -3,21 +3,21 @@
     <el-table :data="rankingDataFormatted" stripe>
       <el-table-column
         prop="ranking"
-        label="Rank"
+        label="排名"
         width="100"
       ></el-table-column>
       <el-table-column
         prop="cityName"
-        label="Country"
+        label="地级市"
         sortable
       ></el-table-column>
       <el-table-column
         prop="score"
-        label="Score"
+        label="得分"
         
         sortable
       ></el-table-column>
-      <el-table-column label="Performance">
+      <el-table-column label="综合表现">
         <template v-slot="scope">
           <!-- 动态绑定样式，通过getBackgroundColor获得色带 -->
           <div

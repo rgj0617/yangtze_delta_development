@@ -3,7 +3,7 @@
     <el-table :data="comparisonData" stripe class="adaptive-table">
       <el-table-column
         prop="cityName"
-        label="Country"
+        label="地级市"
         width="120"
         align="center"
       />
@@ -44,7 +44,7 @@
         </template>
       </el-table-column>
       <el-table-column
-        label="Rank_Change"
+        label="排名变化"
         
         align="center"
         sortable
@@ -73,18 +73,18 @@
       
       <el-table-column
         prop="currentScore"
-        :label="currentSelectedYear + ' Ratings'"
+        :label="currentSelectedYear + ' 得分'"
         align="center"
         sortable
       />
       <el-table-column
         prop="previousScore"
-        :label="selectedYear + ' Ratings'"
+        :label="selectedYear + ' 得分'"
         align="center"
         sortable
       />
       <el-table-column
-        label="Ratings_Change"
+        label="得分变化"
        
         align="center"
       >
