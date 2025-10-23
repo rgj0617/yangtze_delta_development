@@ -1,65 +1,55 @@
 <template>
   <div class="container">
-    <chaptersHeader
-      :chapterTitle="chapterTitle"
-      :chapterDescription="chapterDescription"
-    />
+    <chaptersHeader :chapterTitle="chapterTitle" :chapterDescription="chapterDescription" />
 
     <el-card class="mainContext">
-      <p class="para"><strong>（一）各城市分维度得分</strong></p>
-      <div class="tableContainer" style="width: 70%">
-        <el-table
-          class="table"
-          :data="tableData"
-          :cell-style="columnStyle"
-          border
-          :header-cell-style="rowClass"
-        >
-          <el-table-column
-            prop="cityName"
-            label="城市"
-            min-width="100"
-            align="center"
-          >
-          </el-table-column>
-          <el-table-column prop="score" label="综合得分" align="center">
-          </el-table-column>
-          <el-table-column prop="创新发展" label="创新发展" align="center">
-          </el-table-column>
-          <el-table-column prop="协调发展" label="协调发展" align="center">
-          </el-table-column>
-          <el-table-column prop="绿色发展" label="绿色发展" align="center">
-          </el-table-column>
-          <el-table-column prop="开放发展" label="开放发展" align="center">
-          </el-table-column>
-          <el-table-column prop="共享发展" label="共享发展" align="center">
-          </el-table-column>
-        </el-table>
+
+      <div v-if="yearStore.year === 2025">
+        <VuePdfApp class="pdfContainer"
+          pdf="https://img.iduodou.com/images/docs/20251023/183FD7E5-360A-476F-B1F2-0C594BF63E89.pdf?attname=2025长三角高质量评价1021_A4_低分辨率版-73-83.pdf">
+        </VuePdfApp>
       </div>
-      <p class="para">
-        <strong>（二）长江三角洲高质量发展评价县域探索</strong>
-      </p>
-      <p class="para">
-        县域是支撑经济社会发展的重要单元，也是实现新型城镇化发展的重点和难点区域。以县域为单元力求高质量发展符合新时代新经济发展理念，推动县域经济高质量发展意义重大，任务紧迫。本报告在前文构建的以城市为评价单元的指标体系基础上，结合县域尺度特征，重新梳理、把握县域高质量发展的基本内涵，尝试构建面向县域单元的高质量发展评价指标体系。但目前，该部分研究尚处于起步阶段。本报告将目前五大维度已经搜集的部分指标数据呈现如下（见图14）：包括创新发展维度的受高等教育人数占比，协调发展维度的GDP增长协同指数，绿色发展维度的生态空间占比，共享发展维度的公共文体设施15分钟生活圈覆盖率和一级以上医院15分钟医疗圈覆盖率。我们将加快适时推进长三角高质量发展的县域单元评价工作，客观分析长三角高质量一体化发展现状。
-      </p>
-      <div class="fig-container">
-        <img class="fig" src="./chaptersImgs/appendix1.png" alt="" />
-        <img class="fig" src="./chaptersImgs/appendix2.png" alt="" />
-        <img
-          class="fig"
-          src="./chaptersImgs/appendix3.png"
-          style="width: 50%; margin-left: 25%"
-          alt=""
-        />
-        <p class="figTitle" align="center">
-          图14 长三角高质量发展县域指标空间分布图
+
+      <div v-else>
+        <p class="para"><strong>（一）各城市分维度得分</strong></p>
+        <div class="tableContainer" style="width: 70%">
+          <el-table class="table" :data="tableData" :cell-style="columnStyle" border :header-cell-style="rowClass">
+            <el-table-column prop="cityName" label="城市" min-width="100" align="center">
+            </el-table-column>
+            <el-table-column prop="score" label="综合得分" align="center">
+            </el-table-column>
+            <el-table-column prop="创新发展" label="创新发展" align="center">
+            </el-table-column>
+            <el-table-column prop="协调发展" label="协调发展" align="center">
+            </el-table-column>
+            <el-table-column prop="绿色发展" label="绿色发展" align="center">
+            </el-table-column>
+            <el-table-column prop="开放发展" label="开放发展" align="center">
+            </el-table-column>
+            <el-table-column prop="共享发展" label="共享发展" align="center">
+            </el-table-column>
+          </el-table>
+        </div>
+        <p class="para">
+          <strong>（二）长江三角洲高质量发展评价县域探索</strong>
         </p>
+        <p class="para">
+          县域是支撑经济社会发展的重要单元，也是实现新型城镇化发展的重点和难点区域。以县域为单元力求高质量发展符合新时代新经济发展理念，推动县域经济高质量发展意义重大，任务紧迫。本报告在前文构建的以城市为评价单元的指标体系基础上，结合县域尺度特征，重新梳理、把握县域高质量发展的基本内涵，尝试构建面向县域单元的高质量发展评价指标体系。但目前，该部分研究尚处于起步阶段。本报告将目前五大维度已经搜集的部分指标数据呈现如下（见图14）：包括创新发展维度的受高等教育人数占比，协调发展维度的GDP增长协同指数，绿色发展维度的生态空间占比，共享发展维度的公共文体设施15分钟生活圈覆盖率和一级以上医院15分钟医疗圈覆盖率。我们将加快适时推进长三角高质量发展的县域单元评价工作，客观分析长三角高质量一体化发展现状。
+        </p>
+        <div class="fig-container">
+          <img class="fig" src="./chaptersImgs/appendix1.png" alt="" />
+          <img class="fig" src="./chaptersImgs/appendix2.png" alt="" />
+          <img class="fig" src="./chaptersImgs/appendix3.png" style="width: 50%; margin-left: 25%" alt="" />
+          <p class="figTitle" align="center">
+            图14 长三角高质量发展县域指标空间分布图
+          </p>
+        </div>
       </div>
     </el-card>
   </div>
 </template>
-  
-  
+
+
 <script setup lang="ts">
 // @ts-ignore
 import detailData from "@/assets/json/scoreDetail.json";
@@ -68,6 +58,9 @@ import chaptersHeader from "./chaptersHeader.vue";
 // @ts-ignore
 import { scoreFormat } from "@/utils/format.ts";
 import { ref } from "vue";
+import VuePdfApp from "vue3-pdf-app";
+import { useYearStore } from "@/store/year.js";
+const yearStore = useYearStore();
 
 interface TableDataRow {
   cityName: string;
@@ -144,10 +137,12 @@ const chapterDescription = ref(
   flex-wrap: wrap;
   align-items: flex-start;
   margin: 1.5% 30% 0.5% 30%;
+
   .title {
     font-size: 5vh;
     font-weight: bold;
   }
+
   .description {
     color: rgb(142, 142, 142);
     font-size: 1.5vh;
@@ -160,12 +155,21 @@ const chapterDescription = ref(
 .mainContext {
   display: block;
   width: 50vw;
-  word-wrap: break-word; /* 自动换行 */
+  word-wrap: break-word;
+  /* 自动换行 */
   margin: 0 auto;
   margin-top: 5px;
   margin-bottom: 15vh;
   // font-family: '仿宋', 'Times New Roman', Times, serif;
   font-size: 20px;
+
+  .pdfContainer {
+    width: 100%;
+    height: 88vh;
+    box-shadow: 5px 5px 12px 0 rgba(0, 0, 0, 0.3);
+
+    border-radius: 10px;
+  }
 
   //正文段落
   .para {
@@ -182,6 +186,7 @@ const chapterDescription = ref(
     width: auto;
     margin-bottom: 3%;
     margin-left: 15%;
+
     .tableTitle {
       font-size: 15px;
       margin-bottom: 3%;
@@ -223,7 +228,8 @@ const chapterDescription = ref(
   .mainContext {
     display: block;
     width: 100vw;
-    word-wrap: break-word; /* 自动换行 */
+    word-wrap: break-word;
+    /* 自动换行 */
     margin: 0 auto;
     // font-family: '仿宋', 'Times New Roman', Times, serif;
     font-size: 20px;
@@ -231,4 +237,3 @@ const chapterDescription = ref(
   }
 }
 </style>
-  
