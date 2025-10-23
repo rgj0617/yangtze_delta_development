@@ -97,7 +97,7 @@ export const getAnnualScore = (dataset, value) => {
   let option = {
     title: {
       // text: '特性示例：渐变色 阴影 点击缩放',
-      subtext: "tips：滑动鼠标滚轮或拖动右边滚动条可查看更多",
+      subtext: "提示：滑动鼠标滚轮或拖动右边滚动条可查看更多",
     },
     xAxis: {
       type: "value", // 设置为类目轴
