@@ -129,7 +129,7 @@ Promise.all([
 const urlReport = ref([
   {
     reportName: "长江三角洲高质量发展评价研究报告（2025年编制）",
-    url: "", // 美化版本pdf
+    url: "http://221.224.35.86:38083/data/eaeb7217-2fc3-4579-856f-a01eb4907571", // 美化版本pdf
   },
   {
     reportName: "长江三角洲高质量发展评价研究报告（2024年编制）",
