@@ -18,7 +18,7 @@
             更具公信力的高质量发展评价指标体系。
           </span>
           <a class="bt1" @click="goTo('chapters')">阅读报告</a>
-          <a class="bt2" @click="goTo('interactiveMap')">评价结果</a>
+          <a class="bt2" @click="goTo('rankings')">评价结果</a>
         </div>
         <div class="section-footer">
           <div>滑动查看更多</div>
@@ -86,13 +86,13 @@
               <div class="section3-right-content-title1">
                 Explore Interactive Maps
               </div>
-              <div class="section3-right-content-title2">探索交互式地图</div>
+              <div class="section3-right-content-title2">探索交互式地图</div> <!--交互式地图已经改为决策辅助，相应文本可能需要修改-->
               <div class="section3-right-content-des">
                 我们的互动地图展示了长三角41个城市的高质量发展水平评价得分及维度介绍。您可以查看全面或单独的维度发展水平评估结果，交互式设计以便于您进一步了解我们的报告内容。
               </div>
               <div
                 class="section3-right-content-button"
-                @click="goTo('interactiveMap')"
+                @click="goTo('decision')"
               >
                 开始探索
                 <!-- <ArrowRightOutlined style="color: black" /> -->
