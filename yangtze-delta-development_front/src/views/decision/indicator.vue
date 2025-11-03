@@ -26,7 +26,12 @@
           </div>
         </div>
         <div class="button-group">
-          <el-button @click="updateIndicator()" type="primary" :disabled="buttonDisabled">应用</el-button>
+          <el-tooltip
+            content="请先选择地级市"
+            :disabled="!buttonDisabled"
+          >
+            <el-button @click="updateIndicator()" type="primary" :disabled="buttonDisabled">应用</el-button>
+          </el-tooltip>
           <el-button @click="toggleVisible()">取消</el-button>
         </div>
       </div>
