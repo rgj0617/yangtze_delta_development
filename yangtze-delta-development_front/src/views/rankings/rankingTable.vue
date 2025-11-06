@@ -38,19 +38,28 @@ import { watchEffect, ref } from "vue";
 import { scoreFormat } from "@/utils/format.ts";
 // @ts-ignore
 import { useYearStore } from "@/store/year.js";
+
+import Api from "@/api/score"
+
 const yearStore = useYearStore();
 const rankingDataFormatted = ref([]);
+
+const api = new Api()
 
 watchEffect(async () => {
   const year = yearStore.year;
   // 使用 import.meta.glob 代替动态路径
-  const modules = import.meta.glob("/src/assets/json/**/*.json");
-  const modulePath = `/src/assets/json/${year}/scoreRanking.json`;
+  // const modules = import.meta.glob("/src/assets/json/**/*.json");
+  // const modulePath = `/src/assets/json/${year}/scoreRanking.json`;
 
-  if (modules[modulePath]) {
-    const module = await modules[modulePath]();
-    rankingDataFormatted.value = scoreFormat(module.default);
-  }
+  const module = await api.getScoreRanking(year)
+
+  rankingDataFormatted.value = scoreFormat(module);
+
+  // if (modules[modulePath]) {
+  //   const module = await modules[modulePath]();
+  //   rankingDataFormatted.value = scoreFormat(module);
+  // }
   // const filePath = `/src/assets/json/${year}/scoreRanking.json`;
   // const module = await import(/* @vite-ignore */ filePath);
   // rankingDataFormatted.value = scoreFormat(module.default);

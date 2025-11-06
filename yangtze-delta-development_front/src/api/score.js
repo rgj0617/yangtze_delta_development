@@ -1,15 +1,15 @@
-import { get, post } from "index.js"
+import { get, post } from "./index"
 
 export default class {
   getScoreRanking(year) {
-    get(`/score/ranking/${year}`)
+    return get(`/score/ranking/${year}`)
   }
 
   getDimensionScore(year) {
-    get(`/score/dimension/${year}`)
+    return get(`/score/dimensions/${year}`)
   }
 
   getNormalizeIndicators(year) {
-    get(`/score/indicators/${year}`)
+    return get(`/score/indicators/${year}`)
   }
 }

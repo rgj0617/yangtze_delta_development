@@ -6,19 +6,30 @@ import * as echarts from "echarts";
 // import Indicators from "@/assets/json/secondaryIndicators.json";
 import { scoreFormat } from "@/utils/format.ts";
 import { useYearStore } from "@/store/year.js";
+
+import Api from "@/api/score"
+const api = new Api()
+
 const yearStore = useYearStore();
 
 // 定义一个异步函数来加载和格式化 ranking 数据
 const loadAndFormatRankingData = async () => {
   try {
     // 动态引入 ranking 数据
-    const modules = import.meta.glob("/src/assets/json/**/*.json");
-    const detailModulePath = `/src/assets/json/${yearStore.year}/scoreDetail.json`;
-    const detailModule = await modules[detailModulePath]();
-    const rankingModulePath = `/src/assets/json/${yearStore.year}/scoreRanking.json`;
-    const rankingModule = await modules[rankingModulePath]();
-    const indicatorsModulePath = `/src/assets/json/${yearStore.year}/secondaryIndicators.json`;
-    const indicatorsModule = await modules[indicatorsModulePath]();
+    // const modules = import.meta.glob("/src/assets/json/**/*.json");
+    // const detailModulePath = `/src/assets/json/${yearStore.year}/scoreDetail.json`;
+    // const detailModule = await modules[detailModulePath]();
+    // const rankingModulePath = `/src/assets/json/${yearStore.year}/scoreRanking.json`;
+    // const rankingModule = await modules[rankingModulePath]();
+    // const indicatorsModulePath = `/src/assets/json/${yearStore.year}/secondaryIndicators.json`;
+    // const indicatorsModule = await modules[indicatorsModulePath]();
+    // const detail = scoreFormat(detailModule.default || detailModule);
+    // const ranking = scoreFormat(rankingModule.default || rankingModule);
+    // const indicators = indicatorsModule.default || indicatorsModule;
+
+    const detailModule = await api.getDimensionScore(yearStore.year)
+    const rankingModule = await api.getScoreRanking(yearStore.year)
+    const indicatorsModule = await api.getNormalizeIndicators(yearStore.year)
     const detail = scoreFormat(detailModule.default || detailModule);
     const ranking = scoreFormat(rankingModule.default || rankingModule);
     const indicators = indicatorsModule.default || indicatorsModule;

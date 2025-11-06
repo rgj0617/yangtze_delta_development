@@ -63,20 +63,25 @@ import { scoreFormat } from "@/utils/format.ts";
 import { ref, watchEffect } from "vue";
 // @ts-ignore
 import { useYearStore } from "@/store/year.js";
+import Api from "@/api/score"
 
 const yearStore = useYearStore();
 const rankingDetailData = ref([]);
 
+const api = new Api()
+
 watchEffect(async () => {
   const year = yearStore.year;
   // 使用 import.meta.glob 代替动态路径
-  const modules = import.meta.glob("/src/assets/json/**/*.json");
-  const modulePath = `/src/assets/json/${year}/scoreDetail.json`;
+  // const modules = import.meta.glob("/src/assets/json/**/*.json");
+  // const modulePath = `/src/assets/json/${year}/scoreDetail.json`;
 
-  if (modules[modulePath]) {
-    const module = await modules[modulePath]();
-    rankingDetailData.value = module.default;
-  }
+  // if (modules[modulePath]) {
+  //   const module = await modules[modulePath]();
+  //   rankingDetailData.value = module.default;
+  // }
+
+  rankingDetailData.value = await api.getDimensionScore(year)
 });
 // 计算score列的数据
 const formatScore = (row) => {

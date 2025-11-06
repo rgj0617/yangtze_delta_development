@@ -113,6 +113,10 @@ import { ArrowUp, ArrowDown } from '@element-plus/icons-vue';
 import { scoreFormat } from "@/utils/format.ts";
 // import { getAvailableYears } from "@/utils/getAvailableYears.ts";
 
+import Api from "@/api/score"
+
+const api = new Api()
+
 const comparisonData = ref([]);
 const selectedYear = ref(2024);
 const currentSelectedYear = ref(2025); // 最新年份
@@ -124,25 +128,30 @@ const availableYears = ref([2025, 2024, 2023])
 
 // 获取最新年份和选择年份的数据
 const getCurrentYearData = async () => {
-  const modules = import.meta.glob("/src/assets/json/**/*.json");
+  // const modules = import.meta.glob("/src/assets/json/**/*.json");
   const previousYear = selectedYear.value; // 使用选择的年份
   const currentYear = currentSelectedYear.value; // 使用当前选中的年份
   
-  const currentPath = `/src/assets/json/${currentYear}/scoreRanking.json`;
-  const previousPath = `/src/assets/json/${previousYear}/scoreRanking.json`;
+  const currentModule = await api.getScoreRanking(currentYear)
+  const previousModule = await api.getScoreRanking(previousYear)
+  const currentData = scoreFormat(currentModule)
+  const previousData = scoreFormat(previousModule)
+
+  // const currentPath = `/src/assets/json/${currentYear}/scoreRanking.json`;
+  // const previousPath = `/src/assets/json/${previousYear}/scoreRanking.json`;
   
-  let currentData = [];
-  let previousData = [];
+  // let currentData = [];
+  // let previousData = [];
   
-  if (modules[currentPath]) {
-    const currentModule = await modules[currentPath]();
-    currentData = scoreFormat(currentModule.default);
-  }
+  // if (modules[currentPath]) {
+  //   const currentModule = await modules[currentPath]();
+  //   currentData = scoreFormat(currentModule.default);
+  // }
   
-  if (modules[previousPath]) {
-    const previousModule = await modules[previousPath]();
-    previousData = scoreFormat(previousModule.default);
-  }
+  // if (modules[previousPath]) {
+  //   const previousModule = await modules[previousPath]();
+  //   previousData = scoreFormat(previousModule.default);
+  // }
   
   return { currentData, previousData };
 };

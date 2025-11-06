@@ -1,5 +1,6 @@
 // 请求响应拦截器
 import axios from 'axios'
+import { ElMessage } from 'element-plus'
 
 // 创建 axios 实例
 const service = axios.create({
@@ -9,8 +10,12 @@ const service = axios.create({
 
 // ✅ 请求拦截器
 service.interceptors.request.use(
-  () => {
-
+  (config) => {
+    // 确保 config 存在
+    if (!config) {
+      config = {}
+    }
+    return config
   },
   (error) => {
     console.error('请求错误：', error)

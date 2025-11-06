@@ -136,6 +136,8 @@ import { ref, watch, onMounted, onUnmounted, nextTick, computed } from "vue";
 import * as echarts from "echarts";
 import { scoreFormat } from "@/utils/format.ts";
 
+import Api from "@/api/score"
+
 // ------------------- 年份和城市相关 -------------------
 const availableYears = computed(() => {
   return Object.keys(allData.value).map(year => parseInt(year)).sort();
@@ -190,17 +192,31 @@ const clearAll = () => {
 };
 
 // ------------------- 加载所有年份数据 -------------------
+const api = new Api()
+
 onMounted(async () => {
-  const modules = import.meta.glob("/src/assets/json/*/scoreDetail.json");
+  // const modules = import.meta.glob("/src/assets/json/*/scoreDetail.json");
   allData.value = {};
-  for (const path in modules) {
-    const yearMatch = path.match(/\/(\d{4})\/scoreDetail.json/);
-    if (yearMatch) {
-      const year = yearMatch[1];
-      const module = await modules[path]();
-      allData.value[year] = module.default;
-    }
-  }
+  // for (const path in modules) {
+    // const yearMatch = path.match(/\/(\d{4})\/scoreDetail.json/);
+  //   if (yearMatch) {
+  //     const year = yearMatch[1];
+  //     const module = await modules[path]();
+  //     allData.value[year] = module.default;
+  //   }
+  // }
+  const allYears = [2023, 2024, 2025]
+  // 并行请求并等待所有完成
+  const requests = allYears.map(year => 
+    api.getDimensionScore(year)
+  );
+  
+  const results = await Promise.all(requests);
+  
+  // 将结果存入 allData
+  allYears.forEach((year, index) => {
+    allData.value[year] = results[index];
+  });
   // 默认取最新年份的城市列表
   const years = Object.keys(allData.value).sort();
   if (years.length > 0) {
