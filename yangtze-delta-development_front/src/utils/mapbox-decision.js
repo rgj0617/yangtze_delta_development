@@ -10,19 +10,24 @@ const yearStore = useYearStore();
 import { useSelectedCityStore } from "../store/selectedCity";
 const selectedCityStore = useSelectedCityStore();
 
+import Api from "@/api/score"
+const api = new Api()
+
 // 定义一个异步函数来加载和格式化 ranking 数据
 const loadAndFormatRankingData = async () => {
   try {
     // 动态引入 ranking 数据
-    const modules = import.meta.glob("/src/assets/json/**/*.json");
-    const modulePath = `/src/assets/json/${yearStore.year}/scoreDetail.json`;
-    const rankingModule = await modules[modulePath]();
+    // const modules = import.meta.glob("/src/assets/json/**/*.json");
+    // const modulePath = `/src/assets/json/${yearStore.year}/scoreDetail.json`;
+    // const rankingModule = await modules[modulePath]();
     //   rankingDataFormatted.value = scoreFormat(module.default);
 
     // const rankingModule = await import(
     //   `/src/assets/json/${yearStore.year}/scoreDetail.json`
     // );
-    const ranking = rankingModule.default || rankingModule;
+    // const ranking = rankingModule.default || rankingModule;
+
+    const ranking = await api.getDimensionScore(yearStore.year)
 
     // 格式化 ranking 数据
     return scoreFormat(ranking);

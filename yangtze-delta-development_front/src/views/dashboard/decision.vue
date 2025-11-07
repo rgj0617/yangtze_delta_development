@@ -26,7 +26,7 @@
                 <dimension :indicators="innovation" dimension="创新发展" @update-score="updateScore"/>
               </el-collapse-item>
               <el-collapse-item title="协调发展" name="1">
-                 <dimension :indicators="coordination" dimension="协调发展" @update-score="updateScore"/>
+                <dimension :indicators="coordination" dimension="协调发展" @update-score="updateScore"/>
               </el-collapse-item>
               <el-collapse-item title="绿色发展" name="2">
                 <dimension :indicators="green" dimension="绿色发展" @update-score="updateScore"/>
@@ -54,13 +54,16 @@
 <script setup>
 import homeHeader from "@/components/header.vue";
 import yangtzeMap from "@/components/map.vue";
-import { onUnmounted, ref, watch } from "vue";
+import { onUnmounted, provide, reactive, ref, watch } from "vue";
 import evaluationDescription from "@/assets/json/evaluationDescription.json";
 import { useYearStore } from "@/store/year.js";
 const yearStore = useYearStore();
 
 import { useSelectedCityStore } from "@/store/selectedCity.js"
 const selectedCityStore = useSelectedCityStore();
+
+import Api from "@/api/data"
+const api = new Api()
 
 import dimension from "../decision/dimension.vue";
 import structure from "@/assets/json/structure.json"
@@ -77,6 +80,19 @@ watch(activeName, (newValue, oldValue) => {
     activeName.value = oldValue; // 恢复上一个有效值
   }
 });
+
+const basicData = reactive({})
+provide('basicDataRef', basicData)
+watch(selectedCityStore.get(), async (newValue, oldValue) => {
+
+  console.log("城市更新了")
+  // const basicData = api.getCityBasicData(newValue, yearStore.year)
+  const res = await api.getCityDecisionData(newValue, 2025)
+  // console.log(res)
+  basicData.value = res.dataContent
+  console.log(basicData.value)
+
+})
 
 // 像map组件传递用户更新的数据
 const updateData = ref(null)

@@ -42,7 +42,7 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, onUnmounted, watch, reactive, computed } from 'vue';
+import { ref, onMounted, onUnmounted, watch, reactive, computed, inject } from 'vue';
 import { useSelectedCityStore } from "@/store/selectedCity.js"
 const selectedCityStore = useSelectedCityStore();
 import { innovation } from "@/utils/innovationCalculator.js";
@@ -51,6 +51,10 @@ import { green } from "@/utils/greenCalculator.js";
 import { open } from "@/utils/openCalculator.js";
 import { share } from "@/utils/shareCalculator.js";
 import { ElMessage } from 'element-plus';
+import mapper from "@/utils/mapper.json"
+
+import Api from "@/api/data"
+const api = new Api()
 /*
 指标的tips相关内容
 */
@@ -93,6 +97,7 @@ onUnmounted(() => {
 const props = defineProps({
   indicator: Object,
   dimension: String, // 添加dimension属性
+  // basicData: Object
 })
 // console.log(props.indicator.formula);
 
@@ -113,6 +118,7 @@ function countChineseCharacters(str) {
 用户对变量的修改
 */
 // 初始化所有基础变量
+const basicData = inject('basicDataRef')
 const variables = reactive({})
 const initializeVariables = () => {
   if(selectedCityStore.get().value === '未选择'){
@@ -123,22 +129,34 @@ const initializeVariables = () => {
   }
   else {
     const city = selectedCityStore.get().value
+
+    // 不能在这里请求
+    // console.log(basicData.value['gdp'])
+    // console.log(props.indicator.variables)
+
     props.indicator.variables.forEach(element => {
       if('initial' in element) {
-        variables[element.name] = element.initial[city]
+        // variables[element.name] = element.initial[city]
+        variables[element.name] = basicData.value[mapper[element.name]]
+        // console.log(element.name, element.initial[city], basicData.value[mapper[element.name]])
       }
     })
   }
 }
 
 // 监听选择的城市变化，初始化变量为对应的值
-watch(
-  () => selectedCityStore.get().value,
-  (newValue, oldValue) => {
-    // console.log("监听到了变化")
-    initializeVariables()
-  }
-)
+// watch(
+//   () => selectedCityStore.get().value,
+//   (newValue, oldValue) => {
+//     // console.log("监听到了变化")
+//     initializeVariables()
+//   }
+// )
+
+watch(basicData, (newValue, oldValue) => {
+  // console.log("属性更新了")
+  initializeVariables()
+})
 
 const emit = defineEmits(['transmitData'])
 

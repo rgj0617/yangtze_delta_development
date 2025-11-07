@@ -25,6 +25,7 @@ const props = defineProps({
   // opens: Array,
   // greens: Array,
   dimension: String, // 添加dimension属性
+  // basicData: Object
 });
 
 // 向父组件传递子组件的数据
