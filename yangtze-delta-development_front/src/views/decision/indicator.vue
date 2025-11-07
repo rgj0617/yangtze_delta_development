@@ -161,7 +161,7 @@ watch(basicData, (newValue, oldValue) => {
 const emit = defineEmits(['transmitData'])
 
 // 根据用户输入的变量值更新指标结果
-const updateIndicator = () => {
+const updateIndicator = async () => {
   const city = selectedCityStore.get().value
   const indicatorName = props.indicator.name
   let delta = -9999
@@ -221,19 +221,19 @@ const updateIndicator = () => {
     // 根据维度选择对应的计算函数
     switch (props.dimension) {
       case "创新发展":
-        delta = innovation(city, indicatorName, variables)
+        delta = await innovation(city, indicatorName, variables)
         break
       case "协调发展":
-        delta = coordinate(city, indicatorName, variables)
+        delta = await coordinate(city, indicatorName, variables)
         break
       case "绿色发展":
-        delta = green(city, indicatorName, variables)
+        delta = await green(city, indicatorName, variables)
         break
       case "开放发展":
-        delta = open(city, indicatorName, variables)
+        delta = await open(city, indicatorName, variables)
         break
       case "共享发展":
-        delta = share(city, indicatorName, variables)
+        delta = await share(city, indicatorName, variables)
         break
       default:
         console.error('未知的发展维度:', props.dimension)
@@ -245,7 +245,7 @@ const updateIndicator = () => {
     
     // 只有明确的错误值才认为计算失败
     if (delta === -9999 || delta === undefined || delta === null || !Number.isFinite(delta)) {
-      // console.log(delta)
+      console.log(delta)
       ElMessage.error('计算失败，请检查输入参数是否正确！')
       return
     }

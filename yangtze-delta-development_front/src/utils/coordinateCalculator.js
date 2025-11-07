@@ -2,24 +2,30 @@
 import { useYearStore } from "@/store/year.js";
 const yearStore = useYearStore();
 
-import si2023 from "/src/assets/json/2023/secondaryIndicators.json"
-import si2024 from "/src/assets/json/2024/secondaryIndicators.json"
-import si2025 from "/src/assets/json/2025/secondaryIndicators.json"
+import Api from "@/api/score"
+const api = new Api()
 
-export function coordinate(city, secondaryIndicator, data) {
+// import si2023 from "/src/assets/json/2023/secondaryIndicators.json"
+// import si2024 from "/src/assets/json/2024/secondaryIndicators.json"
+// import si2025 from "/src/assets/json/2025/secondaryIndicators.json"
+
+export async function coordinate(city, secondaryIndicator, data) {
   const year = yearStore.year
-  let origin
-  switch (year) {
-    case 2023:
-      origin = si2023['协调发展']
-      break
-    case 2024:
-      origin = si2024['协调发展']
-      break
-    case 2025:
-      origin = si2025['协调发展']
-      break
-  }
+  // let origin
+  // switch (year) {
+  //   case 2023:
+  //     origin = si2023['协调发展']
+  //     break
+  //   case 2024:
+  //     origin = si2024['协调发展']
+  //     break
+  //   case 2025:
+  //     origin = si2025['协调发展']
+  //     break
+  // }
+  const secondaryIndicators = await api.getNormalizeIndicators(year)
+  const origin = secondaryIndicators['协调发展']
+  // console.log(origin)
   const index = origin['names'].findIndex((name) => name === city)
   try {
     let result = 0
