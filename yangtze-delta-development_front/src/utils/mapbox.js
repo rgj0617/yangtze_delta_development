@@ -7,19 +7,27 @@ import cityPoint from "@/assets/json/cityCenterPoint.json";
 import { useYearStore } from "@/store/year.js";
 const yearStore = useYearStore();
 
+import Api from "@/api/score"
+const api = new Api()
+
+import GeometryApi from "@/api/geometry"
+const geometryApi = new GeometryApi()
+
 // 定义一个异步函数来加载和格式化 ranking 数据
 const loadAndFormatRankingData = async () => {
   try {
-    // 动态引入 ranking 数据
-    const modules = import.meta.glob("/src/assets/json/**/*.json");
-    const modulePath = `/src/assets/json/${yearStore.year}/scoreDetail.json`;
-    const rankingModule = await modules[modulePath]();
-    //   rankingDataFormatted.value = scoreFormat(module.default);
+    // // 动态引入 ranking 数据
+    // const modules = import.meta.glob("/src/assets/json/**/*.json");
+    // const modulePath = `/src/assets/json/${yearStore.year}/scoreDetail.json`;
+    // const rankingModule = await modules[modulePath]();
+    // //   rankingDataFormatted.value = scoreFormat(module.default);
 
-    // const rankingModule = await import(
-    //   `/src/assets/json/${yearStore.year}/scoreDetail.json`
-    // );
-    const ranking = rankingModule.default || rankingModule;
+    // // const rankingModule = await import(
+    // //   `/src/assets/json/${yearStore.year}/scoreDetail.json`
+    // // );
+    // const ranking = rankingModule.default || rankingModule;
+
+    const ranking = await api.getDimensionScore(yearStore.year)
 
     // 格式化 ranking 数据
     return scoreFormat(ranking);
@@ -116,17 +124,22 @@ export async function loadMap(box) {
   // }));
 }
 
-export function addGeoJson() {
-  map.on("style.load", () => {
+export async function addGeoJson() {
+  await map.on("style.load", async () => {
+
+    // TODO 放在这里加载不好出问题，但是可能会体验不好，后续可以考虑迁移到loadMap中
+    const myCityData = await geometryApi.getGeometry("boundary")
+    const myCityPoint = await geometryApi.getGeometry("center_point")
+
     // 加载 GeoJSON 数据源
     map.addSource("geojsonSource", {
       type: "geojson",
-      data: CityData,
+      data: myCityData['geometryData'],
     });
     map.addSource("pointGeojsonSource", {
       // 注意：这里使用的是不同的ID
       type: "geojson",
-      data: cityPoint,
+      data: myCityPoint['geometryData'],
     });
 
     //初始化上色

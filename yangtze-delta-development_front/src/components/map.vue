@@ -163,15 +163,19 @@ import { map, loadMap, addGeoJson, updateMap, rankingFormatted } from "@/utils/m
 import { onMounted, reactive, ref, watch } from "vue";
 import { useYearStore } from "@/store/year.js";
 import { useSelectedCityStore } from "@/store/selectedCity.js"
-import overallRanking from "@/assets/json/2025/总分_ranking.json"
-import indicatorRanking from "@/assets/json/2025/创新发展_ranking.json"
-import shareRanking from "@/assets/json/2025/共享发展_ranking.json"
-import openRanking from "@/assets/json/2025/开放发展_ranking.json"
-import greenRanking from "@/assets/json/2025/绿色发展_ranking.json"
-import coordinateRanking from "@/assets/json/2025/协调发展_ranking.json"
+// import overallRanking from "@/assets/json/2025/总分_ranking.json"
+// import indicatorRanking from "@/assets/json/2025/创新发展_ranking.json"
+// import shareRanking from "@/assets/json/2025/共享发展_ranking.json"
+// import openRanking from "@/assets/json/2025/开放发展_ranking.json"
+// import greenRanking from "@/assets/json/2025/绿色发展_ranking.json"
+// import coordinateRanking from "@/assets/json/2025/协调发展_ranking.json"
 const yearStore = useYearStore();
 const selectedCityStore = useSelectedCityStore()
 const legendTitle = ref("");
+
+import Api from "@/api/score"
+const api = new Api()
+
 
 // 原始地图样式信息
 let originRankingFormatted = JSON.parse(JSON.stringify(rankingFormatted))
@@ -187,6 +191,22 @@ const initMapbox = async () => {
   });
   // if (originRankingFormatted.length === 0) originRankingFormatted = JSON.parse(JSON.stringify(rankingFormatted))
 };
+
+let overallRanking
+let indicatorRanking
+let shareRanking
+let openRanking
+let greenRanking
+let coordinateRanking
+const loadData = async () => {
+  overallRanking = await api.getDimensionScoreAndRanking(2025, "综合发展")
+  indicatorRanking = await api.getDimensionScoreAndRanking(2025, "创新发展")
+  shareRanking = await api.getDimensionScoreAndRanking(2025,"共享发展")
+  openRanking = await api.getDimensionScoreAndRanking(2025,"开放发展")
+  greenRanking = await api.getDimensionScoreAndRanking(2025,"绿色发展")
+  coordinateRanking = await api.getDimensionScoreAndRanking(2025,"协调发展")
+  // 写成promise all应该会更好
+}
 
 const props = defineProps({
   currentMap: String,
@@ -242,6 +262,7 @@ const dimensionColors = {
   '综合': 'linear-gradient(to right, #8EBDCB, #fff)'
 }
 
+let myRanking
 // 根据城市获取对应的维度分数和排名
 const getScoreAndRank = (dimension) => {
   const city = selectedCityStore.get().value
@@ -270,6 +291,8 @@ const getScoreAndRank = (dimension) => {
         ranking = overallRanking
         break
     }
+    // const myRanking = await api.getDimensionScoreAndRanking(2025, dimension+"发展")
+    // console.log(ranking)
     const index = ranking.findIndex((element) => element.city === city)
     return [ranking[index].score, ranking[index].rank]
   }
@@ -413,7 +436,11 @@ watch(
 onMounted(async () => {
   //挂载mapbox
   await initMapbox();
+  await loadData()
   initializeChanges()
+  
+  // myRanking = await api.getDimensionScoreAndRanking(2025, "综合发展")
+  // console.log(overallRanking, myRanking)
 });
 </script>
 

@@ -1,9 +1,9 @@
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 // import MapboxLanguage from "@mapbox/mapbox-gl-language";
-import CityData from "@/assets/json/standardCityBoundary.json";
+// import CityData from "@/assets/json/standardCityBoundary.json";
 import { scoreFormat } from "@/utils/format.ts";
-import cityPoint from "@/assets/json/cityCenterPoint.json";
+// import cityPoint from "@/assets/json/cityCenterPoint.json";
 import { useYearStore } from "@/store/year.js";
 const yearStore = useYearStore();
 
@@ -12,6 +12,9 @@ const selectedCityStore = useSelectedCityStore();
 
 import Api from "@/api/score"
 const api = new Api()
+
+import GeometryApi from "@/api/geometry"
+const geometryApi = new GeometryApi()
 
 // 定义一个异步函数来加载和格式化 ranking 数据
 const loadAndFormatRankingData = async () => {
@@ -124,17 +127,27 @@ export async function loadMap(box) {
   // }));
 }
 
-export function addGeoJson() {
-  map.on("style.load", () => {
+export async function addGeoJson() {
+  // const myCityData = await geometryApi.getGeometry("boundary")
+  // const myCityPoint = await geometryApi.getGeometry("center_point")
+  // console.log(myCityPoint)
+
+  await map.on("style.load", async () => {
+
+    // TODO 放在这里加载不好出问题，但是可能会体验不好，后续可以考虑迁移到loadMap中
+    const myCityData = await geometryApi.getGeometry("boundary")
+    const myCityPoint = await geometryApi.getGeometry("center_point")
+    // console.log(myCityPoint)
+
     // 加载 GeoJSON 数据源
     map.addSource("geojsonSource", {
       type: "geojson",
-      data: CityData,
+      data: myCityData['geometryData'],
     });
     map.addSource("pointGeojsonSource", {
       // 注意：这里使用的是不同的ID
       type: "geojson",
-      data: cityPoint,
+      data: myCityPoint['geometryData'],
     });
 
     //初始化上色

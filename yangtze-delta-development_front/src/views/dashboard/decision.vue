@@ -85,12 +85,12 @@ const basicData = reactive({})
 provide('basicDataRef', basicData)
 watch(selectedCityStore.get(), async (newValue, oldValue) => {
 
-  console.log("城市更新了")
+  // console.log("城市更新了")
   // const basicData = api.getCityBasicData(newValue, yearStore.year)
   const res = await api.getCityDecisionData(newValue, 2025)
   // console.log(res)
   basicData.value = res.dataContent
-  console.log(basicData.value)
+  // console.log(basicData.value)
 
 })
 

@@ -12,4 +12,8 @@ export default class {
   getNormalizeIndicators(year) {
     return get(`/score/indicators/${year}`)
   }
+
+  getDimensionScoreAndRanking(year, dimension) {
+    return get(`/score/dimensions/ranking/${year}/${dimension}`)
+  }
 }
