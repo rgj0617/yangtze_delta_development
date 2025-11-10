@@ -1,9 +1,9 @@
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 // import MapboxLanguage from "@mapbox/mapbox-gl-language";
-import CityData from "@/assets/json/standardCityBoundary.json";
+// import CityData from "@/assets/json/standardCityBoundary.json";
 import { scoreFormat } from "@/utils/format.ts";
-import cityPoint from "@/assets/json/cityCenterPoint.json";
+// import cityPoint from "@/assets/json/cityCenterPoint.json";
 import { useYearStore } from "@/store/year.js";
 const yearStore = useYearStore();
 
