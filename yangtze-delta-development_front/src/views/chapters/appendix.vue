@@ -52,7 +52,7 @@
 
 <script setup lang="ts">
 // @ts-ignore
-import detailData from "@/assets/json/scoreDetail.json";
+// import detailData from "@/assets/json/scoreDetail.json";
 // @ts-ignore
 import chaptersHeader from "./chaptersHeader.vue";
 // @ts-ignore
@@ -62,6 +62,13 @@ import VuePdfApp from "vue3-pdf-app";
 import "vue3-pdf-app/dist/icons/main.css";
 import { useYearStore } from "@/store/year.js";
 const yearStore = useYearStore();
+
+import Api from "@/api/score"
+
+const api = new Api()
+
+// 导入时机需要检查
+const detailData = api.getDimensionScoreAndRanking()
 
 interface TableDataRow {
   cityName: string;
