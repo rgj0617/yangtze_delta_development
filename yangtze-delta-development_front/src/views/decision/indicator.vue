@@ -135,11 +135,12 @@ const initializeVariables = () => {
     // console.log(props.indicator.variables)
 
     props.indicator.variables.forEach(element => {
-      if('initial' in element) {
-        // variables[element.name] = element.initial[city]
-        variables[element.name] = basicData.value[mapper[element.name]]
-        // console.log(element.name, element.initial[city], basicData.value[mapper[element.name]])
-      }
+      // if('initial' in element) {
+      //   // variables[element.name] = element.initial[city]
+      //   variables[element.name] = basicData.value[mapper[element.name]]
+      //   // console.log(element.name, element.initial[city], basicData.value[mapper[element.name]])
+      // }
+      variables[element.name] = basicData.value[mapper[element.name]]
     })
   }
 }
@@ -154,7 +155,7 @@ const initializeVariables = () => {
 // )
 
 watch(basicData, (newValue, oldValue) => {
-  // console.log("属性更新了")
+  console.log("属性更新了")
   initializeVariables()
 })
 
